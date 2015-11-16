@@ -1,26 +1,38 @@
 # View Wireframes
 
 ## New User
-![new-user]
+![sign-up]
 
 ## New Session
-![new-session]
+![sign-in]
 
-## NotesIndex / NoteIndexItem / NoteForm
-![notes]
+## Header / Sidebar
+![root]
 
-## NotebooksIndex / NotebookIndexItem
-![notebooks]
+## Chats
+![chats]
 
-## NoteBookForm
-![notebook-form]
+## Forum
+![forum]
+
+## To-Dos
+![to-dos]
+
+## Schedules
+![schedules]
+
+## Check-ins
+![check-ins]
 
 ## Component Heirarchy
 ![component-heirarchy]
 
-[new-user]: ./wireframes/new_user.png
-[new-session]: ./wireframes/new_session.png
-[notes]: ./wireframes/root_notes.png
-[notebooks]: ./wireframes/root_notebooks.png
-[notebook-form]: ./wireframes/notebook_form.png
+[new-user]: ./wireframes/sign_up.png
+[new-session]: ./wireframes/sign_in.png
+[root]: ./wireframes/root.png
+[chats]: ./wireframes/chats.png
+[forum]: ./wireframes/forum.png
+[to-dos]: ./wireframes/todos.png
+[schedules]: ./wireframes/schedules.png
+[check-ins]: ./wireframes/check_ins.png
 [component-heirarchy]: ./wireframes/component_heirarchy.png
