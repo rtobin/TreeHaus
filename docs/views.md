@@ -28,7 +28,7 @@
 ![component-heirarchy]
 
 [sign-up]: ./wireframes/sign_up.png
-[sign-sign]: ./wireframes/sign_in.png
+[sign-in]: ./wireframes/sign_in.png
 [root]: ./wireframes/root.png
 [chats]: ./wireframes/chats.png
 [forum]: ./wireframes/forum.png
