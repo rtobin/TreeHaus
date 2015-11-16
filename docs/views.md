@@ -27,8 +27,8 @@
 ## Component Heirarchy
 ![component-heirarchy]
 
-[new-user]: ./wireframes/sign_up.png
-[new-session]: ./wireframes/sign_in.png
+[sign-up]: ./wireframes/sign_up.png
+[sign-sign]: ./wireframes/sign_in.png
 [root]: ./wireframes/root.png
 [chats]: ./wireframes/chats.png
 [forum]: ./wireframes/forum.png
