@@ -6,19 +6,23 @@
 
 ## Minimum Viable Product
 
-FresherNote is a web application inspired by Evernote built using Ruby on Rails
-and React.js. FresherNote allows users to:
+Treehaus is a web application inspired by Basecamp built using Ruby on Rails
+and React.js. Treehaus allows users to:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
 - [ ] Create an account
 - [ ] Log in / Log out
-- [ ] Create, read, edit, and delete notes
-- [ ] Organize notes within Notebooks
-- [ ] Tag notes with multiple tags and search notes by tag
-- [ ] Search through notes for blocks of text
-- [ ] Apply complex styling to notes while editing
-- [ ] Set reminders on notes
+- [ ] Create, read, edit, and delete Projects
+- [ ] Add members to Projects
+- [ ] Create, read chats in Project Chatroom
+- [ ] Create, read, edit, and delete Projects
+- [ ] Create, read, edit, and delete Posts in forum
+- [ ] Create, read, edit, and delete Comments on many commentable items
+- [ ] Applaud comments.
+- [ ] Create, read, edit, and delete ToDos and Steps to accomplish ToDos and assign members
+- [ ] Create, read, edit, and delete Events and assign members
+- [ ] Create, read, edit, and delete CheckIns
 
 ## Design Docs
 * [View Wireframes][view]
@@ -64,7 +68,7 @@ extend this to a fuzzy search through every Note's content.
 
 ### Phase 4: Allow Complex Styling in Notes (1 day)
 
-Using quill.js, allow for complex styling of notes. 
+Using quill.js, allow for complex styling of notes.
 
 [Details][phase-four]
 
@@ -85,10 +89,12 @@ Phase 6 I will add styling flourishes and make modals out of some elements (like
 the NotebookForm).
 
 ### Bonus Features (TBD)
+- [ ] Tag items with multiple tags and search project by tag
+- [ ] Search through project for blocks of text
 - [ ] Prettify transitions
 - [ ] Use javascript library for cleaner tag selection
-- [ ] Changelogs for Notes
-- [ ] Pagination / infinite scroll for Notes Index
+- [ ] Changelogs for project
+- [ ] Pagination / infinite scroll for Index
 - [ ] Multiple sessions
 
 [phase-one]: ./docs/phases/phase1.md
