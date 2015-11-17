@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   )
 
   has_one :team
-  
+  has_many :members, through: :team, source: :members
+  belongs_to :author, class_name: "User"
 
 end

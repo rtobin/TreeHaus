@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       # redirect them to the new user's show page
       log_in!(@user)
-      redirect_to user_url(@user.id)
+      redirect_to projects_url
     else
       # input didn't pass validation;
       # prints password requirements

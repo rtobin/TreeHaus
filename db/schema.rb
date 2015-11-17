@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117164132) do
+ActiveRecord::Schema.define(version: 20151117180708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "organizations", force: :cascade do |t|
+    t.integer  "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string   "title",       null: false
@@ -50,7 +56,7 @@ ActiveRecord::Schema.define(version: 20151117164132) do
     t.datetime "avatar_updated_at"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "organization_name",   null: false
+    t.integer  "organization_id",     null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

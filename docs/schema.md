@@ -1,5 +1,26 @@
 # Schema Information
 
+## users
+column name     | data type | details
+----------------|-----------|-----------------------
+id              | integer   | not null, primary key
+name            | string    | not null
+title           | string    | not null
+organization_id | string    | not null
+email           | string    | not null, indexed, unique
+password_digest | string    | not null
+session_token   | string    | not null, indexed, unique
+avatar_file_name    | string    |
+avatar_content_type | string    |
+avatar_updated_at   | datetime  |
+
+## organization
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+name        | string    | not null, indexed, unique
+
+
 ## projects
 column name | data type | details
 ------------|-----------|-----------------------
@@ -129,19 +150,6 @@ commentable_id  | integer   | not null, foreign key (references posts, to_dos, s
 commentable_type| string    | not null
 author_id       | integer   | not null, foreign key (references users), indexed
 
-## users
-column name     | data type | details
-----------------|-----------|-----------------------
-id              | integer   | not null, primary key
-name            | string    | not null
-title           | string    | not null
-organization_name| string    | not null
-email           | string    | not null, indexed, unique
-password_digest | string    | not null
-session_token   | string    | not null, indexed, unique
-avatar_file_name    | string    |
-avatar_content_type | string    |
-avatar_updated_at   | datetime  |
 
 ## applauds
 column name     | data type | details

@@ -10,11 +10,11 @@ var Login = window.Login = React.createClass ({
       };
   },
 
-  login = function (e) {
+  login: function (e) {
     e.preventDefault();
     Auth.login(this.state.user, this.state.password)
       .catch(function (err) {
-        alert("Login error!")
+        alert("Login error!");
       });
   },
 
@@ -48,6 +48,6 @@ var Login = window.Login = React.createClass ({
     );
   }
 
-})
+});
 
-ReactMixin(Login.prototype, React.addons.LinkedStateMixin);
+// ReactMixin(Login.prototype, React.addons.LinkedStateMixin);

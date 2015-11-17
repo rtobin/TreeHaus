@@ -12,11 +12,11 @@ var Signup = window.Signup = React.createClass ({
       };
   },
 
-  signUp = function (e) {
+  signUp: function (e) {
     e.preventDefault();
     Auth.signup(this.state.user, this.state.password, this.state.extra)
       .catch(function (err) {
-        alert("Signup error!")
+        alert("Signup error!");
       });
   },
 
@@ -60,6 +60,6 @@ var Signup = window.Signup = React.createClass ({
     );
   }
 
-})
+});
 
-ReactMixin(Signup.prototype, React.addons.LinkedStateMixin);
+// ReactMixin(Signup.prototype, React.addons.LinkedStateMixin);

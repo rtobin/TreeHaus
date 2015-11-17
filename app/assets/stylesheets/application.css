@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+.header-nav {
+  border: solid 1px black;
+  background: green;
+  height: 100px;
+
+}
+
+.header-nav > .header-nav-menu {
+  border: solid 1px black;
+  width: 100px;
+}
+
+.header-nav li {
+  float: left;
+  padding: 10px;
+  list-style: none;
+}
+
+.logo {
+  float: left;
+}
+
+.user {
+  float: right;
+}
