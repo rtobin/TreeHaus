@@ -9,12 +9,18 @@ description | text      | not null
 author_id   | integer   | not null, foreign key (references users), indexed
 archived    | boolean   | not null, default: false
 
-## project_workers
+## teams
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-project_id  | integer   | not null, foreign key (references projects), indexed
-user_id     | integer   | not null, foreign key (references users), indexed
+project_id  | integer   | not null, foreign key (references project), indexed
+
+## team_memberships
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+team_id     | integer   | not null, foreign key (references teams), indexed
+member_id   | integer   | not null, foreign key (references users), indexed
 
 ## chats
 column name | data type | details

@@ -1,18 +1,16 @@
-class UsersController < ApplicationController
-  before_action :require_not_logged_in!, only: [:create, :new]
-  before_action :require_logged_in!, only: [:show]
+class ProjectsController < ApplicationController
+  before_action :require_logged_in!, only: [:create, :show]
+  before_action :require_logged_in_as_project_author!, only: [:edit, :update, :destroy]
 
   def create
-    # sign up the user
-    @user = User.new(user_params)
-    if @user.save
-      # redirect them to the new user's show page
-      log_in!(@user)
+    # new project
+    @project = Project.new(project_params)
+    if @project.save
+      # redirect them to the new project's show page
       redirect_to user_url(@user.id)
     else
       # input didn't pass validation;
-      # prints password requirements
-      # re-render sign up form.
+      # re-render project form.
       render :new
     end
   end
