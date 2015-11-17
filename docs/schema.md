@@ -54,10 +54,10 @@ to_do_id        | integer   | not null, foreign key (references to_dos), indexed
 author_id       | integer   | not null, foreign key (references users), indexed
 details         | text      | not null
 completed       | boolean   | not null, default: false
-start_date_time | datetime  | 
-end_date_time   | datetime  | 
+start_date_time | datetime  |
+end_date_time   | datetime  |
 
-## step_assignments 
+## step_assignments
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
@@ -70,10 +70,10 @@ column name     | data type | details
 id              | integer   | not null, primary key
 content         | text      | not null
 start_date_time | datetime  | not null
-end_date_time   | datetime  | 
+end_date_time   | datetime  |
 interval        | time      | not null
 
-## check_in_assignments 
+## check_in_assignments
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
@@ -128,9 +128,14 @@ column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
 name            | string    | not null
+title           | string    | not null
+organization_name| string    | not null
 email           | string    | not null, indexed, unique
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
+avatar_file_name    | string    |
+avatar_content_type | string    |
+avatar_updated_at   | datetime  |
 
 ## applauds
 column name     | data type | details
@@ -138,4 +143,3 @@ column name     | data type | details
 id              | integer   | not null, primary key
 comment_id      | integer   | not null, foreign key (references comment), indexed
 user_id         | integer   | not null, foreign key (references users), indexed
-
