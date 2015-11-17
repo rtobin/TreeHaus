@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
     presence: true
   )
 
+  has_one :team
   
 
 end
