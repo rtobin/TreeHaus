@@ -15,7 +15,7 @@ var App = React.createClass({
   },
 
   componentDidMount: function () {
-    this.changeListener = this._onChange.bind(this);
+    this.changeListener = this._onChange;
     UserStore.addChangeListener(this.changeListener);
   },
 
@@ -27,7 +27,7 @@ var App = React.createClass({
     if (this.state.loggedIn){
       return <Home />
     } else {
-      return <Login />
+      return <Signup />
     }
   }
 });

@@ -5,6 +5,7 @@ and one numeric digit.
 PSSWRD
 
 class User < ActiveRecord::Base
+  attr_reader :password
   after_initialize :ensure_session_token
 
   validates(
@@ -18,12 +19,11 @@ class User < ActiveRecord::Base
     :email,
     :organization_id,
     :title,
-    :activation_token,
     :password_digest,
     :session_token,
     presence: true
   )
-
+  
   validate :valid_password_given, if: -> { password }
 
   has_many :memberships, foreign_key: :membership_id, class_name: "Team_Memberships"

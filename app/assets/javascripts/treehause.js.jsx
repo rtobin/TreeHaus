@@ -22,7 +22,7 @@ $(function () {
   var routes = (
     <Route path="/" component={App}>
       <Route path="signup" component={Signup}/>
-      <Route path="login" component={Login}/>
+      // <Route path="login" component={Login}/>
       <Route path="home" component={Home} onEnter={requireAuth}>
         <Route path="logout" component={Logout}/>
       </Route>/>

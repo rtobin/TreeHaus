@@ -1,5 +1,5 @@
 // Attempt and making 'fluxy' login/signup
-var History = ReactRouter.History
+
 var Login = window.Login = React.createClass ({
   mixins: [ this.history ],
 

@@ -24,8 +24,7 @@ AuthUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        args = args.map(function(err){return err.responseText;});
-        LoginActions.errorReport(args)
+        LoginActions.errorReport(JSON.parse(args[0].responseText));
       }
     );
   },
@@ -40,7 +39,6 @@ AuthUtil = {
       }
     });
   },
-
   signup: function (email, password) {
     // $.ajax ({
     //   type: 'POST',
@@ -60,7 +58,7 @@ AuthUtil = {
     //   }
     // });
     $.post(
-      'api/users/create',
+      'api/users',
       {user: {email: email, password: password}},
       function (user) {
         // trigger LoginAction with the JWT
@@ -68,9 +66,9 @@ AuthUtil = {
         return true;
       }
     ).fail(function () {
-        var args = [].slice.call(arguments)
-        UserStore.addErrors(args);
+        var args = [].slice.call(arguments);
+        LoginActions.errorReport(JSON.parse(args[0].responseText));
       }
-    )
+    );
   }
 };

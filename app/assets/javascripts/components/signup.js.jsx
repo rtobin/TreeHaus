@@ -21,18 +21,15 @@ var Signup = window.Signup = React.createClass ({
 
   signup: function (e) {
     e.preventDefault();
-    Auth.signup(this.state.email, this.state.password, this.state.extra)
-      .catch(function (err) {
-        alert("Signup error!");
-      });
+    AuthUtil.signup(this.state.email, this.state.password, this.state.extra)
   },
 
   render: function () {
     var Link = ReactRouter.Link;
     return (
       <div className="session signup jumbotron center-block">
-        <Errors />
         <h1>Signup</h1>
+        <Errors />
         <form onSubmit={this.signup}>
           <div className="form-group">
             <label>Email
