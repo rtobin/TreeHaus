@@ -1,9 +1,8 @@
 // Attempt and making 'fluxy' login/signup
-
-
-
-
+var History = ReactRouter.History
 var Login = window.Login = React.createClass ({
+  mixins: [ this.history ],
+
   getInitialState: function () {
       return {
         email: '',
@@ -20,24 +19,36 @@ var Login = window.Login = React.createClass ({
   },
 
   login: function (e) {
+    var email, password;
     e.preventDefault();
-    Auth.login(this.state.email, this.state.password)
-      .catch(function (err) {
-        alert("Login error!");
-      });
+    email = this.refs.email.props.value;
+    password = this.refs.password.props.value;
+    AuthUtil.login(email, password)
+  },
+
+  guestLogin: function (e) {
+    var guest = {
+      email: "joe@example.com",
+      password: "password99"
+    };
+    this.setState(guest)
+    AuthUtil.login(guest.email, guest.password)
   },
 
   render: function () {
+    var Link = ReactRouter.Link;
     return (
       <div className="login jumbotron center-block">
         <h1>Login</h1>
-        <form>
+        <Errors />
+        <form onSubmit={this.login}>
           <div className="form-group">
             <label>Email
               <input
                 type="text"
                 value={this.state.email}
                 className="form-control"
+                ref="email"
                 placeholder="email"
                 onChange={this.onEmailChange}/>
             </label>
@@ -45,17 +56,21 @@ var Login = window.Login = React.createClass ({
           <div className="form-group">
             <label>Password
               <input
-                type="text"
+                type="password"
                 value={this.state.password}
                 className="form-control"
                 ref="password"
                 placeholder="password"
                 onChange={this.onPsswdChange}/>
             </label>
-
           </div>
-          <button type="submit" className="btn btn-default" onClick={this.signup.bind(this)}>Submit</button>
+          <button type="submit" className="btn btn-default">Submit</button>
+          <button onClick={this.guestLogin}>Guest</button>
         </form>
+        <p>
+          don't have an account?
+          <Link to="/signup">Sign up</Link>
+        </p>
       </div>
     );
   }

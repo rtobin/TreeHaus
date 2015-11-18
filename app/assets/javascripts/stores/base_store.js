@@ -1,7 +1,7 @@
 (function (root) {
   var CHANGE_EVENT = "change";
 
-  root.BaseStore = root.LoginStore = $.extend({}, EventEmitter.prototype, {
+  root.BaseStore = root.UserStore = $.extend({}, EventEmitter.prototype, {
 
     emitChange: function () {
       this.emit(CHANGE_EVENT);

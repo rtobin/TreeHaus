@@ -19,7 +19,7 @@ var Signup = window.Signup = React.createClass ({
     this.setState({password: event.target.value})
   },
 
-  signUp: function (e) {
+  signup: function (e) {
     e.preventDefault();
     Auth.signup(this.state.email, this.state.password, this.state.extra)
       .catch(function (err) {
@@ -28,16 +28,19 @@ var Signup = window.Signup = React.createClass ({
   },
 
   render: function () {
+    var Link = ReactRouter.Link;
     return (
-      <div className="signup jumbotron center-block">
+      <div className="session signup jumbotron center-block">
+        <Errors />
         <h1>Signup</h1>
-        <form>
+        <form onSubmit={this.signup}>
           <div className="form-group">
             <label>Email
               <input
                 type="text"
                 value={this.state.email}
                 className="form-control"
+                ref="email"
                 placeholder="email"
                 onChange={this.onEmailChange}/>
             </label>
@@ -45,7 +48,7 @@ var Signup = window.Signup = React.createClass ({
           <div className="form-group">
             <label>Password
               <input
-                type="text"
+                type="password"
                 value={this.state.password}
                 className="form-control"
                 ref="password"
@@ -53,8 +56,12 @@ var Signup = window.Signup = React.createClass ({
                 onChange={this.onPsswdChange}/>
             </label>
           </div>
-          <button type="submit" className="btn btn-default" onClick={this.signup.bind(this)}>Submit</button>
+          <button type="submit" className="btn btn-default">Submit</button>
         </form>
+        <p>
+          already have an account?
+          <Link to="/login">Login</Link>
+        </p>
       </div>
     );
   }

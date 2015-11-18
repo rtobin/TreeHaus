@@ -1,5 +1,6 @@
 var HomeUnWrapped = React.createClass({
   render: function () {
+    var Link = ReactRouter.Link;
     return (
       <div>
         <Header />

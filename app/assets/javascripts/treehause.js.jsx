@@ -7,24 +7,33 @@ $(function () {
 
 
 
+
+  // let sessionToken = localStorage.getItem('sessionToken');
+  // if (sessionToken) {
+  //   LoginActions.loginUser(sessionToken);
+  // }
+
+  var requireAuth = function (nextState, replaceState) {
+    debugger
+    if (!UserStore.isloggedIn())
+      replaceState({ nextPathname: nextState.location.pathname }, '/login')
+  };
+
   var routes = (
-    <Route handler={App}>
-      <Route name="signup" handler={Signup}/>
-      <Route name="login" handler={Login}/>
-      <Route name="home" path="/" handler={Home}/>
+    <Route path="/" component={App}>
+      <Route path="signup" component={Signup}/>
+      <Route path="login" component={Login}/>
+      <Route path="home" component={Home} onEnter={requireAuth}>
+        <Route path="logout" component={Logout}/>
+      </Route>/>
     </Route>
   );
-  debugger
-  
-  var router = Router.create({routes});
-  RouterContainer.set(router);
 
-  let sessionToken = localStorage.getItem('sessionToken');
-  if (sessionToken) {
-    LoginActions.loginUser(sessionToken);
-  }
-
-  router.run(function (Handler) {
-    React.render(<Handler />, document.getElementById('content'));
-  });
+  React.render(<Router>{routes}</Router>, document.getElementById('content'));
+  // var router = Router.create({routes});
+  // RouterContainer.set(router);
+  //
+  // router.run(function (Handler) {
+  //   React.render(<Handler />, document.getElementById('content'));
+  // });
 });

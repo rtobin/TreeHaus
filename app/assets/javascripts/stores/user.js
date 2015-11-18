@@ -1,6 +1,7 @@
 (function (root) {
   var _user = null;
-  var _sessionToken = null;
+  var CHANGE_EVENT = "change";
+  // var _sessionToken = null;
 
   var logOutUser = function () {
     _user = null;
@@ -10,15 +11,26 @@
     _user = user;
   };
 
-  var LoginStore = root.LoginStore = $.extend({}, BaseStore, {
+  var addErrors = function (errors) {
+    errors.forEach(function(err){
+      if (_errors.indexOf(err) === -1) {
+        _errors.push(err);
+        console.log(err);
+      }
+    })
+  };
+
+
+
+  var UserStore = root.UserStore = $.extend({}, BaseStore, {
 
     getUser: function () {
       return _user;
     },
 
-    getSessionToken: function () {
-      return _sessionToken;
-    },
+    // getSessionToken: function () {
+    //   return _sessionToken;
+    // },
 
     isLoggedIn: function () {
       return !!_user;
@@ -28,12 +40,14 @@
       switch(payload.actionType){
         case AuthConstants.LOGIN_USER:
           // this._user = jwt_decode(this._jwt);
+          debugger
+          this.eraseErrors();
           logInUser(payload.user)
-          this.emitChange();
+          UserStore.emitChange();
           break;
         case AuthConstants.LOGOUT_USER:
           logOutUser();
-          this.emitChange();
+          UserStore.emitChange();
           break;
         default:
           break;

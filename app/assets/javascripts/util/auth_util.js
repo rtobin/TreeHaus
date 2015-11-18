@@ -15,34 +15,30 @@ AuthUtil = {
     //   }
     // });
     $.post(
-      '/sessions/create',
-      {email: email, password: password},
+      'api/session',
+      {user: {email: email, password: password}},
       function (user) {
         // trigger LoginAction with the JWT
         LoginActions.loginUser(user);
         return true;
       }
-    )
+    ).fail(function () {
+        var args = [].slice.call(arguments);
+        args = args.map(function(err){return err.responseText;});
+        LoginActions.errorReport(args)
+      }
+    );
   },
 
   logout: function () {
-    // $.ajax ({
-    //   type: 'POST',
-    //   url: '/sessions/destroy',
-    //   success: function (data) {
-    //     LoginActions.logoutUser();
-    //     return true;
-    //   }
-    // });
-    $.post(
-      '/sessions/destroy',
-      filter,
-      function () {
-        // trigger LoginAction with the JWT
+    $.ajax ({
+      type: 'DELETE',
+      url: 'api/session',
+      success: function () {
         LoginActions.logoutUser();
         return true;
       }
-    )
+    });
   },
 
   signup: function (email, password) {
@@ -64,12 +60,16 @@ AuthUtil = {
     //   }
     // });
     $.post(
-      '/users/create',
-      {email: email, password: password},
+      'api/users/create',
+      {user: {email: email, password: password}},
       function (user) {
         // trigger LoginAction with the JWT
         LoginActions.loginUser(user);
         return true;
+      }
+    ).fail(function () {
+        var args = [].slice.call(arguments)
+        UserStore.addErrors(args);
       }
     )
   }

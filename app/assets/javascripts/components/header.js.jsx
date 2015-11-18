@@ -7,7 +7,9 @@
     render: function () {
       return(
         <div className="header-nav">
-          <div className="header-nav-menu logo">Menu Icon</div>
+          <div className="header-nav-menu logo">
+            Menu
+          </div>
           <ul>
             <li>Recent Activity</li>
             <li>Projects</li>

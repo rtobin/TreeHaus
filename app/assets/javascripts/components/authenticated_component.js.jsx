@@ -2,7 +2,7 @@ var authenticatedComponent = function (Component) {
   var wrappedComponent = React.createClass({
     statics: {
       onEnter(transition) {
-        if (!LoginStore.isLoggedIn()) {
+        if (!UserStore.isLoggedIn()) {
           transition.redirect('/login', {}, {'nextPath' : transition.path});
         }
       },
@@ -12,15 +12,15 @@ var authenticatedComponent = function (Component) {
 
     getInitialState: function () {
       return {
-        userLoggedIn: LoginStore.isLoggedIn(),
-        user: LoginStore.user,
-        sessionToken: LoginStore.sessionToken
+        userLoggedIn: UserStore.isLoggedIn(),
+        user: UserStore.user,
+        // sessionToken: UserStore.sessionToken
       };
     },
 
     componentDidMount: function () {
       this.changeListener = this._onChange.bind(this);
-      LoginStore.addChangeListener(this.changeListener);
+      UserStore.addChangeListener(this.changeListener);
     },
 
     _onChange: function () {
@@ -28,7 +28,7 @@ var authenticatedComponent = function (Component) {
     },
 
     componentWillUnmount: function () {
-      LoginStore.removeChangeListener(this.changeListener);
+      UserStore.removeChangeListener(this.changeListener);
     },
 
     render: function () {

@@ -1,2 +1,2 @@
-class ProjectMembershipsController < ApplicationController
+class Api::ProjectMembershipsController < ApplicationController
 end
