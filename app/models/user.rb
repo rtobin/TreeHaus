@@ -28,10 +28,7 @@ class User < ActiveRecord::Base
 
   has_many :memberships, foreign_key: :membership_id, class_name: "Team_Memberships"
   has_many :projects, foreign_key: :author_id
-  has_many :teams, through: :memberships, source: :team 
-
-
-
+  has_many :teams, through: :memberships, source: :team
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

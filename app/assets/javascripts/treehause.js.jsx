@@ -1,23 +1,30 @@
 $(function () {
-  var root = document.getElementById('content');
   var RouteHandler = ReactRouter.RouteHandler;
   var Router = ReactRouter.Router;
   var Route = ReactRouter.Route;
   var IndexRoute = ReactRouter.IndexRoute;
-  var App = React.createClass({
-    render: function(){
-      return (
-          <div>
-            <Header />
-            {this.props.children}
-          </div>
-      );
-    }
-  });
-  var routes = (
-      <Route path="/" component={App}>
 
-      </Route>
+
+
+
+  var routes = (
+    <Route handler={App}>
+      <Route name="signup" handler={Signup}/>
+      <Route name="login" handler={Login}/>
+      <Route name="home" path="/" handler={Home}/>
+    </Route>
   );
-  React.render(<Router>{routes}</Router>, root);
+  debugger
+  
+  var router = Router.create({routes});
+  RouterContainer.set(router);
+
+  let sessionToken = localStorage.getItem('sessionToken');
+  if (sessionToken) {
+    LoginActions.loginUser(sessionToken);
+  }
+
+  router.run(function (Handler) {
+    React.render(<Handler />, document.getElementById('content'));
+  });
 });

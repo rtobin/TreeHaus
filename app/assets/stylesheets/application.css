@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  font-family: "Fakt Soft", "Helvetica Neue", helvetica, arial, sans-serif;
+}
+
 .header-nav {
   border: solid 1px black;
   background: green;

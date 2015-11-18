@@ -2,11 +2,6 @@ class SessionsController < ApplicationController
   before_action :require_not_logged_in!, only: [:create, :new]
   before_action :require_logged_in!, only: [:destroy]
 
-  def new
-    # presents a login form
-    render :new
-  end
-  
   def create
     # signs a user in
     @user = User.find_by_credentials(
@@ -15,8 +10,8 @@ class SessionsController < ApplicationController
     )
 
     if @user.nil?
-      flash.now[:errors] = ["No user with given email/password!"]
-      render :new
+      render json: flash.now[:errors] = ["No user with given email/password!"]
+      render :show
     else
       # sign the user in
       log_in!(@user)
@@ -27,7 +22,7 @@ class SessionsController < ApplicationController
   def destroy
     # sign a user out
     log_out!
-    redirect_to new_session_url
+    render :show
   end
 
 end

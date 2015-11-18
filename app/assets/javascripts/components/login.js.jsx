@@ -2,17 +2,26 @@
 
 
 
+
 var Login = window.Login = React.createClass ({
   getInitialState: function () {
       return {
-        user: '',
+        email: '',
         password: ''
       };
   },
 
+  onEmailChange: function(event) {
+    this.setState({email: event.target.value})
+  },
+
+  onPsswdChange: function(event) {
+    this.setState({password: event.target.value})
+  },
+
   login: function (e) {
     e.preventDefault();
-    Auth.login(this.state.user, this.state.password)
+    Auth.login(this.state.email, this.state.password)
       .catch(function (err) {
         alert("Login error!");
       });
@@ -27,20 +36,23 @@ var Login = window.Login = React.createClass ({
             <label>Email
               <input
                 type="text"
-                valueLink={this.linkState('user')}
+                value={this.state.email}
                 className="form-control"
-                placeholder="email" />
+                placeholder="email"
+                onChange={this.onEmailChange}/>
             </label>
           </div>
           <div className="form-group">
             <label>Password
               <input
                 type="text"
-                valueLink={this.linkState('password')}
+                value={this.state.password}
                 className="form-control"
                 ref="password"
-                placeholder="password" />
+                placeholder="password"
+                onChange={this.onPsswdChange}/>
             </label>
+
           </div>
           <button type="submit" className="btn btn-default" onClick={this.signup.bind(this)}>Submit</button>
         </form>
@@ -49,5 +61,3 @@ var Login = window.Login = React.createClass ({
   }
 
 });
-
-// ReactMixin(Login.prototype, React.addons.LinkedStateMixin);

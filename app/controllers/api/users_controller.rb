@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_action :require_not_logged_in!, only: [:create, :new]
-  before_action :require_logged_in!, only: [:show]
 
   def create
     # sign up the user
@@ -8,12 +6,12 @@ class UsersController < ApplicationController
     if @user.save
       # redirect them to the new user's show page
       log_in!(@user)
-      redirect_to projects_url
+      render :show
     else
       # input didn't pass validation;
       # prints password requirements
       # re-render sign up form.
-      render :new
+      render json:@user.errors.full_messages, status: 422
     end
   end
 
@@ -24,32 +22,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user.nil?
-      # let them log in
-      redirect_to new_session_url
-      return
-    end
-
     @user = current_user
     render :show
   end
 
-  def search
-    if params[:query].present?
-      @users = User.where("username ~ ?", params[:query])
-    else
-      @users = User.none
-    end
-
-    respond_to do |format|
-      format.html { render :search }
-      format.json { render :search }
-    end
-  end
-
   protected
   def user_params
-    self.params.require(:user).permit(
-            :email, :password, :name, :title, :organization_name)
+    self.params.require(:user).permit(:email, :password)
   end
 end
