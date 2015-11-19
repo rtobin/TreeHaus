@@ -1,7 +1,6 @@
 (function (root) {
   var _user = null;
   var CHANGE_EVENT = "change";
-  // var _sessionToken = null;
 
   var logOutUser = function () {
     _user = null;
@@ -16,10 +15,6 @@
     getUser: function () {
       return _user;
     },
-
-    // getSessionToken: function () {
-    //   return _sessionToken;
-    // },
 
     isLoggedIn: function () {
       return !!_user;
