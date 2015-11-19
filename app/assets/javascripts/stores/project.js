@@ -1,25 +1,25 @@
 (function(root){
 
+  // projects is an array of objects {id: project.id, title: project.title}
   var _projects = [];
   var CHANGE_EVENT = "change";
 
+  var resetProjects = function (projects) {
+    _projects = projects;
+  };
+
   var ProjectStore = root.ProjectStore = $.extend({}, EventEmitter.prototype, {
-    // all: function(){
-    //   return _project.slice(0);
-    // },
-    // addChangeListener: function(callback){
-    //   this.on(CHANGE_EVENT, callback);
-    // },
-    // removeChangeListener: function(callback){
-    //   this.removeListener(CHANGE_EVENT, callback);
-    // },
-    // dispatcherID: AppDispatcher.register(function(payload){
-    //   switch(payload.actionType){
-    //     case ProjectConstants.PROJECTS_RECEIVED:
-    //       var result = resetBenches(payload.benches);
-    //       BenchStore.emit(CHANGE_EVENT);
-    //       break;
-    //   }
-    // })
+    all: function(){
+      return _projects.slice(0);
+    },
+
+    dispatcherID: AppDispatcher.register(function(payload){
+      switch(payload.actionType){
+        case ProjectConstants.PROJECTS_RECEIVED:
+          var result = resetBenches(payload.benches);
+          ProjectStore.emit(CHANGE_EVENT);
+          break;
+      }
+    })
   });
 })(this);

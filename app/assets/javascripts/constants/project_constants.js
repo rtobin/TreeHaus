@@ -1,0 +1,3 @@
+ProjectConstants = {
+  PROJECTS_RECEIVED: "PROJECTS_RECEIVED"
+};

@@ -12,8 +12,12 @@ var Signup = React.createClass ({
       };
   },
 
-  componentDidMount: function () {
+  componentWillMount: function () {
     UserStore.addChangeListener(this.redirectAfterLogin);
+  },
+
+  componentDidMount: function () {
+    this.checkIfLoggedIn();
   },
 
   componentWillUnMount: function () {
@@ -40,6 +44,23 @@ var Signup = React.createClass ({
 
   loginCallbackAction: function (user) {
     LoginActions.loginUser(user);
+  },
+
+  checkIfLoggedIn: function () {
+    if (UserStore.isLoggedIn()) {
+      var str = "You are currently logged in with the email: \"";
+      str += UserStore.getUser().email;
+      str+= "\n Do you wish to log out?";
+      var r = confirm(str);
+      if (r === true) {
+          x = "You pressed OK!";
+          LoginActions.logoutUser();
+      } else {
+          x = "You pressed Cancel!";
+          UserStore.emitChange();
+      }
+      console.log(x);
+    }
   },
 
   signup: function (e) {
