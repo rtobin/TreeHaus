@@ -19,7 +19,7 @@ var Header = React.createClass({
           </nav>
 
           <h1 className="header-logo">
-            <a href="#">App Academy Students</a>
+            <a href="#">Project Page</a>
           </h1>
         </div>
       </header>
