@@ -70,4 +70,11 @@ class User < ActiveRecord::Base
       errors[:password] << INVALID_PASSWORD
     end
   end
+
+  def to_builder
+    Jbuilder.new do |user|
+      user.email self.email
+      # user.projects json.array! @projects, :id, :title
+    end
+  end
 end

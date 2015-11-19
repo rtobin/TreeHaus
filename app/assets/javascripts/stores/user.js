@@ -11,15 +11,6 @@
     _user = user;
   };
 
-  var addErrors = function (errors) {
-    errors.forEach(function(err){
-      if (_errors.indexOf(err) === -1) {
-        _errors.push(err);
-        console.log(err);
-      }
-    })
-  };
-
   var UserStore = root.UserStore = $.extend({}, BaseStore, {
 
     getUser: function () {
@@ -37,7 +28,7 @@
     dispatcherID: AppDispatcher.register( function (payload){
       switch(payload.actionType){
         case AuthConstants.LOGIN_USER:
-          logInUser(payload.user)
+          logInUser(payload.user);
           UserStore.emitChange();
           break;
         case AuthConstants.LOGOUT_USER:

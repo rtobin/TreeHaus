@@ -29,4 +29,4 @@ var ErrorsStore = window.ErrorsStore = $.extend({}, BaseStore, {
         break;
     }
   })
-})
+});

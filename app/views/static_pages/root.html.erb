@@ -1,2 +1,12 @@
 <div id="content">
+  <% if logged_in? %>
+    Yes!
+    <script type="text/javascript" charset="utf-8">
+      var userParams = {
+        email: "<%= current_user.email %>"
+      }
+      // Use Jbuilder object later...
+      LoginActions.loginUser(userParams);
+    </script>
+  <% end %>
 </div>

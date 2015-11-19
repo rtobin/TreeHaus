@@ -1,6 +1,7 @@
 // Attempt and making 'fluxy' login/signup
 
 var Signup = React.createClass ({
+  mixins: [ReactRouter.History],
 
   getInitialState: function () {
       return {
@@ -11,17 +12,39 @@ var Signup = React.createClass ({
       };
   },
 
+  componentDidMount: function () {
+    UserStore.addChangeListener(this.redirectAfterLogin);
+  },
+
+  componentWillUnMount: function () {
+    UserStore.removeChangeListener(this.redirectAfterLogin);
+  },
+
+  redirectAfterLogin: function () {
+    var location = this.props;
+    if (location.state && location.state.nextPathname) {
+      debugger
+      this.history.replaceState(null, location.state.nextPathname);
+    } else {
+      this.history.pushState(null, "projects");
+    }
+  },
+
   onEmailChange: function(event) {
-    this.setState({email: event.target.value})
+    this.setState({email: event.target.value});
   },
 
   onPsswdChange: function(event) {
-    this.setState({password: event.target.value})
+    this.setState({password: event.target.value});
+  },
+
+  loginCallbackAction: function (user) {
+    LoginActions.loginUser(user);
   },
 
   signup: function (e) {
     e.preventDefault();
-    AuthUtil.signup(this.state.email, this.state.password, this.state.extra)
+    AuthUtil.login(this.state, this.loginCallbackAction);
   },
 
   render: function () {

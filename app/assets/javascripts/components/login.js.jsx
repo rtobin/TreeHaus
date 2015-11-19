@@ -1,6 +1,7 @@
 // Attempt and making 'fluxy' login/signup
 
 var Login = React.createClass ({
+  mixins: [ReactRouter.History],
 
   getInitialState: function () {
       return {
@@ -9,34 +10,73 @@ var Login = React.createClass ({
       };
   },
 
+  componentWillMount: function () {
+    UserStore.addChangeListener(this.redirectAfterLogin);
+  },
+
+  componentDidMount: function () {
+    this.checkIfLoggedIn();
+  },
+
+  componentWillUnMount: function () {
+    UserStore.removeChangeListener(this.redirectAfterLogin);
+  },
+
+  redirectAfterLogin: function () {
+    var location = this.props;
+    if (location.state && location.state.nextPathname) {
+      this.history.replaceState(null, location.state.nextPathname);
+    } else {
+      this.history.pushState(null, "/projects");
+    }
+  },
+
   onEmailChange: function(event) {
-    this.setState({email: event.target.value})
+    this.setState({email: event.target.value});
   },
 
   onPsswdChange: function(event) {
-    this.setState({password: event.target.value})
+    this.setState({password: event.target.value});
+  },
+
+  loginCallbackAction: function (user) {
+    LoginActions.loginUser(user);
   },
 
   login: function (e) {
-    var email, password;
     e.preventDefault();
-    email = this.refs.email.props.value;
-    password = this.refs.password.props.value;
-    AuthUtil.login(email, password)
+    AuthUtil.login(this.state, this.loginCallbackAction);
   },
 
   guestLogin: function (e) {
     var guest = {
-      email: "joe@example.com",
-      password: "password99"
+      email: "jane@example.com",
+      password: "Password0"
     };
-    this.setState(guest)
-    AuthUtil.login(guest.email, guest.password)
+    this.setState(guest);
+    var that = this;
+    // setTimeout(AuthUtil.login(guest, that.loginCallback), 500);
+    AuthUtil.login(guest, this.loginCallbackAction);
+  },
+
+  checkIfLoggedIn: function () {
+    if (UserStore.isLoggedIn()) {
+      var str = "You are currently logged in with the email: \"";
+      str += UserStore.getUser().email;
+      str+= "\n Do you wish to log out?";
+      var r = confirm(str);
+      if (r === true) {
+          x = "You pressed OK!";
+          LoginActions.logoutUser();
+      } else {
+          x = "You pressed Cancel!";
+          UserStore.emitChange();
+      }
+      console.log(x);
+    }
   },
 
   render: function () {
-    debugger
-    
     var Link = ReactRouter.Link;
     return (
       <div className="login jumbotron center-block">

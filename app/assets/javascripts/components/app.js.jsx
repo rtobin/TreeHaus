@@ -1,18 +1,18 @@
-'use strict';
-
 var App = React.createClass({
+  mixins: [ReactRouter.History],
 
 
   getInitialState: function () {
-      return this._getLoginState();
+      return { isLoggedIn: this._getLoginState() };
   },
 
   _getLoginState: function () {
-    return  { loggedIn: UserStore.isLoggedIn() };
+    return  UserStore.isLoggedIn();
   },
 
   _onChange: function () {
-    this.setState(this._getLoginState());
+    // redirect to login
+    this.setState({isLoggedIn: this._getLoginState()});
   },
 
   componentDidMount: function () {
@@ -24,18 +24,21 @@ var App = React.createClass({
     UserStore.removeChangeListener(this.changeListener);
   },
 
+
   render: function () {
+    debugger
     return (
       <div className="container">
+        <h1>App</h1>
         {this.props.children}
-
       </div>
     );
   },
 
   headerItems: function () {
     var Link = ReactRouter.Link;
-    if (!this.state.LoggedIn) {
+    debugger;
+    if (!UserStore.isLoggedIn()) {
       return (
       <ul className="nav navbar-nav navbar-right">
         <li>
@@ -49,13 +52,13 @@ var App = React.createClass({
       return (
         <ul className="nav navbar-nav navbar-right">
           <li>
-            <Link to="home">Home</Link>
+            <Link to="projects">Projects</Link>
           </li>
           <li>
-            <Link to="quote">Quote</Link>
+            <Link to="stuff">Stuff</Link>
           </li>
           <li>
-            <a href="" onClick={this.logout}>Logout</a>
+            <a href="" onClick={AuthUtil.logout()}>Logout</a>
           </li>
         </ul>
         )
