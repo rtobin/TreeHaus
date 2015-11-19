@@ -22,7 +22,17 @@ $(function () {
 
   var routes = (
     <Route path="/" component={App} >
-      <Route path="projects" component={Projects} onEnter={requireAuth}/>
+      <Route path="projects" component={ProjectsIndex} onEnter={requireAuth}>
+        <Route path=":id" component={Project} onEnter={requireAuth}>
+          <Route path="todos" component={TodosIndex} onEnter={requireAuth}>
+            <Route path=":id" component={Todo} onEnter={requireAuth}>
+              <Route path="steps" component={StepsIndex} onEnter={requireAuth}>
+                <Route path=":id" component={Step} onEnter={requireAuth}/>
+              </Route>
+            </Route>
+          </Route>
+        </Route>
+      </Route>
       <Route path="login" component={Login}/>
       <Route path="signup" component={Signup}/>
       <Route path="logout" component={Logout}/>
