@@ -22,7 +22,7 @@ var ErrorsStore = window.ErrorsStore = $.extend({}, BaseStore, {
     switch(payload.actionType){
       case AuthConstants.AUTH_ERROR:
         addErrors(payload.errors);
-        UserStore.emit(CHANGE_EVENT);
+        ErrorsStore.emit(CHANGE_EVENT);
         break;
       default:
         break;

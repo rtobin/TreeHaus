@@ -4,13 +4,20 @@ class Api::SessionsController < ApplicationController
 
   def create
     # signs a user in
-    user = User.find_by_credentials(
-      params[:user][:email],
-      params[:user][:password]
-    )
+    email = params[:user][:email]
+    password = params[:user][:password]
+    user = User.find_by_credentials(email, password)
 
     if user.nil?
-      render json: "No user with given email/password", status: 422
+      errors = []
+      if email == "" || password == ""
+        errors.push("Fields must not be blank.")
+      else
+        errors.push("No user with given email/password.")
+      end
+
+      render json: errors, status: 422
+
     else
       # sign the user in
       log_in!(user)

@@ -14,15 +14,14 @@ $(function () {
   // }
 
   var requireAuth = function (nextState, replaceState) {
-    debugger
-    if (!UserStore.isloggedIn())
+    if (!UserStore.isLoggedIn())
       replaceState({ nextPathname: nextState.location.pathname }, '/login')
   };
 
   var routes = (
-    <Route path="/" component={App}>
+    <Route path="/" component={App} >
+      <Route path="login" component={Login}/>
       <Route path="signup" component={Signup}/>
-      // <Route path="login" component={Login}/>
       <Route path="home" component={Home} onEnter={requireAuth}>
         <Route path="logout" component={Logout}/>
       </Route>/>

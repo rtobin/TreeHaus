@@ -50,7 +50,6 @@ AuthUtil = {
     //   },
     //   success: function (payload) {
     //     // get a JWT back
-    //     // debugger
     //     // let jwt = payload.session_token;
     //     // trigger LoginAction with the JWT
     //     LoginActions.loginUser(payload);

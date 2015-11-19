@@ -20,8 +20,6 @@
     })
   };
 
-
-
   var UserStore = root.UserStore = $.extend({}, BaseStore, {
 
     getUser: function () {
@@ -39,9 +37,6 @@
     dispatcherID: AppDispatcher.register( function (payload){
       switch(payload.actionType){
         case AuthConstants.LOGIN_USER:
-          // this._user = jwt_decode(this._jwt);
-          debugger
-          this.eraseErrors();
           logInUser(payload.user)
           UserStore.emitChange();
           break;

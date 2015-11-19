@@ -15,15 +15,15 @@ class User < ActiveRecord::Base
   )
 
   validates(
-    :name,
+    # :name,
     :email,
-    :organization_id,
-    :title,
+    # :organization_id,
+    # :title,
     :password_digest,
     :session_token,
     presence: true
   )
-  
+
   validate :valid_password_given, if: -> { password }
 
   has_many :memberships, foreign_key: :membership_id, class_name: "Team_Memberships"

@@ -15,13 +15,14 @@ var Errors = window.Errors = React.createClass ({
   },
 
   componentWillUnmount: function () {
+    ErrorsStore.eraseErrors();
     ErrorsStore.removeChangeListener(this.updateErrors);
   },
 
   render: function () {
     return (
 
-      <ul className="errors">
+      <ul className="error-list">
         {
           this.state.errors.map(function(errMsg, idx){
             return <li key={idx}>{errMsg}</li>
