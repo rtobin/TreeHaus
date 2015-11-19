@@ -1,6 +1,6 @@
 // Attempt and making 'fluxy' login/signup
 
-var Signup = window.Signup = React.createClass ({
+var Signup = React.createClass ({
 
   getInitialState: function () {
       return {

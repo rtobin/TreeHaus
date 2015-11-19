@@ -1,7 +1,6 @@
 // Attempt and making 'fluxy' login/signup
 
-var Login = window.Login = React.createClass ({
-  mixins: [ this.history ],
+var Login = React.createClass ({
 
   getInitialState: function () {
       return {
@@ -36,6 +35,8 @@ var Login = window.Login = React.createClass ({
   },
 
   render: function () {
+    debugger
+    
     var Link = ReactRouter.Link;
     return (
       <div className="login jumbotron center-block">

@@ -1,14 +1,12 @@
-var HomeUnWrapped = React.createClass({
+var Home = React.createClass({
   render: function () {
     var Link = ReactRouter.Link;
+        // <Header />
+        // <Sidebar />
     return (
       <div>
-        <Header />
-        <Sidebar />
         {this.props.children}
       </div>
     )
   }
 });
-
-var Home = authenticatedComponent(HomeUnWrapped);

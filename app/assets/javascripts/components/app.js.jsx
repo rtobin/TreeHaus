@@ -28,6 +28,7 @@ var App = React.createClass({
     return (
       <div className="container">
         {this.props.children}
+
       </div>
     );
   },

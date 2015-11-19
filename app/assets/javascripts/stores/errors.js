@@ -2,11 +2,12 @@ var _errors = [];
 var CHANGE_EVENT = "change";
 
 var addErrors = function (errors) {
-  errors.forEach(function(err){
-    if (_errors.indexOf(err) === -1) {
-      _errors.push(err);
-    }
-  })
+  // errors.forEach(function(err){
+  //   if (_errors.indexOf(err) === -1) {
+  //     _errors.push(err);
+  //   }
+  // })
+  _errors = errors;
 };
 
 var ErrorsStore = window.ErrorsStore = $.extend({}, BaseStore, {
