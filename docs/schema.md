@@ -51,6 +51,16 @@ project_id  | integer   | not null, foreign key (references projects), indexed
 user_id     | integer   | not null, foreign key (references users), indexed
 content	    | text      | not null
 
+## actions_list
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+project_id  | integer   | not null, foreign key (references projects), indexed
+user_id     | integer   | not null, foreign key (references users), indexed
+description | text      | not null
+
+
+
 ## posts
 column name | data type | details
 ------------|-----------|-----------------------

@@ -1,24 +1,18 @@
-var LogoAdmin = React.createClass({
+var LatestActivity = React.createClass({
   mixins: [ClickExpandable],
 
 
   expandedContent: function () {
     return (
-      <div href="#" className="topnav-menu-trigger topnav-menu-trigger-admin">
+      <div className="topnav-menu-trigger topnav-menu-trigger-admin">
         <h3 className="topnav-menu-heading">
           <span className="top">Ryan</span>
         </h3>
         <div className="stuff">
           <a className="stuff-text" href="#">
-            Adminland - Upgrades, billing, people management, account administration
+            WORK IN PROGRESS... ;-)
           </a>
         </div>
-        <h3 className="topnav-menu-heading">
-          <span>Switch accounts</span>
-        </h3>
-        <h3 className="topnav-menu-heading">
-          <span className="bottom">Go Mobile</span>
-        </h3>
       </div>
     );
   },
@@ -27,7 +21,7 @@ var LogoAdmin = React.createClass({
     return (
       <div id={this.state.selector}
         onClick={this.toggleExpand}>
-        Admin
+        Latest Activities
         {this.expandableItem()}
       </div>
     );

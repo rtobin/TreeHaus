@@ -7,6 +7,7 @@ var ClickExpandable = {
   },
 
   componentDidMount: function () {
+    debugger
     cb = function () {this.setState({expanded: false})};
     createClickOffHandler(this.state.selector, cb.bind(this));
   },
@@ -21,19 +22,14 @@ var ClickExpandable = {
     console.log(this.state.expanded);
   },
 
-  expandableLoad: function () {
-    if (this.state.expanded) {
-      return this.expandedContent();
-    }
-  },
-
   expandableItem: function () {
+    var style = {};
+    if (!this.state.expanded) {
+      style.display = 'none'
+    }
     return (
-      <div className="collapsible_content"
-        id={this.state.selector}
-        onClick={this.toggleExpand}>
-          exp
-          {this.expandableLoad()}
+      <div className="collapsible_content" style={style}>
+        {this.expandedContent()}
       </div>
     )
   }

@@ -1,28 +1,32 @@
 var App = React.createClass({
   mixins: [ReactRouter.History],
 
-
-  getInitialState: function () {
-      return { isLoggedIn: this._getLoginState() };
+  componentWillMount: function () {
+    this.history.pushState(null, "projects");
   },
 
-  _getLoginState: function () {
-    return  UserStore.isLoggedIn();
-  },
+  // componentDidMount: function () {
+  //   this.changeListener = this._onChange;
+  //   UserStore.addChangeListener(this.changeListener);
+  // },
+  //
+  // componentWillUnMount: function () {
+  //   UserStore.removeChangeListener(this.changeListener);
+  // // },
+  //
+  // getInitialState: function () {
+  //     return { isLoggedIn: this._getLoginState() };
+  // },
+  //
+  // _getLoginState: function () {
+  //   return  UserStore.isLoggedIn();
+  // },
+  //
+  // _onChange: function () {
+  //   // redirect to login
+  //   this.setState({isLoggedIn: this._getLoginState()});
+  // },
 
-  _onChange: function () {
-    // redirect to login
-    this.setState({isLoggedIn: this._getLoginState()});
-  },
-
-  componentDidMount: function () {
-    this.changeListener = this._onChange;
-    UserStore.addChangeListener(this.changeListener);
-  },
-
-  componentWillUnMount: function () {
-    UserStore.removeChangeListener(this.changeListener);
-  },
 
 
   render: function () {
