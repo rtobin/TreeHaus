@@ -23,14 +23,8 @@ $(function () {
   var routes = (
     <Route path="/" component={App} >
       <Route path="projects" component={ProjectsIndex} onEnter={requireAuth}>
-        <Route path=":id" component={Project} onEnter={requireAuth}>
-          <Route path="todos" component={TodosIndex} onEnter={requireAuth}>
-            <Route path=":id" component={Todo} onEnter={requireAuth}>
-              <Route path="steps" component={StepsIndex} onEnter={requireAuth}>
-                <Route path=":id" component={Step} onEnter={requireAuth}/>
-              </Route>
-            </Route>
-          </Route>
+        <Route path=":id" component={ProjectHome} onEnter={requireAuth}>
+
         </Route>
       </Route>
       <Route path="login" component={Login}/>
@@ -40,10 +34,13 @@ $(function () {
   );
 
   React.render(<Router>{routes}</Router>, document.getElementById('content'));
-  // var router = Router.create({routes});
-  // RouterContainer.set(router);
-  //
-  // router.run(function (Handler) {
-  //   React.render(<Handler />, document.getElementById('content'));
+  
+  // <Route path="todos" component={TodosIndex} onEnter={requireAuth}>
+  //   <Route path=":id" component={Todo} onEnter={requireAuth}>
+  //     <Route path="steps" component={StepsIndex} onEnter={requireAuth}>
+  //       <Route path=":id" component={Step} onEnter={requireAuth}/>
+  //     </Route>
+  //   </Route>
+  // </Route>
   // });
 });

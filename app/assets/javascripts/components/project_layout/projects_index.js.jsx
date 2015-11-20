@@ -20,7 +20,7 @@ var ProjectsIndex = React.createClass({
       console.log(this.props.children);
     return (
       <div>
-        <Header />
+        <ProjectHome />
         <h1>Projects</h1>
       </div>
     );

@@ -1,5 +1,4 @@
 var ProjectDock = React.createClass({
-  mixins: [ProjectDependentMixin],
 
   render: function () {
     return (

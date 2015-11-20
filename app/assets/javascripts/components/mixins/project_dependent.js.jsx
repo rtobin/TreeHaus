@@ -1,7 +1,7 @@
-var ProjectDependentMixin = {
+var ProjectDependent = {
   componentWillMount: function () {
     this.changeProject();
-  }
+  },
 
   componentDidMount: function () {
     ProjectStore.addChangeListener(this.changeProject);
@@ -9,7 +9,7 @@ var ProjectDependentMixin = {
 
   componentWillUnMount: function () {
     ProjectStore.removeChangeListener(this.changeProject);
-  }
+  },
 
   getCurrentProject: function () {
     return ProjectStore.currentProject();
