@@ -5,15 +5,6 @@ var ProjectsIndex = React.createClass({
     };
   },
 
-  toggleDropdown: function (e) {
-    e.preventDefault();
-    if (this.state.dropdown === "dropdown-inactive") {
-      this.setState({dropdown: "dropdown-active"});
-    } else {
-      this.setState({dropdown: "dropdown-inactive"});
-    }
-  },
-
   projectLinks: function () {
     var Link = ReactRouter.Link;
     return ProjectStore.all().map(function (project, idx) {
@@ -22,7 +13,7 @@ var ProjectsIndex = React.createClass({
       </li>
     });
   },
-  
+
   render: function () {
     var Link = ReactRouter.Link;
         // <Sidebar />

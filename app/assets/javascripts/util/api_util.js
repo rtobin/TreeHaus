@@ -1,8 +1,13 @@
-ProjectUtil = {
+ApiUtil = {
   fetchProjects: function(){
-    var filter = FilterParamsStore.params();
-    $.get('api/projects', filter, function(projects){
+    $.get('api/projects', {}, function(projects){
       ProjectActions.receiveProjects(projects);
+    });
+  },
+
+  fetchSingleProject: function(){
+    $.get('api/projects', {}, function(projects){
+      ProjectActions.receiveSingleProject(project);
     });
   },
 
