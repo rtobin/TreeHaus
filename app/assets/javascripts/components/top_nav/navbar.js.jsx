@@ -14,7 +14,7 @@ var NavBar = React.createClass({
             <li><LatestActivity /></li>
             <li><Trees /></li>
             <li><Pings /></li>
-            <li><a href="#">Hey!</a></li>
+            <li><Notifications /></li>
             <li><a href="#">Campfires</a></li>
             <li><a href="#">Reports</a></li>
           </ul>
