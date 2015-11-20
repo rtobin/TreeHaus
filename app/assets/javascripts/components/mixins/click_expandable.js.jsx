@@ -14,14 +14,15 @@ var ClickExpandable = {
   toggleExpand: function (e) {
     e.preventDefault();
     if (this.state.expanded) {
-      this.setState({expanded: true});
-    } else {
       this.setState({expanded: false});
+    } else {
+      this.setState({expanded: true});
     }
+    console.log(this.state.expanded);
   },
 
   expandableLoad: function () {
-    if (this.expanded) {
+    if (this.state.expanded) {
       return this.expandedContent();
     }
   },
@@ -31,6 +32,7 @@ var ClickExpandable = {
       <div className="collapsible_content"
         id={this.state.selector}
         onClick={this.toggleExpand}>
+          exp
           {this.expandableLoad()}
       </div>
     )

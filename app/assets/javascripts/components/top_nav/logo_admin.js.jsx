@@ -26,7 +26,8 @@ var LogoAdmin = React.createClass({
   render: function () {
     return (
       <ul className="topnav-item topnav-item-left list-unbulleted flush">
-        <li className="topnav-menu topnav-menu-logo">{this.expandableItem}
+        <li className="topnav-menu topnav-menu-logo">
+          {this.expandableItem()}
         Admin</li>
       </ul>
     );
