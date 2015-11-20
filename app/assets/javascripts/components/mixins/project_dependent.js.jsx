@@ -18,4 +18,4 @@ var ProjectDependent = {
   changeProject: function () {
     this.setState({ project: this.getCurrentProject() });
   },
-}
+};

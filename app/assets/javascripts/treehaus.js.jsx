@@ -24,7 +24,7 @@ $(function () {
     <Route path="/" component={App} >
       <Route path="projects" component={ProjectsIndex} onEnter={requireAuth}>
         <Route path=":id" component={ProjectHome} onEnter={requireAuth}>
-
+          <Route path="logout" component={Logout} />
         </Route>
       </Route>
       <Route path="login" component={Login}/>
@@ -34,7 +34,7 @@ $(function () {
   );
 
   React.render(<Router>{routes}</Router>, document.getElementById('content'));
-  
+
   // <Route path="todos" component={TodosIndex} onEnter={requireAuth}>
   //   <Route path=":id" component={Todo} onEnter={requireAuth}>
   //     <Route path="steps" component={StepsIndex} onEnter={requireAuth}>

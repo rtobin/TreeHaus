@@ -5,7 +5,7 @@ function inherit(Child, Parent) {
   Child.prototype = new Surrogate();
   Child.prototype.constructor = Child;
   return Child;
-};
+}
 
 // handy jquery method for making callbacks for clicking off an object
 $.fn.clickOff = function (callback, selfDestroy) {
@@ -27,14 +27,14 @@ $.fn.clickOff = function (callback, selfDestroy) {
       // parent.off("click");
       // $(document).off("click");
       // parent.off("clickOff");
-    };
+    }
     clicked = false;
   });
 };
 
 function createClickOffHandler(selector, callback) {
   $(selector).clickOff(callback);
-};
+}
 
 function randString(x){
   var s = "";

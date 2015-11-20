@@ -11,12 +11,13 @@ AuthUtil = {
     );
   },
 
-  logout: function () {
+  logout: function (history) {
     $.ajax ({
       type: 'DELETE',
       url: 'api/session',
       success: function () {
         LoginActions.logoutUser();
+        history.pushState(null, "/login");
         return true;
       }
     });

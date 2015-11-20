@@ -27,7 +27,7 @@ var ProfileManager = React.createClass({
           <li className="topnav-menu-link-item">Saved drafts</li>
           <li className="topnav-menu-link-item">What have I been up to?</li>
           <li className="topnav-menu-link-item">Personal Info (avatar, title, devices, etc)</li>
-          <li className="topnav-menu-link-item"><Link to="/login">Sign out</Link></li>
+          <li className="topnav-menu-link-item"><Logout/></li>
         </ul>
       </div>
     );
