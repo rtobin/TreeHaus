@@ -1,0 +1,12 @@
+.topnav-ribbon li {
+  display: block;
+  padding: 10px 20px;
+}
+
+.topnav-ribbon > .topnav-item-centered {
+  margin: auto;
+}
+
+.topnav-item-centered li {
+  float: left;
+}

@@ -14,32 +14,29 @@
  *= require_self
  */
 
- body {
-  font-family: "Fakt Soft", "Helvetica Neue", helvetica, arial, sans-serif;
+nav, div, ul, li, span, h3, h2, h1, a, p {
+ margin: 0;
+ padding: 0;
+ border: 0;
+ outline: 0;
+ font: inherit;
+ color: inherit;
+ text-align: inherit;
+ text-decoration: inherit;
+ vertical-align: inherit;
+ box-sizing: inherit;
+ background: transparent;
 }
 
-.header-nav {
-  border: solid 1px black;
-  background: green;
-  height: 100px;
-
+body {
+ box-sizing: content-box;
+ font-family: sans-serif;
+ font-size: 16px;
+ line-height: 1.1666666666;
+ background: #eee;
+ color: #000;
 }
 
-.header-nav > .header-nav-menu {
-  border: solid 1px black;
-  width: 100px;
-}
-
-.header-nav li {
-  float: left;
-  padding: 10px;
-  list-style: none;
-}
-
-.logo {
-  float: left;
-}
-
-.user {
-  float: right;
+.container {
+  height: 800px;
 }

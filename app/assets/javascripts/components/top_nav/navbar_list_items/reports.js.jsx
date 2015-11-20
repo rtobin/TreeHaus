@@ -18,6 +18,15 @@ var Reports = React.createClass({
           <li className="stuff-text" href="">
             <a href="">What's coming up or due soon?</a>
           </li>
+          <li className="stuff-text" href="">
+            <a href="">What's new to-do and what's to-done?</a>
+          </li>
+          <li className="stuff-text" href="">
+            <a href="">What's on everyone's plate?</a>
+          </li>
+          <li className="stuff-text" href="">
+            <a href="">What has someone been up to?</a>
+          </li>
         </ul>
       </div>
     );
