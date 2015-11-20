@@ -65,7 +65,7 @@ var Signup = React.createClass ({
 
   signup: function (e) {
     e.preventDefault();
-    AuthUtil.login(this.state, this.loginCallbackAction);
+    AuthUtil.signup(this.state, this.loginCallbackAction);
   },
 
   render: function () {

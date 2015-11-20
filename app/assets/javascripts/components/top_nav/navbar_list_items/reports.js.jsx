@@ -1,4 +1,4 @@
-var Notifications = React.createClass({
+var Reports = React.createClass({
   mixins: [ClickExpandable],
 
 
@@ -8,15 +8,15 @@ var Notifications = React.createClass({
         <h3 className="topnav-menu-heading">
           <span className="top">***BONUS FEATURE***</span>
         </h3>
+        <h3 className="topnav-menu-heading">
+          <span className="top">RUN A REPORT</span>
+        </h3>
         <ul className="stuff">
           <li className="stuff-text" href="">
-            3 unread pings
+            <a href="">What's overdue?</a>
           </li>
           <li className="stuff-text" href="">
-            4 unread messages
-          </li>
-          <li className="stuff-text" href="">
-            2 new mentions
+            <a href="">What's coming up or due soon?</a>
           </li>
         </ul>
       </div>
@@ -27,7 +27,7 @@ var Notifications = React.createClass({
     return (
       <div id={this.state.selector}
         onClick={this.toggleExpand}>
-        Hey!
+        Reports
         {this.expandableItem()}
       </div>
     );

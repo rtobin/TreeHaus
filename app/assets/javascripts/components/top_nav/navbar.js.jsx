@@ -10,19 +10,29 @@ var NavBar = React.createClass({
               <LogoAdmin />
             </li>
           </ul>
-          <ul className="topnav-item group topnav-item-left list-unbulleted flush">
-            <li><LatestActivity /></li>
+          <ul className="topnav-item group topnav-item-progress list-unbulleted flush">
+            <li className="topnav-menu topnav-menu-logo">
+              <LatestActivity />
+            </li>
+          </ul>
+          <ul className="topnav-item group topnav-item-centered list-unbulleted flush">
             <li><Trees /></li>
             <li><Pings /></li>
             <li><Notifications /></li>
-            <li><a href="#">Campfires</a></li>
-            <li><a href="#">Reports</a></li>
+            <li><Campfires /></li>
+            <li><Reports /></li>
+          </ul>
+          <ul className="topnav-item group topnav-item-search list-unbulleted flush">
+            <li className="topnav-menu topnav-menu-logo">
+              <Search />
+            </li>
           </ul>
 
-
-          <h1 className="header-logo">
-            <a href="#">Project Page</a>
-          </h1>
+          <ul className="topnav-item group topnav-item-right list-unbulleted flush">
+            <li className="topnav-menu topnav-menu-logo">
+              <ProfileManager />
+            </li>
+          </ul>
         </div>
       </nav>
     );
