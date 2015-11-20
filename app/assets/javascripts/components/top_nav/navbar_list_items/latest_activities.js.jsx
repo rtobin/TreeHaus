@@ -10,7 +10,7 @@ var LatestActivity = React.createClass({
         </h3>
         <div className="stuff">
           <a className="stuff-text" href="#">
-            WORK IN PROGRESS... ;-)
+            ***BONUS FEATURE***
           </a>
         </div>
       </div>

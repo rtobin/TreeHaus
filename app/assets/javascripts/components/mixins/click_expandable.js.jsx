@@ -7,7 +7,6 @@ var ClickExpandable = {
   },
 
   componentDidMount: function () {
-    debugger
     cb = function () {this.setState({expanded: false})};
     createClickOffHandler(this.state.selector, cb.bind(this));
   },

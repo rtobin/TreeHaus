@@ -13,7 +13,7 @@ var NavBar = React.createClass({
           <ul className="topnav-item group topnav-item-left list-unbulleted flush">
             <li><LatestActivity /></li>
             <li><Trees /></li>
-            <li><a href="#">Pings</a></li>
+            <li><Pings /></li>
             <li><a href="#">Hey!</a></li>
             <li><a href="#">Campfires</a></li>
             <li><a href="#">Reports</a></li>

@@ -30,7 +30,6 @@ var App = React.createClass({
 
 
   render: function () {
-    debugger
     return (
       <div className="container">
         <h1>App</h1>
