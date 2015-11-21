@@ -1,4 +1,4 @@
-// Attempt and making 'fluxy' login/signup
+// Attempt and making 'fluxy' signin/signup
 
 var Signup = React.createClass ({
   mixins: [ReactRouter.History],
@@ -13,18 +13,18 @@ var Signup = React.createClass ({
   },
 
   componentWillMount: function () {
-    UserStore.addChangeListener(this.redirectAfterLogin);
+    UserStore.addChangeListener(this.redirectAfterSignin);
   },
 
   componentDidMount: function () {
-    this.checkIfLoggedIn();
+    this.checkIfSignedIn();
   },
 
   componentWillUnMount: function () {
-    UserStore.removeChangeListener(this.redirectAfterLogin);
+    UserStore.removeChangeListener(this.redirectAfterSignin);
   },
 
-  redirectAfterLogin: function () {
+  redirectAfterSignin: function () {
     var location = this.props;
     if (location.state && location.state.nextPathname) {
       debugger
@@ -42,19 +42,15 @@ var Signup = React.createClass ({
     this.setState({password: event.target.value});
   },
 
-  loginCallbackAction: function (user) {
-    LoginActions.loginUser(user);
-  },
-
-  checkIfLoggedIn: function () {
-    if (UserStore.isLoggedIn()) {
-      var str = "You are currently logged in with the email: \"";
+  checkIfSignedIn: function () {
+    if (UserStore.isSignedIn()) {
+      var str = "You are currently signged in with the email: \"";
       str += UserStore.getUser().email;
-      str+= "\n Do you wish to log out?";
+      str+= "\n Do you wish to sign out?";
       var r = confirm(str);
       if (r === true) {
           x = "You pressed OK!";
-          LoginActions.logoutUser();
+          UserActions.signoutUser();
       } else {
           x = "You pressed Cancel!";
           UserStore.emitChange();
@@ -65,7 +61,7 @@ var Signup = React.createClass ({
 
   signup: function (e) {
     e.preventDefault();
-    AuthUtil.signup(this.state, this.loginCallbackAction);
+    AuthUtil.signup(this.state);
   },
 
   render: function () {
@@ -101,7 +97,7 @@ var Signup = React.createClass ({
         </form>
         <p>
           already have an account?
-          <Link to="/login">Login</Link>
+          <Link to="/signin">Signin</Link>
         </p>
       </div>
     );

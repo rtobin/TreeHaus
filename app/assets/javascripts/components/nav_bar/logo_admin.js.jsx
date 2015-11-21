@@ -4,7 +4,7 @@ var LogoAdmin = React.createClass({
 
   expandedContent: function () {
     return (
-      <div href="#" className="topnav-menu-trigger topnav-menu-trigger-admin">
+      <div href="#" className="nav-menu-scroll nav-menu-content">
         <h3 className="topnav-menu-heading">
           <span className="top">Ryan</span>
         </h3>

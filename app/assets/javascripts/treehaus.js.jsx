@@ -4,36 +4,67 @@ $(function () {
   var Route = ReactRouter.Route;
   var IndexRoute = ReactRouter.IndexRoute;
 
-
-
-
-
-  // let sessionToken = localStorage.getItem('sessionToken');
-  // if (sessionToken) {
-  //   LoginActions.loginUser(sessionToken);
-  // }
-  var requireAuth = function (nextState, replaceState) {
-    if (!UserStore.isLoggedIn()){
-      console.log("Nope!");
-      debugger
-      replaceState({ nextPathname: nextState.location.pathname }, '/login');
+  var requireSignin = function (nextState, replaceState) {
+    debugger
+    if (!UserStore.isSignedIn()) {
+      replaceState({
+        nextPathname: nextState.location.pathname
+      }, '/signin')
     }
-  };
+  }
+
+  var redirectToUserPage = function (nextState, replaceState) {
+    if (UserStore.isSignedIn()) {
+      replaceState(null, '/' + UserStore.currentUser().id)
+    }
+  }
+
+  // routes = [
+  //   { component: App,
+  //     childRoutes: [
+  //       { path: '/signout', component: Signout },
+  //       { path: '/signin', component: Signin },
+  //       // { path: '/about', component: About},
+  //       { onEnter: redirectToUserPage,
+  //         childRoutes: [
+  //           // Unauthenticated routes
+  //           // Redirect to projects if user is already logged in
+  //           { path: '/signin', component: Signin},
+  //           { path: '/signup', component: Signup},
+  //           // ...
+  //         ]
+  //       },
+  //       { onEnter: redirectToSignin,
+  //         childRoutes: [
+  //           // Protected routes
+  //           { path: 'users/:id', component: UserPage},
+  //           // ...
+  //         ]
+  //       }
+  //     ],
+  //
+  //   }
+  // ];
+  // React.render(<Router routes={routes} />, document.getElementById('content'));
 
   var routes = (
-    <Route path="/" component={App} >
-      <Route path="projects" component={ProjectsIndex} onEnter={requireAuth}>
-        <Route path=":id" component={ProjectHome} onEnter={requireAuth}>
-          <Route path="logout" component={Logout} />
+      <Route path="/" component={App} >
+        <Route path="signup" component={Signup}/>
+        <Route path="signin" component={Signin}/>
+        <Route path="projects" component={ProjectsIndex} onEnter={requireSignin}>
+          <Route path=":id" component={ProjectsHome} onEnter={requireSignin}>
+            <Route path="signout" component={Signout} />
+          </Route>
         </Route>
-      </Route>
-      <Route path="login" component={Login}/>
-      <Route path="signup" component={Signup}/>
-      <Route path="logout" component={Logout}/>
-    </Route>
-  );
 
-  React.render(<Router>{routes}</Router>, document.getElementById('content'));
+        <Route path="signout" component={Signout}/>
+      </Route>
+    );
+
+    React.render(<Router>{routes}</Router>, document.getElementById('content'));
+  // router.run(routes, function (Handler) {
+  //   React.render(<Handler />, document.getElementById('content'));
+  // });
 
   // <Route path="todos" component={TodosIndex} onEnter={requireAuth}>
   //   <Route path=":id" component={Todo} onEnter={requireAuth}>

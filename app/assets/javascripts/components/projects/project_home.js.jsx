@@ -1,8 +1,8 @@
-var ProjectHome = React.createClass({
+var ProjectsHome = React.createClass({
   render: function () {
     return (
       <div>
-        <NavBar />
+        <Navbar />
         //ProjectDock
       </div>
     )

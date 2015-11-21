@@ -2,11 +2,11 @@ class Api::UsersController < ApplicationController
 
   def create
     # sign up the user
-    user = User.new(user_params)
-    if user.save
+    @user = User.new(user_params)
+    if @user.save
       # redirect them to the new user's show page
-      log_in!(user)
-      render json: user
+      log_in!(@user)
+      render :show
     else
       # input didn't pass validation;
       # prints password requirements
@@ -16,8 +16,8 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    user = current_user
-    render json: user
+    @user = User.find(params[:id])
+    render :show
   end
 
   protected

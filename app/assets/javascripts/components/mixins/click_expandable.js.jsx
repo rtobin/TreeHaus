@@ -1,28 +1,39 @@
 var ClickExpandable = {
+  // one problem with this is that all objects with this mixin will update state
+  // on every click :-(
   componentWillMount: function () {
+    // need to put a unique id for the selector
     this.setState({
       expanded: false,
       selector: randString(16)
     });
   },
 
+  makeExpandedFalse: function () {
+    if (this.state.expanded){
+      this.setState({expanded: false});
+    }
+  },
+
   componentDidMount: function () {
-    cb = function () {this.setState({expanded: false})};
-    createClickOffHandler(this.state.selector, cb.bind(this));
+    createClickOffHandler(this.state.selector, this.makeExpandedFalse);
   },
 
   toggleExpand: function (e) {
     e.preventDefault();
+    e.stopPropagation();
     this.setState({expanded: !this.state.expanded});
+
   },
 
   expandableItem: function () {
-    var style = {};
-    if (!this.state.expanded) {
-      style.display = 'none';
+    var style = "-inactive";
+    if (this.state.expanded) {
+      style = "-active";
     }
+
     return (
-      <div className="collapsible_content" style={style}>
+      <div className={"collapsible-content" + style}>
         {this.expandedContent()}
       </div>
     );

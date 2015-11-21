@@ -9,7 +9,7 @@ var ProjectsIndex = React.createClass({
     var Link = ReactRouter.Link;
     return ProjectStore.all().map(function (project, idx) {
       <li key={idx}>
-        <Link to={project.id}>{project.title}</Link>
+        <a href={'project' + project.id}>{project.title}</a>
       </li>
     });
   },
@@ -20,7 +20,7 @@ var ProjectsIndex = React.createClass({
       console.log(this.props.children);
     return (
       <div>
-        <ProjectHome />
+        <ProjectsHome />
         <h1>Projects</h1>
       </div>
     );

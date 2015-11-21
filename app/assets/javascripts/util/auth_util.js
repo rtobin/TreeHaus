@@ -1,35 +1,59 @@
 AuthUtil = {
-  login: function (userParams, cb) {
+  // fetchCurrentUser: function () {
+  //   $.ajax({
+  //     url: '/api/session',
+  //     type: 'GET',
+  //     dataType: 'json',
+  //     success: function (currentUser) {
+  //       UserActions.receiveCurrentUser(currentUser);
+  //     }
+  //   });
+  // }
+  fetchCurrentUser: function (userParams) {
+    $.get(
+      'api/session',
+      function (user) {
+        UserActions.signinUser(user);
+      }
+    )
+  },
+
+  signin: function (userParams) {
     $.post(
       'api/session',
       {user: userParams},
-      cb
+      function (user) {
+        UserActions.signinUser(user);
+      }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        LoginActions.errorReport(JSON.parse(args[0].responseText));
+        UserActions.errorReport(JSON.parse(args[0].responseText));
       }
     );
   },
 
-  logout: function (history) {
+  signout: function (history) {
     $.ajax ({
       type: 'DELETE',
       url: 'api/session',
       success: function () {
-        LoginActions.logoutUser();
-        history.pushState(null, "/login");
+        UserActions.signoutUser();
+        history.pushState(null, "/signin");
         return true;
       }
     });
   },
-  signup: function (userParams, cb) {
+
+  signup: function (userParams) {
     $.post(
       'api/users',
       {user: userParams},
-      cb
+      function (user) {
+        UserActions.signinUser(user);
+      }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        LoginActions.errorReport(JSON.parse(args[0].responseText));
+        UserActions.errorReport(JSON.parse(args[0].responseText));
       }
     );
   }

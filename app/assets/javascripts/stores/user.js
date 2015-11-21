@@ -2,32 +2,32 @@
   var _user = null;
   var CHANGE_EVENT = "change";
 
-  var logOutUser = function () {
-    _user = null;
+  var signOutUser = function () {
+    _user = {};
   };
 
-  var logInUser = function (user) {
+  var signInUser = function (user) {
     _user = user;
   };
 
   var UserStore = root.UserStore = $.extend({}, BaseStore, {
 
-    getUser: function () {
-      return _user;
+    currentUser: function () {
+      return $.extend({}, _user);
     },
 
-    isLoggedIn: function () {
-      return !!_user;
+    isSignedIn: function () {
+      return (typeof _user.id !== "undefined");
     },
 
     dispatcherID: AppDispatcher.register( function (payload){
       switch(payload.actionType){
-        case AuthConstants.LOGIN_USER:
-          logInUser(payload.user);
+        case AuthConstants.SIGNIN_USER:
+          signInUser(payload.user);
           UserStore.emitChange();
           break;
-        case AuthConstants.LOGOUT_USER:
-          logOutUser();
+        case AuthConstants.SIGNOUT_USER:
+          signOutUser();
           UserStore.emitChange();
           break;
         default:

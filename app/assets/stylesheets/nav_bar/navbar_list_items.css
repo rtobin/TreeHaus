@@ -1,0 +1,11 @@
+.collapsible-content-active {
+  position: absolute;
+}
+
+.collapsible-content-inactive {
+  display: none;
+}
+
+.navbar-list {
+  float: left;
+}

@@ -1,3 +1,40 @@
+.header-main {
+  height: 42px;
+  width: 100%;
+  background-color: rgba(251,248,245,0.98);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 2px -2px;
+}
+
+.navbar {
+  width: 981px;
+  height: 100%;
+  margin: auto;
+}
+
+.nav-menu-scroll {
+  overflow-y: overlay;
+}
+
+.nav-menu-content {
+  max-height: calc(100vh - 80px);
+  border-top-left-radius: 0;
+  left: 0;
+  width: 36rem;
+  background-color: #856ec6;
+  border: 0;
+  color: #fff;
+  white-space: normal;
+  width: 30rem;
+  position: absolute;
+  top: 3.2rem;
+  white-space: normal;
+  border-radius: 4px;
+
+}
+
+
+
 div {
   display: block;
 }

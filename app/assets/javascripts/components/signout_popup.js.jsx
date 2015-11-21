@@ -1,4 +1,4 @@
-var Logout = window.Logout = React.createClass ({
+var Signout = window.Signout = React.createClass ({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
@@ -12,9 +12,9 @@ var Logout = window.Logout = React.createClass ({
     this.setState({expanded: !this.state.expanded});
   },
 
-  logoutAndRedirect: function (e) {
+  signoutAndRedirect: function (e) {
     e.preventDefault();
-    AuthUtil.logout();
+    AuthUtil.signout();
   },
 
   render: function () {
@@ -26,10 +26,10 @@ var Logout = window.Logout = React.createClass ({
     return (
       <div>
         <button onClick={this.toggleExpand}>Sign out</button>
-        <div className="logout jumbotron center-block" style={style}>
+        <div className="signout jumbotron center-block" style={style}>
           <h3>Are you sure you want to sign out?</h3>
           <button onClick={this.toggleExpand}>Cancel</button>
-          <button onClick={this.logoutAndRedirect}>Logout</button>
+          <button onClick={this.signoutAndRedirect}>Signout</button>
           <Link to="/signup">Create New Account</Link>
         </div>
       </div>

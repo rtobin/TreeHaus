@@ -1,14 +1,14 @@
-LoginActions = {
-  loginUser: function (user) {
+UserActions = {
+  signinUser: function (user) {
     AppDispatcher.dispatch({
-      actionType: AuthConstants.LOGIN_USER,
+      actionType: AuthConstants.SIGNIN_USER,
       user: user
     });
   },
 
-  logoutUser: function () {
+  signoutUser: function () {
     AppDispatcher.dispatch({
-      actionType: AuthConstants.LOGOUT_USER
+      actionType: AuthConstants.SIGNOUT_USER
     });
   },
 

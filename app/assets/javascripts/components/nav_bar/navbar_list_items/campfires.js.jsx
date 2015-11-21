@@ -1,7 +1,6 @@
 var Campfires = React.createClass({
   mixins: [ClickExpandable],
 
-
   expandedContent: function () {
     return (
       <div className="topnav-menu-trigger topnav-menu-trigger-admin">

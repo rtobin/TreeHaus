@@ -1,6 +1,6 @@
-// Attempt and making 'fluxy' login/signup
+// Attempt and making 'fluxy' signin/signup
 
-var Login = React.createClass ({
+var Signin = React.createClass ({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
@@ -11,18 +11,18 @@ var Login = React.createClass ({
   },
 
   componentWillMount: function () {
-    UserStore.addChangeListener(this.redirectAfterLogin);
+    UserStore.addChangeListener(this.redirectAfterSignin);
   },
 
   componentDidMount: function () {
-    this.checkIfLoggedIn();
+    this.checkIfSignedIn();
   },
 
   componentWillUnMount: function () {
-    UserStore.removeChangeListener(this.redirectAfterLogin);
+    UserStore.removeChangeListener(this.redirectAfterSignin);
   },
 
-  redirectAfterLogin: function () {
+  redirectAfterSignin: function () {
     var location = this.props;
     if (location.state && location.state.nextPathname) {
       this.history.replaceState(null, location.state.nextPathname);
@@ -39,35 +39,31 @@ var Login = React.createClass ({
     this.setState({password: event.target.value});
   },
 
-  loginCallbackAction: function (user) {
-    LoginActions.loginUser(user);
-  },
-
-  login: function (e) {
+  signin: function (e) {
     e.preventDefault();
-    AuthUtil.login(this.state, this.loginCallbackAction);
+    AuthUtil.signin(this.state);
   },
 
-  guestLogin: function (e) {
+  guestSignin: function (e) {
     var guest = {
       email: "jane@example.com",
       password: "Password0"
     };
     this.setState(guest);
     var that = this;
-    // setTimeout(AuthUtil.login(guest, that.loginCallback), 500);
-    AuthUtil.login(guest, this.loginCallbackAction);
+    // setTimeout(AuthUtil.signin(guest, that.signinCallback), 500);
+    AuthUtil.signin(guest, this.signinCallbackAction);
   },
 
-  checkIfLoggedIn: function () {
-    if (UserStore.isLoggedIn()) {
-      var str = "You are currently logged in with the email: \"";
+  checkIfSignedIn: function () {
+    if (UserStore.isSignedIn()) {
+      var str = "You are currently Signed in with the email: \"";
       str += UserStore.getUser().email;
-      str+= "\n Do you wish to log out?";
+      str+= "\n Do you wish to sign out?";
       var r = confirm(str);
       if (r === true) {
           x = "You pressed OK!";
-          LoginActions.logoutUser();
+          UserActions.signoutUser();
       } else {
           x = "You pressed Cancel!";
           UserStore.emitChange();
@@ -79,10 +75,10 @@ var Login = React.createClass ({
   render: function () {
     var Link = ReactRouter.Link;
     return (
-      <div className="login jumbotron center-block">
-        <h1>Login</h1>
+      <div className="signin jumbotron center-block">
+        <h1>Signin</h1>
         <Errors />
-        <form onSubmit={this.login}>
+        <form onSubmit={this.signin}>
           <div className="form-group">
             <label>Email
               <input
@@ -106,7 +102,7 @@ var Login = React.createClass ({
             </label>
           </div>
           <button type="submit" className="btn btn-default">Submit</button>
-          <button onClick={this.guestLogin}>Guest</button>
+          <button onClick={this.guestSignin}>Guest</button>
         </form>
         <p>
           don't have an account?
