@@ -9,7 +9,7 @@ AuthUtil = {
   //     }
   //   });
   // }
-  fetchCurrentUser: function (userParams) {
+  fetchCurrentUser: function () {
     $.get(
       'api/session',
       function (user) {
@@ -38,7 +38,6 @@ AuthUtil = {
       url: 'api/session',
       success: function () {
         UserActions.signoutUser();
-        history.pushState(null, "/signin");
         return true;
       }
     });

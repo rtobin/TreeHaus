@@ -1,13 +1,5 @@
 var ClickExpandable = {
 
-  componentWillMount: function () {
-    // need to put a unique id for the selector
-    this.setState({
-      expanded: false,
-      selector: randString(16)
-    });
-  },
-
   makeExpandedFalse: function () {
     if (this.state.expanded){
       this.setState({expanded: false});

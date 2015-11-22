@@ -1,6 +1,12 @@
 var ProfileManager = React.createClass({
   mixins: [ClickExpandable],
 
+  getInitialState: function () {
+    return {
+      dropdownSelectorId: randString(16),
+      dropdownExpanded: false
+    }
+  },
 
   expandedContent: function () {
     var Link = ReactRouter.Link;
@@ -35,7 +41,7 @@ var ProfileManager = React.createClass({
 
   render: function () {
     return (
-      <div className="nav-profile" id={this.state.selector}
+      <div className="nav-profile" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         <span>▼</span><h3>RT</h3>
         {this.expandableItem()}

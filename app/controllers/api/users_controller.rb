@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
       # input didn't pass validation;
       # prints password requirements
       # re-render sign up form.
-      render json: user.errors.full_messages, status: 422
+      render json: @user.errors.full_messages, status: 422
     end
   end
 

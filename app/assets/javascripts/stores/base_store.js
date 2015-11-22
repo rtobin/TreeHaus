@@ -8,7 +8,7 @@
     },
 
     addChangeListener: function (callback) {
-      this.on(CHANGE_EVENT, callback)
+      this.on(CHANGE_EVENT, callback);
     },
 
     removeChangeListener: function (callback) {

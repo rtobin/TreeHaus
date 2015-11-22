@@ -1,6 +1,13 @@
 var LogoAdmin = React.createClass({
   mixins: [ClickExpandable],
 
+  getInitialState: function () {
+    return {
+      dropdownSelectorId: randString(16),
+      dropdownExpanded: false
+    }
+  },
+
   expandedContent: function () {
     return (
       <div href="#" className="nav-menu nav-menu-scroll menu-admin">
@@ -24,7 +31,7 @@ var LogoAdmin = React.createClass({
 
   render: function () {
     return (
-      <div className="nav-logo" id={this.state.selector}
+      <div className="nav-logo" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         <img className="nav-logo-img"/><span>▼</span>
         {this.expandableItem()}

@@ -1,6 +1,13 @@
 var Campfires = React.createClass({
   mixins: [ClickExpandable],
 
+  getInitialState: function () {
+    return {
+      dropdownSelectorId: randString(16),
+      dropdownExpanded: false
+    }
+  },
+
   expandedContent: function () {
     return (
       <div className="chats nav-menu nav-menu-scroll">
@@ -30,7 +37,7 @@ var Campfires = React.createClass({
 
   render: function () {
     return (
-      <div id={this.state.selector}
+      <div id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         Campfires
         {this.expandableItem()}

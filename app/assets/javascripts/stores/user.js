@@ -1,5 +1,5 @@
 (function (root) {
-  var _user = null;
+  var _user = {};
   var CHANGE_EVENT = "change";
 
   var signOutUser = function () {

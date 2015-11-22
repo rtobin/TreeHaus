@@ -1,6 +1,12 @@
 var Notifications = React.createClass({
   mixins: [ClickExpandable],
 
+  getInitialState: function () {
+    return {
+      dropdownSelectorId: randString(16),
+      dropdownExpanded: false
+    }
+  },
 
   expandedContent: function () {
     return (
@@ -25,7 +31,7 @@ var Notifications = React.createClass({
 
   render: function () {
     return (
-      <div id={this.state.selector}
+      <div id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         Hey!
         {this.expandableItem()}

@@ -32,13 +32,13 @@ class User < ActiveRecord::Base
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)
-
-    user && user.is_password?(password) ? user : nil
+    return nil if user.nil?
+    user.is_password?(password) ? user : nil
   end
 
   def password=(password)
     @password = password
-    self.password_digest = BCrypt::Password.create(password).to_s
+    self.password_digest = BCrypt::Password.create(password)
   end
 
   def is_password?(password)

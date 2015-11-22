@@ -12,9 +12,13 @@ var Signout = window.Signout = React.createClass ({
     this.setState({expanded: !this.state.expanded});
   },
 
-  signoutAndRedirect: function (e) {
+  redirectAfterSignout: function () {
+    this.history.pushState(null, "/projects");
+  },
+
+  signout: function (e) {
     e.preventDefault();
-    AuthUtil.signout();
+    AuthUtil.signout(redirectAfterSignout);
   },
 
   render: function () {
@@ -29,7 +33,7 @@ var Signout = window.Signout = React.createClass ({
         <div className="signout jumbotron center-block" style={style}>
           <h3>Are you sure you want to sign out?</h3>
           <button onClick={this.toggleExpand}>Cancel</button>
-          <button onClick={this.signoutAndRedirect}>Signout</button>
+          <button onClick={this.signout}>Signout</button>
           <Link to="/signup">Create New Account</Link>
         </div>
       </div>

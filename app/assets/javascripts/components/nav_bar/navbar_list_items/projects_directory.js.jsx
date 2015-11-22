@@ -1,6 +1,31 @@
-var Trees = React.createClass({
+var ProjectsDirectory = React.createClass({
   mixins: [ClickExpandable],
 
+  getInitialState: function () {
+    return {
+      currentProject: ProjectStore.currentProject(),
+      projects: ProjectStore.all(),
+      dropdownSelectorId: randString(16),
+      dropdownExpanded: false
+    }
+  },
+
+  componentWillMount: function () {
+    ProjectStore.addChangeListener(this.fetchCurrentProject);
+    ProjectStore.addProjectsListChangeListener(this.fetchProjectsList);
+  },
+
+  fetchCurrentProject: function () {
+    this.setState({
+      currentProject: ProjectStore.currentProject()
+    });
+  },
+
+  fetchProjectsList: function () {
+    this.setState({
+      projects: ProjectStore.all()
+    });
+  },
 
   expandedContent: function () {
     return (
