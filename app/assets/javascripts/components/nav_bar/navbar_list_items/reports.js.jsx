@@ -4,11 +4,8 @@ var Reports = React.createClass({
 
   expandedContent: function () {
     return (
-      <div className="topnav-menu-trigger topnav-menu-trigger-admin">
-        <h3 className="topnav-menu-heading">
-          <span className="top">***BONUS FEATURE***</span>
-        </h3>
-        <h3 className="topnav-menu-heading">
+      <div className="chats nav-menu nav-menu-scroll">
+        <h3 className="nav-menu-heading">
           <span className="top">RUN A REPORT</span>
         </h3>
         <ul className="stuff">
@@ -28,6 +25,9 @@ var Reports = React.createClass({
             <a href="">What has someone been up to?</a>
           </li>
         </ul>
+        <h3 className="nav-menu-heading">
+          <span className="bonus">***BONUS FEATURE***</span>
+        </h3>
       </div>
     );
   },

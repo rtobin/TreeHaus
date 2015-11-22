@@ -35,9 +35,9 @@ var ProfileManager = React.createClass({
 
   render: function () {
     return (
-      <div id={this.state.selector}
+      <div className="nav-profile" id={this.state.selector}
         onClick={this.toggleExpand}>
-        RT (avator)
+        <span>▼</span><h3>RT</h3>
         {this.expandableItem()}
       </div>
     );

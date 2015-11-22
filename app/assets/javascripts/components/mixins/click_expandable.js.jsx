@@ -1,6 +1,5 @@
 var ClickExpandable = {
-  // one problem with this is that all objects with this mixin will update state
-  // on every click :-(
+
   componentWillMount: function () {
     // need to put a unique id for the selector
     this.setState({
@@ -31,9 +30,12 @@ var ClickExpandable = {
     if (this.state.expanded) {
       style = "-active";
     }
+    var className = "" + this.props.extra;
+    className += " collapsible-content" + style;
 
     return (
-      <div className={"collapsible-content" + style}>
+      <div className={className}>
+        <div className="arrow"></div>
         {this.expandedContent()}
       </div>
     );

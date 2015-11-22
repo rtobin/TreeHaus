@@ -5,7 +5,6 @@ $(function () {
   var IndexRoute = ReactRouter.IndexRoute;
 
   var requireSignin = function (nextState, replaceState) {
-    debugger
     if (!UserStore.isSignedIn()) {
       replaceState({
         nextPathname: nextState.location.pathname

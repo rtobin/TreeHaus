@@ -4,8 +4,8 @@ var Trees = React.createClass({
 
   expandedContent: function () {
     return (
-      <div className="topnav-menu-trigger topnav-menu-trigger-admin">
-        <h3 className="topnav-menu-heading">
+      <div className="nav-menu nav-menu-scroll">
+        <h3 className="nav-menu-heading">
           <span className="top">Name</span>
         </h3>
         <ul className="stuff">
@@ -27,7 +27,7 @@ var Trees = React.createClass({
     return (
       <div id={this.state.selector}
         onClick={this.toggleExpand}>
-        Trees
+        Projects
         {this.expandableItem()}
       </div>
     );

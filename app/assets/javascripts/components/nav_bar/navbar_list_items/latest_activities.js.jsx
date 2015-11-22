@@ -4,23 +4,22 @@ var LatestActivity = React.createClass({
 
   expandedContent: function () {
     return (
-      <div className="topnav-menu-trigger topnav-menu-trigger-admin">
-        <h3 className="topnav-menu-heading">
+      <div className="nav-menu nav-menu-scroll">
+        <h3 className="nav-menu-heading">
           <span className="top">Ryan</span>
         </h3>
-        <div className="stuff">
-          <a className="stuff-text" href="#">
-            ***BONUS FEATURE***
-          </a>
-        </div>
+        <h3 className="nav-menu-heading">
+          <span className="bonus">***BONUS FEATURE***</span>
+        </h3>
       </div>
     );
   },
 
   render: function () {
     return (
-      <div id={this.state.selector}
+      <div className= "activities" id={this.state.selector}
         onClick={this.toggleExpand}>
+        <div id="navbar-clock"></div>
         Latest Activities
         {this.expandableItem()}
       </div>

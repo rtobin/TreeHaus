@@ -3,11 +3,8 @@ var Campfires = React.createClass({
 
   expandedContent: function () {
     return (
-      <div className="topnav-menu-trigger topnav-menu-trigger-admin">
-        <h3 className="topnav-menu-heading">
-          <span className="top">***BONUS FEATURE***</span>
-        </h3>
-        <h3 className="topnav-menu-heading">
+      <div className="chats nav-menu nav-menu-scroll">
+        <h3 className="nav-menu-heading">
           <span className="top">Following</span>
         </h3>
         <ul className="stuff">
@@ -24,6 +21,9 @@ var Campfires = React.createClass({
             Life on Mars
           </li>
         </ul>
+        <h3 className="nav-menu-heading">
+          <span className="top">***BONUS FEATURE***</span>
+        </h3>
       </div>
     );
   },

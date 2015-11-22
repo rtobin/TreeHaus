@@ -4,9 +4,10 @@ var Pings = React.createClass({
 
   expandedContent: function () {
     return (
-      <div className="topnav-menu-trigger topnav-menu-trigger-admin">
-        <h3 className="topnav-menu-heading">
-          <span className="top">***BONUS FEATURE***</span>
+      <div className=" nav-menu nav-menu-scroll pings">
+        <PingSearch />
+        <h3 className="nav-menu-heading">
+          <span className="top">Recent Pings</span>
         </h3>
         <ol className="stuff">
           <li className="stuff-text" href="">
@@ -19,6 +20,9 @@ var Pings = React.createClass({
             Jim: "I think Jane needs new pants..."
           </li>
         </ol>
+        <h3 className="nav-menu-heading">
+          <span className="bonus">***BONUS FEATURE***</span>
+        </h3>
       </div>
     );
   },

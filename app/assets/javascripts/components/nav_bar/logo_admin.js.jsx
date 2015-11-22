@@ -1,11 +1,10 @@
 var LogoAdmin = React.createClass({
   mixins: [ClickExpandable],
 
-
   expandedContent: function () {
     return (
-      <div href="#" className="nav-menu-scroll nav-menu-content">
-        <h3 className="topnav-menu-heading">
+      <div href="#" className="nav-menu nav-menu-scroll menu-admin">
+        <h3 className="nav-menu-heading">
           <span className="top">Ryan</span>
         </h3>
         <div className="stuff">
@@ -13,10 +12,10 @@ var LogoAdmin = React.createClass({
             Adminland - Upgrades, billing, people management, account administration
           </a>
         </div>
-        <h3 className="topnav-menu-heading">
+        <h3 className="nav-menu-heading">
           <span>Switch accounts</span>
         </h3>
-        <h3 className="topnav-menu-heading">
+        <h3 className="nav-menu-heading">
           <span className="bottom">Go Mobile</span>
         </h3>
       </div>
@@ -25,9 +24,9 @@ var LogoAdmin = React.createClass({
 
   render: function () {
     return (
-      <div id={this.state.selector}
+      <div className="nav-logo" id={this.state.selector}
         onClick={this.toggleExpand}>
-        Admin
+        <img className="nav-logo-img"/><span>▼</span>
         {this.expandableItem()}
       </div>
     );

@@ -4,23 +4,121 @@
   background-color: rgba(251,248,245,0.98);
   border-bottom: 1px solid rgba(0,0,0,0.1);
   box-shadow: 0 2px 2px -2px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+
+
 }
 
 .navbar {
-  width: 981px;
+  background-color: rgba(251,248,245,0.98);
+  width: 100%;
   height: 100%;
+  text-align: center;
+  padding: 0.7rem 0;
+  font-size: 1.4rem;
+  margin: 0 auto;
+  padding-bottom: 0px;
+}
+
+.nav-logo-img {
+  float: left;
+  position: relative;
+  height: 40px;
+  left: 8px;
+  width: 40px;
+  background-color: rgba(251,248,245,0.98);
+  background-image: url("../logo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   margin: auto;
+  text-align: right;
+  /*color: rgba(0,0,0,0.1);*/
+  cursor: pointer;
+  border: 1px solid green;
+  border-radius: 50%;
+}
+
+.nav-logo > span {
+  position: relative;
+  left: 7px;
+  top: 10px;
+  color: rgba(0,0,0,0.1);
+  margin: auto;
+  text-align: right;
+  color: rgba(0,0,0,0.1);
+  cursor: pointer;
+  float: left;
+}
+
+.nav-profile {
+  float: right;
+  position: relative;
+  right: 10px;
+  top: 0px;
+  cursor: pointer;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  color:#fff;
+  /*font-size:20px;*/
+  font-weight: bold;
+  line-height:20px;
+  text-align:center;
+  background:#0F7E8B;
+}
+
+.nav-profile > span {
+  position: relative;
+  right: 20px;
+  top: 10px;
+  color: rgba(0,0,0,0.1);
+}
+
+.nav-profile > h3 {
+  float: right;
+  position: relative;
+  top: -14px;
+  right: 2px;
+  font-size: 16px;
+}
+
+.collapsible-content-active {
+  max-height: calc(100vh - 80px);
+  /* left: 0px; */
+  background-color: #856ec6;
+  border: 0;
+  color: #fff;
+  white-space: normal;
+  position: absolute;
+  top: 3.2rem;
+  white-space: normal;
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  text-align: center;
+  top: 41px;
+  padding-top: 0px;
+  z-index: 2;
+  text-align: left;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  margin-left: -13.3rem;
+  overflow-y: visible;
 }
 
 .nav-menu-scroll {
   overflow-y: overlay;
+  padding: 2rem 3rem;
+  overflow-x: hidden;
+  width: 30rem;
+
 }
 
-.nav-menu-content {
-  max-height: calc(100vh - 80px);
-  border-top-left-radius: 0;
+.nav-menu {
+  /*max-height: calc(100vh - 80px);
   left: 0;
-  width: 36rem;
   background-color: #856ec6;
   border: 0;
   color: #fff;
@@ -30,66 +128,197 @@
   top: 3.2rem;
   white-space: normal;
   border-radius: 4px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  text-align: center;
+  top: 14px;
+  padding-top: 0px;*/
+
 
 }
 
-
-
-div {
+.nav-menu h3 {
   display: block;
+  -webkit-margin-before: 1.33em;
+  -webkit-margin-after: 1.33em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
 }
 
-.flush {
-  margin: 0 !important;
-}
-.group:after {
-  content: "";
-  clear: both;
-  display: block;
+.admin-stuff {
+  top: 49px;
+  left: 133px;
 }
 
-.topnav {
-  height: 39px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  background-color: rgba(251,248,245,0.98);
-  box-sizing: border-box;
+.activity-stuff {
+
+}
+
+.trees-stuff {
+  transform: translateX(-30px);
+}
+
+.pings-stuff {
+  transform: translateX(-160px);
+}
+
+.notifs-stuff {
+  transform: translateX(-35px);
+}
+
+.chats-stuff {
+  transform: translateX(-20px);
+
+}
+
+.reports-stuff {
+  transform: translateX(-30px);
+}
+
+.search-stuff {
+  transform: translateX(-20px);
+}
+
+.profile-stuff {
+  right: -10px;
+}
+
+.admin-stuff .arrow {
+  left: 50px;
+}
+
+.profile-stuff .arrow {
+  left: 311px;
+}
+
+.nav-profile > .nav-menu-scroll {
+  left: 0px;
+  margin-left: 0px;
   position: fixed;
+  overflow-y: hidden;
+  margin: auto;
 }
 
-.topnav-ribbon {
 
-  box-sizing: border-box;
-  margin: 0 auto;
+.nav-menu-heading {
+  text-align: center;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
   position: relative;
-  white-space: nowrap;
-  text-align: center;
-}
-.list-unbulleted {
-  list-style: none;
 }
 
-.topnav-ribbon .topnav-item-left {
-  position: absolute;
-  left: 0;
-  box-sizing: border-box;
-
-}
-
-.topnav-item-centered {
-  text-align: center;
-}
-
-.topnav-item-right {
-  position: absolute;
-  right: 0;
-  box-sizing: border-box;
-}
-
-.topnav-menu {
+.nav-list {
+  /*width: 625px;*/
+  /*margin: auto;*/
   display: inline-block;
   position: relative;
+  vertical-align: -webkit-baseline-middle;
 }
 
-/*.topnav-ribbon > .topnav-item-centered {
-  margin: auto;
+.nav-list > li {
+  float: left;
+  height: 30px;
+  padding-right: 5px;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+  border: 0px;
+}
+
+.nav-list > li:first-child {
+  border-right: 1px solid rgba(0,0,0,0.1)
+}
+
+.nav-list > li:last-child {
+  border-left: 1px solid rgba(0,0,0,0.1)
+}
+
+.activities {
+  float:left;
+}
+
+.find {
+  float:left;
+}
+
+
+
+#navbar-clock {
+  width: 20px;
+  height: 20px;
+  float: left;
+  top: 50%;
+  background-image: url("../clock.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#magnify-glass {
+  width: 20px;
+  height: 20px;
+  float: left;
+  top: 50%;
+  background-image: url("../mag_glass.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.nav-menu-heading > span {
+  z-index: 1;
+  background-color: #856ec6;
+  padding: 0 0.5em;
+}
+
+.nav-menu-heading:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  z-index: -1;
+}
+
+.arrow {
+  position: absolute;
+  background-color: #856ec6;
+  width: 10px;
+  height: 10px;
+  transform: translateY(-5px) rotate(45deg);
+  z-index: 5;
+  left: 50%;
+}
+
+/*.chats > .arrow {
+    -webkit-transform: translateY(-5px) translateX(135px) rotate(45deg);
 }*/
+
+.pings {
+  width: 56rem;
+  /*margin-left: -25rem;*/
+}
+
+.ping-search {
+  width: 95%;
+}
+
+.ping-search > input {
+  width: 100%;
+  height: auto;
+  margin: 0 2px 0.3rem 0;
+  padding: 0.3rem 1rem;
+  border-color: rgba(0,0,0,0.15);
+  background-color: rgba(0,0,0,0.15);
+  /*border: 1px solid #bfbfbf;*/
+  padding: 0.7rem 1rem 0.4rem;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  z-index: 1;
+  box-sizing: border-box;
+  box-shadow: 0;
+  border-radius: 0.4rem;
+}

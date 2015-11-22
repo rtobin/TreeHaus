@@ -3,9 +3,9 @@ var Navbar = React.createClass({
     return(
       <header className="header-main">
         <nav className="navbar">
-          <LogoAdmin />
+          <LogoAdmin extra="admin-stuff"/>
           <NavbarList />
-          <ProfileManager />
+          <ProfileManager extra="profile-stuff"/>
         </nav>
       </header>
     );

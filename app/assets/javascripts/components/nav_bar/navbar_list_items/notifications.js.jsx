@@ -4,10 +4,7 @@ var Notifications = React.createClass({
 
   expandedContent: function () {
     return (
-      <div className="topnav-menu-trigger topnav-menu-trigger-admin">
-        <h3 className="topnav-menu-heading">
-          <span className="top">***BONUS FEATURE***</span>
-        </h3>
+      <div className="nav-menu-scroll nav-menu-content">
         <ul className="stuff">
           <li className="stuff-text" href="">
             3 unread pings
@@ -19,6 +16,9 @@ var Notifications = React.createClass({
             2 new mentions
           </li>
         </ul>
+        <h3 className="nav-menu-heading">
+          <span className="bonus">***BONUS FEATURE***</span>
+        </h3>
       </div>
     );
   },
