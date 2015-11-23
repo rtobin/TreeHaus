@@ -12,9 +12,6 @@ jane.password = "Password0"
 jane.save
 
 
-
-
-
 jim = User.new(
   email: "jim@example.com"
 )
@@ -22,9 +19,15 @@ jim.password = "Password0"
 jim.save
 
 
-
 ryan = User.new(
   email: "ryan@treehaus.com"
 )
 ryan.password = "Password1"
 ryan.save
+
+ryans_project = Project.create(
+  title: "Project 1",
+  description: "Let's do this!",
+  author_id: ryan.id,
+  archived: false
+)

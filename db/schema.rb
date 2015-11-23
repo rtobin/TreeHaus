@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118235247) do
+ActiveRecord::Schema.define(version: 20151123155823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,32 @@ ActiveRecord::Schema.define(version: 20151118235247) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "step_assignments", force: :cascade do |t|
+    t.integer  "step_id",    null: false
+    t.integer  "assignee",   null: false
+    t.integer  "assigner",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "step_assignments", ["assignee"], name: "index_step_assignments_on_assignee", using: :btree
+  add_index "step_assignments", ["assigner"], name: "index_step_assignments_on_assigner", using: :btree
+  add_index "step_assignments", ["step_id"], name: "index_step_assignments_on_step_id", using: :btree
+
+  create_table "steps", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.string   "body"
+    t.integer  "todo_id"
+    t.integer  "author_id",  null: false
+    t.boolean  "done",       null: false
+    t.datetime "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "steps", ["author_id"], name: "index_steps_on_author_id", using: :btree
+  add_index "steps", ["todo_id"], name: "index_steps_on_todo_id", using: :btree
+
   create_table "team_memberships", force: :cascade do |t|
     t.integer  "team_id",    null: false
     t.integer  "member_id",  null: false
@@ -40,6 +66,15 @@ ActiveRecord::Schema.define(version: 20151118235247) do
 
   create_table "teams", force: :cascade do |t|
     t.integer  "prject_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.string   "body"
+    t.boolean  "done",       null: false
+    t.integer  "author_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
