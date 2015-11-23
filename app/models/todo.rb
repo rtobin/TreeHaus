@@ -8,7 +8,7 @@ class Todo < ActiveRecord::Base
   # has_many :assignees
   belongs_to :author, foreign_key: :author_id, class_name: "User"
 
-  def get_all_assignees
+  def all_assignees
     self.joins(:step_assignments).select(:assignee_id).distinct
   end
 
