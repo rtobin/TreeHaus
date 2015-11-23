@@ -24,8 +24,7 @@ class Api::StepsController < ApplicationController
 
   def update
     step = Step.find(params[:id])
-    if step
-      step.update(step_params)
+    if step && step.update(step_params)
       render json: step
     else
       render json: { message: 'not found', status: 404 }
@@ -34,6 +33,13 @@ class Api::StepsController < ApplicationController
 
   private
   def step_params
-    params.require(:step).permit(:title, :done, :body, :todo_id)
+    params.require(:step).permit(
+      :title,
+      :done,
+      :body,
+      :todo_id,
+      :author_id,
+      :due_date
+    )
   end
 end

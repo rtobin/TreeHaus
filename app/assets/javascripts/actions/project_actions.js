@@ -1,22 +1,44 @@
 ProjectActions = {
-  receiveProjects: function (projects) {
+  projectCreated: function (project) {
     AppDispatcher.dispatch({
-      actionType: ProjectConstants.PROJECTS_RECEIVED,
-      projects: projects
-    });
-  },
-
-  receiveSingleProject: function (project) {
-    AppDispatcher.dispatch({
-      actionType: ProjectConstants.CURRENT_PROJECT_RECEIVED,
+      actionType: ProjectConstants.PROJECT_CREATED,
       project: project
     });
   },
 
-  destroyProject: function (projectID) {
+  projectUpated: function (project) {
+    AppDispatcher.dispatch({
+      actionType: ProjectConstants.PROJECT_UPDATED,
+      project: project
+    });
+  },
+
+  projectDestroyed: function (project) {
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECT_DESTROYED,
-      projectID: projectID
+      project: project
     });
   }
+
+
+  // receiveProjects: function (projects) {
+  //   AppDispatcher.dispatch({
+  //     actionType: ProjectConstants.PROJECTS_RECEIVED,
+  //     projects: projects
+  //   });
+  // },
+  //
+  // receiveSingleProject: function (project) {
+  //   AppDispatcher.dispatch({
+  //     actionType: ProjectConstants.CURRENT_PROJECT_RECEIVED,
+  //     project: project
+  //   });
+  // },
+  //
+  // destroyProject: function (projectID) {
+  //   AppDispatcher.dispatch({
+  //     actionType: ProjectConstants.PROJECT_DESTROYED,
+  //     projectID: projectID
+  //   });
+  // }
 };

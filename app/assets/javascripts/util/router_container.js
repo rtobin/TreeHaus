@@ -7,4 +7,4 @@ RouterContainer = {
   get: function () {
     return _router;
   }
-}
+};
