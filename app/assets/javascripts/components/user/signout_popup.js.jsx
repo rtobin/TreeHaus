@@ -18,7 +18,7 @@ var Signout = window.Signout = React.createClass ({
 
   signout: function (e) {
     e.preventDefault();
-    AuthUtil.signout(redirectAfterSignout);
+    AuthUtil.signout(this.redirectAfterSignout);
   },
 
   render: function () {
