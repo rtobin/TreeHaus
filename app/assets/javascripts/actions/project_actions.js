@@ -8,8 +8,15 @@ ProjectActions = {
 
   receiveSingleProject: function (project) {
     AppDispatcher.dispatch({
-      actionType: ProjectConstants.PROJECT_RECEIVED,
-      projects: project
+      actionType: ProjectConstants.CURRENT_PROJECT_RECEIVED,
+      project: project
     });
   },
+
+  destroyProject: function (projectID) {
+    AppDispatcher.dispatch({
+      actionType: ProjectConstants.PROJECT_DESTROYED,
+      projectID: projectID
+    });
+  }
 };

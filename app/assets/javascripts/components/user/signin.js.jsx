@@ -24,10 +24,11 @@ var Signin = React.createClass ({
 
   redirectAfterSignin: function () {
     var location = this.props;
+    var userID = UserStore.currentUser().id;
     if (location.state && location.state.nextPathname) {
       this.history.replaceState(null, location.state.nextPathname);
     } else {
-      this.history.pushState(null, "/projects");
+      this.history.pushState(null, userID + "/projects");
     }
   },
 
@@ -52,13 +53,13 @@ var Signin = React.createClass ({
     this.setState(guest);
     var that = this;
     // setTimeout(AuthUtil.signin(guest, that.signinCallback), 500);
-    AuthUtil.signin(guest, this.signinCallbackAction);
+    AuthUtil.signin(guest);
   },
 
   checkIfSignedIn: function () {
     if (UserStore.isSignedIn()) {
       var str = "You are currently Signed in with the email: \"";
-      str += UserStore.getUser().email;
+      str += UserStore.currentUser().email;
       str+= "\n Do you wish to sign out?";
       var r = confirm(str);
       if (r === true) {
@@ -80,7 +81,7 @@ var Signin = React.createClass ({
         <Errors />
         <form onSubmit={this.signin}>
           <div className="form-group">
-            <label>Email
+            <label>Email:
               <input
                 type="text"
                 value={this.state.email}
@@ -91,7 +92,7 @@ var Signin = React.createClass ({
             </label>
           </div>
           <div className="form-group">
-            <label>Password
+            <label>Password: 
               <input
                 type="password"
                 value={this.state.password}

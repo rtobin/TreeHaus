@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :projects, only: [:show] do
       resources :todos, only: [:create, :new, :show, :update, :edit]
     end
-    resources :projects, only: [:index, :create]
+    resources :projects, only: [:index, :create, :update, :destroy]
   end
 
 

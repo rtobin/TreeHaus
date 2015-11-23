@@ -16,14 +16,14 @@ var ProfileManager = React.createClass({
           <span>Notifications (ON)</span>
         </h3>
         <p>You’re set to receive notifications 24/7/365 always. <a>Change schedule…</a></p>
-        <div className="nav-menu-buttons">
-          <button href="">
-            Snooze for 3 hours
-          </button>
-          <button href="">
-            Turn notifications off
-          </button>
-        </div>
+
+        <button href="" className="nav-menu-button">
+          Snooze for 3 hours
+        </button>
+        <button href="" className="nav-menu-button">
+          Turn notifications off
+        </button>
+
         <h3 className="nav-menu-heading">
           <span>My Stuff</span>
         </h3>

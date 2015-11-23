@@ -24,6 +24,7 @@
       switch(payload.actionType){
         case AuthConstants.SIGNIN_USER:
           signInUser(payload.user);
+          // AppDispatcher.waitFor([ProjectStore.dispatcherId]);
           UserStore.emitChange();
           break;
         case AuthConstants.SIGNOUT_USER:

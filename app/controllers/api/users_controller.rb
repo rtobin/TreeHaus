@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
     if @user.save
       # redirect them to the new user's show page
       log_in!(@user)
-      render :show
+      render "api/users/show"
     else
       # input didn't pass validation;
       # prints password requirements
@@ -17,7 +17,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render :show
+    render "api/users/show"
   end
 
   protected

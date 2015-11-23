@@ -4,19 +4,33 @@ $(function () {
   var Route = ReactRouter.Route;
   var IndexRoute = ReactRouter.IndexRoute;
 
-  var requireSignin = function (nextState, replaceState) {
-    if (!UserStore.isSignedIn()) {
+  var requireSigninAsUser = function (nextState, replaceState) {
+    if (!UserStore.isSignedIn() || UserStore.currentUser().id !== parseInt(nextState.params.userID)) {
       replaceState({
         nextPathname: nextState.location.pathname
       }, '/signin')
     }
-  }
+  };
+
+  // var requireSignedinUserProject = function (nextState, replaceState) {
+  //   requireSigninAsUser(nextState, replaceState);
+  //   if (!UserStore.isSignedIn() || UserStore.currentUser().id !== this.props.userID) {
+  //     var projects = UserStore.currentUser().projects;
+  //     if (projects.indexOf(this.props.projectID) >= 0) {
+  //       // send projects to Projectstore and wait til they receive, then redirect
+  //       ProjectStore.addProjectsListChangeListener(function () {
+  //         pushState(null, )
+  //       })
+  //       ProjectActions.receiveProjects(projects);
+  //     }
+  //   }
+  // };
 
   var redirectToUserPage = function (nextState, replaceState) {
     if (UserStore.isSignedIn()) {
       replaceState(null, '/' + UserStore.currentUser().id)
     }
-  }
+  };
 
   // routes = [
   //   { component: App,
@@ -50,10 +64,20 @@ $(function () {
       <Route path="/" component={App} >
         <Route path="signup" component={Signup}/>
         <Route path="signin" component={Signin}/>
-        <Route path="projects" component={ProjectsIndex} onEnter={requireSignin}>
-          <Route path=":id" component={ProjectsHome} onEnter={requireSignin}>
-            <Route path="signout" component={Signout} />
+        <Route
+          path=":userID/projects"
+          component={ProjectsHome}
+          onEnter={requireSigninAsUser}>
+          <IndexRoute component={ProjectsIndex}/>
+          <Route path="new" component={ProjectForm}/>
+          <Route
+            path=":projectID"
+            component={ProjectsHome}
+            onEnter={requireSigninAsUser}>
           </Route>
+
+          <Route path="signout" component={Signout} />
+
         </Route>
 
         <Route path="signout" component={Signout}/>
