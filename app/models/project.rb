@@ -4,12 +4,14 @@ class Project < ActiveRecord::Base
     :title,
     :description,
     :author_id,
-    :archived,
     presence: true
   )
 
+  validates :archived, inclusion: [true, false], default: false
+
   has_one :team
   has_many :members, through: :team, source: :members
-  belongs_to :author, class_name: "User"
+  belongs_to :author, foreign_key: :author_id, class_name: "User"
+  has_many :todos
 
 end

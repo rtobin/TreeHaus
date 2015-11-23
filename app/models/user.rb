@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   validate :valid_password_given, if: -> { password }
 
-  has_many :memberships, foreign_key: :membership_id, class_name: "Team_Memberships"
+  has_many :memberships, foreign_key: :membership_id, class_name: "TeamMemberships"
   has_many :projects, foreign_key: :author_id
   has_many :teams, through: :memberships, source: :team
 

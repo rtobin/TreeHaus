@@ -8,7 +8,7 @@ $(function () {
     if (!UserStore.isSignedIn() || UserStore.currentUser().id !== parseInt(nextState.params.userID)) {
       replaceState({
         nextPathname: nextState.location.pathname
-      }, '/signin')
+      }, '/signin');
     }
   };
 
@@ -28,7 +28,7 @@ $(function () {
 
   var redirectToUserPage = function (nextState, replaceState) {
     if (UserStore.isSignedIn()) {
-      replaceState(null, '/' + UserStore.currentUser().id)
+      replaceState(null, '/' + UserStore.currentUser().id);
     }
   };
 

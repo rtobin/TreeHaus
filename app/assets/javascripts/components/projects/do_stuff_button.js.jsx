@@ -1,11 +1,12 @@
-var MakeStuffButton = React.createClass({
+var DoStuffButton = React.createClass({
   onClick: function (e) {
     e.stopPropagation();
     this.props.cb();
   },
 
   render: function () {
-    var classname = "btn btn-xs " + this.props.btnClass;
+    var classname = "btn-make-stuff " + this.props.btnClass;
+    var text = this.props.text;
     return (
       <button
         className={classname}

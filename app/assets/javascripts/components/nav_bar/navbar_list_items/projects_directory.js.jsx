@@ -2,35 +2,32 @@ var ProjectsDirectory = React.createClass({
   mixins: [ClickExpandable],
 
   getInitialState: function () {
+    // # check how to get projectId from url........
+      debugger
     return {
-      currentProject: ProjectStore.currentProject(),
+      currentProjectID: this.props.projectID || -1,
       projects: ProjectStore.all(),
       dropdownSelectorId: randString(16),
       dropdownExpanded: false
-    }
+    };
+  },
+
+  updateProjects: function () {
+    this.setState({
+      project: ProjectStore.all()
+    });
   },
 
   componentWillMount: function () {
-    ProjectStore.addChangeListener(this.fetchCurrentProject);
-    ProjectStore.addProjectsListChangeListener(this.fetchProjectsList);
+    ProjectStore.addChangeListener(this.updateProjects);
   },
 
-  fetchCurrentProject: function () {
-    this.setState({
-      currentProject: ProjectStore.currentProject()
-    });
-  },
-
-  fetchProjectsList: function () {
-    this.setState({
-      projects: ProjectStore.all()
-    });
-  },
 
   projectsListLinkItem: function (project) {
     var Link = ReactRouter.Link;
     var star;
-    if (this.state.currentProject().id === project.id) {
+    if (this.state.currentProjectID >= 0 &&
+      this.state.currentProjectID === project.id) {
       star = (<strong>✶</strong>);
     }
 
@@ -42,7 +39,10 @@ var ProjectsDirectory = React.createClass({
     );
   },
 
+
+
   expandedContent: function () {
+    debugger
     return (
       <div className="nav-menu nav-menu-scroll">
         <h3 className="nav-menu-heading">
@@ -51,6 +51,7 @@ var ProjectsDirectory = React.createClass({
         <button href="" className="nav-menu-button">
           Make a new Project
         </button>
+
         <ul className="project-links-list">
           {this.state.projects.map(function (project, idx) {
             return this.projectsListLinkItem(project);

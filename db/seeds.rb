@@ -5,6 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+User.delete_all
+Project.delete_all
+
 jane = User.new(
   email: "jane@example.com"
 )
@@ -23,11 +27,18 @@ ryan = User.new(
   email: "ryan@treehaus.com"
 )
 ryan.password = "Password1"
-ryan.save
+ryan.save!
 
-ryans_project = Project.create(
+Project.create!(
   title: "Project 1",
   description: "Let's do this!",
-  author_id: ryan.id,
-  archived: false
+  archived: true,
+  author_id: ryan.id
+)
+
+Project.create!(
+  title: "Project 2",
+  description: "Let's do this again!",
+  archived: true,
+  author_id: ryan.id
 )

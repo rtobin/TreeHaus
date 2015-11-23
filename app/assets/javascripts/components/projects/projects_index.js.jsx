@@ -9,10 +9,6 @@ var ProjectsIndex = React.createClass({
     };
   },
 
-  fetchProject: function (projectID) {
-    ProjectUtil.fetchSingleProject(projectID);
-  },
-
   projectLinksList: function (project) {
     var Link = ReactRouter.Link;
     var that = this;
@@ -26,9 +22,13 @@ var ProjectsIndex = React.createClass({
               {project.title}
             </Link>
           </li>
-        )
+        );
       })
     );
+  },
+
+  handleButtonClick: function () {
+    this.history.pushState(null, this.state.userID + "/projects/new");
   },
 
   render: function () {
@@ -41,10 +41,10 @@ var ProjectsIndex = React.createClass({
         <ul className="project-links-list group">
           {this.projectLinksList()}
         </ul>
-        <Link to={this.state.userID + "/projects/new"}
-          className="projects-index-new-btn">
-          Make new project
-        </Link>
+        <DoStuffButton
+          cb={this.handleButtonClick}
+          btnClass="btn-new-project"
+          text="Make a new project!"/>
       </div>
     );
   }

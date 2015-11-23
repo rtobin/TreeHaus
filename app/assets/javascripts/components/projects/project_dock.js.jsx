@@ -28,6 +28,6 @@ var ProjectDock = React.createClass({
             <DocsCard/>
           </a></li>
       </ul>
-    )
+    );
   }
-})
+});

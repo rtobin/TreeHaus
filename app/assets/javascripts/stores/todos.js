@@ -15,7 +15,7 @@
     delete _todos[todo.id];
   };
 
-  var TodoStore = root.TodoStore = {
+  var TodoStore = root.TodoStore = $.extend({}, BaseStore, {
     // changed: function(){
     //   _handlers.forEach(function(cb){ cb(); });
     // },
@@ -54,7 +54,7 @@
           break;
       }
     })
-  };
+  });
 })(this);
 
 // case Constants.RECEIVE_USER_DATA:

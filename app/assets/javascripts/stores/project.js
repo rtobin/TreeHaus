@@ -14,7 +14,7 @@
     delete _projects[project.id];
   };
 
-  var ProjectStore = root.ProjectStore = {
+  var ProjectStore = root.ProjectStore = $.extend({}, BaseStore, {
     // changed: function(){
     //   _handlers.forEach(function(cb){ cb(); });
     // },
@@ -37,9 +37,6 @@
     // projects received when project is fetched
     dispatcherID: AppDispatcher.register(function(payload){
       switch(payload.actionType){
-        case ProjectStore.CURRENT_PROJECT_RECEIVED:
-          setProjects(payload.projects);
-          break;
         case ProjectConstants.TODO_CREATED:
           addProject(payload.project);
           break;
@@ -53,7 +50,7 @@
           break;
       }
     })
-  };
+  });
 })(this);
 
 // case Constants.RECEIVE_USER_DATA:
