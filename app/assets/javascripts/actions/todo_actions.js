@@ -1,4 +1,8 @@
 TodoActions = {
+  todosReceived: function (todos) {
+    
+  },
+
   todoCreated: function (todo) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_CREATED,

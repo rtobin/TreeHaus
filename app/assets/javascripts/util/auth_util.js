@@ -15,7 +15,7 @@ AuthUtil = {
       function (user) {
         UserActions.signinUser(user);
       }
-    )
+    );
   },
 
   signin: function (userParams) {

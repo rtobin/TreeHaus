@@ -23,8 +23,8 @@
     dispatcherID: AppDispatcher.register( function (payload){
       switch(payload.actionType){
         case AuthConstants.SIGNIN_USER:
-          signInUser(payload.user);
           // AppDispatcher.waitFor([ProjectStore.dispatcherId]);
+          signInUser(payload.user);
           UserStore.emitChange();
           break;
         case AuthConstants.SIGNOUT_USER:

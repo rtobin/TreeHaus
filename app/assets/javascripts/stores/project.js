@@ -37,14 +37,17 @@
     // projects received when project is fetched
     dispatcherID: AppDispatcher.register(function(payload){
       switch(payload.actionType){
-        case ProjectConstants.TODO_CREATED:
+        case ProjectConstants.PROJECTS_RECEIVED:
+          setProjects(payload.projects);
+          break;
+        case ProjectConstants.PROJECT_CREATED:
           addProject(payload.project);
           break;
-        case ProjectConstants.TODO_UPDATED:
+        case ProjectConstants.PROJECT_UPDATED:
           addProject(payload.project);
           ProjectStore.emitChange();
           break;
-        case ProjectConstants.TODO_DESTROYED:
+        case ProjectConstants.PROJECT_DESTROYED:
           deleteProject(payload.project);
           // ProjectStore.emitChange();
           break;

@@ -17,7 +17,7 @@ var Signin = React.createClass ({
   },
 
   componentDidMount: function () {
-    this.checkIfSignedIn();
+    // this.checkIfSignedIn();
   },
 
   componentWillUnMount: function () {

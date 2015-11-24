@@ -27,7 +27,6 @@ var Signup = React.createClass ({
   redirectAfterSignin: function () {
     var location = this.props;
     if (location.state && location.state.nextPathname) {
-      debugger
       this.history.replaceState(null, location.state.nextPathname);
     } else {
       this.history.pushState(null, "projects");

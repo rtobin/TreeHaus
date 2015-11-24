@@ -1,4 +1,12 @@
 ProjectActions = {
+  projectsReceived: function (projects) {
+    TodoActions.todosReceived(projects.todos);
+    AppDispatcher.dispatch({
+      actionType: ProjectConstants.PROJECT_RECEIVED,
+      projects: projects
+    });
+  },
+
   projectCreated: function (project) {
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECT_CREATED,

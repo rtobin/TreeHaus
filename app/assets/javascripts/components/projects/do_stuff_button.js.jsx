@@ -5,8 +5,8 @@ var DoStuffButton = React.createClass({
   },
 
   render: function () {
-    var classname = "btn-make-stuff " + this.props.btnClass;
     var text = this.props.text;
+    var classname = "btn-make-stuff " + this.props.btnClass;
     return (
       <button
         className={classname}

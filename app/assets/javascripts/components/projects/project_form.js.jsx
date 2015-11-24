@@ -43,7 +43,6 @@ var ProjectForm = React.createClass ({
   },
 
   onTitleChange: function (e) {
-    debugger
     this.setState({title: e.target.value});
   },
 
@@ -54,7 +53,6 @@ var ProjectForm = React.createClass ({
   },
 
   goToProjectHome: function () {
-    debugger
     this.history.pushState(null, userID + "/projects");
   }
-})
+});
