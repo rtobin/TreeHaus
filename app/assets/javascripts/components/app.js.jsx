@@ -4,7 +4,7 @@ var App = React.createClass({
 
   componentWillMount: function () {
     UserStore.addChangeListener(this._ensureSignedIn);
-    AuthUtil.fetchCurrentUser();
+    // AuthUtil.fetchCurrentUser();
   },
 
    _ensureSignedIn: function () {
@@ -18,6 +18,6 @@ var App = React.createClass({
       <div>
       {this.props.children}
       </div>
-    )
+    );
   }
 });

@@ -5,15 +5,21 @@ var ProjectsHome = React.createClass({
 
 
   getInitialState: function () {
+    var projectID = this.props.location.pathname.split("/")[3];
+    var project;
+    if (projectID) {
+      project = ProjectStore.find(parseInt(projectID));
+    }
     return {
-      project: {}
+      project: project,
+      currentUser: UserStore.currentUser()
     };
   },
 
   render: function () {
     return (
       <div>
-        <Navbar />
+        <Navbar items={this.state}/>
         {this.props.children}
       </div>
     );

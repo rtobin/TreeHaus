@@ -11,14 +11,16 @@ var ProjectsIndex = React.createClass({
 
   projectLinksList: function (project) {
     var Link = ReactRouter.Link;
+    var projects = this.state.projects;
     var that = this;
     return (
-      this.state.projects.map(function (project, idx) {
+      Object.keys(projects).map(function (projectID) {
+        var project = projects[projectID];
         return (
-          <li key={project.id}>
-            <Link to={ that.state.userID + "/projects/" + project.id}
+          <li key={projectID}>
+            <Link to={ that.state.userID + "/projects/" + projectID}
               project={project}
-              onClick={this.fetchProject}>
+              onClick={that.fetchProject}>
               {project.title}
             </Link>
           </li>

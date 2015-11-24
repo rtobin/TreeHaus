@@ -1,12 +1,12 @@
 var ProjectsDirectory = React.createClass({
-  mixins: [ClickExpandable],
+  mixins: [ReactRouter.History, ClickExpandable],
 
   getInitialState: function () {
     // # check how to get projectId from url........
-      debugger
     return {
-      currentProjectID: this.props.projectID || -1,
-      projects: ProjectStore.all(),
+      currentUser: this.props.items.currentUser,
+      currentProject: this.props.items.project || {},
+      projects: this.props.items.currentUser.projects || {},
       dropdownSelectorId: randString(16),
       dropdownExpanded: false
     };
@@ -22,27 +22,34 @@ var ProjectsDirectory = React.createClass({
     ProjectStore.addChangeListener(this.updateProjects);
   },
 
-
-  projectsListLinkItem: function (project) {
+  getProjectLinks: function () {
     var Link = ReactRouter.Link;
+    var projects = this.state.projects;
     var star;
-    if (this.state.currentProjectID >= 0 &&
-      this.state.currentProjectID === project.id) {
+    if (this.state.currentProject.id >= 0 &&
+      this.state.currentProject.id === projectID) {
       star = (<strong>✶</strong>);
     }
-
+    var that = this;
     return (
-      <li>
-        {star}
-        <Link to={"projects/" + project.id}>project.title</Link>
-      </li>
+      Object.keys(projects).map(function (projectID) {
+        var project = projects[projectID];
+        var url = that.state.currentUser.id + "/projects/" + projectID;
+        return (
+          <li key={projectID}>
+            {star}
+            <Link to={ url}
+              project={project}
+              onClick={that.fetchProject}>
+              {project.title}
+            </Link>
+          </li>
+        );
+      })
     );
   },
 
-
-
   expandedContent: function () {
-    debugger
     return (
       <div className="nav-menu nav-menu-scroll">
         <h3 className="nav-menu-heading">
@@ -53,9 +60,7 @@ var ProjectsDirectory = React.createClass({
         </button>
 
         <ul className="project-links-list">
-          {this.state.projects.map(function (project, idx) {
-            return this.projectsListLinkItem(project);
-          })}
+          {this.getProjectLinks()}
         </ul>
       </div>
     );

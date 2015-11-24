@@ -1,4 +1,15 @@
 class Api::SessionsController < ApplicationController
+
+  def index
+    render json: Todo.all
+  end
+
+  def show
+    @todo = Todo.find(params[:id])
+    render "api/todos/show"
+    # render json: Todo.find(params[:id])
+  end
+
   def create
     todo = Todo.new(todo_params)
     if todo.save
@@ -6,14 +17,6 @@ class Api::SessionsController < ApplicationController
     else
       render json: todo.errors.full_messages, status: 422
     end
-  end
-
-  def index
-    render json: Todo.all
-  end
-
-  def show
-    render json: Todo.find(params[:id])
   end
 
   def destroy
