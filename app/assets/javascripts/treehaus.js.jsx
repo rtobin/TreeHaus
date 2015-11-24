@@ -72,10 +72,10 @@ $(function () {
           <Route path="new" component={ProjectForm}/>
           <Route
             path=":projectID"
-            component={ProjectsHome}
+            component={ProjectPage}
             onEnter={requireSigninAsUser}>
           </Route>
-
+          <Route path="todos" component={TodoIndex}/>
           <Route path="signout" component={Signout} />
 
         </Route>

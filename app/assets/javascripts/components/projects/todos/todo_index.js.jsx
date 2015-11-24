@@ -26,7 +26,6 @@ var TodoIndex = React.createClass({
             })
           }
         </ul>
-        <TodoForm />
       </div>
     );
   }

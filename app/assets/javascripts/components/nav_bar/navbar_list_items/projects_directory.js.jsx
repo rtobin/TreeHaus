@@ -34,19 +34,35 @@ var ProjectsDirectory = React.createClass({
     return (
       Object.keys(projects).map(function (projectID) {
         var project = projects[projectID];
-        var url = that.state.currentUser.id + "/projects/" + projectID;
         return (
           <li key={projectID}>
             {star}
-            <Link to={ url}
-              project={project}
-              onClick={that.fetchProject}>
+            <button
+              projectID={projectID}
+              className="project-dir-button"
+              onClick={
+                function (e) {
+                  that.toggleExpand(e);
+                  that.history.pushState(null, that.state.currentUser.id + "/projects/" + projectID);
+                }
+              }>
               {project.title}
-            </Link>
+            </button>
           </li>
         );
       })
     );
+  },
+
+  handleDirToProjectClick: function (e) {
+    debugger
+    this.toggleExpand(e);
+    this.history.pushState(null, this.state.currentUser.id + "/projects/");
+  },
+
+  handleMakeNewClick: function (e) {
+    this.toggleExpand(e);
+    this.history.pushState(null, this.state.currentUser.id + "/projects/new");
   },
 
   expandedContent: function () {
@@ -55,7 +71,10 @@ var ProjectsDirectory = React.createClass({
         <h3 className="nav-menu-heading">
           <span className="top">Name</span>
         </h3>
-        <button href="" className="nav-menu-button">
+        <button
+          href=""
+          className="nav-menu-button"
+          onClick={this.handleMakeNewClick}>
           Make a new Project
         </button>
 

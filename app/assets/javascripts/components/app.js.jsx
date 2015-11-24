@@ -4,7 +4,6 @@ var App = React.createClass({
 
   componentDidMount: function () {
     UserStore.addChangeListener(this._ensureSignedIn);
-    debugger
     if (UserStore.isSignedIn()) {
       this.history.pushState(null, userID + "/projects");
     } else {

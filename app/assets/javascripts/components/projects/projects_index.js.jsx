@@ -42,7 +42,7 @@ var ProjectsIndex = React.createClass({
         <ul className="project-links-list group">
           {this.projectLinksList()}
         </ul>
-        <button class="btn-do-stuff"
+        <button className="btn-do-stuff"
           onClick={this.handleButtonClick}>Make New Project</button>
       </div>
     );
