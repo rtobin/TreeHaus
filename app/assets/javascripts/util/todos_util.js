@@ -7,7 +7,12 @@ TodoUtil = {
       },
       function(todo) {
         TodoActions.todoCreated(todoParams.projectID, todoParams.id, todo);
-      });
+      }
+    ).fail(function () {
+        var args = [].slice.call(arguments);
+        UIActions.errorReport(JSON.parse(args[0].responseText));
+      }
+    );
   },
 
   updateTodo: function (todoParams) {
@@ -21,7 +26,11 @@ TodoUtil = {
       success: function (todo) {
         TodoActions.todoUpdated(todoParams.projectID, todoParams.id, todo);
       }
-    });
+    }).fail(function () {
+        var args = [].slice.call(arguments);
+        UIActions.errorReport(JSON.parse(args[0].responseText));
+      }
+    );
   },
 
   destroyTodo: function (todoParams) {
@@ -47,7 +56,12 @@ TodoUtil = {
           stepParams.todoID,
           stepParams.id,
           step);
-      });
+      }
+    ).fail(function () {
+        var args = [].slice.call(arguments);
+        UIActions.errorReport(JSON.parse(args[0].responseText));
+      }
+    );
   },
 
   updateStep: function (stepParams) {
@@ -65,7 +79,11 @@ TodoUtil = {
           stepParams.id,
           step);
       }
-    });
+    }).fail(function () {
+        var args = [].slice.call(arguments);
+        UIActions.errorReport(JSON.parse(args[0].responseText));
+      }
+    );
   },
 
   destroyStep: function (stepParams) {

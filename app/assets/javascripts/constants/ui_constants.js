@@ -1,0 +1,3 @@
+UIConstants = {
+  RECEIVED_ERROR: "RECEIVED_ERROR"
+};

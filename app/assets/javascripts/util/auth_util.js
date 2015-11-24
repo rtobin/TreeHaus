@@ -27,7 +27,7 @@ AuthUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        UserActions.errorReport(JSON.parse(args[0].responseText));
+        UIActions.errorReport(JSON.parse(args[0].responseText));
       }
     );
   },
@@ -52,7 +52,7 @@ AuthUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        UserActions.errorReport(JSON.parse(args[0].responseText));
+        UIActions.errorReport(JSON.parse(args[0].responseText));
       }
     );
   }

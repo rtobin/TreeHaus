@@ -8,7 +8,7 @@ ProjectUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        UserActions.errorReport(JSON.parse(args[0].responseText));
+        UIActions.errorReport(JSON.parse(args[0].responseText));
       }
     );
   },
@@ -21,7 +21,11 @@ ProjectUtil = {
       success: function (project) {
         ProjectActions.projectUpdated(projectParams.id, project);
       }
-    });
+    }).fail(function () {
+        var args = [].slice.call(arguments);
+        UIActions.errorReport(JSON.parse(args[0].responseText));
+      }
+    );
   },
 
   destroyProject: function (projectParams) {
