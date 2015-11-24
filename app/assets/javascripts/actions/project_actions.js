@@ -1,6 +1,8 @@
 ProjectActions = {
   projectsReceived: function (projects) {
-    TodoActions.todosReceived(projects.todos);
+    if (projects.todos) {
+      TodoActions.todosReceived(projects.todos);
+    }
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECT_RECEIVED,
       projects: projects

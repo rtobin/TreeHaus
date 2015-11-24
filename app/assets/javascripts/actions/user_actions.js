@@ -1,6 +1,8 @@
 UserActions = {
   signinUser: function (user) {
-    ProjectActions.projectsReceived(user.projects);
+    if (user.projects) {
+      ProjectActions.projectsReceived(user.projects);
+    }
     AppDispatcher.dispatch({
       actionType: AuthConstants.SIGNIN_USER,
       user: user
