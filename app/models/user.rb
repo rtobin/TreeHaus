@@ -26,9 +26,23 @@ class User < ActiveRecord::Base
 
   validate :valid_password_given, if: -> { password }
 
-  has_many :memberships, foreign_key: :membership_id, class_name: "TeamMemberships"
+  has_many :memberships, foreign_key: :membership_id, class_name: "TeamMembership"
   has_many :projects, foreign_key: :author_id
+
+  has_many :assigned_steps, foreign_key: :assignee_id, class_name: "StepAssignment"
+
+  has_many :authored_todos, foreign_key: :author_id, class_name: "Todo"
+  has_many :authored_steps, foreign_key: :author_id, class_name: "Step"
+
   has_many :teams, through: :memberships, source: :team
+
+  def assigned_todos
+    # Todo.includes(:assigned_steps)
+    #     .where(step_assignments: { todo_id: this.id })
+    #     .distinct
+  end
+
+
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

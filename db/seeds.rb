@@ -29,6 +29,7 @@ ryan = User.new(
 ryan.password = "Password1"
 ryan.save!
 
+
 Project.create!(
   title: "Project 1",
   description: "Let's do this!",
@@ -42,3 +43,21 @@ Project.create!(
   archived: true,
   author_id: ryan.id
 )
+
+# Ryan todos
+(1...5).each do |i|
+  Todo.create!(
+    title: "Todo #{i}",
+    body: "Let's do this #{i} times!",
+    author_id: ryan.id,
+    project_id: ryan.projects.first.id
+  )
+  (1...5).each do |j|
+    Step.create!(
+      title: "Step #{j}",
+      body: "Step through this #{i} times!",
+      author_id: ryan.id,
+      todo_id: i
+    )
+  end
+end

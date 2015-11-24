@@ -10,7 +10,10 @@ class Todo < ActiveRecord::Base
   belongs_to :project
 
   def all_assignees
-    self.joins(:step_assignments).select(:assignee_id).distinct
+    # User.includes (:assigned_steps)
+    #     .where(assigned_steps: { todo_id: this.id })
+    #     .distinct
+    #     .all
   end
 
   def is_done?
