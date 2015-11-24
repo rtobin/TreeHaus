@@ -21,7 +21,7 @@ var ErrorsStore = window.ErrorsStore = $.extend({}, BaseStore, {
 
   dispatcherID: AppDispatcher.register( function (payload){
     switch(payload.actionType){
-      case AuthConstants.AUTH_ERROR:
+      case UIConstants.RECEIVED_ERROR:
         addErrors(payload.errors);
         ErrorsStore.emit(CHANGE_EVENT);
         break;

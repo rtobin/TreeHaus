@@ -1,32 +1,31 @@
 ProjectActions = {
   projectsReceived: function (projects) {
-    if (projects.todos) {
-      TodoActions.todosReceived(projects.todos);
-    }
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECT_RECEIVED,
       projects: projects
     });
   },
 
-  projectCreated: function (project) {
+  projectCreated: function (projectID, project) {
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECT_CREATED,
-      project: project
+      project: project,
+      projectID: projectID
     });
   },
 
-  projectUpated: function (project) {
+  projectUpated: function (projectID, project) {
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECT_UPDATED,
-      project: project
+      project: project,
+      projectID: projectID
     });
   },
 
-  projectDestroyed: function (project) {
+  projectDestroyed: function (projectID) {
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECT_DESTROYED,
-      project: project
+      projectID: projectID
     });
   }
 

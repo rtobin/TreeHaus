@@ -1,29 +1,36 @@
 ProjectUtil = {
-
-  createProject: function (projectData) {
-    $.post('api/projects', { project: projectData }, function(project) {
-      ProjectActions.projectCreated(project);
-    });
+  // projectParams example: {}
+  createProject: function (projectParams) {
+    $.post('api/projects',
+      projectParams,
+      function(project) {
+        ProjectActions.projectCreated(projectParams.id, project);
+      }
+    ).fail(function () {
+        var args = [].slice.call(arguments);
+        UserActions.errorReport(JSON.parse(args[0].responseText));
+      }
+    );
   },
 
-  updateProject: function (projectData) {
+  updateProject: function (projectParams) {
     $.ajax ({
       type: 'PUT',
       url: 'api/projects',
-      data: {id: projectData.id},
+      data: projectParams,
       success: function (project) {
-        ProjectActions.projectUpdated(project);
+        ProjectActions.projectUpdated(projectParams.id, project);
       }
     });
   },
 
-  destroyProject: function (projectData) {
+  destroyProject: function (projectParams) {
     $.ajax ({
       type: 'DELETE',
       url: 'api/projects',
-      data: {id: projectData.id},
-      success: function (porjectID) {
-        ProjectActions.projectDestroyed(project);
+      data: projectParams,
+      success: function () {
+        ProjectActions.projectDestroyed(projectParams.id);
       }
     });
   }

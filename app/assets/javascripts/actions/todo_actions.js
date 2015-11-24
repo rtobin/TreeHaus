@@ -1,32 +1,56 @@
 TodoActions = {
-  // todosReceived: function (todos) {
-  //   if () {
-  //     TodoActions.todosReceived(projects.todos);
-  //   }
-  //   AppDispatcher.dispatch({
-  //     actionType: ProjectConstants.PROJECT_RECEIVED,
-  //     projects: projects
-  //   });
-  // },
-
-  todoCreated: function (todo) {
+  todoCreated: function (projectID, todoID, todo) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_CREATED,
-      todo: todo
+      todo: todo,
+      todoID: todoID,
+      projectID: projectID
     });
   },
 
-  todoUpated: function (todo) {
+  todoUpated: function (projectID, todoID, todo) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_UPDATED,
-      todo: todo
+      todo: todo,
+      todoID: todoID,
+      projectID: projectID
     });
   },
 
-  todoDestroyed: function (todo) {
+  todoDestroyed: function (projectID, todoID) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_DESTROYED,
-      todo: todo
+      todoID: todoID,
+      projectID: projectID
+    });
+  },
+
+  stepCreated: function (projectID, todoID, stepID, step) {
+    AppDispatcher.dispatch({
+      actionType: TodoConstants.STEP_CREATED,
+      step: step,
+      stepID: stepID,
+      todoID: todoID,
+      projectID: projectID
+    });
+  },
+
+  stepUpated: function (projectID, todoID, stepID, step) {
+    AppDispatcher.dispatch({
+      actionType: TodoConstants.STEP_UPDATED,
+      step: step,
+      stepID: stepID,
+      todoID: todoID,
+      projectID: projectID
+    });
+  },
+
+  stepDestroyed: function (projectID, todoID, stepID) {
+    AppDispatcher.dispatch({
+      actionType: TodoConstants.STEP_DESTROYED,
+      stepID: stepID,
+      todoID: todoID,
+      projectID: projectID
     });
   }
 };
