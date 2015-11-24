@@ -2,7 +2,7 @@ json.(step, :title, :body, :author_id, :todo_id, :due_date, :done, :created_at, 
 
 json.assignees do
   assignees = step.assignees
-  unless assignees.nil?
+  unless assignees.empty?
     step.assignees.each do |assignee|
       json.set! assignee.id do
         json.partial! 'api/users/user', assignee: assignee

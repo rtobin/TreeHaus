@@ -1,7 +1,7 @@
 json.(todo, :title, :body, :author_id, :project_id, :done, :created_at, :updated_at)
 json.steps do
   steps = todo.steps
-  unless steps.nil?
+  unless steps.empty?
     todo.steps.each do |step|
       json.set! step.id do
         json.partial! 'api/steps/step', step: step
@@ -12,7 +12,7 @@ end
 
 json.assignees do
   assignees = todo.all_assignees
-  unless assignees.nil?
+  unless assignees.empty?
     assignees.each do |assignee|
       json.set! assignee.id do
         json.partial! 'api/users/user', assignee: assignee
