@@ -1,8 +1,8 @@
 var Errors = window.Errors = React.createClass ({
   getInitialState: function () {
     return {
-      errors: ErrorsStore.fetchErrors()
-    }
+      errors: ErrorsStore.fetchErrors() || []
+    };
   },
 
   updateErrors: function () {
@@ -25,10 +25,10 @@ var Errors = window.Errors = React.createClass ({
       <ul className="error-list">
         {
           this.state.errors.map(function(errMsg, idx){
-            return <li key={idx}>{errMsg}</li>
+            return (<li key={idx}>{errMsg}</li>);
           })
         }
       </ul>
-    )
+    );
   }
-})
+});
