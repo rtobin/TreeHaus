@@ -8,7 +8,8 @@ var App = React.createClass({
   // },
 
   componentWillMount: function () {
-
+    AuthUtil.fetchCurrentUser();
+    
     // UserStore.addChangeListener(this._ensureSignedIn);
     this._ensureSignedIn();
   },

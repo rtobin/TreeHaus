@@ -1,7 +1,6 @@
 var ProjectDock = React.createClass({
 
   render: function () {
-    debugger
     var projectPath =this.props.location.pathname;
     return (
       <div className="project-dock">

@@ -71,7 +71,7 @@ $(function () {
           <Route path="new" component={ProjectForm}/>
           <Route path=":projectID" component={ProjectPage}>
             <IndexRoute component={ProjectDock} />
-            <Route path="todos" component={TodoIndex}/>
+            <Route path="todos" component={TodosIndex}/>
           </Route>
           <Route path="signout" component={Signout} />
 

@@ -1,5 +1,6 @@
 (function (root) {
   var _projects = {};
+  var _currentProject = {};
   var CHANGE_EVENT = "change";
 
   var addProjects = function (projects) {
@@ -41,6 +42,13 @@
   };
 
   var ProjectStore = root.ProjectStore = $.extend({}, BaseStore, {
+    currentProject: function () {
+      return _currentProject;
+    },
+
+    setCurrentProject: function (project) {
+      _currentProject = project;
+    },
     // changed: function(){
     //   _handlers.forEach(function(cb){ cb(); });
     // },

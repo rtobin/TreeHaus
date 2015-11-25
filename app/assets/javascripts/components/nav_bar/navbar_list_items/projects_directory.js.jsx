@@ -3,7 +3,6 @@ var ProjectsDirectory = React.createClass({
 
   getInitialState: function () {
     // # check how to get projectId from url........
-    debugger
     return {
       currentUser: this.props.items.currentUser,
       currentProject: this.props.items.project || {},

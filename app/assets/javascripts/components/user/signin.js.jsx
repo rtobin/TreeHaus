@@ -13,7 +13,7 @@ var Signin = React.createClass ({
   componentWillMount: function () {
     UserStore.addChangeListener(this._redirectAfterSignin);
     // this.checkIfSignedIn();
-    AuthUtil.fetchCurrentUser();
+    // AuthUtil.fetchCurrentUser();
   },
 
   componentDidMount: function () {

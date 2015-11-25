@@ -2,7 +2,6 @@ var ToDosCard = React.createClass({
   mixins: [ReactRouter.History],
 
   render: function () {
-    debugger
     var Link = ReactRouter.Link;
     return (
       <Link to={this.props.projectpath + '/todos'}>

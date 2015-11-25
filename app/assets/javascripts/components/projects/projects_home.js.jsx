@@ -1,6 +1,5 @@
 var ProjectsHome = React.createClass({
   componentWillMount: function () {
-    
   },
 
 
@@ -9,6 +8,7 @@ var ProjectsHome = React.createClass({
     var project;
     if (projectID) {
       project = ProjectStore.find(parseInt(projectID));
+      ProjectStore.setCurrentProject(project);
     }
     return {
       project: project,
@@ -19,7 +19,7 @@ var ProjectsHome = React.createClass({
   render: function () {
     return (
       <div>
-        <Navbar items={this.state}/>
+        <Navbar items={this.state} />
         {this.props.children}
       </div>
     );

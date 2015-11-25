@@ -1,6 +1,8 @@
-var TodoIndex = React.createClass({
+var TodosIndex = React.createClass({
   getInitialState: function(){
-    return {todos: TodoStore.all()};
+    // var parsedString = this.props.location.pathname.split("/");
+    // var projectId = parseInt(parsedString[3]);
+    return {todos: ProjectStore.currentProject().todos};
   },
 
   // _todosChanged: function(){
@@ -13,16 +15,16 @@ var TodoIndex = React.createClass({
   // },
 
   render: function() {
-    var todos = this.state.todos;
-    debugger
+    var that = this;
     return (
-      <div className="Todoindex">
+      <div className="todoindex">
         <TodosIndexHeader/>
-        <ul className="todo-index">
+        <ul className="todo-list">
           {
-            todos.map(function(todo) {
+            Object.keys(this.state.todos).map(function(todoID) {
+              var todo = that.state.todos[todoID];
               return(
-                <li><TodoIndexItem key={todo.id} todo={todo} /></li>
+                <li>{todoID + ": "}<TodoIndexItem key={todoID} todoid={todoID} todo={todo} /></li>
               );
             })
           }
