@@ -31,7 +31,7 @@ var ProjectForm = React.createClass ({
         <textarea value={this.state.description}
            onChange={this.onDescriptionChange}
            placeholder="Write a description of the project..." />
-        <nav className="post-form-sub-nav flex-container">
+        <nav className="post-form ">
           <button type="submit">Create Project</button>
         </nav>
       </form>

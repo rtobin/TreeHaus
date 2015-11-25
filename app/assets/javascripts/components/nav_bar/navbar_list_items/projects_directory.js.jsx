@@ -3,6 +3,7 @@ var ProjectsDirectory = React.createClass({
 
   getInitialState: function () {
     // # check how to get projectId from url........
+    debugger
     return {
       currentUser: this.props.items.currentUser,
       currentProject: this.props.items.project || {},
@@ -36,46 +37,28 @@ var ProjectsDirectory = React.createClass({
         var project = projects[projectID];
         return (
           <li key={projectID}>
-            {star}
-            <button
-              projectID={projectID}
-              className="project-dir-button"
-              onClick={
-                function (e) {
-                  that.toggleExpand(e);
-                  that.history.pushState(null, that.state.currentUser.id + "/projects/" + projectID);
-                }
-              }>
+            <Link to={ that.state.currentUser.id + "/projects/" + projectID}
+              project={project}
+              className="project-button">
               {project.title}
-            </button>
+            </Link>
           </li>
         );
       })
     );
   },
 
-  handleDirToProjectClick: function (e) {
-    this.toggleExpand(e);
-    this.history.pushState(null, this.state.currentUser.id + "/projects/");
-  },
-
-  handleMakeNewClick: function (e) {
-    this.toggleExpand(e);
-    this.history.pushState(null, this.state.currentUser.id + "/projects/new");
-  },
-
   expandedContent: function () {
+    var Link = ReactRouter.Link;
     return (
       <div className="nav-menu nav-menu-scroll">
         <h3 className="nav-menu-heading">
           <span className="top">Name</span>
         </h3>
-        <button
-          href=""
-          className="nav-menu-button"
-          onClick={this.handleMakeNewClick}>
-          Make a new Project
-        </button>
+        <Link to={this.state.currentUser.id + "/projects/new"}
+          className="project-button new-project">
+          +
+        </Link>
 
         <ul className="project-links-list">
           {this.getProjectLinks()}

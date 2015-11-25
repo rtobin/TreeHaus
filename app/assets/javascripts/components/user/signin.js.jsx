@@ -11,9 +11,9 @@ var Signin = React.createClass ({
   },
 
   componentWillMount: function () {
+    UserStore.addChangeListener(this._redirectAfterSignin);
+    // this.checkIfSignedIn();
     AuthUtil.fetchCurrentUser();
-    UserStore.addChangeListener(this.redirectAfterSignin);
-    this.checkIfSignedIn();
   },
 
   componentDidMount: function () {
@@ -24,7 +24,7 @@ var Signin = React.createClass ({
     UserStore.removeChangeListener(this.redirectAfterSignin);
   },
 
-  redirectAfterSignin: function () {
+  _redirectAfterSignin: function () {
     var location = this.props;
     var userID = UserStore.currentUser().id;
     if (location.state && location.state.nextPathname) {

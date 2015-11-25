@@ -51,8 +51,8 @@ var Signout = window.Signout = React.createClass ({
     }
     return (
       <div>
-        <button className="signout-modal" onClick={this.toggleExpand}>Sign out</button>
-        <div className="signout-content">
+        <button className="signout-modal" onClick={this.signout}>Sign out</button>
+        <div className="signout-content" style={style}>
           <h3>Are you sure you want to sign out?</h3>
           <button href="" onClick={this.signout}>Signout</button>
         </div>

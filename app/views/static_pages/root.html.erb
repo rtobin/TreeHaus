@@ -11,9 +11,9 @@
         UserActions.signinUser(userParams);
       } else if (UserStore.current_user().email != userParams.email) {
         UserActions.signoutUser();
-        AuthUtil.fetchCurrentUser(userParams);
+        AuthUtil.fetchCurrentUser();
       }
     </script>
   <% end %> -->
-  
+
 </div>
