@@ -1,18 +1,16 @@
 TodoActions = {
-  todoCreated: function (projectID, todoID, todo) {
+  todoCreated: function (projectID, todo) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_CREATED,
       todo: todo,
-      todoID: todoID,
       projectID: projectID
     });
   },
 
-  todoUpated: function (projectID, todoID, todo) {
+  todoUpated: function (projectID, todo) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_UPDATED,
       todo: todo,
-      todoID: todoID,
       projectID: projectID
     });
   },
@@ -25,21 +23,19 @@ TodoActions = {
     });
   },
 
-  stepCreated: function (projectID, todoID, stepID, step) {
+  stepCreated: function (projectID, todoID, step) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.STEP_CREATED,
       step: step,
-      stepID: stepID,
       todoID: todoID,
       projectID: projectID
     });
   },
 
-  stepUpated: function (projectID, todoID, stepID, step) {
+  stepUpated: function (projectID, todoID, step) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.STEP_UPDATED,
       step: step,
-      stepID: stepID,
       todoID: todoID,
       projectID: projectID
     });

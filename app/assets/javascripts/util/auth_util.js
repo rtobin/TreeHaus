@@ -32,7 +32,7 @@ AuthUtil = {
     );
   },
 
-  signout: function (history) {
+  signout: function () {
     $.ajax ({
       type: 'DELETE',
       url: 'api/session',

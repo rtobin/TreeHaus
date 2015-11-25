@@ -1,12 +1,9 @@
 TodoUtil = {
   createTodo: function (todoParams) {
     $.post('api/todos',
-      {
-        id: todoParams.id,
-        todo: todoParams.todo
-      },
+      {todo: todoParams.todo},
       function(todo) {
-        TodoActions.todoCreated(todoParams.projectID, todoParams.id, todo);
+        TodoActions.todoCreated(todoParams.projectID, todo);
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
@@ -18,13 +15,13 @@ TodoUtil = {
   updateTodo: function (todoParams) {
     $.ajax ({
       type: 'PUT',
-      url: 'api/todos',
+      url: 'api/todos/' + todoParams.id,
       data: {
         id: todoParams.id,
-        todo: todoParams.todo
+        todo: todoParams
       },
       success: function (todo) {
-        TodoActions.todoUpdated(todoParams.projectID, todoParams.id, todo);
+        TodoActions.todoUpdated(todoParams.projectID, todo);
       }
     }).fail(function () {
         var args = [].slice.call(arguments);
@@ -36,7 +33,7 @@ TodoUtil = {
   destroyTodo: function (todoParams) {
     $.ajax ({
       type: 'DELETE',
-      url: 'api/todos',
+      url: 'api/todos/' + todoParams.id,
       data: {id: todoParams.id},
       success: function () {
         TodoActions.todoDestroyed(todoParams.projectID, todoParams.id);
@@ -46,15 +43,11 @@ TodoUtil = {
 
   createStep: function (stepParams) {
     $.post('api/steps',
-      {
-        id: stepParams.id,
-        step: stepParams.step
-      },
+      {step: stepParams.step},
       function(step) {
         StepActions.stepCreated(
           stepParams.projectID,
           stepParams.todoID,
-          stepParams.id,
           step);
       }
     ).fail(function () {
@@ -67,7 +60,7 @@ TodoUtil = {
   updateStep: function (stepParams) {
     $.ajax ({
       type: 'PUT',
-      url: 'api/steps',
+      url: 'api/steps/' + stepParams.id,
       data: {
         id: stepParams.id,
         step: stepParams.step
@@ -76,7 +69,6 @@ TodoUtil = {
         StepActions.stepUpdated(
           stepParams.projectID,
           stepParams.todoID,
-          stepParams.id,
           step);
       }
     }).fail(function () {
@@ -89,7 +81,7 @@ TodoUtil = {
   destroyStep: function (stepParams) {
     $.ajax ({
       type: 'DELETE',
-      url: 'api/steps',
+      url: 'api/steps/' + stepParams.id,
       data: {id: stepParams.id},
       success: function () {
         StepActions.stepDestroyed(

@@ -12,6 +12,23 @@ var ProjectPage = React.createClass({
     };
   },
 
+  updateProject: function () {
+    var project = ProjectStore.currentProject();
+    this.setState({
+      project: project,
+      currentUser: UserStore.currentUser()
+    });
+  },
+
+  componentDidMount: function () {
+    ProjectStore.addCurrentProjectChangeListener(this.updateProject);
+  },
+
+  componentWillUnMount: function () {
+    ProjectStore.removeCurrentProjectChangeListener(this.updateProject);
+  },
+
+
   render: function () {
     return (
       <div className="project-main">

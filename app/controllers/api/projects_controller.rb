@@ -13,9 +13,8 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create!(project_params)
+    @project = Project.new(project_params)
     if @project.save
-      # redirect them to the new user's show page
       render "api/projects/show"
     else
       # input didn't pass validation;

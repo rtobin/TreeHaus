@@ -13,19 +13,17 @@ ProjectActions = {
   //   });
   // },
 
-  projectCreated: function (projectID, project) {
+  projectCreated: function (project) {
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECT_CREATED,
-      project: project,
-      projectID: projectID
+      project: project
     });
   },
 
-  projectUpated: function (projectID, project) {
+  projectUpdated: function (project) {
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECT_UPDATED,
-      project: project,
-      projectID: projectID
+      project: project
     });
   },
 

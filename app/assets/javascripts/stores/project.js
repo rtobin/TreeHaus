@@ -2,6 +2,7 @@
   var _projects = {};
   var _currentProject = {};
   var CHANGE_EVENT = "change";
+  var CURRENT_PROJECT_CHANGE_EVENT = "currentProjectChange";
 
   var addProjects = function (projects) {
     $.extend(_projects, projects);
@@ -17,16 +18,19 @@
   //   $.extend(_projects, project);
   // };
 
-  var addProject = function (projectID, project) {
-    _projects[projectID] = project;
+  var addProject = function (project) {
+    _projects[project.id] = project;
+    _currentProject = project;
   };
 
-  var addTodo = function (projectID, todoID, todo) {
-    _projects[projectID].todos[todoID] = todo;
+  var addTodo = function (projectID, todo) {
+    todo.id = todoID;
+    _projects[projectID].todos[todo.id] = todo;
   };
 
-  var addStep = function (projectID, todoID, stepId, step) {
-    _projects[projectID].todos[todoID].steps[stepID] = step;
+  var addStep = function (projectID, todoID, step) {
+    step.id = stepID;
+    _projects[projectID].todos[todoID].steps[step.id] = step;
   };
 
   var deleteProject = function (projectID) {
@@ -48,18 +52,8 @@
 
     setCurrentProject: function (project) {
       _currentProject = project;
+      this.emit(CURRENT_PROJECT_CHANGE_EVENT);
     },
-    // changed: function(){
-    //   _handlers.forEach(function(cb){ cb(); });
-    // },
-    //
-    // addChangedHandler: function(callback){
-    //   _handlers.push(callback);
-    // },
-    //
-    // removeChangedHandler: function(callback){
-    //   _handlers.splice(_handlers.indexof(callback), 1);
-    // },
 
     all: function(){
       return _projects;
@@ -67,6 +61,14 @@
 
     find: function(id) {
       return _projects[id];
+    },
+
+    addCurrentProjectChangeListener: function (callback) {
+      this.on(CURRENT_PROJECT_CHANGE_EVENT, callback);
+    },
+
+    removeCurrentProjectChangeListener: function (callback) {
+      this.removeListener(CURRENT_PROJECT_CHANGE_EVENT, callback);
     },
     // projects received when project is fetched
     dispatcherID: AppDispatcher.register(function(payload){
@@ -76,23 +78,24 @@
           addProjects(payload.projects);
           break;
         case ProjectConstants.PROJECT_CREATED:
-          addProject(payload.projectID, payload.project);
+          addProject(payload.project);
+          ProjectStore.emitChange();
           break;
         case ProjectConstants.PROJECT_UPDATED:
-          addProject(payload.projectID, payload.project);
+          addProject(payload.project);
           ProjectStore.emitChange();
           break;
         case ProjectConstants.PROJECT_DESTROYED:
-          deleteProject(payload.projectID);
-          // ProjectStore.emitChange();
+          deleteProject(payload.id);
+          ProjectStore.emitChange();
           break;
 
         // TODOS CRUD
         case TodoConstants.TODO_CREATED:
-          addTodo(payload.projectID, payload.todoID, todo);
+          addTodo(payload.projectID, todo);
           break;
         case TodoConstants.TODO_UPDATED:
-          addTodo(payload.projectID, payload.todoID, todo);
+          addTodo(payload.projectID, todo);
           ProjectStore.emitChange();
           break;
         case TodoConstants.TODO_DESTROYED:
@@ -102,10 +105,10 @@
 
         // STEPS CRUD
         case TodoConstants.STEP_CREATED:
-          addStep(payload.projectID, payload.todoID, payload.stepID, step);
+          addStep(payload.projectID, payload.todoID, step);
           break;
         case TodoConstants.STEP_UPDATED:
-          addStep(payload.projectID, payload.todoID, payload.stepID, step);
+          addStep(payload.projectID, payload.todoID, step);
           ProjectStore.emitChange();
           break;
         case TodoConstants.STEP_DESTROYED:

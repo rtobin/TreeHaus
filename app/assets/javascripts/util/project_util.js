@@ -2,9 +2,9 @@ ProjectUtil = {
   // projectParams example: {}
   createProject: function (projectParams) {
     $.post('api/projects',
-      projectParams,
+      {project: projectParams},
       function(project) {
-        ProjectActions.projectCreated(projectParams.id, project);
+        ProjectActions.projectCreated(project);
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
@@ -16,10 +16,13 @@ ProjectUtil = {
   updateProject: function (projectParams) {
     $.ajax ({
       type: 'PUT',
-      url: 'api/projects',
-      data: projectParams,
+      url: 'api/projects/' + projectParams.id,
+      data: {
+        project: projectParams,
+        id: projectParams.id
+      },
       success: function (project) {
-        ProjectActions.projectUpdated(projectParams.id, project);
+        ProjectActions.projectUpdated(project);
       }
     }).fail(function () {
         var args = [].slice.call(arguments);
@@ -31,7 +34,7 @@ ProjectUtil = {
   destroyProject: function (projectParams) {
     $.ajax ({
       type: 'DELETE',
-      url: 'api/projects',
+      url: 'api/projects/' + projectParams.id,
       data: projectParams,
       success: function () {
         ProjectActions.projectDestroyed(projectParams.id);

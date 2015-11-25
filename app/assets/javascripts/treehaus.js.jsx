@@ -68,10 +68,11 @@ $(function () {
           path=":userID/projects"
           component={ProjectsHome}>
           <IndexRoute component={ProjectsIndex}/>
-          <Route path="new" component={ProjectForm}/>
+          <Route path="new" component={NewProjectForm}/>
           <Route path=":projectID" component={ProjectPage}>
             <IndexRoute component={ProjectDock} />
             <Route path="todos" component={TodosIndex}/>
+            <Route path="update" component={UpdateProjectForm}/>
           </Route>
           <Route path="signout" component={Signout} />
 

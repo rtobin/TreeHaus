@@ -38,13 +38,20 @@ var ProjectsDirectory = React.createClass({
           <li key={projectID}>
             <Link to={ that.state.currentUser.id + "/projects/" + projectID}
               project={project}
-              className="project-button">
+              className="project-button"
+              onClick={that.handleProjectLinkClick}>
               {project.title}
             </Link>
           </li>
         );
       })
     );
+  },
+
+  handleProjectLinkClick: function (e) {
+    var project = ProjectStore.find(e.currentTarget.href.split("/")[5]);
+    ProjectStore.setCurrentProject(project);
+    this.toggleExpand(e);
   },
 
   expandedContent: function () {

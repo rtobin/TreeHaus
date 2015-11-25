@@ -1,28 +1,36 @@
-var ProjectForm = React.createClass ({
+var UpdateProjectForm = React.createClass ({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
+    var project = ProjectStore.currentProject();
     return {
-      title: "",
-      description: "",
-      authorID: UserStore.currentUser().id,
-      archived: true
+      id: project.id,
+      title: project.title,
+      description: project.description,
+      author_id: parseInt(UserStore.currentUser().id),
+      archived: project.archived
     };
   },
 
   componentDidMount: function () {
-    ProjectStore.addChangeListener(this.goToProjectHome);
+    ProjectStore.addChangeListener(this.redirectToNewProjectPage);
   },
 
   componentWillUnMount: function () {
-    ProjectStore.removeChangeListener(this.goToProjectHome);
+    ProjectStore.removeChangeListener(this.redirectToNewProjectPage);
+  },
+
+  redirectToNewProjectPage: function () {
+    var projectID = ProjectStore.currentProject().id;
+    this.history.pushState(null, this.state.authorID + "/projects/" + projectID);
   },
 
   render: function () {
     return (
       <form className="project-form" onSubmit={this.handleSubmit}>
+        <Errors />
         <h3 className="nav-menu-heading">
-          <span>New Project</span>
+          <span>Update Project: {this.state.title}</span>
         </h3>
         <input value={this.state.title}
           onChange={this.onTitleChange}
@@ -32,7 +40,7 @@ var ProjectForm = React.createClass ({
            onChange={this.onDescriptionChange}
            placeholder="Write a description of the project..." />
         <nav className="post-form ">
-          <button type="submit">Create Project</button>
+          <button type="submit">Update Project</button>
         </nav>
       </form>
     );
@@ -48,11 +56,6 @@ var ProjectForm = React.createClass ({
 
   handleSubmit: function (e) {
     e.preventDefault();
-    ProjectUtil.createProject(this.state);
-    this.setState({body: ""});
-  },
-
-  goToProjectHome: function () {
-    this.history.pushState(null, userID + "/projects");
+    ProjectUtil.updateProject(this.state);
   }
 });

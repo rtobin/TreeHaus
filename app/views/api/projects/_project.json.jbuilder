@@ -1,4 +1,4 @@
-json.(project, :title, :description, :author_id, :archived)
+json.(project, :id, :title, :description, :author_id, :archived)
 json.todos do
   todos = project.todos
   unless todos.empty?

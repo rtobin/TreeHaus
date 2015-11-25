@@ -1,4 +1,4 @@
-json.(step, :title, :body, :author_id, :todo_id, :due_date, :done, :created_at, :updated_at)
+json.(step, :id, :title, :body, :author_id, :todo_id, :due_date, :done, :created_at, :updated_at)
 
 json.assignees do
   assignees = step.assignees
