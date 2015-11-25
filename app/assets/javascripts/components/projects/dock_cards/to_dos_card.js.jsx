@@ -5,7 +5,7 @@ var ToDosCard = React.createClass({
     debugger
     var Link = ReactRouter.Link;
     return (
-      <Link to={'todos'}>
+      <Link to={this.props.projectpath + '/todos'}>
         <article className="dock-card todos-card">
           <header className="card-header"><h3>To-dos</h3></header>
           <main class="dock-card-content ">

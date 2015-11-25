@@ -14,9 +14,10 @@ var TodoIndex = React.createClass({
 
   render: function() {
     var todos = this.state.todos;
+    debugger
     return (
       <div className="Todoindex">
-        <TodoHeader/>
+        <TodosIndexHeader/>
         <ul className="todo-index">
           {
             todos.map(function(todo) {

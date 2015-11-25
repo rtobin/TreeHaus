@@ -1,4 +1,4 @@
-var TodoIndex = React.createClass({
+var TodosIndexHeader = React.createClass({
   render: function () {
     return (
       <div className="panel">
