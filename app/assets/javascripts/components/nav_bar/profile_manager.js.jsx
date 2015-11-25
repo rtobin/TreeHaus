@@ -5,7 +5,7 @@ var ProfileManager = React.createClass({
     return {
       dropdownSelectorId: randString(16),
       dropdownExpanded: false
-    }
+    };
   },
 
   expandedContent: function () {

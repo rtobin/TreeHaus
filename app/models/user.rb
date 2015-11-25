@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
     # Todo.includes(:assigned_steps)
     #     .where(step_assignments: { todo_id: this.id })
     #     .distinct
+    []
   end
 
 

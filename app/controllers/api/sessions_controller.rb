@@ -2,6 +2,16 @@ class Api::SessionsController < ApplicationController
   before_action :not_logged_in?, only: [:create, :new]
   before_action :logged_in?, only: [:destroy]
 
+  def show
+    unless current_user
+      render json: {}
+      return
+    end
+
+    @user = current_user
+    render "api/users/show"  
+  end
+
   def create
     # signs a user in
     email = params[:user][:email]

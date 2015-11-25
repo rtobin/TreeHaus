@@ -13,25 +13,25 @@ var Signout = window.Signout = React.createClass ({
   },
 
   componentDidMount: function () {
-    // var template = '<h3>Are you sure you want to sign out?</h3>';
-    // template += '<button onClick={this.signout}>Signout</button>';
-    // $('.signout-modal').avgrund({
-    // 	width: 380,
-    // 	height: 100,
-    // 	showClose: true,
-    // 	showCloseText: 'cancel',
-    // 	closeByEscape: true,
-    // 	closeByDocument: true,
-    // 	holderClass: '',
-    // 	overlayClass: '',
-    // 	enableStackAnimation: false,
-    // 	onBlurContainer: '',
-    // 	openOnEvent: true,
-    // 	setEvent: 'click',
-    // 	onLoad: function (elem) { },
-    // 	onUnload: function (elem) { },
-    // 	template: $('.signout-content')
-    // });
+    var template = '<h3>Are you sure you want to sign out?</h3>';
+    template += '<button onClick={this.signout}>Signout</button>';
+    $('.signout-modal').avgrund({
+    	width: 380,
+    	height: 100,
+    	showClose: true,
+    	showCloseText: 'cancel',
+    	closeByEscape: true,
+    	closeByDocument: true,
+    	holderClass: '',
+    	overlayClass: '',
+    	enableStackAnimation: false,
+    	onBlurContainer: '',
+    	openOnEvent: true,
+    	setEvent: 'click',
+    	onLoad: function (elem) { },
+    	onUnload: function (elem) { },
+    	template: $('.signout-content')
+    });
   },
 
   redirectAfterSignout: function () {
@@ -51,8 +51,8 @@ var Signout = window.Signout = React.createClass ({
     }
     return (
       <div>
-        <button className="signout-modal" onClick={this.signout}>Sign out</button>
-        <div className="signout-content" style={{display: "none"}}>
+        <button className="signout-modal" onClick={this.toggleExpand}>Sign out</button>
+        <div className="signout-content">
           <h3>Are you sure you want to sign out?</h3>
           <button href="" onClick={this.signout}>Signout</button>
         </div>

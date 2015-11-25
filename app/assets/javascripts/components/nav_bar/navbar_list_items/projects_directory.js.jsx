@@ -55,7 +55,6 @@ var ProjectsDirectory = React.createClass({
   },
 
   handleDirToProjectClick: function (e) {
-    debugger
     this.toggleExpand(e);
     this.history.pushState(null, this.state.currentUser.id + "/projects/");
   },

@@ -43,14 +43,15 @@
 
 .nav-logo > span {
   position: relative;
-  left: 7px;
-  top: 10px;
+  left: 10px;
+  top: 20px;
   color: rgba(0,0,0,0.1);
   margin: auto;
   text-align: right;
   color: rgba(0,0,0,0.1);
   cursor: pointer;
   float: left;
+  font-size: 10px;
 }
 
 .nav-profile {
@@ -59,11 +60,11 @@
   right: 10px;
   top: 0px;
   cursor: pointer;
-  width:28px;
-  height:28px;
+  width: 40px;
+  height: 40px;
   border-radius:50%;
   color:#fff;
-  /*font-size:20px;*/
+  font-size:20px;
   font-weight: bold;
   line-height:20px;
   text-align:center;
@@ -72,17 +73,18 @@
 
 .nav-profile > span {
   position: relative;
-  right: 20px;
-  top: 10px;
+  right: 17px;
+  top: 15px;
   color: rgba(0,0,0,0.1);
+  font-size: 10px;
+
 }
 
 .nav-profile > h3 {
   float: right;
   position: relative;
-  top: -14px;
-  right: 2px;
-  font-size: 16px;
+  top: 11px;
+  right: 7px;
 }
 
 .collapsible-content-active {
@@ -189,7 +191,7 @@
 }
 
 .profile-stuff .arrow {
-  left: 311px;
+  left: 292px;
 }
 
 .nav-profile > .nav-menu-scroll {
@@ -224,6 +226,11 @@
   padding: 0.2rem 1rem;
   cursor: pointer;
   border: 0px;
+}
+
+.nav-list > li:hover {
+  background-color: #856ec6;
+  border: 1px solid lightgray;
 }
 
 .nav-list > li:first-child {

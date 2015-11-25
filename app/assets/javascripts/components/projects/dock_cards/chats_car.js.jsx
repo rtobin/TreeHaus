@@ -3,14 +3,15 @@ var ChatsCard = React.createClass({
 
   render: function () {
     var Link = ReactRouter.Link;
-    
+
     return (
       <Link to={""}>
-        <div className="dock-card chats-card">
-          <h3 className="card-heading">
-            <span>Chats</span>
-          </h3>
-        </div>
+        <article className="dock-card chats-card">
+          <header className="card-header"><h3>Chats</h3></header>
+          <main class="dock-card-content ">
+            <div className="chats-card-img"></div>
+          </main>
+        </article>
       </Link>
     );
   }

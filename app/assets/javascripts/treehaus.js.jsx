@@ -4,13 +4,13 @@ $(function () {
   var Route = ReactRouter.Route;
   var IndexRoute = ReactRouter.IndexRoute;
 
-  var requireSigninAsUser = function (nextState, replaceState) {
-    if (!UserStore.isSignedIn() || UserStore.currentUser().id !== parseInt(nextState.params.userID)) {
-      replaceState({
-        nextPathname: nextState.location.pathname
-      }, '/signin');
-    }
-  };
+  // var requireSigninAsUser = function (nextState, replaceState) {
+  //   if (!UserStore.isSignedIn() || UserStore.currentUser().id !== parseInt(nextState.params.userID)) {
+  //     replaceState({
+  //       nextPathname: nextState.location.pathname
+  //     }, '/signin');
+  //   }
+  // };
 
   // var requireSignedinUserProject = function (nextState, replaceState) {
   //   requireSigninAsUser(nextState, replaceState);
@@ -66,16 +66,13 @@ $(function () {
         <Route path="/signin" component={Signin}/>
         <Route
           path=":userID/projects"
-          component={ProjectsHome}
-          onEnter={requireSigninAsUser}>
+          component={ProjectsHome}>
           <IndexRoute component={ProjectsIndex}/>
           <Route path="new" component={ProjectForm}/>
-          <Route
-            path=":projectID"
-            component={ProjectPage}
-            onEnter={requireSigninAsUser}>
+          <Route path=":projectID" component={ProjectPage}>
+            <IndexRoute component={ProjectDock} />
+            <Route path="todos" component={TodoIndex}/>
           </Route>
-          <Route path="todos" component={TodoIndex}/>
           <Route path="signout" component={Signout} />
 
         </Route>

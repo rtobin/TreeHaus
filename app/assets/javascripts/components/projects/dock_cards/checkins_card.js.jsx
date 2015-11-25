@@ -3,14 +3,15 @@ var CheckInsCard = React.createClass({
 
   render: function () {
     var Link = ReactRouter.Link;
-    
+
     return (
       <Link to={""}>
-        <div className="dock-card checkins-card">
-          <h3 className="card-heading">
-            <span>Check-ins</span>
-          </h3>
-        </div>
+        <article className="dock-card checkins-card">
+          <header className="card-header"><h3>Check-ins</h3></header>
+          <main class="dock-card-content ">
+            <div className="checkins-card-img"></div>
+          </main>
+        </article>
       </Link>
     );
   }

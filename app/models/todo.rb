@@ -14,6 +14,7 @@ class Todo < ActiveRecord::Base
     #     .where(assigned_steps: { todo_id: this.id })
     #     .distinct
     #     .all
+    []
   end
 
   def is_done?

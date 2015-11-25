@@ -1,5 +1,5 @@
 class Api::ProjectsController < ApplicationController
-  before_action :require_logged_in!, only: [:create, :show]
+  # before_action :logged_in?, only: [:create, :show]
   # before_action :require_logged_in_as_project_author!, only: [:edit, :update, :destroy]
 
   def show

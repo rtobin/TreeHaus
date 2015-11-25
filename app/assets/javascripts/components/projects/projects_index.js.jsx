@@ -2,10 +2,10 @@ var ProjectsIndex = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
-    var user = UserStore.currentUser();
+    var user = UserStore.currentUser() || {};
     return {
       userID: user.id,
-      projects: user.projects
+      projects: user.projects || {}
     };
   },
 

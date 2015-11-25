@@ -12,7 +12,7 @@
 }
 
 .project-links-list li {
-  display: inline-block;
+  /*display: inline-block;*/
   margin: 10px;
   padding: 8px 15px;
   background: #3cb371;
@@ -23,5 +23,5 @@
   text-decoration: none;
   text-shadow: 0 1px rgba(255,255,255,0.7);
   width: 150px;
-  color: lightgray;
+  color: white;
 }

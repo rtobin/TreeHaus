@@ -5,11 +5,12 @@ var SchedulesCard = React.createClass({
     var Link = ReactRouter.Link;
     return (
       <Link to={""}>
-        <div className="dock-card schedules-card">
-          <h3 className="card-heading">
-            <span>Schedules</span>
-          </h3>
-        </div>
+        <article className="dock-card schedules-card">
+          <header className="card-header"><h3>Schedules</h3></header>
+            <main class="dock-card-content ">
+              <div className="schedules-card-img"></div>
+            </main>
+        </article>
       </Link>
     );
   }

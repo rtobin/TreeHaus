@@ -1,0 +1,73 @@
+.project-dock {
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  top: 50px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.dock-card {
+  display: inline-block;
+  width: 10.5rem;
+  height: 5.2rem;
+  margin: 0 0.5rem;
+  padding: 0.4em 0.5em;
+  vertical-align: top;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 3px 0 #bfbfbf;
+  border-radius: 0.6rem;
+
+}
+
+.dock-card .card-header {
+  margin-bottom: 0.1rem;
+}
+.dock-cards > li {
+  display: inline-block;
+}
+
+/*.schedules-card > .dock-card-content > div{
+  background-image: url("../schedules_small.png");
+}
+
+.messages-card > .dock-card-content > div {
+  background-image: url("../messages_small.png");
+}
+
+.docs-card > .dock-card-content > div {
+  background-image: url("../docs_small.png");
+}
+
+.checkins-card > .dock-card-content > div {
+  background-image: url("../checkins_small.png");
+}
+
+.chats-card > .dock-card-content > div {
+  background-image: url("../chats_small.png");
+}
+
+.todos-card > .dock-card-content > div {
+  background-image: url("../todos_small.png");
+}*/
+
+main {
+  height: 100%
+}
+
+.dock-card div {
+  background-image: url("../under_construction.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+}
+
+.todos-card div {
+  background-image: url("../todos_small.png");
+  /*background-image: url("../mag_glass.png");*/
+  background-repeat: no-repeat;
+  background-size: contain;
+}
