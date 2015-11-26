@@ -25,6 +25,7 @@ var ProjectDock = React.createClass({
 
   render: function () {
     var Link = ReactRouter.Link;
+    debugger
     return (
       <div className="project-dock">
         <Link to={this.state.projectPath + "/update"}>{this.state.title}</Link>
@@ -36,6 +37,7 @@ var ProjectDock = React.createClass({
           <li><CheckInsCard projectpath={this.state.projectPath}/></li>
           <li><DocsCard projectpath={this.state.projectPath}/></li>
         </ul>
+        {this.props.children}
     </div>
     );
   }

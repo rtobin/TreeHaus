@@ -52,6 +52,7 @@ var ProjectsDirectory = React.createClass({
     var project = ProjectStore.find(e.currentTarget.href.split("/")[5]);
     ProjectStore.setCurrentProject(project);
     this.toggleExpand(e);
+    // this.pushState(null, that.state.currentUser.id + "/projects/" + project.id);
   },
 
   expandedContent: function () {

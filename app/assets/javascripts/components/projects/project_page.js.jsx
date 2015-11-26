@@ -32,6 +32,7 @@ var ProjectPage = React.createClass({
   render: function () {
     return (
       <div className="project-main">
+        <ProjectDock location={this.props.location}/>
         {this.props.children}
       </div>
     );

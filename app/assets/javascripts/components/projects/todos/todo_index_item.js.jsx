@@ -1,5 +1,6 @@
 var TodoIndexItem = React.createClass({
   getInitialState: function(){
+    debugger
     return {
       todoID: this.props.todoid,
       todo: this.props.todo
@@ -7,6 +8,7 @@ var TodoIndexItem = React.createClass({
   },
 
   render: function () {
+    debugger
     var that = this;
     return (
       <div className="todo-item-index">

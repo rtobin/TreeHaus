@@ -70,7 +70,6 @@ $(function () {
           <IndexRoute component={ProjectsIndex}/>
           <Route path="new" component={NewProjectForm}/>
           <Route path=":projectID" component={ProjectPage}>
-            <IndexRoute component={ProjectDock} />
             <Route path="todos" component={TodosIndex}/>
             <Route path="update" component={UpdateProjectForm}/>
           </Route>
