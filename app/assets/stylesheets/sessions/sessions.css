@@ -1,3 +1,8 @@
+.signin-page, .signup-page {
+  height: 100%;
+  text-align: center;
+}
+
 .signin-signup-header-logo {
   width: 100px;
   height: 100px;
@@ -5,4 +10,155 @@
   background-repeat: no-repeat;
   background-size: contain;
   margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="submit"] {
+  -webkit-appearance: none;
+  display: inline-block;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  width: auto;
+  font: inherit;
+  vertical-align: baseline;
+  background: transparent;
+  color: inherit;
+}
+
+input[type="submit"] {
+  display: inline;
+  cursor: pointer;
+}
+
+
+input.session-field {
+  padding: 6px 12px;
+  font-size: 18px;
+  color: #787878;
+  /* letter-spacing: -0.02em; */
+  text-shadow: 0px 1px 2px #fff;
+  /* outline: none; */
+  background: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#ffffff));
+  background: -moz-linear-gradient(top, #e0e0e0, #ffffff);
+  /* -webkit-border-radius: 3px; */
+  -moz-border-radius: 3px;
+  border-radius: 5px;
+  border: 1px solid #717171;
+  /* margin-right: 20px; */
+  -webkit-box-shadow: 2px 2px 0px #efefef;
+  -moz-box-shadow: 2px 2px 0px #efefef;
+  box-shadow: 2px 2px 0px #efefef;
+  margin-bottom: 12px;
+  width: 80%;
+}
+
+.session-body {
+  padding: 100px 0;
+  position: relative;
+  padding: 50px 50px;
+  background: #fff;
+  box-shadow: 4px 6px 3px 0 #bfbfbf;
+  border-radius: 20px;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.session-info {
+  margin-bottom: 20px;
+}
+
+.session-btn {
+  background-color: #3cb371;
+  border-color: #3cb371;
+  /*border-bottom-color: rgba(0,0,0,0.15);*/
+  color: #fff;
+  display:block;
+  width: 85%;
+  padding: 10px;
+  margin: auto;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.session-switch {
+  color: blue;
+}
+
+.break {
+  z-index: 0;
+  position: relative;
+}
+
+.break > span {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: #fff;
+}
+
+.break:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid #d9d9d9;
+    z-index: -1;
+}
+/*
+.sign-in {
+  width: 300px;
+  margin: auto;
+  padding: 50px;
+  background: white;
+  border-radius: 5px;
+}
+.sign-in h1 {
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 1.0;
+}
+.input {
+  margin: 20px 0;
+}
+.input > label {
+  display: block;
+  font-weight: bold;
+}
+.input > input {
+  display: block;
+  border: 2px solid black;
+  padding: 5px;
+  width: 286px;
+  border-radius: 5px;
+}
+.input > input:focus {
+  border-color: #0c0;
+}
+.submit {
+}
+.submit > input {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  font-weight: bold;
+  background: #0c0;
+  color: white;
+  box-shadow: 0 3px 0 0 #070;
+  border-radius: 5px;
+}
+.submit > input:hover {
+  background: #0b0;
+}
+.submit > input:active {
+  top: 3px;
+  box-shadow: none;
+  background: #0a0;
+}*/

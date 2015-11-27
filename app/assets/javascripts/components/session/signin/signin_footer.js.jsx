@@ -5,8 +5,8 @@ SigninFooter = React.createClass({
       <footer className="signin-footer">
         <p>
           <small>
-            <strong>Don't have an account?</strong>
-            <Link to="/signup">Sign up</Link>
+            <strong>Don't have an account? </strong>
+            <Link to="/signup" className="session-switch">Sign up</Link>
           </small>
         </p>
       </footer>

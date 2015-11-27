@@ -1,10 +1,8 @@
 SignupBody = React.createClass({
   render: function () {
-    var now = new Date();
-    var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return (
-      <article className="signin-header">
-        <header className="centered">
+      <article className="session-body">
+        <header className="session-info centered">
           <h3>
             Begin your Treehaus here!
           </h3>

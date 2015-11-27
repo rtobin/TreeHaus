@@ -44,35 +44,32 @@ var SignupForm = React.createClass ({
   render: function () {
     var Link = ReactRouter.Link;
     return (
-      <div className="session signup jumbotron center-block">
-        <h1>Signup</h1>
+      <section className="session signup centered">
         <Errors />
-        <form onSubmit={this.signup}>
+        <form className="session-form" onSubmit={this._signup}>
           <div className="form-group">
-            <label>Email
-              <input
-                type="text"
-                value={this.state.email}
-                data-attr="email"
-                className="form-control"
-                placeholder="email"
-                onChange={this._onFormChange}/>
-            </label>
+            <input
+              type="text"
+              value={this.state.email}
+              data-attr="email"
+              className="session-field"
+              placeholder="Email address"
+              title="email"
+              onChange={this._onFormChange}/>
           </div>
           <div className="form-group">
-            <label>Password
-              <input
-                type="password"
-                value={this.state.password}
-                data-attr="password"
-                className="form-control"
-                placeholder="password"
-                onChange={this._onFormChange}/>
-            </label>
+            <input
+              type="password"
+              value={this.state.password}
+              data-attr="password"
+              className="session-field"
+              placeholder="Password"
+              title="password"
+              onChange={this._onFormChange}/>
           </div>
-          <button type="submit" className="btn btn-default">Submit</button>
+          <button type="submit" className="session-btn btn-default">Sign up</button>
         </form>
-      </div>
+      </section>
     );
   }
 });

@@ -3,12 +3,12 @@ SigninBody = React.createClass({
     var now = new Date();
     var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     return (
-      <article className="signin-header">
-        <header>
+      <article className="session-body">
+        <header className="session-info centered">
           <h3>
-            "Happy "
+            {"Happy "}
             <time datetime={now} data-local="time" data-format="%A" title={now} data-localized="true">{dayNames[now.getDay()]}</time>
-            "!"
+            !
           </h3>
           <p>
             Just enter your email address and password
