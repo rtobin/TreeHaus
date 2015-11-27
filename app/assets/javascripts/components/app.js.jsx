@@ -8,14 +8,12 @@ var App = React.createClass({
   // },
 
   componentWillMount: function () {
-    AuthUtil.fetchCurrentUser();
-    
-    // UserStore.addChangeListener(this._ensureSignedIn);
-    this._ensureSignedIn();
+    SessionUtil.fetchCurrentUser();
+    UserStore.addChangeListener(this._ensureSignedIn);
   },
 
   _ensureSignedIn: function () {
-    if (!UserStore.isSignedIn() || UserStore.currentUser().id !== parseInt(this.history.nextState.params.userID)) {
+    if (!UserStore.isSignedIn()) {
       // this.history.replaceState({
       //   nextPathname: nextStatePath
       // }, '/signin');

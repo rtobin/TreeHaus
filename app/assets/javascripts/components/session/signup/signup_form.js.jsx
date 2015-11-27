@@ -1,6 +1,6 @@
 // Attempt and making 'fluxy' signin/signup
 
-var Signup = React.createClass ({
+var SignupForm = React.createClass ({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
@@ -16,10 +16,6 @@ var Signup = React.createClass ({
     UserStore.addChangeListener(this.redirectAfterSignin);
   },
 
-  componentDidMount: function () {
-    this.checkIfSignedIn();
-  },
-
   componentWillUnMount: function () {
     UserStore.removeChangeListener(this.redirectAfterSignin);
   },
@@ -33,34 +29,16 @@ var Signup = React.createClass ({
     }
   },
 
-  onEmailChange: function(event) {
-    this.setState({email: event.target.value});
-  },
-
-  onPsswdChange: function(event) {
-    this.setState({password: event.target.value});
-  },
-
-  checkIfSignedIn: function () {
-    if (UserStore.isSignedIn()) {
-      var str = "You are currently signged in with the email: \"";
-      str += UserStore.getUser().email;
-      str+= "\n Do you wish to sign out?";
-      var r = confirm(str);
-      if (r === true) {
-          x = "You pressed OK!";
-          UserActions.signoutUser();
-      } else {
-          x = "You pressed Cancel!";
-          UserStore.emitChange();
-      }
-      console.log(x);
-    }
-  },
-
   signup: function (e) {
     e.preventDefault();
-    AuthUtil.signup(this.state);
+    SessionUtil.signup(this.state);
+  },
+
+  _onFormChange: function(e) {
+    var target = e.target;
+    var attr = target.dataset.attr;
+    this.state[attr] = target.value;
+    this.forceUpdate();
   },
 
   render: function () {
@@ -75,10 +53,10 @@ var Signup = React.createClass ({
               <input
                 type="text"
                 value={this.state.email}
+                data-attr="email"
                 className="form-control"
-                ref="email"
                 placeholder="email"
-                onChange={this.onEmailChange}/>
+                onChange={this._onFormChange}/>
             </label>
           </div>
           <div className="form-group">
@@ -86,20 +64,15 @@ var Signup = React.createClass ({
               <input
                 type="password"
                 value={this.state.password}
+                data-attr="password"
                 className="form-control"
-                ref="password"
                 placeholder="password"
-                onChange={this.onPsswdChange}/>
+                onChange={this._onFormChange}/>
             </label>
           </div>
           <button type="submit" className="btn btn-default">Submit</button>
         </form>
-        <p>
-          already have an account?
-          <Link to="/signin">Signin</Link>
-        </p>
       </div>
     );
   }
-
 });

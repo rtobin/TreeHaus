@@ -1,4 +1,4 @@
-AuthUtil = {
+SessionUtil = {
   // fetchCurrentUser: function () {
   //   $.ajax({
   //     url: '/api/session',

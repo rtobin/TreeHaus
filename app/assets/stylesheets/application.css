@@ -43,6 +43,10 @@ html, body {
   height: 100%;
 }
 
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+
 html {
     font-size: 10px;
     background-color: #f5efe6;
@@ -80,6 +84,9 @@ textarea {
 
 .container {
   height: 800px;
+}
+.centered {
+  text-align: center;
 }
 
 #content {
