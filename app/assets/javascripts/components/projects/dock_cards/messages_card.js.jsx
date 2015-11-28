@@ -8,7 +8,7 @@ var MessagesCard = React.createClass({
       <Link to={""}>
         <article className="dock-card messages-card">
           <header className="card-header"><h3>Messages</h3></header>
-          <main class="dock-card-content ">
+          <main className="dock-card-content ">
             <div className="messages-card-img"></div>
           </main>
         </article>

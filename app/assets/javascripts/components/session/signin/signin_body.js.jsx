@@ -7,7 +7,7 @@ SigninBody = React.createClass({
         <header className="session-info centered">
           <h3>
             {"Happy "}
-            <time datetime={now} data-local="time" data-format="%A" title={now} data-localized="true">{dayNames[now.getDay()]}</time>
+            <time dateTime={now} data-local="time" data-format="%A" title={now} data-localized="true">{dayNames[now.getDay()]}</time>
             !
           </h3>
           <p>

@@ -7,7 +7,7 @@ var ToDosCard = React.createClass({
       <Link to={this.props.projectpath + '/todos'}>
         <article className="dock-card todos-card">
           <header className="card-header"><h3>To-dos</h3></header>
-          <main class="dock-card-content ">
+          <main className="dock-card-content ">
             <div className="todos-card-img"></div>
           </main>
         </article>

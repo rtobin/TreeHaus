@@ -1,7 +1,7 @@
 UIActions = {
   errorReport: function (errors) {
     AppDispatcher.dispatch({
-      actionType: AuthConstants.AUTH_ERROR,
+      actionType: UIConstants.RECEIVED_ERROR,
       errors: errors
     });
   }

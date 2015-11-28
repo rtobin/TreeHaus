@@ -7,7 +7,7 @@ var SchedulesCard = React.createClass({
       <Link to={""}>
         <article className="dock-card schedules-card">
           <header className="card-header"><h3>Schedules</h3></header>
-            <main class="dock-card-content ">
+            <main className="dock-card-content ">
               <div className="schedules-card-img"></div>
             </main>
         </article>

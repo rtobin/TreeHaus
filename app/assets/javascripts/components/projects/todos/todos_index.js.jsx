@@ -14,20 +14,22 @@ var TodosIndex = React.createClass({
   // },
 
   todoItems: function () {
+    debugger
     var that = this;
     if (this.state.todos) {
       return (
         Object.keys(this.state.todos).map(function(todoID) {
           var todo = that.state.todos[todoID];
           return(
-            <li><TodoIndexItem key={todoID} todoid={todoID} todo={todo} /></li>
+            <li><TodoIndexItem key={todoID} todo={todo} /></li>
           );
         })
       );
     }
   },
 
-  render: function() {
+  render: function () {
+    debugger
     return (
       <div className="todoindex">
         <TodosIndexHeader/>

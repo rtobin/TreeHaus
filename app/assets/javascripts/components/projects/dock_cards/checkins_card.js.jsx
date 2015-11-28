@@ -8,7 +8,7 @@ var CheckInsCard = React.createClass({
       <Link to={""}>
         <article className="dock-card checkins-card">
           <header className="card-header"><h3>Check-ins</h3></header>
-          <main class="dock-card-content ">
+          <main className="dock-card-content ">
             <div className="checkins-card-img"></div>
           </main>
         </article>

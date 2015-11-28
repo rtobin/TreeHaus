@@ -2,7 +2,7 @@ json.(todo, :id, :title, :body, :author_id, :project_id, :done, :created_at, :up
 json.steps do
   steps = todo.steps
   unless steps.empty?
-    todo.steps.each do |step|
+    steps.each do |step|
       json.set! step.id do
         json.partial! 'api/steps/step', step: step
       end
