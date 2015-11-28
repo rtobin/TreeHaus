@@ -26,7 +26,7 @@ var Search= React.createClass({
 
   render: function () {
     return (
-      <div className="find" id={this.state.dropdownSelectorId}
+      <div className="navbar-action find" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         <div id="magnify-glass"></div>
         Find

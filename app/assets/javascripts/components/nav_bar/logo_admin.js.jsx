@@ -31,7 +31,7 @@ var LogoAdmin = React.createClass({
 
   render: function () {
     return (
-      <div className="nav-logo" id={this.state.dropdownSelectorId}
+      <div className="navbar-action nav-logo" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         <img className="nav-logo-img"/><span>▼</span>
         {this.expandableItem()}

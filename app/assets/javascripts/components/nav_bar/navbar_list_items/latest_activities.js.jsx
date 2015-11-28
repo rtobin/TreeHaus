@@ -23,7 +23,7 @@ var LatestActivity = React.createClass({
 
   render: function () {
     return (
-      <div className= "activities" id={this.state.dropdownSelectorId}
+      <div className= "navbar-action activities" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         <div id="navbar-clock"></div>
         Latest Activities

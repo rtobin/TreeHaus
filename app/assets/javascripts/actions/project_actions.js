@@ -1,17 +1,11 @@
 ProjectActions = {
   projectsReceived: function (projects) {
+    debugger
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECTS_RECEIVED,
       projects: projects
     });
   },
-
-  // currentProjectReceived: function (project) {
-  //   AppDispatcher.dispatch({
-  //     actionType: ProjectConstants.CURRENT_PROJECT_RECEIVED,
-  //     project: project
-  //   });
-  // },
 
   projectCreated: function (project) {
     AppDispatcher.dispatch({

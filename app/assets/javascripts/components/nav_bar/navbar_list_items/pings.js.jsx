@@ -35,7 +35,7 @@ var Pings = React.createClass({
 
   render: function () {
     return (
-      <div id={this.state.dropdownSelectorId}
+      <div className="navbar-action" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         Pings
         {this.expandableItem()}

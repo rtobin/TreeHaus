@@ -41,7 +41,7 @@ var ProfileManager = React.createClass({
 
   render: function () {
     return (
-      <div className="nav-profile" id={this.state.dropdownSelectorId}
+      <div className="navbar-action nav-profile" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         <span>▼</span><h3>RT</h3>
         {this.expandableItem()}

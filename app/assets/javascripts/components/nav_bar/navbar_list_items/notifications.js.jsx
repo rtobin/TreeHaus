@@ -31,7 +31,7 @@ var Notifications = React.createClass({
 
   render: function () {
     return (
-      <div id={this.state.dropdownSelectorId}
+      <div className="navbar-action" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         Hey!
         {this.expandableItem()}

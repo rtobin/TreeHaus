@@ -5,7 +5,7 @@ SessionUtil = {
   //     type: 'GET',
   //     dataType: 'json',
   //     success: function (currentUser) {
-  //       UserActions.receiveCurrentUser(currentUser);
+  //       SessionActions.receiveCurrentUser(currentUser);
   //     }
   //   });
   // }
@@ -13,7 +13,7 @@ SessionUtil = {
     $.get(
       'api/session',
       function (user) {
-        UserActions.signinUser(user);
+        SessionActions.signinUser(user);
       }
     );
   },
@@ -23,7 +23,7 @@ SessionUtil = {
       'api/session',
       {user: userParams},
       function (user) {
-        UserActions.signinUser(user);
+        SessionActions.signinUser(user);
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
@@ -37,7 +37,7 @@ SessionUtil = {
       type: 'DELETE',
       url: 'api/session',
       success: function () {
-        UserActions.signoutUser();
+        SessionActions.signoutUser();
         return true;
       }
     });
@@ -48,7 +48,7 @@ SessionUtil = {
       'api/users',
       {user: userParams},
       function (user) {
-        UserActions.signinUser(user);
+        SessionActions.signinUser(user);
       }
     ).fail(function () {
         var args = [].slice.call(arguments);

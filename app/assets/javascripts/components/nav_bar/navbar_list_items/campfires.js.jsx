@@ -37,7 +37,7 @@ var Campfires = React.createClass({
 
   render: function () {
     return (
-      <div id={this.state.dropdownSelectorId}
+      <div className="navbar-action" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
         Campfires
         {this.expandableItem()}

@@ -6,7 +6,7 @@ var PingSearch = React.createClass({
 
   render: function () {
     return (
-      <div className="ping-search">
+      <div className="navbar-action ping-search">
         <input
           type="text"
           placeholder="Who do you want to ping?"

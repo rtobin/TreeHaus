@@ -1,17 +1,18 @@
-UserActions = {
+SessionActions = {
   signinUser: function (user) {
-    if (user.projects) {
+    debugger
+    if (typeof user.projects !== "undefined") {
       ProjectActions.projectsReceived(user.projects);
     }
     AppDispatcher.dispatch({
-      actionType: AuthConstants.SIGNIN_USER,
+      actionType: SessionConstants.SIGNIN_USER,
       user: user
     });
   },
 
   signoutUser: function () {
     AppDispatcher.dispatch({
-      actionType: AuthConstants.SIGNOUT_USER
+      actionType: SessionConstants.SIGNOUT_USER
     });
   }
 };
