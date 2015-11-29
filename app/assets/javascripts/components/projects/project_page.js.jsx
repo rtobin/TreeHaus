@@ -1,4 +1,6 @@
 var ProjectPage = React.createClass({
+  mixins: [ReactRouter.History],
+
   getInitialState: function () {
     var projectID = this.props.location.pathname.split("/")[3];
     var project;
@@ -8,31 +10,36 @@ var ProjectPage = React.createClass({
     }
     return {
       project: project,
-      currentUser: UserStore.currentUser()
+      user: UserStore.currentUser()
     };
   },
 
-  updateProject: function () {
+  _updateProject: function () {
     var project = ProjectStore.currentProject();
     this.setState({
       project: project,
-      currentUser: UserStore.currentUser()
+      user: UserStore.currentUser()
     });
   },
 
   componentDidMount: function () {
-    ProjectStore.addCurrentProjectChangeListener(this.updateProject);
+    if (typeof ProjectStore.currentProject().id === "undefined") {
+      this.history.pushState(null,"/signin")
+    }
+    UserStore.addChangeListener(this._updateProject);
   },
 
   componentWillUnMount: function () {
-    ProjectStore.removeCurrentProjectChangeListener(this.updateProject);
+    UserStore.removeChangeListener(this._updateProject);
   },
-
 
   render: function () {
     return (
       <div className="project-main">
-        <ProjectDock location={this.props.location}/>
+        <ProjectDock
+          user={this.state.user}
+          project={this.state.projcect}
+          />
         {this.props.children}
       </div>
     );

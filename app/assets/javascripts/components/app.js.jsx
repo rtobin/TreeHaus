@@ -8,7 +8,6 @@ var App = React.createClass({
   },
 
   _ensureSignedIn: function () {
-    debugger
     if (!UserStore.isSignedIn()) {
       this.history.pushState(null, "/signin");
     }

@@ -2,11 +2,26 @@ var ProjectsIndex = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
-    var user = UserStore.currentUser() || {};
+    var user = UserStore.currentUser()  || {};
     return {
-      userID: user.id,
+      user:  user,
       projects: user.projects || {}
     };
+  },
+
+  componentDidMount: function () {
+    UserStore.addChangeListener(this._update)
+  },
+
+  componentWillUnMount: function () {
+    UserStore.removeChangeListener(this._update)
+  },
+
+  _update: function () {
+    this.setState({
+      projects: ProjectStore.all(),
+      user: UserStore.currentUser()
+    })
   },
 
   projectLinksList: function (project) {
@@ -18,7 +33,7 @@ var ProjectsIndex = React.createClass({
         var project = projects[projectID];
         return (
           <li key={projectID}>
-            <Link to={ that.state.userID + "/projects/" + projectID}
+            <Link to={ that.state.user.id + "/projects/" + projectID}
               className="project-button project-dir"
               project={project}>
               {project.title}
@@ -27,10 +42,6 @@ var ProjectsIndex = React.createClass({
         );
       })
     );
-  },
-
-  handleButtonClick: function () {
-    this.history.pushState(null, this.state.userID + "/projects/new");
   },
 
   render: function () {

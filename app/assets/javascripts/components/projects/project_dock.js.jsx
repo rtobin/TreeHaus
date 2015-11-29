@@ -1,31 +1,41 @@
 var ProjectDock = React.createClass({
   getInitialState: function () {
     return {
-      projectPath: this.props.location.pathname,
+      projectPath: this._getProjectURL(),
       title: ProjectStore.currentProject().title
     };
 
   },
 
-  updateStuff: function () {
-    var project = ProjectStore.currentProject();
+  _getProjectURL: function () {
+    var userID = UserStore.currentUser().id;
+    var projectID = ProjectStore.currentProject().id;
+    return userID + "/projects/" + projectID;
+  },
+
+  _updateStuff: function () {
     this.setState({
-      projectPath: this.props.location.pathname,
+      projectPath: this._getProjectURL(),
       title: ProjectStore.currentProject().title
     });
   },
 
   componentDidMount: function () {
-    ProjectStore.addCurrentProjectChangeListener(this.updateStuff);
+    ProjectStore.addCurrentProjectChangeListener(this._updateStuff);
   },
 
   componentWillUnMount: function () {
-    ProjectStore.removeCurrentProjectChangeListener(this.updateStuff);
+    ProjectStore.removeCurrentProjectChangeListener(this._updateStuff);
+  },
+
+  componentWillReceiveProps: function () {
+    this.setState({
+
+    })
   },
 
   render: function () {
     var Link = ReactRouter.Link;
-    debugger
     return (
       <div className="project-dock">
         <Link to={this.state.projectPath + "/update"}>{this.state.title}</Link>

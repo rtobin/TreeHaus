@@ -1,30 +1,26 @@
 var TodoIndexItem = React.createClass({
   getInitialState: function(){
-    debugger
     return {
-      todo: this.props.todo
+      todo: this.props.todo,
+      steps: this.props.todo.steps || {}
     };
   },
 
   render: function () {
-    debugger
     var that = this;
     return (
       <div className="todo-item-index">
-        <TodoHeader todo={this.state.todo} todoid={this.state.todo.id}/>
-        <ul className="step-list">
+        <TodoHeader todo={this.state.todo} key={this.state.todo.id}/>
+        <div className="step-list">
           {
-            Object.keys(this.state.todo.steps).map(function(stepID) {
-              var step = that.state.todo.steps[stepID];
+            Object.keys(this.state.steps).map(function(stepID) {
+              var step = that.state.steps[stepID];
               return(
-                <li><StepsListItem key={that.state.todoID + "_" + stepID}
-                                  todoID={that.state.todoID}
-                                  stepID={that.state.stepID}
-                                  step={step} /></li>
+                <StepsListItem key={step.todo_id + "_" + step.id} step={step} />
               );
             })
           }
-        </ul>
+        </div>
       </div>
     );
   }

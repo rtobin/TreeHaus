@@ -126,3 +126,7 @@ section {
 #content * {
   /*border: 1px solid lightgrey;*/
 }
+
+.error-list {
+  color: red;
+}

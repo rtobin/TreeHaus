@@ -1,25 +1,28 @@
 var ProjectsHome = React.createClass({
-  componentWillMount: function () {
+
+  componentDidMount: function () {
+    UserStore.addChangeListener(this._update)
   },
 
+  componentWillUnMount: function () {
+    UserStore.removeChangeListener(this._update)
+  },
 
-  getInitialState: function () {
-    var projectID = this.props.location.pathname.split("/")[3];
-    var project;
-    if (projectID) {
-      project = ProjectStore.find(parseInt(projectID));
-      ProjectStore.setCurrentProject(project);
-    }
-    return {
-      project: project,
-      currentUser: UserStore.currentUser()
-    };
+  _update: function () {
+    var user = UserStore.currentUser();
+
+    this.setState({
+      user:  user,
+      projects: ProjectStore.all(),
+      currentProject: ProjectStore.currentProject()
+
+    });
   },
 
   render: function () {
     return (
       <div>
-        <Navbar items={this.state} />
+        <Navbar location={this.props.location}/>
         {this.props.children}
       </div>
     );

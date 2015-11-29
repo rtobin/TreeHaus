@@ -2,15 +2,17 @@ var StepsListItem = React.createClass({
   getInitialState: function(){
     return {
       todoID: this.props.todoID,
-      stepID: this.props.stepID,
       step: this.props.step
     };
   },
 
   render: function () {
     var Link = ReactRouter.Link;
+    var step = this.state.step;
     return (
-      <div className="step-list-item">{this.state.step.title}</div>
+      <div className="step-list-item">
+        {step.title}
+      </div>
     );
   }
 });

@@ -3,6 +3,8 @@
   var _currentProject = {};
   var CHANGE_EVENT = "change";
   var CURRENT_PROJECT_CHANGE_EVENT = "currentProjectChange";
+  var TODOS_CHANGE_EVENT = "todosChange";
+  var STEPS_CHANGE_EVENT = "stepsChange";
 
   var addProjects = function (projects) {
     $.extend(_projects, projects);
@@ -20,7 +22,6 @@
 
   var addProject = function (project) {
     _projects[project.id] = project;
-    _currentProject = project;
   };
 
   var addTodo = function (projectID, todo) {
@@ -47,16 +48,15 @@
 
   var ProjectStore = root.ProjectStore = $.extend({}, BaseStore, {
     currentProject: function () {
-      return _currentProject;
+      return $.extend({}, _currentProject);
     },
 
     setCurrentProject: function (project) {
       _currentProject = project;
-      this.emit(CURRENT_PROJECT_CHANGE_EVENT);
     },
 
     all: function(){
-      return _projects;
+      return $.extend({}, _projects);
     },
 
     find: function(id) {
@@ -70,15 +70,26 @@
     removeCurrentProjectChangeListener: function (callback) {
       this.removeListener(CURRENT_PROJECT_CHANGE_EVENT, callback);
     },
-    // projects received when project is fetched
+
+    addTodosChangeListener: function (callback) {
+      this.on(TODOS_CHANGE_EVENT, callback);
+    },
+
+    removeTodosChangeListener: function (callback) {
+      this.removeListener(TODOS_CHANGE_EVENT, callback);
+    },
+
+    // projects received when user is fetched
     dispatcherID: AppDispatcher.register(function(payload){
       switch(payload.actionType){
         // PROJECTS CRUD
         case ProjectConstants.PROJECTS_RECEIVED:
           addProjects(payload.projects);
+          ProjectStore.emitChange();
           break;
         case ProjectConstants.PROJECT_CREATED:
           addProject(payload.project);
+          ProjectStore.setCurrentProject(payload.project)
           ProjectStore.emitChange();
           break;
         case ProjectConstants.PROJECT_UPDATED:
@@ -89,31 +100,37 @@
           deleteProject(payload.id);
           ProjectStore.emitChange();
           break;
+        case ProjectConstants.CURRENT_PROJECT_RECEIVED:
+          ProjectStore.setCurrentProject(payload.project);
+          // ProjectStore.emitChange();
+          break;
 
         // TODOS CRUD
         case TodoConstants.TODO_CREATED:
           addTodo(payload.projectID, todo);
+          ProjectStore.emit(TODOS_CHANGE_EVENT);
           break;
         case TodoConstants.TODO_UPDATED:
           addTodo(payload.projectID, todo);
-          ProjectStore.emitChange();
+          ProjectStore.emit(TODOS_CHANGE_EVENT);
           break;
         case TodoConstants.TODO_DESTROYED:
           deleteTodo(payload.projectID, payload.todoID);
-          // ProjectStore.emitChange();
+          ProjectStore.emit(TODOS_CHANGE_EVENT);
           break;
 
         // STEPS CRUD
         case TodoConstants.STEP_CREATED:
           addStep(payload.projectID, payload.todoID, step);
+          ProjectStore.emit(STEPS_CHANGE_EVENT);
           break;
         case TodoConstants.STEP_UPDATED:
           addStep(payload.projectID, payload.todoID, step);
-          ProjectStore.emitChange();
+          ProjectStore.emit(STEPS_CHANGE_EVENT);
           break;
         case TodoConstants.STEP_DESTROYED:
           deleteStep(payload.projectID, payload.todoID. payload.stepID);
-          // ProjectStore.emitChange();
+          ProjectStore.emit(STEPS_CHANGE_EVENT);
           break;
       }
     })

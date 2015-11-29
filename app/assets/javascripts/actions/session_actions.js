@@ -1,6 +1,5 @@
 SessionActions = {
   signinUser: function (user) {
-    debugger
     if (typeof user.projects !== "undefined") {
       ProjectActions.projectsReceived(user.projects);
     }

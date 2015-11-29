@@ -2,46 +2,57 @@ var ProjectsDirectory = React.createClass({
   mixins: [ReactRouter.History, ClickExpandable],
 
   getInitialState: function () {
-    // # check how to get projectId from url........
     return {
-      currentUser: this.props.items.currentUser,
-      currentProject: this.props.items.project || {},
-      projects: this.props.items.currentUser.projects || {},
+      currentUser: {},
+      currentProject: {},
+      projects: {},
       dropdownSelectorId: randString(16),
       dropdownExpanded: false
     };
   },
 
-  updateProjects: function () {
+  componentDidMount: function () {
+    ProjectStore.addCurrentProjectChangeListener(this._updateCurrentProject);
+  },
+
+  componentWillUnMount: function () {
+    ProjectStore.removeCurrentProjectChangeListener(this._updateCurrentProject);
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    debugger
     this.setState({
-      project: ProjectStore.all()
-    });
+      currentUser: nextProps.items.user,
+      currentProject: nextProps.items.currentProject || {},
+      projects: nextProps.items.projects || {},
+    })
   },
 
-  componentWillMount: function () {
-    ProjectStore.addChangeListener(this.updateProjects);
+  _updateCurrentProject: function () {
+    this.setState({currentProject: ProjectStore.currentProject()})
   },
 
-  getProjectLinks: function () {
+  projectLinksList: function () {
     var Link = ReactRouter.Link;
     var projects = this.state.projects;
-    var star;
-    if (this.state.currentProject.id >= 0 &&
-      this.state.currentProject.id === projectID) {
-      star = (<strong>✶</strong>);
-    }
+    // var star;
+    // if (this.state.currentProject.id >= 0 &&
+    //   this.state.currentProject.id === projectID) {
+    //   star = (<strong>✶</strong>);
+    // }
     var that = this;
     return (
       Object.keys(projects).map(function (projectID) {
         var project = projects[projectID];
         return (
           <li key={projectID}>
-            <Link to={ that.state.currentUser.id + "/projects/" + projectID}
+            <a
               project={project}
               className="project-button"
+              href={"#/" + projectID}
               onClick={that.handleProjectLinkClick}>
               {project.title}
-            </Link>
+            </a>
           </li>
         );
       })
@@ -49,10 +60,12 @@ var ProjectsDirectory = React.createClass({
   },
 
   handleProjectLinkClick: function (e) {
-    var project = ProjectStore.find(e.currentTarget.href.split("/")[5]);
-    ProjectStore.setCurrentProject(project);
-    this.toggleExpand(e);
-    // this.pushState(null, that.state.currentUser.id + "/projects/" + project.id);
+    e.stopPropagation();
+    this.setState({expanded: false});
+    var project = this.state.projects[e.currentTarget.href.split("/")[4]];
+    var url = this.state.currentUser.id + "/projects/" + project.id;
+    ProjectActions.singleProjectReceived(project);
+    this.history.pushState(null, url)
   },
 
   expandedContent: function () {
@@ -68,7 +81,7 @@ var ProjectsDirectory = React.createClass({
         </Link>
 
         <ul className="project-links-list">
-          {this.getProjectLinks()}
+          {this.projectLinksList()}
         </ul>
       </div>
     );

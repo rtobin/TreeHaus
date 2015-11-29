@@ -1,6 +1,5 @@
 ProjectActions = {
   projectsReceived: function (projects) {
-    debugger
     AppDispatcher.dispatch({
       actionType: ProjectConstants.PROJECTS_RECEIVED,
       projects: projects
@@ -26,27 +25,12 @@ ProjectActions = {
       actionType: ProjectConstants.PROJECT_DESTROYED,
       projectID: projectID
     });
+  },
+
+  singleProjectReceived: function (project) {
+    AppDispatcher.dispatch({
+      actionType: ProjectConstants.CURRENT_PROJECT_RECEIVED,
+      project: project
+    });
   }
-
-
-  // receiveProjects: function (projects) {
-  //   AppDispatcher.dispatch({
-  //     actionType: ProjectConstants.PROJECTS_RECEIVED,
-  //     projects: projects
-  //   });
-  // },
-  //
-  // receiveSingleProject: function (project) {
-  //   AppDispatcher.dispatch({
-  //     actionType: ProjectConstants.CURRENT_PROJECT_RECEIVED,
-  //     project: project
-  //   });
-  // },
-  //
-  // destroyProject: function (projectID) {
-  //   AppDispatcher.dispatch({
-  //     actionType: ProjectConstants.PROJECT_DESTROYED,
-  //     projectID: projectID
-  //   });
-  // }
 };

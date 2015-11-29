@@ -3,6 +3,7 @@ class Api::UsersController < ApplicationController
   def create
     # sign up the user
     @user = User.new(user_params)
+    @user.email = @user.email.downcase
     if @user.save
       # redirect them to the new user's show page
       log_in!(@user)
