@@ -4,3 +4,13 @@
   top: 59px;
   text-align: center;
 }
+
+.project-title {
+  background: black;
+  color: white;
+}
+
+.project-title:hover {
+  font-weight: 900;
+  text-decoration: underline;
+}

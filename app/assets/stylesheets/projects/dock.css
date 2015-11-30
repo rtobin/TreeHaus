@@ -20,9 +20,9 @@
   background: #fff;
   box-shadow: 0 1px 3px 0 #bfbfbf;
   border-radius: 0.6rem;
-  transition: width 1s,
-              height 1s,
-              background-color 1s
+  transition: width 0.25s,
+              height 0.25s,
+              background-color 0.25s
 }
 
 .dock-card:hover {
@@ -47,26 +47,33 @@
   left: -130px;
   /* height: 345px; */
   float: left;
-  margin-top: 15px;
+  /*margin-top: 15px;*/
   margin-bottom: 15px;
   z-index: 10;
   width: 150px;
   transition: transform 1s;
   display: block;
   position: fixed;
-  top: 25%;
-
+  top: 59px;
+  height: 100%;
+  text-align: left;
 }
 
 .project-dock-sidebar:hover {
   transform: translateX(130px);
 }
 
+.sidebar-locked {
+  transform: translateX(130px);
+}
+
 
 .dock-cards-sidebar {
   background-color: burlywood;
-  border-radius: 10px;
+  /*border-radius: 10px;*/
   width: 150px;
+  height: 100%;
+  padding-top: 35px;
 }
 
 .dock-cards-sidebar .dock-card {
@@ -83,10 +90,10 @@
   border-radius: 0.6rem;
   background-color: white;
   z-index: 1;
-  transition: width 1s,
-              height 1s,
-              background-color 1s,
-              transform 1s;
+  transition: width .25s,
+              height .25s,
+              background-color .25s,
+              transform .25s;
 }
 
 .dock-cards-sidebar .dock-card:hover {
@@ -109,10 +116,34 @@
 .project-dock-sidebar .sidebar-arrow {
   position: absolute;
   top: 93px;
-  left: 126px;
+  left: 122px;
   z-index: 0;
   font-size: 52px;
+  color: antiquewhite;
 }
+
+.sidebar-lock-checkbox {
+  position: absolute;
+
+}
+
+/*input[type="checkbox"] {
+    display:none;
+}
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background-image:url(check_radio_sheet.png) left top no-repeat;
+    background-size: contain;
+    cursor:pointer;
+}
+input[type="checkbox"]:checked + label span {
+    background-image:url(../check_radio_sheet.png) -19px top no-repeat;
+    background-size: contain;
+}*/
 
 /*.schedules-card > .dock-card-content > div{
   background-image: url("../schedules_small.png");
