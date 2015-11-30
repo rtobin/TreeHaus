@@ -1,5 +1,6 @@
 (function (root) {
   var _user = {};
+  _user.email = "not signed in";
   var CHANGE_EVENT = "change";
 
   var signOutUser = function () {
@@ -14,6 +15,10 @@
 
     currentUser: function () {
       return $.extend({}, _user);
+    },
+
+    currentUserName: function () {
+      return _user.name || _user.email.split("@")[0];
     },
 
     isSignedIn: function () {

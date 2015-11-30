@@ -10,8 +10,8 @@
 
 .dock-card {
   display: inline-block;
-  width: 10.5rem;
-  height: 5.2rem;
+  width: 170px;
+  height: 110px;
   margin: 0 0.5rem;
   padding: 0.4em 0.5em;
   vertical-align: top;
@@ -20,7 +20,79 @@
   background: #fff;
   box-shadow: 0 1px 3px 0 #bfbfbf;
   border-radius: 0.6rem;
+  transition: width 1s,
+              height 1s,
+              background-color 1s
+}
 
+.dock-card:hover {
+  background-color: lightskyblue;
+  width: 180px;
+  height: 115px;
+}
+
+
+
+.project-dock-sidebar {
+  /*display: block;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  top: 50px;
+  margin-top: 15px;
+  margin-bottom: 15px;*/
+  /* display: block; */
+  box-sizing: border-box;
+  /* text-align: center; */
+  left: -130px;
+  /* height: 345px; */
+  float: left;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  z-index: 10;
+  width: 150px;
+  transition: transform 1s;
+  display: block;
+  position: fixed;
+  top: 25%;
+
+}
+
+.project-dock-sidebar:hover {
+  transform: translateX(130px);
+}
+
+
+.dock-cards-sidebar {
+  background-color: burlywood;
+  border-radius: 10px;
+  width: 150px;
+}
+
+.dock-cards-sidebar .dock-card {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  margin: 2px 3px;
+  padding: 2px 5px;
+  vertical-align: top;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 3px 0 #bfbfbf;
+  border-radius: 0.6rem;
+  background-color: white;
+  z-index: 1;
+  transition: width 1s,
+              height 1s,
+              background-color 1s,
+              transform 1s;
+}
+
+.dock-cards-sidebar .dock-card:hover {
+  background-color: lightskyblue;
+  width: 180px;
+  height: 115px;
 }
 
 .dock-card .card-header {
@@ -28,6 +100,18 @@
 }
 .dock-cards > li {
   display: inline-block;
+}
+
+.project-dock .sidebar-arrow {
+  display: none;
+}
+
+.project-dock-sidebar .sidebar-arrow {
+  position: absolute;
+  top: 93px;
+  left: 126px;
+  z-index: 0;
+  font-size: 52px;
 }
 
 /*.schedules-card > .dock-card-content > div{

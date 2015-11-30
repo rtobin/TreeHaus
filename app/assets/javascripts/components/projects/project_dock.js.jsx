@@ -37,9 +37,8 @@ var ProjectDock = React.createClass({
   render: function () {
     var Link = ReactRouter.Link;
     return (
-      <div className="project-dock">
-        <Link to={this.state.projectPath + "/update"}>{this.state.title}</Link>
-        <ul className="dock-cards group">
+      <div className={"project-dock" + this.props.makeSidebar}>
+        <ul className={"group dock-cards" + this.props.makeSidebar}>
           <li><ChatsCard projectpath={this.state.projectPath}/></li>
           <li><MessagesCard projectpath={this.state.projectPath}/></li>
           <li><ToDosCard projectpath={this.state.projectPath}/></li>
@@ -47,6 +46,7 @@ var ProjectDock = React.createClass({
           <li><CheckInsCard projectpath={this.state.projectPath}/></li>
           <li><DocsCard projectpath={this.state.projectPath}/></li>
         </ul>
+        <div className="sidebar-arrow">⟫</div>
         {this.props.children}
     </div>
     );

@@ -121,6 +121,7 @@ section {
   top: 0;
   left: 0;
   right: 0;
+  height: 100%;
 }
 
 #content * {
@@ -129,4 +130,8 @@ section {
 
 .error-list {
   color: red;
+}
+
+div {
+  /*height: 100%;*/
 }

@@ -24,6 +24,7 @@ var ProjectsHome = React.createClass({
       <div>
         <Navbar location={this.props.location}/>
         {this.props.children}
+        <SignoutModal />
       </div>
     );
   }

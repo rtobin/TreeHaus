@@ -73,11 +73,9 @@ $(function () {
             <Route path="todos" component={TodosIndex}/>
             <Route path="update" component={UpdateProjectForm}/>
           </Route>
-          <Route path="signout" component={Signout} />
 
         </Route>
 
-        <Route path="signout" component={Signout}/>
       </Route>
     );
 

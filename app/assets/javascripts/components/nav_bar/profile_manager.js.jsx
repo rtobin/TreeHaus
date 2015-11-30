@@ -33,10 +33,19 @@ var ProfileManager = React.createClass({
           <li>Saved drafts</li>
           <li>What have I been up to?</li>
           <li>Personal Info (avatar, title, devices, etc)</li>
-          <li><Signout/></li>
+          <li><a className="js-modal-open" onClick={this._goToModal} >
+            Sign out</a>
+
+          </li>
         </ul>
       </div>
     );
+  },
+
+  _goToModal: function (e) {
+    e.preventDefault();
+    debugger
+    this.setState({expanded: false});
   },
 
   render: function () {

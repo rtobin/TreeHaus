@@ -336,3 +336,9 @@ border-bottom-width: 2px;
 text-decoration: none;
 font-weight: bold;
 }
+
+.nav-menu-links > li:hover {
+  font-weight: bolder;
+  text-decoration: underline;
+  cursor: pointer;
+}

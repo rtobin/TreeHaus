@@ -9,7 +9,7 @@ var ProjectPage = React.createClass({
       ProjectStore.setCurrentProject(project);
     }
     return {
-      project: project,
+      project: project || {},
       user: UserStore.currentUser()
     };
   },
@@ -34,11 +34,21 @@ var ProjectPage = React.createClass({
   },
 
   render: function () {
+    var Link = ReactRouter.Link;
+    var projectURL = this.state.user.id + "/projects/" + this.state.project.id;
+    var makeSidebar = "";
+    if (this.props.location.pathname.split("/").length > 4) {
+      makeSidebar += "-sidebar";
+    }
     return (
       <div className="project-main">
+        <h2 className="project-title">
+          <Link to={projectURL + "/update"}>{this.state.project.title}</Link>
+        </h2>
         <ProjectDock
           user={this.state.user}
           project={this.state.projcect}
+          makeSidebar={makeSidebar}
           />
         {this.props.children}
       </div>
