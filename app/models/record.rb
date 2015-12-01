@@ -6,4 +6,5 @@ class Record < ActiveRecord::Base
     presence: true
   )
   belongs_to :recordable, polymorphic: true
+  belongs_to :user
 end

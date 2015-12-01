@@ -14,6 +14,10 @@ class Api::ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.records.create(
+      name: "project created: #{project.title}",
+      user_id: project.author_id
+    )
     if @project.save
       render "api/projects/show"
     else
@@ -26,6 +30,10 @@ class Api::ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
+      @project.records.create(
+        name: "project updated: #{project.title}",
+        user_id: project.author_id
+      )
       # redirect them to the new user's show page
       render "api/projects/show"
     else
@@ -36,7 +44,15 @@ class Api::ProjectsController < ApplicationController
   end
 
   def destroy
-    project = Project.find(params[:id])
+    if Project.find(params[:id]).try(:destroy!)
+      project.records.create(
+        name: "project destroyed: #{project.title}",
+        user_id: project.author_id
+      )
+      render json: { message: 'destroyed' }
+    else
+      render json: { message: 'invalid project id', status: 404 }
+    end
   end
 
   protected
