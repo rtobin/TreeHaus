@@ -35,7 +35,8 @@ class User < ActiveRecord::Base
   has_many :authored_steps, foreign_key: :author_id, class_name: "Step"
 
   has_many :teams, through: :memberships, source: :team
-  has_many :records
+  has_many :records # record for a user action that invoked the creation of a record
+  has_many :notifications #records that are meant to notify user
 
   def assigned_todos
     # Todo.includes(:step_assignments)
