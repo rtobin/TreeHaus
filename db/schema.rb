@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201003012) do
+ActiveRecord::Schema.define(version: 20151201013103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,11 +44,12 @@ ActiveRecord::Schema.define(version: 20151201003012) do
   end
 
   create_table "records", force: :cascade do |t|
-    t.string   "name"
     t.integer  "recordable_id"
     t.string   "recordable_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "name",            null: false
+    t.integer  "user_id",         null: false
   end
 
   add_index "records", ["recordable_type", "recordable_id"], name: "index_records_on_recordable_type_and_recordable_id", using: :btree
