@@ -1,4 +1,4 @@
-class Api::SessionsController < ApplicationController
+class Api::TodosController < ApplicationController
 
 
   def show
@@ -8,7 +8,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def create
-    todo = Todo.new(todo_params)
+    todo =Todo.new(todo_params)
     if todo.save
       todo.records.create(
         name: "todo created: #{todo.title}",
@@ -50,7 +50,7 @@ class Api::SessionsController < ApplicationController
 
   private
   def todo_params
-    params.require(:todo).permit(:title, :done, :body, :author_id)
+    params.require(:todo).permit(:title, :done, :body, :author_id, :project_id)
   end
 
 end
