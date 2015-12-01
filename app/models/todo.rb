@@ -9,6 +9,10 @@ class Todo < ActiveRecord::Base
   belongs_to :author, foreign_key: :author_id, class_name: "User"
   belongs_to :project, dependent: :destroy
 
+  has_many :records, as: :recordable
+  has_many :comments, as: :commentable
+  
+
   def all_assignees
     # User.includes (:assigned_steps)
     #     .where(assigned_steps: { todo_id: this.id })

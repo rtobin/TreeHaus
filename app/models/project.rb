@@ -14,4 +14,5 @@ class Project < ActiveRecord::Base
   belongs_to :author, foreign_key: :author_id, class_name: "User"
   has_many :todos
 
+  has_many :records, as: :recordable
 end

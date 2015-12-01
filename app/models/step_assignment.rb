@@ -6,4 +6,6 @@ class StepAssignment < ActiveRecord::Base
 
   belongs_to :step, dependent: :destroy
 
+  has_many :records, as: :recordable
+  
 end

@@ -8,6 +8,9 @@ class Step < ActiveRecord::Base
   has_many :assignees, through: :step_assignments, source: :assignee
   has_one :assigner, through: :step_assignments, source: :assigner
 
+  has_many :records, as: :recordable
+  has_many :comments, as: :commentable
+
   def set_done
     self.update(done: true)
   end

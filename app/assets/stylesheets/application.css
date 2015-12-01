@@ -132,6 +132,6 @@ section {
   color: red;
 }
 
-div {
-  /*height: 100%;*/
+.home, .app {
+  height: 100%;
 }
