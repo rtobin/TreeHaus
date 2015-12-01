@@ -8,9 +8,10 @@ var TodosIndex = React.createClass({
   render: function () {
     var that = this;
     return (
-      <div className="todoindex">
-        <TodosIndexHeader/>
-        <div className="todo-list">
+      <article className="todoindex panel">
+        <TodosIndexHeader />
+        <TodoForm />
+        <section className="todo-list panel-content">
           {
             Object.keys(this.state.todos).map(function(todoID) {
               var todo = that.state.todos[todoID];
@@ -19,8 +20,8 @@ var TodosIndex = React.createClass({
               );
             })
           }
-        </div>
-      </div>
+        </section>
+      </article>
     );
   }
 });

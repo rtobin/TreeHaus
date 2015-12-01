@@ -24,6 +24,12 @@ class Todo < ActiveRecord::Base
     self.steps.all? { |step| step.done }
   end
 
+  def progress
+    step_count = self.steps.count
+    done_count = self.steps.select { |step| step.done }.count
+    {step_count: step_count, done_count: done_count}
+  end
+
   def set_done
     self.steps.each do |step|
       step.set_done

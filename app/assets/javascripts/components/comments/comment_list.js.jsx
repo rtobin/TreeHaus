@@ -19,7 +19,8 @@ var CommentList = React.createClass({
   render: function() {
     var comments = this.state.comments;
     return (
-      <div className="Commentlist">
+      <div className="comments-panel">
+        <CommentForm />
         <div className="comment-list">
           {
             comments.map(function(comment) {
@@ -29,7 +30,6 @@ var CommentList = React.createClass({
             })
           }
         </div>
-        <CommentForm />
       </div>
     );
   }

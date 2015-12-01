@@ -9,7 +9,7 @@ var TodoIndexItem = React.createClass({
   render: function () {
     var that = this;
     return (
-      <div className="todo-item-index">
+      <div className="todo-index-item">
         <TodoHeader todo={this.state.todo} key={this.state.todo.id}/>
         <div className="step-list">
           {

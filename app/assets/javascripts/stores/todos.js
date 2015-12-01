@@ -16,17 +16,6 @@
   };
 
   var TodoStore = root.TodoStore = $.extend({}, BaseStore, {
-    // changed: function(){
-    //   _handlers.forEach(function(cb){ cb(); });
-    // },
-    //
-    // addChangedHandler: function(callback){
-    //   _handlers.push(callback);
-    // },
-    //
-    // removeChangedHandler: function(callback){
-    //   _handlers.splice(_handlers.indexof(callback), 1);
-    // },
 
     all: function(){
       return _todos;

@@ -39,11 +39,11 @@
   };
 
   var deleteTodo = function (projectID, todoID) {
-    delete _projects[projectID].todo[todoID];
+    delete _projects[projectID].todos[todoID];
   };
 
   var deleteStep = function (projectID, todoID, stepID) {
-    delete _projects[projectID].todo[todoID].steps[stepID];
+    delete _projects[projectID].todos[todoID].steps[stepID];
   };
 
   var ProjectStore = root.ProjectStore = $.extend({}, BaseStore, {
