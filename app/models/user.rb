@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :authored_steps, foreign_key: :author_id, class_name: "Step"
 
   has_many :teams, through: :memberships, source: :team
+  has_many :records
 
   def assigned_todos
     Todo.includes(:step_assignments)
