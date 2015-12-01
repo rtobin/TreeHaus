@@ -174,23 +174,25 @@ input.session-field {
   text-align: center;
 }
 
-.submit > button {
+.session-form > button {
   position: relative;
   padding: 10px 20px;
   color: #fff;
-  background: #856EC6;
+  background: #3cb371;
+  border-color: #3CB371;
   font-weight: 700;
   border-radius: 5px;
   box-shadow: 0 3px 0 0 #070;
 }
 
-.submit > button:hover {
-  background: #4E3A85;
+.session-form > button:hover {
+  background: #070;
+  cursor: pointer;
 }
 
-.submit > button:active {
+.session-form > button:active {
   top: 3px;
-  background: #4E3A85;
+  background: #070;
   box-shadow: none;
 }
 
@@ -206,6 +208,29 @@ input.session-field {
 
 .button-alternative strong:hover {
   color: #f00;
+}
+
+.stay-signedin-btn {
+  position: relative;
+  padding: 10px 20px;
+  color: #fff;
+  background: #856EC6;
+  border-color: #856EC6;
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 0 gray;
+
+}
+
+.stay-signedin-btn:hover {
+  background: #4E3A85;
+  cursor: pointer;
+}
+
+.stay-signedin-btn:active {
+  top: 3px;
+  background: #4E3A85;
+  box-shadow: none;
 }
 /*
 .sign-in {

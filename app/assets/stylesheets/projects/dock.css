@@ -69,11 +69,12 @@
 
 
 .dock-cards-sidebar {
-  background-color: burlywood;
-  /*border-radius: 10px;*/
+  background-color: lightgray;
+  /* border-radius: 10px; */
   width: 150px;
   height: 100%;
   padding-top: 35px;
+  border: 1px solid grey;
 }
 
 .dock-cards-sidebar .dock-card {

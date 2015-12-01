@@ -14,9 +14,10 @@ class Todo < ActiveRecord::Base
 
 
   def all_assignees
-    User.includes (:assigned_steps)
-        .where(assigned_steps: { todo_id: this.id })
-        .distinct
+    # User.includes (:assigned_steps)
+    #     .where(assigned_steps: { todo_id: self.id })
+    #     .distinct
+    []
   end
 
   def is_done?

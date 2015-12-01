@@ -10,7 +10,7 @@ var SigninForm = React.createClass ({
       };
   },
 
-  componentWillMount: function () {
+  componentDidMount: function () {
     UserStore.addChangeListener(this._checkIfSignedIn);
   },
 

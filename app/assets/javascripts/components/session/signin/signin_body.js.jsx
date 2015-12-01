@@ -1,4 +1,35 @@
 SigninBody = React.createClass({
+  mixins: [ReactRouter.History],
+
+  _redirectToProjectsHome: function () {
+    this.history.pushState(null, this.props.currentUser.id + "/projects");
+  },
+
+  _staySignedIn: function () {
+    if (UserStore.isSignedIn()) {
+      var username = this.props.currentUser.name || this.props.currentUser.email;
+      return (
+        <div className="stay-signedin centered">
+          <h4 className="break">
+            <span>or</span>
+          </h4>
+          <p>
+            You are currently signed in as
+            <br/>
+            <strong>{username}</strong>.
+            <br/>
+            Would you like to stay signed in?
+          </p>
+          <button
+            className="session-btn btn-default stay-signedin-btn"
+            onClick={this._redirectToProjectsHome}>
+            Stay signed in
+          </button>
+        </div>
+      );
+    }
+  },
+
   render: function () {
     var now = new Date();
     var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -16,6 +47,7 @@ SigninBody = React.createClass({
           </p>
         </header>
         <SigninForm />
+        {this._staySignedIn()}
         <footer className="centered">
           <h4 className="break">
             <span>or</span>

@@ -1,10 +1,16 @@
-var RouteHandler = ReactRouter.RouteHandler;
 var App = React.createClass({
   mixins: [ReactRouter.History],
 
-  componentWillMount: function () {
-    UserStore.addChangeListener(this._ensureSignedIn);
-    SessionUtil.fetchCurrentUser();
+  _getFullState: function () {
+    return {
+      currentUser: UserStore.currentUser(),
+      projects: ProjectStore.all()
+      // notifications
+    };
+  },
+
+  getInitialState: function () {
+    return this._getFullState();
   },
 
   _ensureSignedIn: function () {
@@ -13,10 +19,34 @@ var App = React.createClass({
     }
   },
 
+  _onChange: function () {
+    this.setState(this._getFullState());
+    this._ensureSignedIn();
+  },
+
+  componentDidMount: function () {
+    var stores = [UserStore, ProjectStore];
+    stores.forEach(function(store) {
+      store.addChangeListener(this._onChange);
+    }, this);
+
+    SessionUtil.fetchCurrentUser();
+  },
+
+  componentWillUnmount: function () {
+    this.stores.forEach(function(store) {
+      store.removeChangeListener(this._onChange);
+    }, this);
+  },
+
   render: function () {
+    var renderedChildren = React.Children.map(this.props.children, function(child) {
+      return React.cloneElement(child, {...this.state});
+    }, this);
+
     return (
       <div className="app">
-        {this.props.children}
+        {renderedChildren}
       </div>
     );
   }

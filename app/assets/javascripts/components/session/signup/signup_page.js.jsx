@@ -3,7 +3,7 @@ var SignupPage = React.createClass({
     return (
       <div className="signup-page">
         <SignupHeader />
-        <SignupBody />
+        <SignupBody currentUser={this.props.currentUser} />
         <SignupFooter />
       </div>
     );

@@ -12,7 +12,7 @@ var SignupForm = React.createClass ({
       };
   },
 
-  componentWillMount: function () {
+  componentDidMount: function () {
     UserStore.addChangeListener(this.redirectAfterSignin);
   },
 
