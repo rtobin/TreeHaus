@@ -1,25 +1,11 @@
 class Api::CommentsController < ApplicationController
   def create
     comment = Comment.new(comment_params)
-    klass_str = comment_params[:commentable_type]
-    klass = klass_type.constantize
-    commentable = klass.find(comment_params[:commentable_id])
-    author = User.find(comment_params[:author_id])
-
-    case klass_str
-    when "Todo", "Step"
-      if commentable.title.length > 6
-        commentable_name = commentable.title[0..7] + "..."
-      else
-        commentable_name = commentable.title
-      end
-    # when ""
-    #   stuff
-    end
+    comment_hash = commentable_stuff
 
     if comment.save
       comment.records.create(
-        name: "#{author.name} commented on a #{klass.downcase} (#{commentable_name})",
+        name: "#{comment_hash[:who]} commented on a #{comment_hash[:on_what]}",
         user_id: comment.author_id
       )
       render json: comment
@@ -30,9 +16,11 @@ class Api::CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
+    comment_hash = commentable_stuff
+
     if comment.try(:destroy!)
       comment.records.create(
-        name: "comment destroyed: #{comment.title}",
+        name: "#{comment_hash[:who]} deleted a comment on a #{comment_hash[:on_what]}",
         user_id: comment.author_id
       )
       render json: { message: 'destroyed' }
@@ -43,11 +31,13 @@ class Api::CommentsController < ApplicationController
 
   def update
     comment = Comment.find(params[:id])
+    comment_hash = commentable_stuff
+
     if !comment
       render json: { message: 'not found', status: 404 }
     elsif comment.update(comment_params)
       comment.records.create(
-        name: "comment updated: #{comment.title}",
+        name: "#{comment_hash[:who]} changed a commented on a #{comment_hash[:on_what]}",
         user_id: comment.author_id
       )
       render json: comment
@@ -64,5 +54,29 @@ class Api::CommentsController < ApplicationController
       :commentable_id,
       :commentable_type
     )
+  end
+
+  def commentable_stuff
+    klass_str = comment_params[:commentable_type]
+    klass = klass_type.constantize
+    commentable = klass.find(comment_params[:commentable_id])
+    author = User.find(comment_params[:author_id])
+    author_name = author.name || author.email
+    case klass_str
+    when "Todo", "Step"
+      if commentable.title.length > 6
+        commentable_name = commentable.title[0..7] + "..."
+      else
+        commentable_name = commentable.title
+      end
+    # when ""
+    #   stuff
+    end
+
+    comment_hash = {}
+    comment_hash[:on_what] = "#{klass.downcase} (#{commentable_name})"
+    comment_hash[:who] = author_name
+    comment_hash
+
   end
 end
