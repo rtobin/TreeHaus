@@ -1,9 +1,9 @@
 TodoUtil = {
   createTodo: function (todoParams) {
     $.post('api/todos',
-      {todo: todoParams.todo},
+      {todo: todoParams},
       function(todo) {
-        TodoActions.todoCreated(todoParams.projectID, todo);
+        TodoActions.todoCreated(todo.project_id, todo);
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
@@ -21,7 +21,7 @@ TodoUtil = {
         todo: todoParams
       },
       success: function (todo) {
-        TodoActions.todoUpdated(todoParams.projectID, todo);
+        TodoActions.todoUpdated(todo.project_id, todo);
       }
     }).fail(function () {
         var args = [].slice.call(arguments);
@@ -36,7 +36,7 @@ TodoUtil = {
       url: 'api/todos/' + todoParams.id,
       data: {id: todoParams.id},
       success: function () {
-        TodoActions.todoDestroyed(todoParams.projectID, todoParams.id);
+        TodoActions.todoDestroyed(todoParams.project_id, todoParams.id);
       }
     });
   },

@@ -10,11 +10,10 @@ json.steps do
   end
 end
 
-
 json.progress do
   progress = todo.progress
-  json.step_count progress.step_count
-  json.done_count progress.done_count
+  json.step_count progress[:step_count]
+  json.done_count progress[:done_count]
 end
 
 json.assignees do

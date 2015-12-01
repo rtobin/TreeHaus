@@ -15,4 +15,17 @@ class Project < ActiveRecord::Base
   has_many :todos
 
   has_many :records, as: :recordable
+
+  def todos_progress
+    todos = self.todos
+    total_step_count = 0
+    total_done_count = 0
+    todos.each do |todo|
+      progress = todo.progress
+      total_step_count += progress[:step_count]
+      total_done_count += progress[:done_count]
+    end
+
+    {total_done_count: total_done_count, total_step_count: total_step_count}
+  end
 end
