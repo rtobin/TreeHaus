@@ -89,12 +89,14 @@
           break;
         case ProjectConstants.PROJECT_CREATED:
           addProject(payload.project);
-          ProjectStore.setCurrentProject(payload.project)
+          ProjectStore.setCurrentProject(payload.project);
+          ProjectStore.emit(CURRENT_PROJECT_CHANGE_EVENT);
           ProjectStore.emitChange();
           break;
         case ProjectConstants.PROJECT_UPDATED:
           addProject(payload.project);
           ProjectStore.emitChange();
+          ProjectStore.emit(CURRENT_PROJECT_CHANGE_EVENT);
           break;
         case ProjectConstants.PROJECT_DESTROYED:
           deleteProject(payload.id);
@@ -102,7 +104,7 @@
           break;
         case ProjectConstants.CURRENT_PROJECT_RECEIVED:
           ProjectStore.setCurrentProject(payload.project);
-          // ProjectStore.emitChange();
+          ProjectStore.emit(CURRENT_PROJECT_CHANGE_EVENT);
           break;
 
         // TODOS CRUD
