@@ -37,13 +37,10 @@ class User < ActiveRecord::Base
   has_many :teams, through: :memberships, source: :team
 
   def assigned_todos
-    # Todo.includes(:assigned_steps)
-    #     .where(step_assignments: { todo_id: this.id })
-    #     .distinct
-    []
+    Todo.includes(:step_assignments)
+        .where(step_assignments: { user_id: self.id })
+        .distinct
   end
-
-
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

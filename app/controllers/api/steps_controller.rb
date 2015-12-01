@@ -4,6 +4,7 @@ class Api::StepsController < ApplicationController
     step = Step.new(step_params)
 
     if step.save
+      step.records.create(name: "step created: #{step.title}")
       render json: step
     else
       render json: step.errors.full_messages, status: 422
@@ -17,6 +18,7 @@ class Api::StepsController < ApplicationController
 
   def destroy
     if Step.find(params[:id]).try(:destroy!)
+      step.records.create(name: "step destroyed: #{step.title}")
       render json: { message: 'destroyed' }
     else
       render json: { message: 'invalid step', status: 404 }
@@ -25,10 +27,13 @@ class Api::StepsController < ApplicationController
 
   def update
     step = Step.find(params[:id])
-    if step && step.update(step_params)
+    if !step
+      render json: { message: 'not found', status: 404 }
+    elsif step.update(step_params)
+      step.records.create(name: "step updated: #{step.title}")
       render json: step
     else
-      render json: { message: 'not found', status: 404 }
+      render json: step.errors.full_messages
     end
   end
 

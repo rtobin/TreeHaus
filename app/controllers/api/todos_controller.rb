@@ -10,6 +10,7 @@ class Api::SessionsController < ApplicationController
   def create
     todo = Todo.new(todo_params)
     if todo.save
+      todo.records.create(name: "todo created: #{todo.title}")
       render json: todo
     else
       render json: todo.errors.full_messages, status: 422
@@ -17,7 +18,9 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-    if Todo.find(params[:id]).try(:destroy!)
+    todo = Todo.find(params[:id])
+    if todo.try(:destroy!)
+      todo.records.create(name: "todo destroyed: #{todo.title}")
       render json: { message: 'destroyed' }
     else
       render json: { message: 'invalid todo', status: 404 }
@@ -26,11 +29,13 @@ class Api::SessionsController < ApplicationController
 
   def update
     todo = Todo.find(params[:id])
-    if todo
-      todo.update(todo_params)
+    if !todo
+      render json: { message: 'not found', status: 404 }
+    elsif todo.update(todo_params)
+      todo.records.create(name: "todo updated: #{todo.title}")
       render json: todo
     else
-      render json: { message: 'not found', status: 404 }
+      render json: todo.errors.full_messages
     end
   end
 

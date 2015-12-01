@@ -11,14 +11,12 @@ class Todo < ActiveRecord::Base
 
   has_many :records, as: :recordable
   has_many :comments, as: :commentable
-  
+
 
   def all_assignees
-    # User.includes (:assigned_steps)
-    #     .where(assigned_steps: { todo_id: this.id })
-    #     .distinct
-    #     .all
-    []
+    User.includes (:assigned_steps)
+        .where(assigned_steps: { todo_id: this.id })
+        .distinct
   end
 
   def is_done?
