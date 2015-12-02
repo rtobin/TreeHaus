@@ -9,7 +9,7 @@ var StepsListItem = React.createClass({
   render: function () {
     var Link = ReactRouter.Link;
     var step = this.state.step;
-    numComments = step.comments.length;
+
     return (
       <div className="step-list-item">
         <span className="todo-drag-handle">=</span>
@@ -20,12 +20,9 @@ var StepsListItem = React.createClass({
             onChange={this._handleCheckbox}/>
           <span className="step-checkbox-content">
             <a>{step.title}</a>
-            <small>{" " + numcomments + " comments"}</small>
+            <small>{" " + step.num_comments + " comments"}</small>
           </span>
-
         </div>
-
-
       </div>
     );
   }

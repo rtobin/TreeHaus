@@ -1,16 +1,21 @@
 class Api::CommentsController < ApplicationController
+  def index
+    @comments = Comment.comments_for_commentable(params)
+    render 'api/comments/index'
+  end
+
   def create
-    comment = Comment.new(comment_params)
+    @comment = Comment.new(comment_params)
     comment_hash = commentable_stuff
 
-    if comment.save
-      comment.records.create(
+    if @comment.save
+      @comment.records.create(
         name: "#{comment_hash[:who]} commented on a #{comment_hash[:on_what]}",
-        user_id: comment.author_id
+        user_id: @comment.author_id
       )
-      render json: comment
+      render json: 'api/comments/show'
     else
-      render json: comment.errors.full_messages, status: 422
+      render json: @comment.errors.full_messages, status: 422
     end
   end
 
@@ -30,19 +35,19 @@ class Api::CommentsController < ApplicationController
   end
 
   def update
-    comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:id])
     comment_hash = commentable_stuff
 
-    if !comment
+    if !@comment
       render json: { message: 'not found', status: 404 }
-    elsif comment.update(comment_params)
-      comment.records.create(
+    elsif @comment.update(comment_params)
+      @comment.records.create(
         name: "#{comment_hash[:who]} changed a commented on a #{comment_hash[:on_what]}",
-        user_id: comment.author_id
+        user_id: @comment.author_id
       )
-      render json: comment
+      render json: 'api/comments/show'
     else
-      render json: comment.errors.full_messages
+      render json: @comment.errors.full_messages
     end
   end
 

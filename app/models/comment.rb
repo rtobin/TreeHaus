@@ -9,4 +9,12 @@ class Comment < ActiveRecord::Base
 
   belongs_to :commentable, polymorphic: true
   has_many :records, as: :recordable
+
+  def self.comments_for_commentable(params)
+    Comments.where(
+      commentable_id: params[:commentable_id],
+      commentable_type: params[:commentable_type]
+    )
+  end
+
 end
