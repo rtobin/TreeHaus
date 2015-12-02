@@ -10,7 +10,8 @@ var ProjectPage = React.createClass({
     }
     return {
       project: project || {},
-      user: UserStore.currentUser()
+      user: UserStore.currentUser(),
+      location: this.props.location
     };
   },
 
@@ -40,6 +41,11 @@ var ProjectPage = React.createClass({
     if (this.props.location.pathname.split("/").length > 4) {
       makeSidebar += "-sidebar";
     }
+
+    var renderedChildren = React.Children.map(this.props.children, function(child) {
+      return React.cloneElement(child, {...this.state});
+    }, this);
+
     return (
       <div className="project-main">
         <h2 className="project-title">
@@ -50,7 +56,7 @@ var ProjectPage = React.createClass({
           project={this.state.projcect}
           makeSidebar={makeSidebar}
           />
-        {this.props.children}
+        {renderedChildren}
       </div>
     );
   }

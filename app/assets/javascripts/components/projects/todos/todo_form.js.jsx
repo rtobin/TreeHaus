@@ -40,8 +40,8 @@ var TodoForm = React.createClass({
       title: this.state.title,
       body: this.state.body,
       done: false,
-      author_id: UserStore.currentUser().id,
-      project_id: ProjectStore.currentProject().id
+      author_id: this.props.user.id,
+      project_id: this.props.project.id
     };
     TodoUtil.createTodo(todoParams);
     debugger

@@ -6,6 +6,10 @@ var StepsListItem = React.createClass({
     };
   },
 
+  _handleCheckbox: function () {
+    // update step
+  },
+
   render: function () {
     var Link = ReactRouter.Link;
     var step = this.state.step;

@@ -16,11 +16,14 @@ var CommentList = React.createClass({
     CommentStore.addChangedHandler(this._commentsChanged);
   },
 
+  componentWillUnMount: function() {
+    CommentStore.removeChangedHandler(this._commentsChanged);
+  },
+
   render: function() {
     var comments = this.state.comments;
     return (
       <div className="comments-panel">
-        <CommentForm />
         <div className="comment-list">
           {
             comments.map(function(comment) {
@@ -30,6 +33,8 @@ var CommentList = React.createClass({
             })
           }
         </div>
+        <CommentForm />
+        
       </div>
     );
   }

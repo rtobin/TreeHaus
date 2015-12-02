@@ -7,8 +7,9 @@
 }
 
 .project-title {
-  background: black;
+  background: #3967D2;
   color: white;
+  font-size: xx-large;
 }
 
 .project-title:hover {
