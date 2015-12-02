@@ -56,22 +56,39 @@ var TodoForm = React.createClass({
       <section className={"centered new-todo" + expanded}>
         <Errors />
         <form className="todo-form" onSubmit={this._handleSubmit}>
-          <input className="form-input"
-            data-attr="title"
-            placeholder="Name this todo."
-            value={this.state.title}
-            onChange={this._onFormChange}/>
+          <fieldset className="todo-form-fieldset">
+            <div className="todo-input">
+              <label>
+                Todo Title
+                <input className="form-input"
+                  data-attr="title"
+                  placeholder="Name this todo."
+                  value={this.state.title}
+                  onChange={this._onFormChange} />
+              </label>
+            </div>
 
-          <textarea className="form-textarea"
-            data-attr="body"
-            placeholder="Add some extra details about this todo."
-            value={this.state.body}
-            onChange={this._onFormChange}/>
+            <div className="todo-input">
+              <label>
+                Todo Body
+                <textarea className="todo-form-textarea"
+                  data-attr="body"
+                  placeholder="Add some extra details about this todo."
+                  value={this.state.body}
+                  onChange={this._onFormChange}/>
+              </label>
+            </div>
 
-          <input
-            type="submit"
-            className="submit-btn btn-default"/>
-          <a onClick={this._toggleExpand}>Cancel</a>
+            <div className="todo-submit">
+              <input
+                type="submit"
+                className="submit-btn btn-default"
+                value="Add Todo"/>
+              <span className="todo-button-alternative">or
+                <a onClick={this._toggleExpand}>Cancel</a>
+              </span>
+            </div>
+          </fieldset>
         </form>
       </section>
     );
@@ -79,8 +96,8 @@ var TodoForm = React.createClass({
 
   render: function () {
     return (
-      <div className="">
-        <button className="btn-default"
+      <div>
+        <button className="action-button"
           onClick={this._toggleExpand}>Make a new Todo</button>
         {this._expandedContent()}
       </div>

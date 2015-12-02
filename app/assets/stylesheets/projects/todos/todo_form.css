@@ -1,0 +1,90 @@
+.todo-form {
+  margin: 0 0 20px 0;
+}
+
+.new-todo {
+  display: none;
+}
+
+.new-todo-expanded {
+  display: block;
+}
+
+.todo-form-fieldset {
+  margin: auto;
+  margin-top: 10px;
+  padding: 19px;
+  width: 500px;
+  text-align: left;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.todo-input {
+  margin: 0 0 20px 0;
+}
+
+.todo-input > label {
+  display: block;
+  font-weight: 700;
+  padding: 0 0 5px 0;
+}
+
+.todo-input input,
+.todo-input textarea {
+  display: block;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: calc(100% - 22px);
+  border-radius: 5px;
+}
+
+.todo-input input:focus,
+.todo-input textarea:focus {
+  border-color: #0c0;
+}
+
+.todo-input textarea {
+  height: 120px;
+}
+
+.todo-submit {
+  margin: 20px 0 0 0;
+  padding: 0 0 3px 0;
+}
+
+.todo-submit > .submit-btn {
+  position: relative;
+  padding: 10px 20px;
+  color: #fff;
+  background: #0c0;
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 0 #070;
+}
+
+.todo-submit > .submit-btn:hover {
+  background: #0b0;
+}
+
+.todo-submit > .submit-btn:active {
+  top: 3px;
+  background: #0a0;
+  box-shadow: none;
+}
+
+.todo-button-alternative {
+  padding: 0 0 0 5px;
+}
+
+.todo-button-alternative a {
+  padding: 0 0 0 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.todo-button-alternative a:hover {
+  color: #f00;
+}

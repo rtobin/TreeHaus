@@ -1,0 +1,57 @@
+.panel {
+  margin-bottom: 0;
+  position: relative;
+  padding: 20px;
+  margin: 0 auto 10rem;
+  max-width: 620px;
+  min-height: 200px;
+
+}
+
+.recordable {
+  padding: 2rem 2rem 2rem;
+  margin-bottom: 4rem;
+  word-wrap: break-word;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 3px 0 #bfbfbf;
+  border-radius: 0.6rem;
+}
+
+.action-button {
+  position: relative;
+  padding: 10px 20px;
+  color: #fff;
+  background: #3cb371;
+  border-color: #3CB371;
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 0 #070;
+}
+
+.action-button:hover {
+  background: #070;
+  cursor: pointer;
+}
+
+.action-button:active {
+  top: 3px;
+  background: #070;
+  box-shadow: none;
+}
+
+.section-header {
+  margin: 10px;
+}
+
+.section-header > h1 {
+  font-size: larger;
+  text-decoration: underline;
+}
+
+.section-header > h1, .progress {
+  display: inline-block;
+  font-weight:bolder;
+  padding-right: 5px;
+  padding-left: 5px;
+}
