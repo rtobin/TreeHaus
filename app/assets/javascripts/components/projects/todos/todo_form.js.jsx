@@ -25,7 +25,7 @@ var TodoForm = React.createClass({
     this.setState({expanded: false})
   },
 
-  _onFormChange: function () {
+  _onFormChange: function (e) {
     var target = e.target;
     var attr = target.dataset.attr;
     this.state[attr] = target.value;

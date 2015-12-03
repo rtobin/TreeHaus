@@ -26,7 +26,7 @@ var StepForm = React.createClass({
     this.setState({expanded: false})
   },
 
-  _onFormChange: function () {
+  _onFormChange: function (e) {
     var target = e.target;
     var attr = target.dataset.attr;
     this.state[attr] = target.value;
@@ -49,7 +49,7 @@ var StepForm = React.createClass({
       project_id: this.props.params.projectID
 
     };
-    StepUtil.createStep(stepParams);
+    TodoUtil.createStep(stepParams);
   },
 
   _expandedContent: function () {

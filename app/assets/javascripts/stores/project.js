@@ -25,12 +25,10 @@
   };
 
   var addTodo = function (projectID, todo) {
-    todo.id = todoID;
     _projects[projectID].todos[todo.id] = todo;
   };
 
   var addStep = function (projectID, todoID, step) {
-    step.id = stepID;
     _projects[projectID].todos[todoID].steps[step.id] = step;
   };
 
@@ -137,11 +135,11 @@
 
         // TODOS CRUD
         case TodoConstants.TODO_CREATED:
-          addTodo(payload.projectID, todo);
+          addTodo(payload.projectID, payload.todo);
           ProjectStore.emit(TODOS_CHANGE_EVENT);
           break;
         case TodoConstants.TODO_UPDATED:
-          addTodo(payload.projectID, todo);
+          addTodo(payload.projectID, payload.todo);
           ProjectStore.emit(TODOS_CHANGE_EVENT);
           break;
         case TodoConstants.TODO_DESTROYED:
@@ -151,11 +149,11 @@
 
         // STEPS CRUD
         case TodoConstants.STEP_CREATED:
-          addStep(payload.projectID, payload.todoID, step);
+          addStep(payload.projectID, payload.todoID, payload.step);
           ProjectStore.emit(STEPS_CHANGE_EVENT);
           break;
         case TodoConstants.STEP_UPDATED:
-          addStep(payload.projectID, payload.todoID, step);
+          addStep(payload.projectID, payload.todoID, payload.step);
           ProjectStore.emit(STEPS_CHANGE_EVENT);
           break;
         case TodoConstants.STEP_DESTROYED:

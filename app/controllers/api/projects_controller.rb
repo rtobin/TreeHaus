@@ -14,11 +14,12 @@ class Api::ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.records.create(
-      name: "project created: #{project.title}",
-      user_id: project.author_id
-    )
+
     if @project.save
+      @project.records.create(
+        name: "project created: #{@project.title}",
+        user_id: @project.author_id
+      )
       render "api/projects/show"
     else
       # input didn't pass validation;
@@ -31,8 +32,8 @@ class Api::ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.update(project_params)
       @project.records.create(
-        name: "project updated: #{project.title}",
-        user_id: project.author_id
+        name: "project updated: #{@project.title}",
+        user_id: @project.author_id
       )
       # redirect them to the new user's show page
       render "api/projects/show"

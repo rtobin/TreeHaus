@@ -20,7 +20,7 @@ var NewProjectForm = React.createClass ({
 
   redirectToNewProjectPage: function () {
     var projectID = ProjectStore.currentProject().id;
-    this.history.pushState(null, this.state.authorID + "/projects/" + projectID);
+    this.history.pushState(null, this.state.author_id + "/projects/" + projectID);
   },
 
   render: function () {
