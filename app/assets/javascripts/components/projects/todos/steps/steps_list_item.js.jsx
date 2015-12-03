@@ -49,7 +49,8 @@ var StepsListItem = React.createClass({
             <Link to={stepURL} >
               {step.title}
             </Link>
-            <small>{" " + step.num_comments + " comments"}</small>
+            <CommentsCountBubble numComments={step.num_comments} />
+            
           </span>
         </div>
       </div>

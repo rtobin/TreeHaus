@@ -16,6 +16,7 @@
 //= require react_dom.js
 //= require react_ujs
 //= require react_router.js
+//= require progressbar.min.js
 //= require flux
 //= require jquery.avgrund.min.js
 //= require eventemitter

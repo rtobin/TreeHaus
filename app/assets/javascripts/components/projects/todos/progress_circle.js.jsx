@@ -1,0 +1,74 @@
+var redsToGreens = [
+  "#FF0000",
+  "#FF1100",
+  "#FF2200",
+  "#FF3300",
+  "#FF4400",
+  "#FF5500",
+  "#FF6600",
+  "#FF7700",
+  "#FF8800",
+  "#FF9900",
+  "#FFAA00",
+  "#FFBB00",
+  "#FFCC00",
+  "#FFDD00",
+  "#FFEE00",
+  "#FFFF00",
+  "#EEFF00",
+  "#DDFF00",
+  "#CCFF00",
+  "#BBFF00",
+  "#AAFF00",
+  "#99FF00",
+  "#88FF00",
+  "#77FF00",
+  "#66FF00",
+  "#55FF00",
+  "#44FF00",
+  "#33FF00",
+  "#22FF00",
+  "#11FF00",
+  "#00FF00"
+];
+
+var ProgressCircle = React.createClass({
+
+  componentDidMount: function () {
+    var endIdx = Math.floor(this.props.progressNum * redsToGreens.length);
+    var startColor = redsToGreens[0];
+    var endColor = redsToGreens[endIdx];
+    var that = this;
+    debugger
+
+    var element = document.getElementById(that.props.progressID);
+    var circle = new ProgressBar.Circle(element, {
+        color: endColor,
+        trailColor: '#aaa',
+        trailWidth: 1,
+        duration: 5000,
+        easing: 'bounce',
+        strokeWidth: 5,
+        text: {
+          value: that.props.progressStr
+        },
+
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+            circle.path.setAttribute('stroke', state.color);
+        }
+    });
+
+    circle.animate(this.props.progressNum, {
+        from: {color: startColor, width: 2},
+        to: {color: endColor, width: 5}
+    });
+  },
+
+  render: function () {
+    return (
+      <div className="progress-circle" id={this.props.progressID}>
+      </div>
+    )
+  }
+});

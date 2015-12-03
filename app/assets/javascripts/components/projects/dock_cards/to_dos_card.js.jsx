@@ -7,10 +7,13 @@ var ToDosCard = React.createClass({
     return (
       <Link to={todosURL}>
         <article className="dock-card todos-card">
-          <header className="card-header"><h3>To-dos</h3></header>
+          <header className="card-header">
+            <h3>To-dos</h3>
+            <small>{progress.total_done_count}/{progress.total_step_count}</small>
+          </header>
           <main className="dock-card-content ">
             <div className="todos-card-img"></div>
-            <small>{progress.total_done_count}/{progress.total_step_count}</small>
+
           </main>
         </article>
       </Link>

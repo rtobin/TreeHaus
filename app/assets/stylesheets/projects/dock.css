@@ -10,8 +10,8 @@
 
 .dock-card {
   display: inline-block;
-  width: 170px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   margin: 0 0.5rem;
   padding: 0.4em 0.5em;
   vertical-align: top;
@@ -19,16 +19,17 @@
   position: relative;
   background: #fff;
   box-shadow: 0 1px 3px 0 #bfbfbf;
-  border-radius: 0.6rem;
-  transition: width 0.25s,
-              height 0.25s,
-              background-color 0.25s
+  border-radius: 100px;
+  transition: width 0.2s,
+              height 0.2s,
+              background-color 1.5s
 }
 
 .dock-card:hover {
-  background-color: lightskyblue;
+  background-color: #FFC;
   width: 180px;
-  height: 115px;
+  height: 180px;
+  border-radius: 100px;
 }
 
 

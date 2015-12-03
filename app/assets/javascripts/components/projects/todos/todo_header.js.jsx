@@ -1,13 +1,23 @@
 var TodoHeader = React.createClass({
   render: function () {
+    var progress = this.props.todo.progress || {};
+    var progressNum = 0;
+    if (progress.step_count > 0) {
+      progressNum = progress.done_count / progress.step_count;
+    }
+
+    var progressID = "progress-todo-" + this.props.todo.id;
+    var progressStr = progress.done_count + "/" + progress.step_count;
+
     var todo = this.props.todo || {};
-    var progress = todo.progress || {};
     return (
       <header className="todo-header" >
         {todo.title}
-        <div className="progress">
-          <span>{progress.done_count}/{progress.step_count}</span>
-        </div>
+        <ProgressCircle
+          progressID={progressID}
+          progressStr={progressStr}
+          progressNum={progressNum}/>
+        <CommentsCountBubble numComments={todo.num_comments} />
       </header>
     );
   }

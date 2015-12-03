@@ -4,12 +4,20 @@ var TodosIndexHeader = React.createClass({
     if (this.props.project && this.props.project.progress) {
       progress = this.props.project.progress;
     }
+    var progressNum = 0;
+    if (progress.step_count > 0) {
+      progressNum = progress.done_count / progress.step_count;
+    }
+
+    var progressID = "progress-todos";
+    var progressStr = progress.done_count + "/" + progress.step_count;
     return (
       <div className="section-header centered">
         <h1>To-dos</h1>
-        <div className="progress">
-          <span>{progress.total_done_count}/{progress.total_step_count}</span>
-        </div>
+          <ProgressCircle
+            progressID={progressID}
+            progressStr={progressStr}
+            progressNum={progressNum}/>
       </div>
     );
   }

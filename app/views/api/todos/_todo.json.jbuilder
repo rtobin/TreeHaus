@@ -1,5 +1,7 @@
 json.(todo, :id, :title, :body, :author_id, :project_id, :done, :created_at, :updated_at)
 
+json.num_comments todo.comments.count
+
 json.steps do
   steps = todo.steps
   unless steps.empty?
