@@ -13,11 +13,11 @@ var CommentList = React.createClass({
   },
 
   componentDidMount: function() {
-    CommentStore.addChangedHandler(this._commentsChanged);
+    CommentStore.addChangeListener(this._commentsChanged);
   },
 
   componentWillUnMount: function() {
-    CommentStore.removeChangedHandler(this._commentsChanged);
+    CommentStore.removeChangeListener(this._commentsChanged);
   },
 
   render: function() {
@@ -26,15 +26,16 @@ var CommentList = React.createClass({
       <div className="comments-panel">
         <div className="comment-list">
           {
-            comments.map(function(comment) {
+            Object.keys(comments).map(function(commentID) {
+              var comment = comments[commentID];
               return(
-                <CommentListItem key={comment.id} comment={comment} />
+                <CommentListItem key={commentID} comment={comment} />
               );
             })
           }
         </div>
-        <CommentForm />
-        
+        <CommentForm commentableParams={this.props.commentableParams}/>
+
       </div>
     );
   }

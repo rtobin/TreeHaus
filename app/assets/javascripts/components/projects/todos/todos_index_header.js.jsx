@@ -1,8 +1,8 @@
 var TodosIndexHeader = React.createClass({
   render: function () {
     var progress = {};
-    if (this.props.project && this.props.project.todos_progress) {
-      progress = this.props.project.todos_progress;
+    if (this.props.project && this.props.project.progress) {
+      progress = this.props.project.progress;
     }
     return (
       <div className="section-header centered">

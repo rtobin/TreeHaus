@@ -1,18 +1,19 @@
-var TodoForm = React.createClass({
+var StepForm = React.createClass({
 
   componentDidMount: function () {
-    ProjectStore.addTodosChangeListener(this._closeExpand);
+    ProjectStore.addStepsChangeListener(this._closeExpand);
   },
 
   componentWillUnMount: function () {
-    ProjectStore.addTodosChangeListener(this._closeExpand);
+    ProjectStore.addStepsChangeListener(this._closeExpand);
   },
 
   getInitialState: function () {
     return {
       expanded: false,
       title: "",
-      body: ""
+      body: "",
+      dueDate: ""
     };
   },
 
@@ -34,14 +35,21 @@ var TodoForm = React.createClass({
 
   _handleSubmit: function (e) {
     e.preventDefault();
-    var todoParams = {
-      title: this.state.title,
-      body: this.state.body,
-      done: false,
-      author_id: this.props.params.userID,
+    var stepParams = {
+      step: {
+        title: this.state.title,
+        body: this.state.body,
+        done: false,
+        due_date: this.state.dueDate,
+        author_id: this.props.params.userID,
+        todo_id: this.props.todo.id
+      },
+
+      todo_id: this.props.todo.id,
       project_id: this.props.params.projectID
+
     };
-    TodoUtil.createTodo(todoParams);
+    StepUtil.createStep(stepParams);
   },
 
   _expandedContent: function () {
@@ -50,38 +58,45 @@ var TodoForm = React.createClass({
       var expanded = "-expanded"
     }
     return (
-      <section className={"centered new-todo" + expanded}>
+      <section className={"centered new-step" + expanded}>
         <Errors />
-        <form className="todo-form" onSubmit={this._handleSubmit}>
-          <fieldset className="todo-form-fieldset">
-            <div className="todo-input">
+        <form className="step-form" onSubmit={this._handleSubmit}>
+          <fieldset className="step-form-fieldset">
+            <div className="step-input">
               <label>
-                Todo Title
+                Step Title
                 <input className="form-input"
                   data-attr="title"
-                  placeholder="Name this todo."
+                  placeholder="Name this step."
                   value={this.state.title}
                   onChange={this._onFormChange} />
               </label>
             </div>
 
-            <div className="todo-input">
+            <div className="step-input">
               <label>
-                Todo Body
-                <textarea className="todo-form-textarea"
+                Step Body
+                <textarea className="step-form-textarea"
                   data-attr="body"
-                  placeholder="Add some extra details about this todo."
+                  placeholder="Add some notes for this step."
                   value={this.state.body}
                   onChange={this._onFormChange}/>
               </label>
             </div>
 
-            <div className="todo-submit">
+            <div className="step-input">
+              <input type="date" name="due-date"
+                data-attr="dueDate"
+                onChange={this._onFormChange}
+                value={this.state.dueDate}/>
+            </div>
+
+            <div className="step-submit">
               <input
                 type="submit"
                 className="submit-btn btn-default"
-                value="Add Todo"/>
-              <span className="todo-button-alternative">or
+                value="Add Step"/>
+              <span className="step-button-alternative">or
                 <a onClick={this._toggleExpand}>Cancel</a>
               </span>
             </div>
@@ -95,7 +110,7 @@ var TodoForm = React.createClass({
     return (
       <div>
         <button className="action-button"
-          onClick={this._toggleExpand}>Make a new Todo</button>
+          onClick={this._toggleExpand}>Make a new Step</button>
         {this._expandedContent()}
       </div>
     );

@@ -1,7 +1,9 @@
 var TodosPage = React.createClass({
   getInitialState: function () {
     return {
-      todos: ProjectStore.currentProject().todos || {},
+      project: this.props.project,
+      currentUser: this.props.currentUser,
+      todos: this.props.project.todos || {},
       location: this.props.location
     }
   },
@@ -15,7 +17,10 @@ var TodosPage = React.createClass({
   },
 
   _updateTodos: function () {
-    this.setState({todos: ProjectStore.currentProject().todos || {}})
+    this.setState({
+      project: ProjectStore.currentProject(),
+      todos: ProjectStore.currentProject().todos || {}
+    })
   },
 
   render: function () {

@@ -17,9 +17,9 @@ $(function () {
             <Route path="update" component={UpdateProjectForm}/>
             <Route path="todos" component={TodosPage}>
               <IndexRoute component={TodosIndex} />
-              <Route path=":id" component={TodoShow} />
+              <Route path=":todoID" component={TodoShow} />
             </Route>
-            <Route path="steps/:id" component={StepShow} />
+            <Route path="steps/:stepID" component={StepShow} />
           </Route>
         </Route>
       </Route>

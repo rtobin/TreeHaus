@@ -4,7 +4,6 @@
       var userParams = {
         email: "<%= current_user.email %>"
       }
-      debugger
       if (!UserStore.isSignedIn()){
         SessionActions.signinUser(userParams);
       } else if (UserStore.current_user().email != userParams.email) {

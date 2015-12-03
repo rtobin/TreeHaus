@@ -13,7 +13,7 @@ class Api::CommentsController < ApplicationController
         name: "#{comment_hash[:who]} commented on a #{comment_hash[:on_what]}",
         user_id: @comment.author_id
       )
-      render json: 'api/comments/show'
+      render 'api/comments/show'
     else
       render json: @comment.errors.full_messages, status: 422
     end
@@ -45,7 +45,7 @@ class Api::CommentsController < ApplicationController
         name: "#{comment_hash[:who]} changed a commented on a #{comment_hash[:on_what]}",
         user_id: @comment.author_id
       )
-      render json: 'api/comments/show'
+      render 'api/comments/show'
     else
       render json: @comment.errors.full_messages
     end
@@ -63,7 +63,7 @@ class Api::CommentsController < ApplicationController
 
   def commentable_stuff
     klass_str = comment_params[:commentable_type]
-    klass = klass_type.constantize
+    klass = klass_str.constantize
     commentable = klass.find(comment_params[:commentable_id])
     author = User.find(comment_params[:author_id])
     author_name = author.name || author.email
@@ -79,7 +79,7 @@ class Api::CommentsController < ApplicationController
     end
 
     comment_hash = {}
-    comment_hash[:on_what] = "#{klass.downcase} (#{commentable_name})"
+    comment_hash[:on_what] = "#{klass_str.downcase} (#{commentable_name})"
     comment_hash[:who] = author_name
     comment_hash
 

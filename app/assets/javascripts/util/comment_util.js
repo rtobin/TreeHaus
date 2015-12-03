@@ -3,11 +3,11 @@ CommentUtil = {
     $.ajax({
       url: "api/comments",
       data: {
-        commentable_id: commentableParams.id,
-        commentable_type: commentableParams.type
+        commentable_id: commentableParams.commentable_id,
+        commentable_type: commentableParams.commentable_type
       },
       success: function(comments) {
-        CommentActions.receiveAll(comments);
+        CommentActions.commentsReceived(comments);
       }
     });
   },
@@ -16,7 +16,7 @@ CommentUtil = {
     $.post('api/comments',
       {comment: commentParams.comment},
       function(comment) {
-        CommentActions.commentCreated(commentParams.projectID, comment);
+        CommentActions.commentCreated(comment);
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
@@ -34,7 +34,7 @@ CommentUtil = {
         comment: commentParams
       },
       success: function (comment) {
-        CommentActions.commentUpdated(commentParams.projectID, comment);
+        CommentActions.commentUpdated(comment);
       }
     }).fail(function () {
         var args = [].slice.call(arguments);
@@ -49,7 +49,7 @@ CommentUtil = {
       url: 'api/comments/' + commentParams.id,
       data: {id: commentParams.id},
       success: function () {
-        CommentActions.commentDestroyed(commentParams.projectID, commentParams.id);
+        CommentActions.commentDestroyed(commentParams.id);
       }
     });
   }

@@ -4,9 +4,11 @@ var Navbar = React.createClass({
       <header className="header-main">
         <nav className="navbar">
           <LogoAdmin extra="admin-stuff"/>
-          <NavbarList items={this.state} />
-          <ProfileManager location={this.props.location}
-                          extra="profile-stuff"/>
+          <NavbarList location={this.props.location}
+            currentUser={this.props.currentUser}
+            projects={this.props.projects}
+            params={this.props.params} />
+          <ProfileManager extra="profile-stuff"/>
         </nav>
       </header>
     );

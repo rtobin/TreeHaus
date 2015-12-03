@@ -24,13 +24,15 @@ var App = React.createClass({
     this._ensureSignedIn();
   },
 
-  componentDidMount: function () {
+  componentWillMount: function () {
     var stores = [UserStore, ProjectStore];
     stores.forEach(function(store) {
       store.addChangeListener(this._onChange);
     }, this);
-
     SessionUtil.fetchCurrentUser();
+  },
+
+  componentDidMount: function () {
   },
 
   componentWillUnmount: function () {

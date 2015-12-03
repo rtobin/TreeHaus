@@ -1,9 +1,8 @@
 (function (root) {
-  var _commentss = {};
-  var CHANGE_EVENT = "change";
+  var _comments = {};
 
-  var addComments = function (comments) {
-    $.extend(_comments, comments);
+  var setComments = function (comments) {
+    _comments = $.extend({}, comments);
   };
 
   var addComment = function (comment) {
@@ -27,12 +26,11 @@
     dispatcherID: AppDispatcher.register(function(payload){
       switch(payload.actionType){
         case CommentConstants.COMMENTS_RECEIVED:
-          addComments(payload.comments);
+          setComments(payload.comments);
           CommentStore.emitChange();
           break;
         case CommentConstants.COMMENT_CREATED:
           addComment(payload.comment);
-          CommentStore.setCurrentComment(payload.comment)
           CommentStore.emitChange();
           break;
         case CommentConstants.COMMENT_UPDATED:

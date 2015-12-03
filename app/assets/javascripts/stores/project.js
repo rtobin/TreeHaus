@@ -63,6 +63,26 @@
       return _projects[id];
     },
 
+    getTodoStep: function (stepID, todoID) {
+      var step = _currentProject.todos[todoID].steps[stepID];
+      return $.extend({}, step);
+    },
+
+    findStep: function (stepIDSearch) {
+      // UGLY!!!!
+      var step;
+      var todos = _currentProject.todos || {};
+      Object.keys(todos).forEach( function (todoID) {
+        var steps = todos[todoID].steps || {};
+        Object.keys(steps).forEach( function (stepID) {
+          if (stepIDSearch == stepID) {
+            step = steps[stepID];
+          }
+        });
+      });
+      return step;
+    },
+
     addCurrentProjectChangeListener: function (callback) {
       this.on(CURRENT_PROJECT_CHANGE_EVENT, callback);
     },
@@ -77,6 +97,14 @@
 
     removeTodosChangeListener: function (callback) {
       this.removeListener(TODOS_CHANGE_EVENT, callback);
+    },
+
+    addStepsChangeListener: function (callback) {
+      this.on(STEPS_CHANGE_EVENT, callback);
+    },
+
+    removeStepsChangeListener: function (callback) {
+      this.removeListener(STEPS_CHANGE_EVENT, callback);
     },
 
     // projects received when user is fetched

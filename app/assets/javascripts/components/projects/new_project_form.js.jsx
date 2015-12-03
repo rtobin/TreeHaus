@@ -5,7 +5,7 @@ var NewProjectForm = React.createClass ({
     return {
       title: "",
       description: "",
-      author_id: parseInt(UserStore.currentUser().id),
+      author_id: parseInt(this.props.currentUser.id),
       archived: false
     };
   },
@@ -25,17 +25,17 @@ var NewProjectForm = React.createClass ({
 
   render: function () {
     return (
-      <form className="project-form" onSubmit={this.handleSubmit}>
+      <form className="project-form" onSubmit={this._handleSubmit}>
         <Errors />
         <h3 className="nav-menu-heading">
           <span>New Project</span>
         </h3>
         <input value={this.state.title}
-          onChange={this.onTitleChange}
+          onChange={this._onTitleChange}
           placeholder="Name this project..." />
 
         <textarea value={this.state.description}
-           onChange={this.onDescriptionChange}
+           onChange={this._onDescriptionChange}
            placeholder="Write a description of the project..." />
         <nav className="post-form ">
           <button type="submit">Create Project</button>
@@ -44,16 +44,15 @@ var NewProjectForm = React.createClass ({
     );
   },
 
-  onDescriptionChange: function (e) {
+  _onDescriptionChange: function (e) {
     this.setState({description: e.target.value});
   },
 
-  onTitleChange: function (e) {
+  _onTitleChange: function (e) {
     this.setState({title: e.target.value});
   },
 
-  handleSubmit: function (e) {
-    debugger
+  _handleSubmit: function (e) {
     e.preventDefault();
     ProjectUtil.createProject(this.state);
   }

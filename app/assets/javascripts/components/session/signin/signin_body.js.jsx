@@ -46,7 +46,7 @@ SigninBody = React.createClass({
             we’ll get you right into Treehaus.
           </p>
         </header>
-        <SigninForm />
+        <SigninForm pathname={this.props.pathname}/>
         {this._staySignedIn()}
         <footer className="centered">
           <h4 className="break">

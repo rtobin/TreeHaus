@@ -6,7 +6,7 @@ var CommentForm = React.createClass({
     };
   },
 
-  _onCommentChange: function () {
+  _onCommentChange: function (e) {
     var target = e.target;
     var attr = target.dataset.attr;
     this.setState({content: target.value});
@@ -23,8 +23,9 @@ var CommentForm = React.createClass({
         commentable_id: this.props.commentableParams.commentable_id
       }
     };
+
     CommentUtil.createComment(commentParams);
-    debugger
+    this.setState({content: ""});
   },
 
   render: function () {
@@ -36,10 +37,10 @@ var CommentForm = React.createClass({
             <div className="comment-input">
               <label>
                 <textarea className="todo-form-textarea"
-                  data-attr="body"
-                  placeholder="Add some extra details about this todo."
-                  value={this.state.body}
-                  onChange={this._onFormChange}/>
+                  data-attr="content"
+                  placeholder="Add a comment..."
+                  value={this.state.content}
+                  onChange={this._onCommentChange}/>
               </label>
             </div>
 
@@ -52,16 +53,6 @@ var CommentForm = React.createClass({
           </fieldset>
         </form>
       </section>
-    );
-  },
-
-  render: function () {
-    return (
-      <div>
-        <button className="action-button"
-          onClick={this._toggleExpand}>Make a new Todo</button>
-        {this._expandedContent()}
-      </div>
     );
   }
 })

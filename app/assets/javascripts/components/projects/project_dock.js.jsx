@@ -1,24 +1,9 @@
 var ProjectDock = React.createClass({
   getInitialState: function () {
     return {
-      projectPath: this._getProjectURL(),
-      title: ProjectStore.currentProject().title,
       sidebarLocked: false
     };
 
-  },
-
-  _getProjectURL: function () {
-    var userID = UserStore.currentUser().id;
-    var projectID = ProjectStore.currentProject().id;
-    return userID + "/projects/" + projectID;
-  },
-
-  _updateStuff: function () {
-    this.setState({
-      projectPath: this._getProjectURL(),
-      title: ProjectStore.currentProject().title
-    });
   },
 
   _handleCheckbox: function (e) {
@@ -26,22 +11,7 @@ var ProjectDock = React.createClass({
       this.setState({sidebarLocked: true});
     } else {
       this.setState({sidebarLocked: false});
-
     }
-  },
-
-  componentDidMount: function () {
-    ProjectStore.addCurrentProjectChangeListener(this._updateStuff);
-  },
-
-  componentWillUnMount: function () {
-    ProjectStore.removeCurrentProjectChangeListener(this._updateStuff);
-  },
-
-  componentWillReceiveProps: function () {
-    this.setState({
-
-    })
   },
 
   render: function () {
@@ -57,20 +27,25 @@ var ProjectDock = React.createClass({
     return (
       <div className={"project-dock" + this.props.makeSidebar + isLocked}>
         <div className="sidebar-lock-checkbox" style={hideCheckbox}>
-          <label for="sidebar-lock"><span>lock sidebar</span></label>
-          <input type="checkbox" id="sidebar-lock" onChange={this._handleCheckbox}/>
+          <label>
+            <span>lock sidebar</span>
+            <input type="checkbox" id="sidebar-lock"
+              onChange={this._handleCheckbox}/>
+          </label>
         </div>
         <ul className={"group dock-cards" + this.props.makeSidebar}>
-          <li><ChatsCard projectpath={this.state.projectPath}/></li>
-          <li><MessagesCard projectpath={this.state.projectPath}/></li>
-          <li><ToDosCard projectpath={this.state.projectPath}/></li>
-          <li><SchedulesCard projectpath={this.state.projectPath}/></li>
-          <li><CheckInsCard projectpath={this.state.projectPath}/></li>
-          <li><DocsCard projectpath={this.state.projectPath}/></li>
+          <li><ChatsCard params={this.props.params}/></li>
+          <li><MessagesCard params={this.props.params}/></li>
+          <li>
+            <ToDosCard
+              params={this.props.params}
+              project={this.props.project}/></li>
+          <li><SchedulesCard params={this.props.params}/></li>
+          <li><CheckInsCard params={this.props.params}/></li>
+          <li><DocsCard params={this.props.params}/></li>
         </ul>
         <div className="sidebar-arrow">⟫</div>
-        {this.props.children}
-    </div>
+      </div>
     );
   }
 });

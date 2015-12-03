@@ -1,6 +1,12 @@
 var StepShow = React.createClass({
+  getInitialState: function () {
+    var stepID = this.props.params.stepID;
+    var step = ProjectStore.findStep(stepID) || {} ;
+    return { step: step };
+  },
+
   render: function () {
-    var step = this.props.step;
+    var step = this.state.step;
     var commentableParams = {
       commentable_type: "Step",
       commentable_id: step.id
@@ -11,18 +17,18 @@ var StepShow = React.createClass({
           <StepHeader step={step} />
 
           <section className="step-details" >
-            <Label>
+            <label>
               <strong>Due at:</strong>
               <span>{step.due_date}</span>
-            </Label>
-            <Label>
+            </label>
+            <label>
               <strong>Assigned to:</strong>
               <span>{step.assignees}</span>
-            </Label>
-            <Label>
+            </label>
+            <label>
               <strong>Notes:</strong>
               <p>{step.body}</p>
-            </Label>
+            </label>
 
           </section>
         </article>

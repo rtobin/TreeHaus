@@ -2,27 +2,26 @@ var ProjectsIndex = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
-    var user = UserStore.currentUser()  || {};
     return {
-      user:  user,
-      projects: user.projects || {}
+      currentUser:  this.props.currentUser,
+      projects: this.props.projects
     };
   },
 
-  componentDidMount: function () {
-    UserStore.addChangeListener(this._update)
-  },
-
-  componentWillUnMount: function () {
-    UserStore.removeChangeListener(this._update)
-  },
-
-  _update: function () {
-    this.setState({
-      projects: ProjectStore.all(),
-      user: UserStore.currentUser()
-    })
-  },
+  // componentDidMount: function () {
+  //   UserStore.addChangeListener(this._update)
+  // },
+  //
+  // componentWillUnMount: function () {
+  //   UserStore.removeChangeListener(this._update)
+  // },
+  //
+  // _update: function () {
+  //   this.setState({
+  //     projects: ProjectStore.all(),
+  //     user: UserStore.currentUser()
+  //   })
+  // },
 
   projectLinksList: function (project) {
     var Link = ReactRouter.Link;
@@ -31,11 +30,11 @@ var ProjectsIndex = React.createClass({
     return (
       Object.keys(projects).map(function (projectID) {
         var project = projects[projectID];
+        var url = that.state.currentUser.id + "/projects/" + projectID;
         return (
           <li key={projectID}>
-            <Link to={ that.state.user.id + "/projects/" + projectID}
-              className="project-button project-dir"
-              project={project}>
+            <Link to={url}
+              className="project-button project-dir">
               {project.title}
             </Link>
           </li>

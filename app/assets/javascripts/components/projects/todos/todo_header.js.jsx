@@ -1,7 +1,7 @@
 var TodoHeader = React.createClass({
   render: function () {
-    var todo = this.props.todo;
-    var progress = todo.progress;
+    var todo = this.props.todo || {};
+    var progress = todo.progress || {};
     return (
       <header className="todo-header" >
         {todo.title}

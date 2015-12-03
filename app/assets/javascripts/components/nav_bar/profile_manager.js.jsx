@@ -44,7 +44,6 @@ var ProfileManager = React.createClass({
 
   _goToModal: function (e) {
     e.preventDefault();
-    debugger
     this.setState({expanded: false});
   },
 
