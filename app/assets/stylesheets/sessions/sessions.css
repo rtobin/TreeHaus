@@ -28,7 +28,7 @@ input[type="submit"] {
   width: auto;
   font: inherit;
   vertical-align: baseline;
-  background: transparent;
+  /*background: transparent;*/
   color: inherit;
 }
 

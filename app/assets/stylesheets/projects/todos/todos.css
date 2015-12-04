@@ -9,3 +9,11 @@
   padding-right: 5px;
   padding-left: 5px;
 }
+
+.new-step {
+  display: none;
+}
+
+.new-step-expanded {
+  display: block;
+}

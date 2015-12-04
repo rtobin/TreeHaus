@@ -29,7 +29,7 @@ var StepsListItem = React.createClass({
       projectID: this.props.params.projectID,
       todoID: this.props.params.stepID
     }
-    TodoUtil.updateStep(step);
+    TodoUtil.updateStep(stepParams);
   },
 
   render: function () {
@@ -50,7 +50,7 @@ var StepsListItem = React.createClass({
               {step.title}
             </Link>
             <CommentsCountBubble numComments={step.num_comments} />
-            
+
           </span>
         </div>
       </div>

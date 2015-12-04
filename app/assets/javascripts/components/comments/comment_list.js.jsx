@@ -35,7 +35,6 @@ var CommentList = React.createClass({
           }
         </div>
         <CommentForm commentableParams={this.props.commentableParams}/>
-
       </div>
     );
   }

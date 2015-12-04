@@ -13,7 +13,8 @@ var StepForm = React.createClass({
       expanded: false,
       title: "",
       body: "",
-      dueDate: ""
+      startDate: null,
+      dueDate: null
     };
   },
 
@@ -64,10 +65,10 @@ var StepForm = React.createClass({
           <fieldset className="step-form-fieldset">
             <div className="step-input">
               <label>
-                Step Title
+
                 <input className="form-input"
                   data-attr="title"
-                  placeholder="Name this step."
+                  placeholder="Name this task."
                   value={this.state.title}
                   onChange={this._onFormChange} />
               </label>
@@ -75,27 +76,31 @@ var StepForm = React.createClass({
 
             <div className="step-input">
               <label>
-                Step Body
+
                 <textarea className="step-form-textarea"
                   data-attr="body"
-                  placeholder="Add some notes for this step."
+                  placeholder="Add some notes for this task."
                   value={this.state.body}
                   onChange={this._onFormChange}/>
               </label>
             </div>
 
             <div className="step-input">
-              <input type="date" name="due-date"
-                data-attr="dueDate"
-                onChange={this._onFormChange}
-                value={this.state.dueDate}/>
+              <label>
+                <input type="radio"
+                <input type="date" name="due-date"
+                  data-attr="dueDate"
+                  onChange={this._onFormChange}
+                  value={this.state.dueDate}/>
+              </label>
+
             </div>
 
             <div className="step-submit">
               <input
                 type="submit"
-                className="submit-btn btn-default"
-                value="Add Step"/>
+                className="action-button"
+                value="Add task"/>
               <span className="step-button-alternative">or
                 <a onClick={this._toggleExpand}>Cancel</a>
               </span>
@@ -110,7 +115,7 @@ var StepForm = React.createClass({
     return (
       <div>
         <button className="action-button"
-          onClick={this._toggleExpand}>Make a new Step</button>
+          onClick={this._toggleExpand}>Add task</button>
         {this._expandedContent()}
       </div>
     );

@@ -22,21 +22,22 @@
   position: relative;
   padding: 10px 20px;
   color: #fff;
-  background: #3cb371;
-  border-color: #3CB371;
+  background: #84CEF2;
+  border-color: #043E5A;
   font-weight: 700;
-  border-radius: 5px;
-  box-shadow: 0 3px 0 0 #070;
+  border-radius: 20px;
+  box-shadow: 0 2px 0 0 #318EC5;
+  border: 1px solid #4694C3;
 }
 
 .action-button:hover {
-  background: #070;
+  background: #318EC5;
   cursor: pointer;
 }
 
 .action-button:active {
   top: 3px;
-  background: #070;
+  background: #318EC5;
   box-shadow: none;
 }
 

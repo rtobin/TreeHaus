@@ -56,7 +56,7 @@ var TodoForm = React.createClass({
           <fieldset className="todo-form-fieldset">
             <div className="todo-input">
               <label>
-                Todo Title
+                Goal name
                 <input className="form-input"
                   data-attr="title"
                   placeholder="Name this todo."
@@ -67,7 +67,7 @@ var TodoForm = React.createClass({
 
             <div className="todo-input">
               <label>
-                Todo Body
+                Goal description
                 <textarea className="todo-form-textarea"
                   data-attr="body"
                   placeholder="Add some extra details about this todo."
@@ -79,8 +79,8 @@ var TodoForm = React.createClass({
             <div className="todo-submit">
               <input
                 type="submit"
-                className="submit-btn btn-default"
-                value="Add Todo"/>
+                className="action-button"
+                value="Add Goal"/>
               <span className="todo-button-alternative">or
                 <a onClick={this._toggleExpand}>Cancel</a>
               </span>
@@ -95,7 +95,7 @@ var TodoForm = React.createClass({
     return (
       <div>
         <button className="action-button"
-          onClick={this._toggleExpand}>Make a new Todo</button>
+          onClick={this._toggleExpand}>Make a new Goal</button>
         {this._expandedContent()}
       </div>
     );

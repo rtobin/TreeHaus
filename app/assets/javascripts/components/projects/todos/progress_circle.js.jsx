@@ -39,16 +39,15 @@ var ProgressCircle = React.createClass({
     var startColor = redsToGreens[0];
     var endColor = redsToGreens[endIdx];
     var that = this;
-    debugger
 
     var element = document.getElementById(that.props.progressID);
     var circle = new ProgressBar.Circle(element, {
         color: endColor,
         trailColor: '#aaa',
-        trailWidth: 1,
+        trailWidth: 15,
         duration: 5000,
         easing: 'bounce',
-        strokeWidth: 5,
+        strokeWidth: 15,
         text: {
           value: that.props.progressStr
         },
@@ -60,8 +59,8 @@ var ProgressCircle = React.createClass({
     });
 
     circle.animate(this.props.progressNum, {
-        from: {color: startColor, width: 2},
-        to: {color: endColor, width: 5}
+        from: {color: startColor, width: 15},
+        to: {color: endColor, width: 15}
     });
   },
 

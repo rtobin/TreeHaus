@@ -25,7 +25,7 @@ var TodosIndex = React.createClass({
     return (
       <div className="panel">
         <article className="todoindex recordable">
-          <TodosIndexHeader project={this.props.project} location={this.props.location}/>
+          <TodosIndexHeader todos={this.state.todos} />
           <TodoForm params={this.props.params}/>
           <section className="todo-list panel-content">
             {

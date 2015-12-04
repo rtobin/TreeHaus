@@ -1,0 +1,90 @@
+.step-form {
+  margin: 0 0 20px 0;
+}
+
+.new-step {
+  display: none;
+}
+
+.new-step-expanded {
+  display: block;
+}
+
+.step-form-fieldset {
+  margin: auto;
+  margin-top: 10px;
+  padding: 19px;
+  width: 500px;
+  text-align: left;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.step-input {
+  margin: 0 0 20px 0;
+}
+
+.step-input > label {
+  display: block;
+  font-weight: 700;
+  padding: 0 0 5px 0;
+}
+
+.step-input input,
+.step-input textarea {
+  display: block;
+  /* background: #fff; */
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  width: calc(100% - 22px);
+   border-radius: 2px; 
+}
+
+.step-input input:focus,
+.step-input textarea:focus {
+  border-color: #0c0;
+}
+
+.step-input textarea {
+  height: 120px;
+}
+
+.step-submit {
+  margin: 20px 0 0 0;
+  padding: 0 0 3px 0;
+}
+
+.step-submit > .submit-btn {
+  position: relative;
+  padding: 10px 20px;
+  color: #fff;
+  background: #0c0;
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 0 #070;
+}
+
+.step-submit > .submit-btn:hover {
+  background: #0b0;
+}
+
+.step-submit > .submit-btn:active {
+  top: 3px;
+  background: #0a0;
+  box-shadow: none;
+}
+
+.step-button-alternative {
+  padding: 0 0 0 5px;
+}
+
+.step-button-alternative a {
+  padding: 0 0 0 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.step-button-alternative a:hover {
+  color: #f00;
+}
