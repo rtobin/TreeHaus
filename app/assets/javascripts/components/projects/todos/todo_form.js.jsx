@@ -56,10 +56,9 @@ var TodoForm = React.createClass({
           <fieldset className="todo-form-fieldset">
             <div className="todo-input">
               <label>
-                Goal name
                 <input className="form-input"
                   data-attr="title"
-                  placeholder="Name this todo."
+                  placeholder="Give this goal a name..."
                   value={this.state.title}
                   onChange={this._onFormChange} />
               </label>
@@ -67,10 +66,9 @@ var TodoForm = React.createClass({
 
             <div className="todo-input">
               <label>
-                Goal description
                 <textarea className="todo-form-textarea"
                   data-attr="body"
-                  placeholder="Add some extra details about this todo."
+                  placeholder="Add extra details about this goal..."
                   value={this.state.body}
                   onChange={this._onFormChange}/>
               </label>
@@ -80,6 +78,7 @@ var TodoForm = React.createClass({
               <input
                 type="submit"
                 className="action-button"
+                id="todo-submit-button"
                 value="Add Goal"/>
               <span className="todo-button-alternative">or
                 <a onClick={this._toggleExpand}>Cancel</a>

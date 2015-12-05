@@ -38,8 +38,8 @@ var StepsListItem = React.createClass({
     var stepURL = this.props.params.userID + "/projects/";
     stepURL += this.props.params.projectID + "/steps/" + step.id;
     return (
-      <div className="step-list-item">
-        <span className="todo-drag-handle">=</span>
+      <div className="step-list-item indent">
+        <div className="todo-drag-handle"></div>
         <div className="step-checkbox">
           <input type="checkbox" id="step-done"
             value="step-done"

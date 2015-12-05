@@ -34,11 +34,11 @@
 .todo-input input,
 .todo-input textarea {
   display: block;
-  background: #fff;
-  border: 1px solid #ccc;
+  /*background: #fff;*/
+  border-bottom: 1px solid #ccc;
   padding: 10px;
   width: calc(100% - 22px);
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 .todo-input input:focus,
@@ -53,6 +53,11 @@
 .todo-submit {
   margin: 20px 0 0 0;
   padding: 0 0 3px 0;
+  font-size: 12px;
+}
+
+.todo-submit > input {
+  padding: 5px 10px;
 }
 
 .todo-submit > .submit-btn {
@@ -87,4 +92,8 @@
 
 .todo-button-alternative a:hover {
   color: #f00;
+}
+
+#todo-submit-button {
+  padding: 5px 10px;
 }

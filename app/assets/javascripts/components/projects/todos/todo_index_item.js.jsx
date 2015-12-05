@@ -29,8 +29,9 @@ var TodoIndexItem = React.createClass({
     return (
       <div className="todo-index-item">
         <Link to={todoURL}>
+          <div className="todo-drag-handle" id="todo-drag-handle"></div>
           <TodoHeader todo={this.state.todo} />
-          <p>{this.state.todo.body}</p>
+          <p className="indent">{this.state.todo.body}</p>
         </Link>
         <StepForm params={this.props.params} todo={this.state.todo}/>
         <div className="step-list">

@@ -4,6 +4,7 @@ class Step < ActiveRecord::Base
   after_initialize { self.done = false if self.done.nil? }
 
   belongs_to :todo, dependent: :destroy
+  belongs_to :author, class_name: "User"
   has_many :step_assignments
   has_many :assignees, through: :step_assignments, source: :assignee
   has_one :assigner, through: :step_assignments, source: :assigner

@@ -13,8 +13,8 @@ var StepForm = React.createClass({
       expanded: false,
       title: "",
       body: "",
-      startDate: null,
-      dueDate: null
+      startAt: null,
+      dueAt: null
     };
   },
 
@@ -41,7 +41,8 @@ var StepForm = React.createClass({
         title: this.state.title,
         body: this.state.body,
         done: false,
-        due_date: this.state.dueDate,
+        start_at: this.state.startAt,
+        due_at: this.state.dueAt,
         author_id: this.props.params.userID,
         todo_id: this.props.todo.id
       },
@@ -51,6 +52,27 @@ var StepForm = React.createClass({
 
     };
     TodoUtil.createStep(stepParams);
+  },
+
+  _noDates: function () {
+    this.setState({
+      dueAt: null,
+      startAt: null
+    });
+  },
+
+  _onlyDueDate: function () {
+    this.setState({
+      dueAt: this.state.dueAt || new Date(),
+      startAt: null
+    });
+  },
+
+  _bothDates: function () {
+    this.setState({
+      dueAt: this.state.dueAt || new Date(),
+      startAt: this.state.dueAt || new Date()
+    });
   },
 
   _expandedContent: function () {
@@ -65,7 +87,6 @@ var StepForm = React.createClass({
           <fieldset className="step-form-fieldset">
             <div className="step-input">
               <label>
-
                 <input className="form-input"
                   data-attr="title"
                   placeholder="Name this task."
@@ -76,7 +97,6 @@ var StepForm = React.createClass({
 
             <div className="step-input">
               <label>
-
                 <textarea className="step-form-textarea"
                   data-attr="body"
                   placeholder="Add some notes for this task."
@@ -85,21 +105,50 @@ var StepForm = React.createClass({
               </label>
             </div>
 
-            <div className="step-input">
+            <div className="step-input form-radio-list">
               <label>
-                <input type="radio"
-                <input type="date" name="due-date"
-                  data-attr="dueDate"
-                  onChange={this._onFormChange}
-                  value={this.state.dueDate}/>
+                <input className="step-radio"
+                  type="radio" name="dates"
+                  value="none" checked={!(this.state.startAt || this.state.dueAt)}
+                  onClick={this._noDates} />
+                  No due date
               </label>
-
+              <label>
+                <input className="step-radio"
+                  type="radio" name="dates" value="due"
+                  checked={!this.state.startAt && !!this.state.dueAt}
+                  onClick={this._onlyDueDate}/>
+                  Due on
+                <input className="step-date" type="date" name="due-date"
+                  data-attr="dueAt"
+                  onChange={this._onFormChange}
+                  value={this.state.dueAt}
+                  placeholder="Add a due date…"/>
+              </label>
+              <label>
+                <input className="step-radio"
+                  type="radio" name="dates" value="both"
+                  checked={(!!this.state.startAt && !!this.state.dueAt)}
+                  onClick={this._bothDates}/>
+                Runs from
+                <input className="step-date both-dates" type="date" name="start-date"
+                  data-attr="startAt"
+                  onChange={this._onFormChange}
+                  value={this.state.startAt}
+                  placeholder="Add a start date…"/>
+                  to
+                <input className="step-date both-dates" type="date" name="due-date"
+                  data-attr="dueAt"
+                  onChange={this._onFormChange}
+                  value={this.state.dueAt}
+                  placeholder="Add a due date…"/>
+              </label>
             </div>
-
             <div className="step-submit">
               <input
                 type="submit"
                 className="action-button"
+                id="step-submit-button"
                 value="Add task"/>
               <span className="step-button-alternative">or
                 <a onClick={this._toggleExpand}>Cancel</a>
@@ -114,7 +163,7 @@ var StepForm = React.createClass({
   render: function () {
     return (
       <div>
-        <button className="action-button"
+        <button className="action-button add-task-btn"
           onClick={this._toggleExpand}>Add task</button>
         {this._expandedContent()}
       </div>

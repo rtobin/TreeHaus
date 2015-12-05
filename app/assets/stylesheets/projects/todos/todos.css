@@ -1,6 +1,11 @@
 .todo-index-item {
   margin-top: 15px;
   text-align: left;
+  border-top: 1px solid lightgrey;
+}
+
+.todo-index-item p {
+  text-align: center;
 }
 
 .todo-header > span, .progress {
@@ -16,4 +21,31 @@
 
 .new-step-expanded {
   display: block;
+}
+
+.todo-drag-handle{
+  position: relative;
+  top: 2px;
+  background-image: url("../../dndHandle.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 21px;
+  width: 11px;
+  float: left;
+  /* display: -webkit-box; */
+  margin-top: 0px;
+  margin-right: 5px;
+}
+
+#todo-drag-handle {
+  top: 18px;
+}
+
+.step-list {
+  margin-top: 15px;
+}
+
+.step-checkbox > input {
+  margin-right: 8px;
+  margin-left: 15px;
 }

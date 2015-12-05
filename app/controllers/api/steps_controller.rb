@@ -54,7 +54,8 @@ class Api::StepsController < ApplicationController
       :body,
       :todo_id,
       :author_id,
-      :due_date
+      :due_at,
+      :start_at
     )
   end
 end

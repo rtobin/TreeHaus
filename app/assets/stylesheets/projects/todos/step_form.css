@@ -38,7 +38,7 @@
   border-bottom: 1px solid #ccc;
   padding: 10px;
   width: calc(100% - 22px);
-   border-radius: 2px; 
+  border-radius: 2px;
 }
 
 .step-input input:focus,
@@ -53,6 +53,11 @@
 .step-submit {
   margin: 20px 0 0 0;
   padding: 0 0 3px 0;
+  font-size: 12px;
+}
+
+.step-submit > input {
+  padding: 2px 10px;
 }
 
 .step-submit > .submit-btn {
@@ -87,4 +92,38 @@
 
 .step-button-alternative a:hover {
   color: #f00;
+}
+
+.form-radio-list .step-radio {
+  float: left;
+  width: initial;
+  margin: 6px;
+}
+
+#step-submit-button {
+  padding: 5px 10px;
+}
+
+.add-task-btn {
+  left: 45px;
+  font-size: 12px;
+}
+
+.step-input .step-date {
+  width: 157px;
+  margin: 0px;
+  padding: 0px;
+  margin-left: 54px;
+  display: inline-block;
+  border: none;
+  color: rgba(128, 128, 128, 0.52);
+  font-weight: 500;
+}
+
+.step-input .both-dates {
+  margin-left: 25px;
+}
+
+.step-input .both-dates:last-child {
+  margin-left: 28px;
 }

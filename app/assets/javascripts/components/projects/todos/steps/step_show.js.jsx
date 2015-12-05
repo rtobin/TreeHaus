@@ -5,6 +5,34 @@ var StepShow = React.createClass({
     return { step: step };
   },
 
+  _dueTimes: function () {
+    var due_at = this.state.step.due_at || "no due time";
+    var start_at = this.state.step.start_at;
+    if (typeof start_at !== "undefined") {
+      return (
+        <label>
+          <strong>Starts at:</strong>
+          <div classname="step-detail">
+            <span>{start_at}</span>
+          </div>
+          <strong>Due by:</strong>
+          <div classname="step-detail">
+            <span>{due_at}</span>
+          </div>
+        </label>
+      )
+    } else {
+      return (
+        <label>
+          <strong>Due by:</strong>
+          <div classname="step-detail">
+            <span>{due_at}</span>
+          </div>
+        </label>
+      )
+    }
+  },
+
   render: function () {
     var step = this.state.step;
     var commentableParams = {
@@ -15,12 +43,8 @@ var StepShow = React.createClass({
       <div className="panel">
         <article className="recordable">
           <StepHeader step={step} />
-
           <section className="step-details" >
-            <label>
-              <strong>Due at:</strong>
-              <span>{step.due_date}</span>
-            </label>
+            {this._dueTimes}
             <label>
               <strong>Assigned to:</strong>
               <span>{step.assignees}</span>
