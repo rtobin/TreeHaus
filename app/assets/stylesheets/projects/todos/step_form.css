@@ -47,7 +47,9 @@
 }
 
 .step-input textarea {
-  height: 120px;
+  height: 66px;
+  overflow-wrap: break-word;
+  overflow-y: auto;
 }
 
 .step-submit {
@@ -109,7 +111,7 @@
   font-size: 12px;
 }
 
-.step-input .step-date {
+.step-input .step-datetime {
   width: 157px;
   margin: 0px;
   padding: 0px;

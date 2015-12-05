@@ -7,7 +7,7 @@ TodoActions = {
     });
   },
 
-  todoUpated: function (projectID, todo) {
+  todoUpdated: function (projectID, todo) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.TODO_UPDATED,
       todo: todo,
@@ -32,7 +32,7 @@ TodoActions = {
     });
   },
 
-  stepUpated: function (projectID, todoID, step) {
+  stepUpdated: function (projectID, todoID, step) {
     AppDispatcher.dispatch({
       actionType: TodoConstants.STEP_UPDATED,
       step: step,

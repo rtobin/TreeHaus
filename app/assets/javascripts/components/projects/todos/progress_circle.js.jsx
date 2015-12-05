@@ -35,15 +35,16 @@ var redsToGreens = [
 var ProgressCircle = React.createClass({
 
   componentDidMount: function () {
-    var endIdx = Math.floor(this.props.progressNum * redsToGreens.length);
+    var endIdx = Math.floor(this.props.progressNum * (redsToGreens.length-1));
     var startColor = redsToGreens[0];
     var endColor = redsToGreens[endIdx];
     var that = this;
+    var trailColor = endIdx === 0 ? startColor : '#aaa'
 
     var element = document.getElementById(that.props.progressID);
     var circle = new ProgressBar.Circle(element, {
-        color: endColor,
-        trailColor: '#aaa',
+        color: '#000',
+        trailColor: trailColor,
         trailWidth: 15,
         duration: 5000,
         easing: 'bounce',

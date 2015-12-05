@@ -6,16 +6,16 @@ var StepsListItem = React.createClass({
   },
 
   componentDidMount: function () {
-    ProjectStore.addStepsChangeListener(this._updateStep)
+    ProjectStore.addStepsChangeListener(this._getStep)
   },
 
   componentWillUnmount: function () {
-    ProjectStore.removeStepsChangeListener(this._updateStep)
+    ProjectStore.removeStepsChangeListener(this._getStep)
   },
 
-  _updateStep: function () {
+  _getStep: function () {
     this.setState({
-      step: ProjectStore.getStep(this.props.step.id, this.props.step.todo_id)
+      step: ProjectStore.getTodoStep(this.props.step.id, this.props.step.todo_id)
     })
   },
 
@@ -27,7 +27,7 @@ var StepsListItem = React.createClass({
       id: step.id,
       step: step,
       projectID: this.props.params.projectID,
-      todoID: this.props.params.stepID
+      todoID: step.todo_id
     }
     TodoUtil.updateStep(stepParams);
   },
@@ -36,7 +36,7 @@ var StepsListItem = React.createClass({
     var Link = ReactRouter.Link;
     var step = this.props.step;
     var stepURL = this.props.params.userID + "/projects/";
-    stepURL += this.props.params.projectID + "/steps/" + step.id;
+    stepURL += this.props.params.projectID  + "/steps/" + step.id;
     return (
       <div className="step-list-item indent">
         <div className="todo-drag-handle"></div>

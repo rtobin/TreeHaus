@@ -46,8 +46,12 @@
 }
 
 .section-header > h1 {
-  font-size: larger;
   text-decoration: underline;
+  color: grey;
+  text-transform: uppercase;
+  /* text-rendering: optimizeSpeed; */
+  /* text-indent: 20px; */
+  font-size: xx-large;
 }
 
 .section-header > h1, .progress {

@@ -36,6 +36,7 @@ var StepForm = React.createClass({
 
   _handleSubmit: function (e) {
     e.preventDefault();
+    debugger
     var stepParams = {
       step: {
         title: this.state.title,
@@ -47,8 +48,8 @@ var StepForm = React.createClass({
         todo_id: this.props.todo.id
       },
 
-      todo_id: this.props.todo.id,
-      project_id: this.props.params.projectID
+      todoID: this.props.todo.id,
+      projectID: this.props.params.projectID
 
     };
     TodoUtil.createStep(stepParams);
@@ -82,8 +83,8 @@ var StepForm = React.createClass({
     }
     return (
       <section className={"centered new-step" + expanded}>
-        <Errors />
         <form className="step-form" onSubmit={this._handleSubmit}>
+          <Errors />
           <fieldset className="step-form-fieldset">
             <div className="step-input">
               <label>
@@ -119,7 +120,7 @@ var StepForm = React.createClass({
                   checked={!this.state.startAt && !!this.state.dueAt}
                   onClick={this._onlyDueDate}/>
                   Due on
-                <input className="step-date" type="date" name="due-date"
+                <input className="step-datetime" type="datetime" name="due-datetime"
                   data-attr="dueAt"
                   onChange={this._onFormChange}
                   value={this.state.dueAt}
@@ -131,13 +132,13 @@ var StepForm = React.createClass({
                   checked={(!!this.state.startAt && !!this.state.dueAt)}
                   onClick={this._bothDates}/>
                 Runs from
-                <input className="step-date both-dates" type="date" name="start-date"
+                <input className="step-datetime both-dates" type="datetime" name="start-datetime"
                   data-attr="startAt"
                   onChange={this._onFormChange}
                   value={this.state.startAt}
                   placeholder="Add a start date…"/>
                   to
-                <input className="step-date both-dates" type="date" name="due-date"
+                <input className="step-datetime both-dates" type="datetime" name="due-datetime"
                   data-attr="dueAt"
                   onChange={this._onFormChange}
                   value={this.state.dueAt}

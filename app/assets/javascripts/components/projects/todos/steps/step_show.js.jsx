@@ -1,11 +1,14 @@
 var StepShow = React.createClass({
   getInitialState: function () {
-    var stepID = this.props.params.stepID;
+    // for some reason params is not picking up stepID
+    var stepID = this.props.params.stepID || this.props.location.pathname.split("/")[5];
+
     var step = ProjectStore.findStep(stepID) || {} ;
     return { step: step };
   },
 
   _dueTimes: function () {
+    debugger
     var due_at = this.state.step.due_at || "no due time";
     var start_at = this.state.step.start_at;
     if (typeof start_at !== "undefined") {
@@ -39,12 +42,13 @@ var StepShow = React.createClass({
       commentable_type: "Step",
       commentable_id: step.id
     }
+    debugger
     return (
       <div className="panel">
         <article className="recordable">
           <StepHeader step={step} />
           <section className="step-details" >
-            {this._dueTimes}
+            {this._dueTimes()}
             <label>
               <strong>Assigned to:</strong>
               <span>{step.assignees}</span>

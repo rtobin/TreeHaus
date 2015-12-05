@@ -51,8 +51,8 @@ var TodoForm = React.createClass({
     }
     return (
       <section className={"centered new-todo" + expanded}>
-        <Errors />
         <form className="todo-form" onSubmit={this._handleSubmit}>
+          <Errors />
           <fieldset className="todo-form-fieldset">
             <div className="todo-input">
               <label>
@@ -93,7 +93,7 @@ var TodoForm = React.createClass({
   render: function () {
     return (
       <div>
-        <button className="action-button"
+        <button className="action-button new-goal"
           onClick={this._toggleExpand}>Make a new Goal</button>
         {this._expandedContent()}
       </div>

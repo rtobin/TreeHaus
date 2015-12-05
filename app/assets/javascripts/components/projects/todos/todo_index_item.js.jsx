@@ -3,7 +3,8 @@ var TodoIndexItem = React.createClass({
     var todo = this.props.todo || {};
     return {
       todo: todo,
-      steps: todo.steps || {}
+      steps: todo.steps || {},
+      changed: false
     };
   },
 
@@ -16,9 +17,12 @@ var TodoIndexItem = React.createClass({
   },
 
   _updateSteps: function () {
-    this.setState({
-      steps: ProjectStore.currentProject().todos[this.state.todo.id].steps
-    })
+    var newSteps = ProjectStore.currentProject().todos[this.state.todo.id].steps || {};
+    if (this.state.steps != newSteps) {
+      this.setState({
+        steps: newSteps
+      });
+    }
   },
 
   render: function () {

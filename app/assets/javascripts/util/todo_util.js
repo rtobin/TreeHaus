@@ -45,7 +45,7 @@ TodoUtil = {
     $.post('api/steps',
       {step: stepParams.step},
       function(step) {
-        StepActions.stepCreated(
+        TodoActions.stepCreated(
           stepParams.projectID,
           stepParams.todoID,
           step);
@@ -66,7 +66,8 @@ TodoUtil = {
         step: stepParams.step
       },
       success: function (step) {
-        StepActions.stepUpdated(
+        debugger
+        TodoActions.stepUpdated(
           stepParams.projectID,
           stepParams.todoID,
           step);
@@ -84,7 +85,7 @@ TodoUtil = {
       url: 'api/steps/' + stepParams.id,
       data: {id: stepParams.id},
       success: function () {
-        StepActions.stepDestroyed(
+        TodoActions.stepDestroyed(
           stepParams.projectID,
           stepParams.todoID,
           stepParams.id);

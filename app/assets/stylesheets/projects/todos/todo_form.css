@@ -94,6 +94,11 @@
   color: #f00;
 }
 
+.new-goal {
+  text-align: -webkit-center;
+  text-align: center
+}
+
 #todo-submit-button {
   padding: 5px 10px;
 }

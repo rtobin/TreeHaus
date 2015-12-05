@@ -8,15 +8,15 @@ class Api::TodosController < ApplicationController
   end
 
   def create
-    todo =Todo.new(todo_params)
-    if todo.save
-      todo.records.create(
-        name: "todo created: #{todo.title}",
-        user_id: todo.author_id
+    @todo =Todo.new(todo_params)
+    if @todo.save
+      @todo.records.create(
+        name: "todo created: #{@todo.title}",
+        user_id: @todo.author_id
       )
-      render json: todo
+      render "api/todos/show"
     else
-      render json: todo.errors.full_messages, status: 422
+      render json: @todo.errors.full_messages, status: 422
     end
   end
 
@@ -34,15 +34,15 @@ class Api::TodosController < ApplicationController
   end
 
   def update
-    todo = Todo.find(params[:id])
-    if !todo
+    @todo = Todo.find(params[:id])
+    if !@todo
       render json: { message: 'not found', status: 404 }
-    elsif todo.update(todo_params)
-      todo.records.create(
-        name: "todo updated: #{todo.title}",
-        user_id: todo.author_id
+    elsif @todo.update(todo_params)
+      @todo.records.create(
+        name: "todo updated: #{@todo.title}",
+        user_id: @todo.author_id
       )
-      render json: todo
+      render "api/todos/show"
     else
       render json: todo.errors.full_messages
     end

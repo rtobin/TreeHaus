@@ -29,6 +29,7 @@
   };
 
   var addStep = function (projectID, todoID, step) {
+    debugger
     _projects[projectID].todos[todoID].steps[step.id] = step;
   };
 

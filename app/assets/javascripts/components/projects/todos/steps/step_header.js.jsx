@@ -1,6 +1,6 @@
 var StepHeader = React.createClass ({
   render: function () {
-    var author = this.props.step.author;
+    var author = this.props.step.author_name;
     var created_at = this.props.step.created_at;
     var updated_at = created_at !== this.props.updated_at ? this.props.updated_at : "";
     return (
