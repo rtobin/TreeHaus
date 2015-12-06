@@ -54,8 +54,8 @@ var ProjectsIndex = React.createClass({
           {this.projectLinksList()}
         </ul>
         <Link to={this.state.userID + "/projects/new"}
-          className="project-button new-project">
-          +
+          className="action-button new-project">
+          New Project
         </Link>
       </div>
     );

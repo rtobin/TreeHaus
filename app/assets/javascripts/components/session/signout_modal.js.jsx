@@ -18,7 +18,8 @@ var SignoutModal = React.createClass({
 
 
           <div className="submit">
-            <button onClick={this._signOutUser}>
+            <button className="action-button"
+              onClick={this._signOutUser}>
               Yes, sign out now
             </button>
 

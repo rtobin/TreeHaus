@@ -26,10 +26,10 @@ var NewProjectForm = React.createClass ({
   render: function () {
     return (
       <form className="project-form" onSubmit={this._handleSubmit}>
-        <Errors />
         <h3 className="nav-menu-heading">
           <span>New Project</span>
         </h3>
+        <Errors />
         <input type="text"
           value={this.state.title}
           onChange={this._onTitleChange}

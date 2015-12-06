@@ -26,23 +26,46 @@ var UpdateProjectForm = React.createClass ({
   },
 
   render: function () {
+    var navlinkTitles = ["Projects", this.state.title];
+    var navlinkPaths = [
+      this.props.params.userID + "/projects",
+      this.props.params.userID + "/projects/" + this.props.params.projectID
+    ];
     return (
-      <form className="project-form" onSubmit={this._handleSubmit}>
-        <Errors />
-        <h3 className="nav-menu-heading">
-          <span>Update Project: {this.state.title}</span>
-        </h3>
-        <input value={this.state.title}
-          onChange={this._onTitleChange}
-          placeholder="Name this project..." />
+      <div className="panel">
+        <article className="recordable">
+          <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
+          <header>
+            <h1>
+              Update Project
+            </h1>
+          </header>
+          <section className="update-project">
+            <form className="project-form" onSubmit={this._handleSubmit}>
+              <Errors />
+              <fieldset className="project-form-fieldset">
+                <label>
+                  <span>Title</span>
+                  <input className="project-form-input"
+                    value={this.state.title}
+                    onChange={this._onTitleChange}
+                    placeholder="Name this project..." />
+                </label>
+                <label>
+                  <span>Description</span>
+                  <textarea className="project-form-textarea"
+                    value={this.state.description}
+                     onChange={this._onDescriptionChange}
+                     placeholder="Write a description of the project..." />
+                </label>
+              </fieldset>
 
-        <textarea value={this.state.description}
-           onChange={this._onDescriptionChange}
-           placeholder="Write a description of the project..." />
-        <nav className="post-form ">
-          <button type="submit">Update Project</button>
-        </nav>
-      </form>
+              <button type="submit" className="action-button"
+                id="project-form-submit">Update Project</button>
+            </form>
+          </section>
+        </article>
+      </div>
     );
   },
 
