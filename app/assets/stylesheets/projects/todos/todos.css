@@ -63,3 +63,11 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+#todo-header {
+  margin-top: 0;
+}
+
+#todo-header > h1:hover {
+  text-decoration: underline;
+}

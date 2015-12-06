@@ -11,8 +11,8 @@ var TodoHeader = React.createClass({
     var todo = this.props.todo || {};
     var commentableParams = {type: "Todo", id: todo.id};
     return (
-      <header className="todo-header" >
-        {todo.title}
+      <header className="todo-header" id="todo-header" >
+        <h1>{todo.title}</h1>
         <ProgressCircle
           progressID={progressID}
           progressStr={progressStr}
