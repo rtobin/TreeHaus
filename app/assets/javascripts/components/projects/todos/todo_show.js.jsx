@@ -15,12 +15,18 @@ var TodoShow = React.createClass({
       commentable_type: "Todo",
       commentable_id: todo.id
     };
+    var navlinkTitles = ["Goals"];
+    var navlinkPaths = [
+      this.props.params.userID + "/projects/" + this.props.params.projectID + "/todos"
+    ];
     return (
       <div className="panel">
         <article className="todoindex recordable">
+          <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
           <section className="todo-list panel-content">
             <TodoHeader todo={this.state.todo} />
             <p>{this.state.todo.body}</p>
+            <StepForm params={this.props.params} todo={todo}/>
             <div className="step-list">
               {
                 Object.keys(steps).map(function(stepID) {

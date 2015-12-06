@@ -70,9 +70,11 @@ var StepForm = React.createClass({
   },
 
   _bothDates: function () {
+    var timeNow = new Date();
+
     this.setState({
-      dueAt: this.state.dueAt || new Date(),
-      startAt: this.state.dueAt || new Date()
+      dueAt: this.state.dueAt || timeNow,
+      startAt: this.state.dueAt || timeNow
     });
   },
 
@@ -81,6 +83,8 @@ var StepForm = React.createClass({
     if (this.state.expanded) {
       var expanded = "-expanded"
     }
+    var timeNow = new Date();
+
     return (
       <section className={"centered new-step" + expanded}>
         <form className="step-form" onSubmit={this._handleSubmit}>
@@ -121,29 +125,32 @@ var StepForm = React.createClass({
                   checked={!this.state.startAt && !!this.state.dueAt}
                   onClick={this._onlyDueDate}/>
                   Due on
-                <input className="step-datetime" type="datetime" name="due-datetime"
+                <input className="step-datetime" type="datetime-local" name="due-datetime"
                   data-attr="dueAt"
                   onChange={this._onFormChange}
                   value={this.state.dueAt}
-                  placeholder="Add a due date…"/>
+                  placeholder="Add a due date…"
+                  min={timeNow}/>
               </label>
               <label>
                 <input className="step-radio"
                   type="radio" name="dates" value="both"
                   checked={(!!this.state.startAt && !!this.state.dueAt)}
                   onClick={this._bothDates}/>
-                Runs from
-                <input className="step-datetime both-dates" type="datetime" name="start-datetime"
+                <span>Runs from</span>
+                <input className="step-datetime both-dates" type="datetime-local" name="start-datetime"
                   data-attr="startAt"
                   onChange={this._onFormChange}
                   value={this.state.startAt}
-                  placeholder="Add a start date…"/>
-                  to
-                <input className="step-datetime both-dates" type="datetime" name="due-datetime"
+                  placeholder="Add a start date…"
+                  min={timeNow}/>
+                <span id="runs-to-span">to</span>
+                <input className="step-datetime both-dates" type="datetime-local" name="due-datetime"
                   data-attr="dueAt"
                   onChange={this._onFormChange}
-                  value={this.state.dueAt}
-                  placeholder="Add a due date…"/>
+                  value={this.state.startAt ? this.state.dueAt : null}
+                  placeholder="Add a due date…"
+                  min={this.state.startAt}/>
               </label>
             </div>
             <div className="step-submit">

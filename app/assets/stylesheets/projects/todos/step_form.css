@@ -112,7 +112,7 @@
 }
 
 .step-input .step-datetime {
-  width: 157px;
+  width: 345px;
   margin: 0px;
   padding: 0px;
   margin-left: 54px;
@@ -120,6 +120,7 @@
   border: none;
   color: rgba(128, 128, 128, 0.52);
   font-weight: 500;
+  font-size: 12px;
 }
 
 .step-input .both-dates {
@@ -128,4 +129,8 @@
 
 .step-input .both-dates:last-child {
   margin-left: 28px;
+}
+
+#runs-to-span {
+  margin-left: 95px;
 }

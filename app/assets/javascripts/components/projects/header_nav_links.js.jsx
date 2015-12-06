@@ -16,7 +16,7 @@ var HeaderNavLinks = React.createClass({
     } else {
       return(
         <div className="nav-links">
-          From
+          {"From "}
           <Link to={linkPaths[0]}>{linkTitles[0]}</Link>
         </div>
       );

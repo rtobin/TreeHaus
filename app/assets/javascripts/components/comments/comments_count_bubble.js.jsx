@@ -8,7 +8,6 @@ var CommentsCountBubble = React.createClass({
   },
 
   _updateNumIfNeeded: function () {
-    debugger
     if (CommentStore.verifyCommentable(this.props.commentableParams)) {
       this.setState({numComments: CommentStore.numComments()})
     }

@@ -3,6 +3,7 @@ $(function () {
   var Router = ReactRouter.Router;
   var Route = ReactRouter.Route;
   var IndexRoute = ReactRouter.IndexRoute;
+  EventEmitter.prototype._maxListeners = 100;
 
   var routes = (
       <Route path="/" component={App} >
