@@ -1,20 +1,6 @@
 var ProjectsDirectory = React.createClass({
   mixins: [ClickExpandable],
-  //
-  // componentDidMount: function () {
-  //   UserStore.addChangeListener(this._update);
-  //   ProjectStore.addCurrentProjectChangeListener(this._updateCurrentProject);
-  //
-  // },
-  //
-  // componentWillUnMount: function () {
-  //   UserStore.removeChangeListener(this._update);
-  //   ProjectStore.removeCurrentProjectChangeListener(this._updateCurrentProject);
-  //
-  // },
-  //
-  //
-  //
+
   getInitialState: function () {
     var project = {};
     var projectID = this.props.params.projectID;
@@ -28,18 +14,7 @@ var ProjectsDirectory = React.createClass({
       dropdownExpanded: false
     };
   },
-  //
-  // _update: function () {
-  //   this.setState({
-  //     projects: ProjectStore.all(),
-  //     currentUser: UserStore.currentUser(),
-  //     currentProject: ProjectStore.currentProject()
-  //   })
-  // },
-  //
-  // _updateCurrentProject: function () {
-  //   this.setState({currentProject: ProjectStore.currentProject()})
-  // },
+
 
   _getProject: function (e) {
     this.setState({expanded: false})

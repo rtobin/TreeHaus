@@ -17,7 +17,6 @@ var TodoIndexItem = React.createClass({
   },
 
   _updateSteps: function () {
-    debugger
     var newSteps = ProjectStore.currentProject().todos[this.state.todo.id].steps || {};
     if (this.state.steps != newSteps) {
       this.setState({
@@ -27,7 +26,6 @@ var TodoIndexItem = React.createClass({
   },
 
   render: function () {
-    debugger
     var that = this;
     var Link = ReactRouter.Link;
     var todoURL = this.props.params.userID + "/projects/";

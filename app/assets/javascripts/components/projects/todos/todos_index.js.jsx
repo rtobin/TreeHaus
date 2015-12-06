@@ -35,10 +35,12 @@ var TodosIndex = React.createClass({
             {
               Object.keys(this.state.todos).map(function(todoID) {
                 var todo = that.state.todos[todoID];
-                return(
-                  <TodoIndexItem key={todoID} todo={todo}
-                    params={that.props.params}/>
-                );
+                if (parseInt(todoID) >= 0) {
+                  return(
+                    <TodoIndexItem key={todoID} todo={todo}
+                      params={that.props.params}/>
+                  );
+                }
               })
             }
           </section>
