@@ -11,6 +11,10 @@
   padding-left: 5px;
 }
 
+.new-todo-dropdown > button {
+  text-align: center;
+}
+
 .new-step {
   display: none;
 }

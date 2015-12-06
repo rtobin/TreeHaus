@@ -8,7 +8,6 @@ var StepShow = React.createClass({
   },
 
   _dueTimes: function () {
-    debugger
     var due_at = this.state.step.due_at || "no due time";
     var start_at = this.state.step.start_at;
     if (typeof start_at !== "undefined") {
@@ -42,11 +41,10 @@ var StepShow = React.createClass({
       commentable_type: "Step",
       commentable_id: step.id
     }
-    debugger
     return (
       <div className="panel">
         <article className="recordable">
-          <StepHeader step={step} />
+          <StepHeader step={step} projectID={this.props.params.projectID}/>
           <section className="step-details" >
             {this._dueTimes()}
             <label>

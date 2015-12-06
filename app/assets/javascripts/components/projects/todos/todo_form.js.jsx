@@ -92,7 +92,7 @@ var TodoForm = React.createClass({
 
   render: function () {
     return (
-      <div>
+      <div className="new-todo-dropdown">
         <button className="action-button new-goal"
           onClick={this._toggleExpand}>Make a new Goal</button>
         {this._expandedContent()}
