@@ -8,25 +8,26 @@ var TodoIndexItem = React.createClass({
     };
   },
 
-  // componentDidMount: function () {
-  //   ProjectStore.addStepsChangeListener(this._updateSteps);
-  // },
-  //
-  // componentWillUnMount: function () {
-  //   ProjectStore.removeStepsChangeListener(this._updateSteps);
-  // },
-  //
-  // _updateSteps: function () {
-  //   debugger
-  //   var newSteps = ProjectStore.currentProject().todos[this.state.todo.id].steps || {};
-  //   if (this.state.steps != newSteps) {
-  //     this.setState({
-  //       steps: newSteps
-  //     });
-  //   }
-  // },
+  componentDidMount: function () {
+    ProjectStore.addStepsChangeListener(this._updateSteps);
+  },
+
+  componentWillUnMount: function () {
+    ProjectStore.removeStepsChangeListener(this._updateSteps);
+  },
+
+  _updateSteps: function () {
+    debugger
+    var newSteps = ProjectStore.currentProject().todos[this.state.todo.id].steps || {};
+    if (this.state.steps != newSteps) {
+      this.setState({
+        steps: newSteps
+      });
+    }
+  },
 
   render: function () {
+    debugger
     var that = this;
     var Link = ReactRouter.Link;
     var todoURL = this.props.params.userID + "/projects/";

@@ -2,6 +2,7 @@ var ProjectPage = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
+    debugger
     var projectID = this.props.params.projectID;
     var project = this.props.projects[projectID] || {};
     ProjectStore.setCurrentProject(projectID);

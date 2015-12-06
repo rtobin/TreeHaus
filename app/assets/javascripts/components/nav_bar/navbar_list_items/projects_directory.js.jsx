@@ -41,6 +41,12 @@ var ProjectsDirectory = React.createClass({
   //   this.setState({currentProject: ProjectStore.currentProject()})
   // },
 
+  _getProject: function (e) {
+    this.setState({expanded: false})
+    var projectID = e.currentTarget.dataset["projectid"];
+    ProjectUtil.fetchProject(projectID);
+  },
+
   projectLinksList: function () {
     var Link = ReactRouter.Link;
     var projects = this.state.projects;
@@ -52,7 +58,9 @@ var ProjectsDirectory = React.createClass({
         var url = userID + "/projects/" + projectID;
         return (
           <li key={projectID}>
-            <Link to={url} key={projectID} className="project-button">
+            <Link to={url} key={projectID} className="project-button"
+              onClick={that._getProject}
+              data-projectid={projectID}>
               {project.title}
             </Link>
           </li>

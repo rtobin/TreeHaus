@@ -25,10 +25,16 @@
   };
 
   var addTodo = function (projectID, todo) {
+    if (typeof _projects[projectID].todos === "undefined") {
+      _projects[projectID].todos = {};
+    }
     _projects[projectID].todos[todo.id] = todo;
   };
 
   var addStep = function (projectID, todoID, step) {
+    if (typeof _projects[projectID].todos[todoID].steps === "undefined") {
+      _projects[projectID].todos[todoID].steps = {};
+    }
     _projects[projectID].todos[todoID].steps[step.id] = step;
   };
 
