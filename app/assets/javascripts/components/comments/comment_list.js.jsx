@@ -24,19 +24,29 @@ var CommentList = React.createClass({
 
   render: function() {
     var comments = this.state.comments;
+    var commentsKeys = [];
+    Object.keys(comments).forEach(function (key) {
+      if (parseInt(key) >= 0){
+        commentsKeys.push(comments[key]);
+      }
+    });
+
+    var commentsKeysSorted = commentsKeys.sort(function (comment1, comment2) {
+      return new Date(comment2.created_at) - new Date(comment1.created_at);
+    });
+
     return (
       <div className="comments-panel">
+        <CommentForm commentableParams={this.props.commentableParams}/>
         <div className="comment-list">
           {
-            Object.keys(comments).map(function(commentID) {
-              var comment = comments[commentID];
+            commentsKeysSorted.map(function(comment) {
               return(
-                <CommentListItem key={commentID} comment={comment} />
+                <CommentListItem key={comment.id} comment={comment} />
               );
             })
           }
         </div>
-        <CommentForm commentableParams={this.props.commentableParams}/>
       </div>
     );
   }

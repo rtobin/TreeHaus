@@ -35,13 +35,11 @@ var CommentForm = React.createClass({
         <form className="comment-form" onSubmit={this._handleSubmit}>
           <fieldset className="comment-form-fieldset">
             <div className="comment-input">
-              <label>
-                <textarea className="todo-form-textarea"
-                  data-attr="content"
-                  placeholder="Add a comment..."
-                  value={this.state.content}
-                  onChange={this._onCommentChange}/>
-              </label>
+              <textarea className="todo-form-textarea"
+                data-attr="content"
+                placeholder="Add a comment..."
+                value={this.state.content}
+                onChange={this._onCommentChange}/>
             </div>
 
             <div className="todo-submit">

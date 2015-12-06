@@ -1,8 +1,8 @@
 .comment-list-item {
   text-align: left;
-  border-bottom: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
   font-size: 14px;
-  padding-bottom: 10px;
+  padding-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -20,4 +20,14 @@
 
 .comment-list-item > p {
   padding-left: 10px;
+}
+
+.comment-form > .comment-form-fieldset {
+  padding-bottom: 15px;
+}
+
+.comment-input > .todo-form-textarea {
+  width: 100%;
+  border: 1px solid lightgrey;
+  background: white;
 }
