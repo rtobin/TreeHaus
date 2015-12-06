@@ -10,15 +10,15 @@ var StepShow = React.createClass({
   _dueTimes: function () {
     var due_at = this.state.step.due_at || "no due time";
     var start_at = this.state.step.start_at;
-    if (typeof start_at !== "undefined") {
+    if (start_at) {
       return (
         <label>
           <strong>Starts at:</strong>
-          <div classname="step-detail">
+          <div className="step-detail">
             <span>{start_at}</span>
           </div>
           <strong>Due by:</strong>
-          <div classname="step-detail">
+          <div className="step-detail">
             <span>{due_at}</span>
           </div>
         </label>
@@ -27,7 +27,7 @@ var StepShow = React.createClass({
       return (
         <label>
           <strong>Due by:</strong>
-          <div classname="step-detail">
+          <div className="step-detail">
             <span>{due_at}</span>
           </div>
         </label>
@@ -40,25 +40,35 @@ var StepShow = React.createClass({
     var commentableParams = {
       commentable_type: "Step",
       commentable_id: step.id
-    }
+    };
+    var todos = ProjectStore.currentProject().todos || {};
+    var todo = todos[step.todo_id] || {};
+    var todoTitle = todo.title;
+    var navlinkTitles = ["Goals", todoTitle];
+    var navlinkPaths = [
+      this.props.params.userID + "/projects/" + this.props.params.projectID + "/todos",
+      this.props.params.userID + "/projects/" + this.props.params.projectID + "/todos/" + step.todo_id
+    ];
     return (
       <div className="panel">
         <article className="recordable">
+          <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
+
           <StepHeader step={step} projectID={this.props.params.projectID}/>
           <section className="step-details" >
             {this._dueTimes()}
             <label>
               <strong>Assigned to:</strong>
-              <span>{step.assignees}</span>
+              <span className="step-detail">{step.assignees }</span>
             </label>
             <label>
               <strong>Notes:</strong>
-              <p>{step.body}</p>
+              <p className="step-detail">{step.body}</p>
             </label>
 
           </section>
         </article>
-        <CommentList commentableParams={commentableParams}/>
+        <CommentList commentableParams={commentableParams} projectID={this.props.params.projectID}/>
       </div>
     )
   }

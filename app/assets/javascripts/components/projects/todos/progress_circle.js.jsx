@@ -33,15 +33,44 @@ var redsToGreens = [
 ];
 
 var ProgressCircle = React.createClass({
+  componentWillReceiveProps: function (nextProps) {
+    var endIdx = Math.floor(nextProps.progressNum * (redsToGreens.length-1));
 
-  componentDidMount: function () {
+    this.setState({
+      progressNum: nextProps.progressNum,
+      progressStr: nextProps.progressStr,
+      endColor: redsToGreens[endIdx]
+    });
+    this.makeProgressCircle(this.state.circle);
+  },
+
+  getInitialState: function () {
     var endIdx = Math.floor(this.props.progressNum * (redsToGreens.length-1));
     var startColor = redsToGreens[0];
     var endColor = redsToGreens[endIdx];
-    var that = this;
-    var trailColor = endIdx === 0 ? startColor : '#aaa'
 
-    var element = document.getElementById(that.props.progressID);
+    return {
+      circle: {},
+      startColor: startColor,
+      endColor: endColor,
+      progressNum: this.props.progressNum,
+      progressStr: this.props.progressStr
+    }
+  },
+
+  makeProgressCircle: function (circle) {
+    circle.animate(this.state.progressNum, {
+        from: {color: this.state.startColor, width: 15},
+        to: {color: this.state.endColor, width: 15},
+
+    });
+    circle.setText(this.state.progressStr)
+  },
+
+  componentDidMount: function () {
+    var trailColor = this.state.endIdx === 0 ? this.state.startColor : '#aaa'
+
+    var element = document.getElementById(this.props.progressID);
     var circle = new ProgressBar.Circle(element, {
         color: '#000',
         trailColor: trailColor,
@@ -49,21 +78,17 @@ var ProgressCircle = React.createClass({
         duration: 5000,
         easing: 'bounce',
         strokeWidth: 15,
-        text: {
-          value: that.props.progressStr
-        },
+
 
         // Set default step function for all animate calls
         step: function(state, circle) {
             circle.path.setAttribute('stroke', state.color);
         }
     });
-
-    circle.animate(this.props.progressNum, {
-        from: {color: startColor, width: 15},
-        to: {color: endColor, width: 15}
-    });
+    this.setState({circle: circle})
+    this.makeProgressCircle(circle);
   },
+
 
   render: function () {
     return (

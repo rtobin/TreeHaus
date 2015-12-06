@@ -30,7 +30,8 @@ var NewProjectForm = React.createClass ({
         <h3 className="nav-menu-heading">
           <span>New Project</span>
         </h3>
-        <input value={this.state.title}
+        <input type="text"
+          value={this.state.title}
           onChange={this._onTitleChange}
           placeholder="Name this project..." />
 

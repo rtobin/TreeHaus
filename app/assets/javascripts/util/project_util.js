@@ -1,4 +1,13 @@
 ProjectUtil = {
+  fetchProject: function (projectID) {
+    $.get(
+      'api/projects/' + projectID,
+      function (project) {
+        ProjectActions.projectReceived(project);
+      }
+    );
+  },
+
   // projectParams example: {}
   createProject: function (projectParams) {
     $.post('api/projects',

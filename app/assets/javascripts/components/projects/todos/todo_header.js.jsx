@@ -8,8 +8,8 @@ var TodoHeader = React.createClass({
 
     var progressID = "progress-todo-" + this.props.todo.id;
     var progressStr = progress.done_count + "/" + progress.step_count;
-
     var todo = this.props.todo || {};
+    var commentableParams = {type: "Todo", id: todo.id};
     return (
       <header className="todo-header" >
         {todo.title}
@@ -17,7 +17,9 @@ var TodoHeader = React.createClass({
           progressID={progressID}
           progressStr={progressStr}
           progressNum={progressNum}/>
-        <CommentsCountBubble numComments={todo.num_comments} />
+        <CommentsCountBubble
+          commentableParams={commentableParams}
+          numComments={todo.num_comments} />
       </header>
     );
   }

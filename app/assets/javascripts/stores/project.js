@@ -2,7 +2,7 @@
   var _projects = {};
   var _currentProjectID = null;
   var CHANGE_EVENT = "change";
-  var CURRENT_PROJECT_CHANGE_EVENT = "currentProjectChange";
+  var PROJECT_CHANGE_EVENT = "projectChange";
   var TODOS_CHANGE_EVENT = "todosChange";
   var STEPS_CHANGE_EVENT = "stepsChange";
 
@@ -49,8 +49,12 @@
       return $.extend({}, _projects[_currentProjectID]);
     },
 
-    setCurrentProject: function (project) {
-      _currentProjectID = project.id;
+    currentProjectID: function () {
+      return _currentProjectID;
+    },
+
+    setCurrentProject: function (projectID) {
+      _currentProjectID = projectID;
     },
 
     all: function(){
@@ -81,12 +85,12 @@
       return step;
     },
 
-    addCurrentProjectChangeListener: function (callback) {
-      this.on(CURRENT_PROJECT_CHANGE_EVENT, callback);
+    addProjectChangeListener: function (callback) {
+      this.on(PROJECT_CHANGE_EVENT, callback);
     },
 
-    removeCurrentProjectChangeListener: function (callback) {
-      this.removeListener(CURRENT_PROJECT_CHANGE_EVENT, callback);
+    removeProjectChangeListener: function (callback) {
+      this.removeListener(PROJECT_CHANGE_EVENT, callback);
     },
 
     addTodosChangeListener: function (callback) {
@@ -115,22 +119,23 @@
           break;
         case ProjectConstants.PROJECT_CREATED:
           addProject(payload.project);
-          ProjectStore.setCurrentProject(payload.project);
-          ProjectStore.emit(CURRENT_PROJECT_CHANGE_EVENT);
+          ProjectStore.setCurrentProject(payload.project.id);
+          ProjectStore.emit(PROJECT_CHANGE_EVENT);
           ProjectStore.emitChange();
           break;
         case ProjectConstants.PROJECT_UPDATED:
           addProject(payload.project);
           ProjectStore.emitChange();
-          ProjectStore.emit(CURRENT_PROJECT_CHANGE_EVENT);
+          ProjectStore.emit(PROJECT_CHANGE_EVENT);
           break;
         case ProjectConstants.PROJECT_DESTROYED:
           deleteProject(payload.id);
           ProjectStore.emitChange();
           break;
-        case ProjectConstants.CURRENT_PROJECT_RECEIVED:
-          ProjectStore.setCurrentProject(payload.project);
-          ProjectStore.emit(CURRENT_PROJECT_CHANGE_EVENT);
+        case ProjectConstants.PROJECT_RECEIVED:
+          addProject(payload.project);
+          ProjectStore.setCurrentProject(payload.project.id);
+          ProjectStore.emit(PROJECT_CHANGE_EVENT);
           break;
 
         // TODOS CRUD

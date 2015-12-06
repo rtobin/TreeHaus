@@ -4,7 +4,7 @@ var ProjectPage = React.createClass({
   getInitialState: function () {
     var projectID = this.props.params.projectID;
     var project = this.props.projects[projectID] || {};
-    ProjectStore.setCurrentProject(project);
+    ProjectStore.setCurrentProject(projectID);
     return {
       project: project || {},
       currentUser: this.props.currentUser,
@@ -12,21 +12,22 @@ var ProjectPage = React.createClass({
     };
   },
 
-  // _updateProject: function () {
-  //   var project = ProjectStore.currentProject();
-  //   this.setState({
-  //     project: project,
-  //     user: UserStore.currentUser()
-  //   });
-  // },
+  componentDidMount: function () {
+    ProjectStore.addProjectChangeListener(this._updateProject);
+  },
 
-  // componentDidMount: function () {
-  //   UserStore.addChangeListener(this._updateProject);
-  // },
-  //
-  // componentWillUnMount: function () {
-  //   UserStore.removeChangeListener(this._updateProject);
-  // },
+  componentWillUnMount: function () {
+    ProjectStore.removeProjectChangeListener(this._updateProject);
+  },
+
+  _updateProject: function () {
+    var project = ProjectStore.currentProject();
+    this.setState({
+      project: project,
+      user: UserStore.currentUser()
+    });
+  },
+
 
   render: function () {
     var Link = ReactRouter.Link;

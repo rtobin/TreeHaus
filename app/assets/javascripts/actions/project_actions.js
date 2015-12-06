@@ -27,9 +27,9 @@ ProjectActions = {
     });
   },
 
-  singleProjectReceived: function (project) {
+  projectReceived: function (project) {
     AppDispatcher.dispatch({
-      actionType: ProjectConstants.CURRENT_PROJECT_RECEIVED,
+      actionType: ProjectConstants.PROJECT_RECEIVED,
       project: project
     });
   }

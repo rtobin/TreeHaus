@@ -45,7 +45,21 @@
   margin-top: 15px;
 }
 
-.step-checkbox > input {
-  margin-right: 8px;
-  margin-left: 15px;
+.step-checkbox-content .inert-checkbox{
+  display: inline-block;
+  padding-right: 10px;
+  height: 15px;
+  width: 15px;
+}
+
+.step-checkbox-content .checkbox-checked{
+  background-image: url("../../checkbox_checked.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.step-checkbox-content .checkbox-unchecked{
+  background-image: url("../../checkbox_unchecked.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }

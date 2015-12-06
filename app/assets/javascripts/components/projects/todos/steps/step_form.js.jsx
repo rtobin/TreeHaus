@@ -110,7 +110,8 @@ var StepForm = React.createClass({
               <label>
                 <input className="step-radio"
                   type="radio" name="dates"
-                  value="none" checked={!(this.state.startAt || this.state.dueAt)}
+                  value="none"
+                  checked={!(this.state.startAt || this.state.dueAt)}
                   onClick={this._noDates} />
                   No due date
               </label>

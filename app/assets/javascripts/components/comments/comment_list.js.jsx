@@ -10,6 +10,8 @@ var CommentList = React.createClass({
 
   _commentsChanged: function(){
     this.setState({comments: CommentStore.all()});
+    // I don't like this, but this is the best way I believe without getting messy
+    ProjectUtil.fetchProject(ProjectStore.currentProjectID());
   },
 
   componentDidMount: function() {

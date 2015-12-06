@@ -15,7 +15,7 @@ var CommentForm = React.createClass({
   _handleSubmit: function (e) {
     e.preventDefault();
     var commentParams = {
-      projectID: ProjectStore.currentProject().id,
+      projectID: this.props.projectID,
       comment: {
         content: this.state.content,
         author_id: UserStore.currentUser().id,

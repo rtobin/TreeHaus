@@ -7,10 +7,14 @@ var TodosIndex = React.createClass({
 
   componentDidMount: function () {
     ProjectStore.addTodosChangeListener(this._updateTodos);
+    ProjectStore.addProjectChangeListener(this._updateTodos);
+
   },
 
   componentWillUnMount: function () {
     ProjectStore.removeTodosChangeListener(this._updateTodos);
+    ProjectStore.removeProjectChangeListener(this._updateTodos);
+
   },
 
   _updateTodos: function () {

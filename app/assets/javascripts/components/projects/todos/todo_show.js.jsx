@@ -2,7 +2,8 @@ var TodoShow = React.createClass({
 
   getInitialState: function () {
     var todoID = this.props.params.todoID;
-    var todo = this.props.todos[todoID] || {} ;
+    var todos = ProjectStore.currentProject().todos || {};
+    var todo = todos[todoID] || {} ;
     return { todo: todo };
   },
 
@@ -13,7 +14,7 @@ var TodoShow = React.createClass({
     var commentableParams = {
       commentable_type: "Todo",
       commentable_id: todo.id
-    }
+    };
     return (
       <div className="panel">
         <article className="todoindex recordable">
@@ -34,7 +35,7 @@ var TodoShow = React.createClass({
             </div>
           </section>
         </article>
-        <CommentList commentableParams={commentableParams}/>
+        <CommentList commentableParams={commentableParams} projectID={this.props.params.projectID}/>
       </div>
     );
   }
