@@ -36,10 +36,10 @@ var StepHeader = React.createClass ({
     var author = step.author_name;
     var date = step.created_at_in_words;
     var action = "added";
-    if (step.updated_at !== step.created_at) {
-      date = step.updated_at_in_words;
-      action = "updated"
-    }
+    // if (step.updated_at !== step.created_at) {
+    //   date = step.updated_at_in_words;
+    //   action = "updated"
+    // } // need to get the user name that updates step...
     return (
       <header>
         <h1>{step.title}</h1>
