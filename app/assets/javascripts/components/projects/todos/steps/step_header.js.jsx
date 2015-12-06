@@ -34,11 +34,16 @@ var StepHeader = React.createClass ({
   render: function () {
     var step = this.state.step;
     var author = step.author_name;
-    var created_at = step.created_at;
+    var date = step.created_at_in_words;
+    var action = "added";
+    if (step.updated_at !== step.created_at) {
+      date = step.updated_at_in_words;
+      action = "updated"
+    }
     return (
       <header>
         <h1>{step.title}</h1>
-        <h4>added on {created_at} by {author}.</h4>
+        <h4>{action} on {date} by {author}.</h4>
         <div className="step-checkbox">
           <input type="checkbox" id="step-done"
             value="step-done"
