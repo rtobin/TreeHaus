@@ -21,7 +21,7 @@ var TodoShow = React.createClass({
     ];
     return (
       <div className="panel">
-        <article className="todoindex recordable">
+        <article className="todo-show recordable">
           <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
           <section className="todo-list panel-content">
             <TodoHeader todo={this.state.todo} />

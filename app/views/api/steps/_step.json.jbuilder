@@ -14,7 +14,7 @@ elsif t.abs >= 23.hours
   json.created_at_in_words step.created_at.strftime('%a %d %I:%M:%S %p')
 else
   json.created_at_in_words ActionController::Base.helpers.distance_of_time_in_words_to_now(
-    step.created_at, include_seconds: true) + " from_now"
+    step.created_at, include_seconds: true) + " from now"
 end
 
 t = (Time.now - step.updated_at)

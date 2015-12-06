@@ -2,15 +2,13 @@ var CommentListItem = React.createClass({
   render: function () {
     var comment = this.props.comment;
     return (
-      <article>
+      <article className="comment-list-item">
         <header>
-          <span>
             <strong>{comment.author.name}</strong>
             {comment.author.title}
-          </span>
         </header>
+        <div className="comment-date">{comment.created_at_in_words}</div>
         <p>{comment.content}</p>
-        <div>{comment.created_at}</div>
       </article>
     )
   }
