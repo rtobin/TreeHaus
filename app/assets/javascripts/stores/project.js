@@ -1,6 +1,6 @@
 (function (root) {
   var _projects = {};
-  var _currentProject = {};
+  var _currentProjectID = null;
   var CHANGE_EVENT = "change";
   var CURRENT_PROJECT_CHANGE_EVENT = "currentProjectChange";
   var TODOS_CHANGE_EVENT = "todosChange";
@@ -29,7 +29,6 @@
   };
 
   var addStep = function (projectID, todoID, step) {
-    debugger
     _projects[projectID].todos[todoID].steps[step.id] = step;
   };
 
@@ -47,11 +46,11 @@
 
   var ProjectStore = root.ProjectStore = $.extend({}, BaseStore, {
     currentProject: function () {
-      return $.extend({}, _currentProject);
+      return $.extend({}, _projects[_currentProjectID]);
     },
 
     setCurrentProject: function (project) {
-      _currentProject = project;
+      _currentProjectID = project.id;
     },
 
     all: function(){
@@ -63,14 +62,14 @@
     },
 
     getTodoStep: function (stepID, todoID) {
-      var step = _currentProject.todos[todoID].steps[stepID];
+      var step = this.currentProject().todos[todoID].steps[stepID];
       return $.extend({}, step);
     },
 
     findStep: function (stepIDSearch) {
       // UGLY!!!!
       var step;
-      var todos = _currentProject.todos || {};
+      var todos = this.currentProject().todos || {};
       Object.keys(todos).forEach( function (todoID) {
         var steps = todos[todoID].steps || {};
         Object.keys(steps).forEach( function (stepID) {
@@ -195,12 +194,12 @@
 //   };
 //
 //   var setCurrentProject = function (project) {
-//     _currentProject = project;
+//     this.currentProject() = project;
 //   };
 //
 //   var ProjectStore = root.ProjectStore = $.extend({}, BaseStore, {
 //     currentProject: function () {
-//       return _currentProject;
+//       return this.currentProject();
 //     },
 //
 //     all: function(){

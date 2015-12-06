@@ -66,7 +66,6 @@ TodoUtil = {
         step: stepParams.step
       },
       success: function (step) {
-        debugger
         TodoActions.stepUpdated(
           stepParams.projectID,
           stepParams.todoID,

@@ -34,7 +34,7 @@ var StepsListItem = React.createClass({
 
   render: function () {
     var Link = ReactRouter.Link;
-    var step = this.props.step;
+    var step = this.state.step;
     var stepURL = this.props.params.userID + "/projects/";
     stepURL += this.props.params.projectID  + "/steps/" + step.id;
     return (
