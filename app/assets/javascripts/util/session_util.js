@@ -1,14 +1,4 @@
 SessionUtil = {
-  // fetchCurrentUser: function () {
-  //   $.ajax({
-  //     url: '/api/session',
-  //     type: 'GET',
-  //     dataType: 'json',
-  //     success: function (currentUser) {
-  //       SessionActions.receiveCurrentUser(currentUser);
-  //     }
-  //   });
-  // }
   fetchCurrentUser: function () {
     $.get(
       'api/session',

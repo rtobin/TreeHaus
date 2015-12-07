@@ -31,8 +31,8 @@
           // AppDispatcher.waitFor([ProjectStore.dispatcherID]);
           if (payload.user.id) {
             signInUser(payload.user);
-            UserStore.emitChange();
           }
+          UserStore.emitChange();
           break;
         case SessionConstants.SIGNOUT_USER:
           signOutUser();
