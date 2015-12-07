@@ -4,7 +4,8 @@ var App = React.createClass({
   _getFullState: function () {
     return {
       currentUser: UserStore.currentUser(),
-      projects: ProjectStore.all()
+      projects: ProjectStore.all(),
+      location: this.props.location
       // notifications
     };
   },
@@ -14,7 +15,7 @@ var App = React.createClass({
   },
 
   _ensureSignedIn: function () {
-    if (!UserStore.isSignedIn()) {
+    if (!UserStore.isSignedIn() && this.props.location.pathname !== "/signup") {
       this.history.pushState(null, "/signin");
     }
   },
@@ -33,7 +34,6 @@ var App = React.createClass({
   },
 
   componentDidMount: function () {
-    debugger
   },
 
   componentWillUnmount: function () {

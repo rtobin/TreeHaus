@@ -44,6 +44,7 @@ var SigninForm = React.createClass ({
   },
 
   _checkIfSignedIn: function () {
+    debugger
     if (UserStore.isSignedIn()) {
       this._redirectAfterSignin();
     }
@@ -83,7 +84,6 @@ var SigninForm = React.createClass ({
               onChange={this._onFormChange}/>
           </div>
           <button type="submit" className="session-btn btn-default">Sign in</button>
-
         </form>
       </section>
     );

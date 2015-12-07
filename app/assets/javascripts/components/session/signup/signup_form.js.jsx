@@ -6,32 +6,39 @@ var SignupForm = React.createClass ({
   getInitialState: function () {
       return {
         email: '',
-        password: '',
-        title: "Boss",
-        organization_id: 1
+        password: ''
       };
   },
 
   componentDidMount: function () {
-    UserStore.addChangeListener(this.redirectAfterSignin);
+    UserStore.addChangeListener(this._checkIfSignedIn);
   },
 
   componentWillUnMount: function () {
-    UserStore.removeChangeListener(this.redirectAfterSignin);
+    UserStore.removeChangeListener(this._checkIfSignedIn);
   },
 
-  redirectAfterSignin: function () {
+  _redirectAfterSignin: function () {
+    debugger
     var location = this.props;
+    var userID = UserStore.currentUser().id;
     if (location.state && location.state.nextPathname) {
       this.history.replaceState(null, location.state.nextPathname);
     } else {
-      this.history.pushState(null, "projects");
+      this.history.pushState(null, userID + "/projects");
     }
   },
 
-  signup: function (e) {
+  _signup: function (e) {
     e.preventDefault();
     SessionUtil.signup(this.state);
+  },
+
+  _checkIfSignedIn: function () {
+    debugger
+    if (UserStore.isSignedIn()) {
+      this._redirectAfterSignin();
+    }
   },
 
   _onFormChange: function(e) {
