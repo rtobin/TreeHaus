@@ -66,7 +66,7 @@ var TodoForm = React.createClass({
 
             <div className="todo-input">
               <label>
-                <textarea className="todo-form-textarea"
+                <textarea className="form-textarea"
                   data-attr="body"
                   placeholder="Add extra details about this goal..."
                   value={this.state.body}

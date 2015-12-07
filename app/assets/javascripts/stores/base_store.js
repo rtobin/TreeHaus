@@ -9,6 +9,7 @@
 
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
+      this.setMaxListeners(0);
     },
 
     removeChangeListener: function (callback) {

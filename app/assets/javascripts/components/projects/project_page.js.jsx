@@ -6,6 +6,7 @@ var ProjectPage = React.createClass({
     var project = this.props.projects[projectID] || {};
     ProjectStore.setCurrentProject(projectID);
     return {
+      projectID: projectID,
       project: project || {},
       currentUser: this.props.currentUser,
       params: this.props.params
@@ -14,6 +15,7 @@ var ProjectPage = React.createClass({
 
   componentDidMount: function () {
     ProjectStore.addProjectChangeListener(this._updateProject);
+    ProjectUtil.fetchProject(this.state.projectID);
   },
 
   componentWillUnMount: function () {
@@ -31,8 +33,8 @@ var ProjectPage = React.createClass({
 
   render: function () {
     var Link = ReactRouter.Link;
-    var projectURL = this.state.currentUser.id + "/projects/";
-    projectURL += this.state.project.id;
+    var projectURL = this.props.params.userID + "/projects/";
+    projectURL += this.props.params.projectID;
     var makeSidebar = "";
     if (this.props.location.pathname.split("/").length > 4) {
       makeSidebar += "-sidebar";
@@ -44,9 +46,13 @@ var ProjectPage = React.createClass({
 
     return (
       <div className="project-main">
-        <h2 className="project-title">
-          <Link to={projectURL + "/update"}>{this.state.project.title}</Link>
+        <h2 className={"project-header" + makeSidebar}>
+          <Link className="project-title" to={projectURL}>{this.state.project.title}</Link>
+          <Link to={projectURL + "/settings"}>
+            <div className={"settings-link" + makeSidebar}></div>
+          </Link>
         </h2>
+          <p>{makeSidebar === "-sidebar" ? "" : this.state.project.description}</p>
         <ProjectDock
           user={this.state.user}
           project={this.state.project}

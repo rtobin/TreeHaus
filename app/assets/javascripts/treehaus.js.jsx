@@ -15,7 +15,7 @@ $(function () {
           <IndexRoute component={ProjectsIndex}/>
           <Route path="new" component={NewProjectForm}/>
           <Route path=":projectID" component={ProjectPage}>
-            <Route path="update" component={UpdateProjectForm}/>
+            <Route path="settings" component={UpdateProjectForm}/>
             <Route path="todos" component={TodosPage}>
               <IndexRoute component={TodosIndex} />
               <Route path=":todoID" component={TodoShow} />

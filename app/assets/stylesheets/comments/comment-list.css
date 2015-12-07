@@ -24,10 +24,15 @@
 
 .comment-form > .comment-form-fieldset {
   padding-bottom: 15px;
+  text-align: left;
 }
 
-.comment-input > .todo-form-textarea {
+.comment-input > .form-textarea {
   width: 100%;
   border: 1px solid lightgrey;
   background: white;
+}
+
+.form-textarea {
+  padding: 10px;
 }

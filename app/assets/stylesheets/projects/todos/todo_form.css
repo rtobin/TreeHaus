@@ -64,19 +64,19 @@
   position: relative;
   padding: 10px 20px;
   color: #fff;
-  background: #0c0;
+  background: #A6ABA6;
   font-weight: 700;
   border-radius: 5px;
-  box-shadow: 0 3px 0 0 #070;
+  box-shadow: 0 3px 0 0 #555855
 }
 
 .todo-submit > .submit-btn:hover {
-  background: #0b0;
+  background: #555855;
 }
 
 .todo-submit > .submit-btn:active {
   top: 3px;
-  background: #0a0;
+  background: #555855;
   box-shadow: none;
 }
 

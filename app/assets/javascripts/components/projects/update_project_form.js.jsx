@@ -3,6 +3,7 @@ var UpdateProjectForm = React.createClass ({
 
   getInitialState: function () {
     var projectID = this.props.params.projectID;
+    var project = ProjectStore.all(projectID);
     return {
       id: projectID,
       title: project.title,
@@ -13,14 +14,14 @@ var UpdateProjectForm = React.createClass ({
   },
 
   componentDidMount: function () {
-    ProjectStore.addChangeListener(this.redirectToNewProjectPage);
+    ProjectStore.addChangeListener(this._redirectToNewProjectPage);
   },
 
   componentWillUnMount: function () {
-    ProjectStore.removeChangeListener(this.redirectToNewProjectPage);
+    ProjectStore.removeChangeListener(this._redirectToNewProjectPage);
   },
 
-  redirectToNewProjectPage: function () {
+  _redirectToNewProjectPage: function () {
     var projectID = ProjectStore.currentProject().id;
     this.history.pushState(null, this.state.authorID + "/projects/" + projectID);
   },
