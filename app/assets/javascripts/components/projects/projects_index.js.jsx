@@ -28,7 +28,7 @@ var ProjectsIndex = React.createClass({
     return (
       Object.keys(projects).map(function (projectID) {
         var project = projects[projectID];
-        var url = that.state.currentUser.id + "/projects/" + projectID;
+        var url = userID + "/projects/" + projectID;
         return (
           <li key={projectID}>
             <Link to={url}

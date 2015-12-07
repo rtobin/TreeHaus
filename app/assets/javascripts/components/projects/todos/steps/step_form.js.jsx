@@ -157,7 +157,7 @@ var StepForm = React.createClass({
                 type="submit"
                 className="action-button"
                 id="step-submit-button"
-                value="Add task"/>
+                value="Make new task"/>
               <span className="step-button-alternative">or
                 <a onClick={this._toggleExpand}>Cancel</a>
               </span>

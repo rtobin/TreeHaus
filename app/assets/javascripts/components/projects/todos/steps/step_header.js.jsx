@@ -21,7 +21,8 @@ var StepHeader = React.createClass ({
 
   _handleCheckbox: function (e) {
     e.preventDefault();
-    var step = $.extend({}, this.state.step);
+    // var step = $.extend({}, this.state.step);
+    var step = this.props.step;
     step.done = !step.done;
     var stepParams = {
       id: step.id,
@@ -33,7 +34,7 @@ var StepHeader = React.createClass ({
   },
 
   render: function () {
-    var stepID = this.props.params.stepID;
+    var stepID = this.props.stepID;
     var step = ProjectStore.findStep(stepID) || {};
     var author = step.author_name;
     var date = step.created_at_in_words;
@@ -46,6 +47,7 @@ var StepHeader = React.createClass ({
       commentable_type: "Step",
       commentable_id: stepID
     }
+    var that = this;
     return (
       <header>
         <h1>{step.title}</h1>
@@ -57,7 +59,16 @@ var StepHeader = React.createClass ({
           <input type="checkbox" id="step-done"
             value="step-done"
             checked={step.done}
-            onChange={this._handleCheckbox}/>
+            onChange={function(e) {
+              step.done = !step.done;
+              var stepParams = {
+                id: step.id,
+                step: step,
+                projectID: that.props.params.projectID,
+                todoID: step.todo_id
+              };
+              TodoUtil.updateStep(stepParams);
+            }}/>
           <span className="step-checkbox-content">
             {step.done ? "(task is completed)" : "(task is not completed)"}
           </span>
