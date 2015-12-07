@@ -1,7 +1,7 @@
 var TodosIndex = React.createClass({
   getInitialState: function(){
     return {
-      todos: this.props.todos || {}
+      todos: ProjectStore.currentProject().todos || {}
     };
   },
 
@@ -19,22 +19,23 @@ var TodosIndex = React.createClass({
 
   _updateTodos: function () {
     this.setState({
-      todos: ProjectStore.currentProject().todos
+      todos: ProjectStore.currentProject().todos || {}
     })
   },
 
   render: function () {
     var that = this;
     var Link = ReactRouter.Link;
+    var todos = ProjectStore.currentProject().todos || {};
     return (
       <div className="panel">
         <article className="todoindex recordable">
-          <TodosIndexHeader todos={this.state.todos} />
+          <TodosIndexHeader todos={todos} />
           <TodoForm params={this.props.params}/>
           <section className="todo-list panel-content">
             {
-              Object.keys(this.state.todos).map(function(todoID) {
-                var todo = that.state.todos[todoID];
+              Object.keys(todos).map(function(todoID) {
+                var todo = todos[todoID];
                 if (parseInt(todoID) >= 0) {
                   return(
                     <TodoIndexItem key={todoID} todo={todo}

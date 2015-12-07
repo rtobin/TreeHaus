@@ -2,10 +2,11 @@ var NewProjectForm = React.createClass ({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
+    
     return {
       title: "",
       description: "",
-      author_id: parseInt(this.props.currentUser.id),
+      author_id: parseInt(this.props.params.userID),
       archived: false
     };
   },
@@ -24,26 +25,48 @@ var NewProjectForm = React.createClass ({
   },
 
   render: function () {
+    var navlinkTitles = ["Projects"];
+    var navlinkPaths = [
+      this.props.params.userID + "/projects"
+    ];
     return (
-      <form className="project-form" onSubmit={this._handleSubmit}>
-        <h3 className="nav-menu-heading">
-          <span>New Project</span>
-        </h3>
-        <Errors />
-        <input type="text"
-          value={this.state.title}
-          onChange={this._onTitleChange}
-          placeholder="Name this project..." />
+      <div className="panel">
+        <article className="recordable">
+          <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
+          <header>
+            <h1>
+              Make A New Project!
+            </h1>
+          </header>
+          <section className="project-content">
+            <form className="project-form" onSubmit={this._handleSubmit}>
+              <Errors />
+              <fieldset className="project-form-fieldset">
+                <label>
+                  <span>Title</span>
+                  <input className="project-form-input"
+                    value={this.state.title}
+                    onChange={this._onTitleChange}
+                    placeholder="Name this project..." />
+                </label>
+                <label>
+                  <span>Description</span>
+                  <textarea className="project-form-textarea"
+                    value={this.state.description}
+                     onChange={this._onDescriptionChange}
+                     placeholder="Write a description of the project..." />
+                </label>
+              </fieldset>
 
-        <textarea value={this.state.description}
-           onChange={this._onDescriptionChange}
-           placeholder="Write a description of the project..." />
-        <nav className="post-form ">
-          <button type="submit">Create Project</button>
-        </nav>
-      </form>
+              <button type="submit" className="action-button"
+                id="project-form-submit">Create Project</button>
+            </form>
+          </section>
+        </article>
+      </div>
     );
   },
+
 
   _onDescriptionChange: function (e) {
     this.setState({description: e.target.value});

@@ -1,23 +1,23 @@
 var StepHeader = React.createClass ({
-  getInitialState: function () {
-    var step = this.props.step;
-    return { step: step };
-  },
-
-  componentDidMount: function () {
-    ProjectStore.addStepsChangeListener(this._getStep)
-  },
-
-  componentWillUnmount: function () {
-    ProjectStore.removeStepsChangeListener(this._getStep)
-  },
-
-  _getStep: function () {
-    this.setState({
-      step: ProjectStore.getTodoStep(this.state.step.id, this.state.step.todo_id)
-    });
-    ProjectUtil.fetchProject(this.props.projectID);
-  },
+  // getInitialState: function () {
+  //   var step = this.props.step;
+  //   return { step: step };
+  // },
+  //
+  // componentDidMount: function () {
+  //   ProjectStore.addStepsChangeListener(this._getStep)
+  // },
+  //
+  // componentWillUnmount: function () {
+  //   ProjectStore.removeStepsChangeListener(this._getStep)
+  // },
+  //
+  // _getStep: function () {
+  //   this.setState({
+  //     step: ProjectStore.getTodoStep(this.state.step.id, this.state.step.todo_id)
+  //   });
+  //   ProjectUtil.fetchProject(this.props.projectID);
+  // },
 
   _handleCheckbox: function (e) {
     e.preventDefault();
@@ -33,7 +33,8 @@ var StepHeader = React.createClass ({
   },
 
   render: function () {
-    var step = this.state.step;
+    var stepID = this.props.params.stepID;
+    var step = ProjectStore.findStep(stepID) || {};
     var author = step.author_name;
     var date = step.created_at_in_words;
     var action = "added";
@@ -43,7 +44,7 @@ var StepHeader = React.createClass ({
     // } // need to get the user name that updates step...
     var commentableParams = {
       commentable_type: "Step",
-      commentable_id: step.id
+      commentable_id: stepID
     }
     return (
       <header>

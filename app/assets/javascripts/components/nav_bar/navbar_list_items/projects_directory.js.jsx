@@ -15,6 +15,19 @@ var ProjectsDirectory = React.createClass({
     };
   },
 
+  componentDidMount: function () {
+    ProjectStore.addChangeListener(this._getProjects);
+  },
+
+  componentWillUnMount: function () {
+    ProjectStore.removeChangeListener(this._getProjects);
+  },
+
+  _getProjects: function () {
+    this.setState({
+      projects: ProjectStore.all()
+    });
+  },
 
   _getProject: function (e) {
     this.setState({expanded: false})

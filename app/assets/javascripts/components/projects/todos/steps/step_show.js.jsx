@@ -1,15 +1,7 @@
 var StepShow = React.createClass({
-  getInitialState: function () {
-    // for some reason params is not picking up stepID
-    var stepID = this.props.params.stepID || this.props.location.pathname.split("/")[5];
-
-    var step = ProjectStore.findStep(stepID) || {} ;
-    return { step: step };
-  },
-
-  _dueTimes: function () {
-    var due_at = this.state.step.due_at || "no due time";
-    var start_at = this.state.step.start_at;
+  _dueTimes: function (step) {
+    var due_at = step.due_at || "no due time";
+    var start_at = step.start_at;
     if (start_at) {
       return (
         <label>
@@ -36,10 +28,12 @@ var StepShow = React.createClass({
   },
 
   render: function () {
-    var step = this.state.step;
+    var stepID = this.props.params.stepID || this.props.location.pathname.split("/")[5];
+    var step = ProjectStore.findStep(stepID) || {} ;
+
     var commentableParams = {
       commentable_type: "Step",
-      commentable_id: step.id
+      commentable_id: stepID
     };
     var todos = ProjectStore.currentProject().todos || {};
     var todo = todos[step.todo_id] || {};
@@ -53,10 +47,9 @@ var StepShow = React.createClass({
       <div className="panel">
         <article className="recordable">
           <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
-
-          <StepHeader step={step} projectID={this.props.params.projectID}/>
+          <StepHeader params={this.props.params}/>
           <section className="step-details" >
-            {this._dueTimes()}
+            {this._dueTimes(step)}
             <label>
               <strong>Assigned to:</strong>
               <span className="step-detail">{step.assignees }</span>

@@ -8,14 +8,23 @@ var CommentsCountBubble = React.createClass({
   },
 
   _updateNumIfNeeded: function () {
+
     if (CommentStore.verifyCommentable(this.props.commentableParams)) {
       this.setState({numComments: CommentStore.numComments()})
     }
   },
 
+  componentWillReceiveProps: function (newProps) {
+    this.setState({
+      numComments: newProps.numComments,
+      commentableParams: newProps.commentableParams
+    });
+  },
+
   getInitialState: function () {
     return {
-      numComments: this.props.numComments
+      numComments: this.props.numComments,
+      commentableParams: this.props.commentableParams
     }
   },
 

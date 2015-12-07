@@ -2,13 +2,13 @@ var UpdateProjectForm = React.createClass ({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
-    var project = this.props.project;
+    var projectID = this.props.params.projectID;
     return {
-      id: project.id,
+      id: projectID,
       title: project.title,
       description: project.description,
-      author_id: parseInt(this.props.currentUser.id),
-      archived: project.archived
+      author_id: parseInt(this.props.params.userID),
+      archived: false
     };
   },
 

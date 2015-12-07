@@ -19,7 +19,6 @@ var SignupForm = React.createClass ({
   },
 
   _redirectAfterSignin: function () {
-    debugger
     var location = this.props;
     var userID = UserStore.currentUser().id;
     if (location.state && location.state.nextPathname) {
@@ -35,7 +34,6 @@ var SignupForm = React.createClass ({
   },
 
   _checkIfSignedIn: function () {
-    debugger
     if (UserStore.isSignedIn()) {
       this._redirectAfterSignin();
     }

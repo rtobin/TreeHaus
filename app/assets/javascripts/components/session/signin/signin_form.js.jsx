@@ -44,7 +44,6 @@ var SigninForm = React.createClass ({
   },
 
   _checkIfSignedIn: function () {
-    debugger
     if (UserStore.isSignedIn()) {
       this._redirectAfterSignin();
     }

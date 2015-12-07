@@ -1,31 +1,29 @@
 var ProjectsIndex = React.createClass({
   mixins: [ReactRouter.History],
-
   getInitialState: function () {
     return {
-      currentUser:  this.props.currentUser,
-      projects: this.props.projects
-    };
+      projects: ProjectStore.all()
+    }
   },
 
-  // componentDidMount: function () {
-  //   UserStore.addChangeListener(this._update)
-  // },
-  //
-  // componentWillUnMount: function () {
-  //   UserStore.removeChangeListener(this._update)
-  // },
-  //
-  // _update: function () {
-  //   this.setState({
-  //     projects: ProjectStore.all(),
-  //     user: UserStore.currentUser()
-  //   })
-  // },
+  componentDidMount: function () {
+    ProjectStore.addChangeListener(this._update)
+  },
+
+  componentWillUnMount: function () {
+    ProjectStore.removeChangeListener(this._update)
+  },
+
+  _update: function () {
+    this.setState({
+      projects: ProjectStore.all()
+    })
+  },
 
   projectLinksList: function (project) {
     var Link = ReactRouter.Link;
     var projects = this.state.projects;
+    var userID = this.props.params.userID;
     var that = this;
     return (
       Object.keys(projects).map(function (projectID) {
@@ -50,7 +48,7 @@ var ProjectsIndex = React.createClass({
         <h3 className="projects-index-heading">
           <span className="top">Projects</span>
         </h3>
-        <Link to={this.state.userID + "/projects/new"}
+        <Link to={this.props.params.userID + "/projects/new"}
           className="action-button new-project">
           New Project
         </Link>

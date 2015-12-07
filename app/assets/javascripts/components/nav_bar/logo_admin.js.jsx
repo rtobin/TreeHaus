@@ -12,7 +12,7 @@ var LogoAdmin = React.createClass({
     return (
       <div href="#" className="nav-menu nav-menu-scroll menu-admin">
         <h3 className="nav-menu-heading">
-          <span className="top">Ryan</span>
+          <span className="top">{UserStore.currentUserName()}</span>
         </h3>
         <div className="stuff">
           <a className="stuff-text" href="#">

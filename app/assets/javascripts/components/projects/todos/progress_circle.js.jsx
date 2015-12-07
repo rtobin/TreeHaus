@@ -41,7 +41,14 @@ var ProgressCircle = React.createClass({
       progressStr: nextProps.progressStr,
       endColor: redsToGreens[endIdx]
     });
-    this.makeProgressCircle(this.state.circle);
+    if (this.state.progressStr !== "undefined/undefined") {
+      if ( typeof this.state.circle.animate === "undefined") {
+        var circle = this.makeProgressCircle();
+        this.animateProgressCircle(circle);
+      } else {
+        this.animateProgressCircle(this.state.circle);
+      }
+    }
   },
 
   getInitialState: function () {
@@ -58,16 +65,7 @@ var ProgressCircle = React.createClass({
     }
   },
 
-  makeProgressCircle: function (circle) {
-    circle.animate(this.state.progressNum, {
-        from: {color: this.state.startColor, width: 15},
-        to: {color: this.state.endColor, width: 15},
-
-    });
-    circle.setText(this.state.progressStr)
-  },
-
-  componentDidMount: function () {
+  makeProgressCircle: function () {
     var trailColor = this.state.endIdx === 0 ? this.state.startColor : '#aaa'
 
     var element = document.getElementById(this.props.progressID);
@@ -85,8 +83,25 @@ var ProgressCircle = React.createClass({
             circle.path.setAttribute('stroke', state.color);
         }
     });
-    this.setState({circle: circle})
-    this.makeProgressCircle(circle);
+
+    this.setState({circle: circle});
+    return circle
+  },
+
+  animateProgressCircle: function (circle) {
+    circle.animate(this.state.progressNum, {
+        from: {color: this.state.startColor, width: 15},
+        to: {color: this.state.endColor, width: 15},
+
+    });
+    circle.setText(this.state.progressStr)
+  },
+
+  componentDidMount: function () {
+    if (this.state.progressStr !== "undefined/undefined") {
+      var circle = this.makeProgressCircle();
+      this.animateProgressCircle(circle);
+    }
   },
 
 

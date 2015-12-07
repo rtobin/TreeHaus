@@ -15,7 +15,10 @@ var App = React.createClass({
   },
 
   _ensureSignedIn: function () {
+    
     if (!UserStore.isSignedIn() && this.props.location.pathname !== "/signup") {
+      this.history.pushState(null, "/signin");
+    } else if (this.props.location.pathname === "/") {
       this.history.pushState(null, "/signin");
     }
   },
@@ -26,18 +29,22 @@ var App = React.createClass({
   },
 
   componentWillMount: function () {
-    var stores = [UserStore, ProjectStore];
+    var stores = [UserStore];
     stores.forEach(function(store) {
       store.addChangeListener(this._onChange);
     }, this);
-    SessionUtil.fetchCurrentUser();
   },
 
   componentDidMount: function () {
+    if (UserStore.isSignedIn() && this.props.location.pathname === "/") {
+      this.history.pushState(null, "/signin");
+    }
+    SessionUtil.fetchCurrentUser();
   },
 
   componentWillUnmount: function () {
-    this.stores.forEach(function(store) {
+    var stores = [UserStore];
+    stores.forEach(function(store) {
       store.removeChangeListener(this._onChange);
     }, this);
   },
