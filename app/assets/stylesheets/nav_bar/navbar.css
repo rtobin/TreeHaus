@@ -90,8 +90,8 @@
 .nav-profile > h3 {
   float: right;
   position: relative;
-  top: -20px;
-  right: 7px;
+  top: 0px;
+  right: 13px;
 }
 
 .collapsible-content-active {

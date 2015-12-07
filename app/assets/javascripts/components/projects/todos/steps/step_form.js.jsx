@@ -36,7 +36,6 @@ var StepForm = React.createClass({
 
   _handleSubmit: function (e) {
     e.preventDefault();
-    debugger
     var stepParams = {
       step: {
         title: this.state.title,

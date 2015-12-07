@@ -48,10 +48,11 @@ var ProfileManager = React.createClass({
   },
 
   render: function () {
+    var name = UserStore.currentUser().name || UserStore.currentUser().email;
     return (
       <div className="navbar-action nav-profile" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
-        <span>▼</span><h3>RT</h3>
+        <span>▼</span><h3>{name[0].toUpperCase()}</h3>
         {this.expandableItem()}
       </div>
     );

@@ -47,16 +47,16 @@ var ProjectsIndex = React.createClass({
     var Link = ReactRouter.Link;
     return (
       <div className="projects-index">
-        <h3 className="projects-index-heading nav-menu-heading">
+        <h3 className="projects-index-heading">
           <span className="top">Projects</span>
         </h3>
-        <ul className="project-links-list group">
-          {this.projectLinksList()}
-        </ul>
         <Link to={this.state.userID + "/projects/new"}
           className="action-button new-project">
           New Project
         </Link>
+        <ul className="project-links-list group">
+          {this.projectLinksList()}
+        </ul>
       </div>
     );
   }

@@ -2,7 +2,7 @@
   text-align: -webkit-center;
   margin: auto;
   margin-top: 100px;
-  color: blue;
+  color: grey;
   height: 100%;
 }
 
@@ -11,11 +11,19 @@
   display: inline-block;
 }
 
+.project-links-list {
+  max-width: 750px;
+  margin-top: 20px;
+  background: white;
+  border-radius: 5px;
+}
 
 .projects-index-heading {
   font-size: 35px;
   font-weight: 700;
-  background-color: #856ec6;
+  text-decoration: underline;
+
+  /*background-color: #856ec6;*/
 }
 
 .project-button {
@@ -45,6 +53,5 @@
 }
 
 .projects-index .new-project {
-  top: 15px;
-  position: relative;
+  margin: 15px;
 }
