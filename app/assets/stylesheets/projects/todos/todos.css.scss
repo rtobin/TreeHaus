@@ -26,7 +26,7 @@
 .todo-drag-handle{
   position: relative;
   top: 2px;
-  background-image: url("../../dndHandle.gif");
+  background-image: url(image-path("dndHandle.gif"));
   background-repeat: no-repeat;
   background-size: contain;
   height: 21px;
@@ -53,13 +53,13 @@
 }
 
 .step-checkbox-content .checkbox-checked{
-  background-image: url("../../checkbox_checked.png");
+  background-image: url(image-path("checkbox_checked.png"));
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .step-checkbox-content .checkbox-unchecked{
-  background-image: url("../../checkbox_unchecked.png");
+  background-image: url(image-path("checkbox_unchecked.png"));
   background-repeat: no-repeat;
   background-size: contain;
 }

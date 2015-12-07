@@ -34,7 +34,7 @@
   left: 8px;
   width: 40px;
   background-color: rgba(251,248,245,0.98);
-  background-image: url("../logo.png");
+  background-image: url(image-path("logo.png"));
   background-repeat: no-repeat;
   background-size: contain;
   margin: auto;
@@ -252,7 +252,7 @@
   height: 20px;
   float: left;
   top: 50%;
-  background-image: url("../clock.png");
+  background-image: url(image-path("clock.png"));
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -262,7 +262,7 @@
   height: 20px;
   float: left;
   top: 50%;
-  background-image: url("../mag_glass.png");
+  background-image: url(image-path("mag_glass.png"));
   background-repeat: no-repeat;
   background-size: contain;
 }

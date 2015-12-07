@@ -176,14 +176,14 @@ main {
 }
 
 .dock-card div {
-  background-image: url("../under_construction.png");
+  background-image: url(image-path("under_construction.png"));
   background-repeat: no-repeat;
   background-size: contain;
   height: 100%;
 }
 
 .todos-card div {
-  background-image: url("../todos_small.png");
+  background-image: url(image-path("todos_small.png"));
   /*background-image: url("../mag_glass.png");*/
   background-repeat: no-repeat;
   background-size: contain;
