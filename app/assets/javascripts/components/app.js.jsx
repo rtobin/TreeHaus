@@ -25,14 +25,15 @@ var App = React.createClass({
   },
 
   componentWillMount: function () {
-  },
-
-  componentDidMount: function () {
     var stores = [UserStore, ProjectStore];
     stores.forEach(function(store) {
       store.addChangeListener(this._onChange);
     }, this);
     SessionUtil.fetchCurrentUser();
+  },
+
+  componentDidMount: function () {
+    debugger
   },
 
   componentWillUnmount: function () {
