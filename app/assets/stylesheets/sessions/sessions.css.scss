@@ -113,11 +113,11 @@ input.session-field {
     z-index: -1;
 }
 
-.modal {
+.signout-modal {
   display: none;
 }
 
-.modal.is-open {
+.signout-modal.is-open {
   display: block;
 }
 
@@ -132,7 +132,7 @@ input.session-field {
 }
 
 .modal-panel {
-  position: absolute;
+  position: fixed;
   top: 100px;
   left: 50%;
   margin-left: -220px;
@@ -155,7 +155,7 @@ input.session-field {
 }
 
 .modal-close:hover {
-  color: #f00;
+  // color: #f00;
 }
 
 .modal-panel > h1 {
@@ -200,13 +200,13 @@ input.session-field {
   padding: 0 0 0 5px;
 }
 
-.button-alternative strong {
+.button-alternative > strong {
   padding: 0 0 0 5px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.button-alternative strong:hover {
+.button-alternative > strong:hover {
   color: #f00;
 }
 

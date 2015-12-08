@@ -7,6 +7,17 @@ var ProjectsHome = React.createClass({
     };
   },
 
+  _placeModals: function () {
+    if (UserStore.isSignedIn()){
+      return (
+        <div className="profile-modals">
+          <SignoutModal />
+          <ProfileUpdateModal params={this.props.params}/>
+        </div>
+      );
+    }
+  },
+
   render: function () {
     var renderedChildren = React.Children.map(this.props.children, function(child) {
       return React.cloneElement(child, {...this.state});
@@ -19,7 +30,7 @@ var ProjectsHome = React.createClass({
           projects={this.props.projects}
           params={this.props.params}/>
         {renderedChildren}
-        <SignoutModal />
+        {this._placeModals()}
       </div>
     );
   }

@@ -80,7 +80,7 @@ var TodoForm = React.createClass({
                 className="action-button"
                 id="todo-submit-button"
                 value="Add Goal"/>
-              <span className="todo-button-alternative">or
+              <span className="submit-button-alternative">or
                 <a onClick={this._toggleExpand}>Cancel</a>
               </span>
             </div>

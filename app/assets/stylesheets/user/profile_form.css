@@ -1,0 +1,101 @@
+.profile-form-fieldset {
+  margin: auto;
+  margin-top: 10px;
+  padding: 19px;
+  width: 500px;
+  text-align: left;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.profile-form-fieldset {
+  margin: 0 0 20px 0;
+}
+
+.profile-form-fieldset > label > span  {
+  display: block;
+  font-weight: bold;
+  padding: 0 0 5px 0;
+}
+
+.profile-form-fieldset > label > input  {
+  display: block;
+  padding: 0 0 5px 0;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+  width: 75%;
+
+}
+
+.profile-form-fieldset > label > input:focus  {
+  background: aliceblue;
+  border-radius: 10px;
+}
+/*
+.profile-form-fieldset input {
+  display: block;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  width: calc(100% - 22px);
+  border-radius: 2px;
+}
+
+.profile-form-fieldset input:focus {
+  border-color: #0c0;
+}*/
+
+.profile-form-submit {
+  margin: 20px 0 0 0;
+  padding: 0 0 3px 0;
+  font-size: 12px;
+}
+
+.profile-form-submit > input {
+  padding: 5px 10px;
+}
+
+.profile-modal {
+  display: none;
+}
+
+.profile-modal.is-open {
+  display: block;
+}
+
+/*.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 36px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #f00;
+}*/
+
+.profile-modal-panel > .recordable {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  margin-left: -220px;
+  width: 560px;
+  padding: 20px;
+  background: #fff;
+  z-index: 101;
+  border-radius: 5px;
+  border: 1px solid #000;
+  color: black;
+}
+
+img.avatar-preview-image {
+  width: 50px;
+  margin: auto;
+}
+
+.profile-modal-panel .currentuser-avatar {
+  width: 60px;
+}

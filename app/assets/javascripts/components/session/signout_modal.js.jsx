@@ -8,10 +8,10 @@ var SignoutModal = React.createClass({
 
   render: function () {
     return (
-      <div className="modal">
+      <div className="signout-modal">
         <form className="modal-panel">
 
-          <span className="modal-close js-modal-close">&times;</span>
+          <span className="modal-close signout-modal-close">&times;</span>
 
           <p><strong>{UserStore.currentUserName()}</strong>,
             are you sure you want to sign out?</p>
@@ -24,14 +24,14 @@ var SignoutModal = React.createClass({
             </button>
 
             <span className="button-alternative">
-              <strong className="js-modal-close">
+              <strong className="signout-modal-close">
                 <small>Cancel</small>
               </strong>
             </span>
           </div>
 
         </form>
-        <div className="modal-screen js-modal-close"></div>
+        <div className="modal-screen signout-modal-close"></div>
       </div>
     )
   }

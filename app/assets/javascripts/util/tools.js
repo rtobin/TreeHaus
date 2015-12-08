@@ -45,15 +45,25 @@ function randString(x){
   return s;
 }
 
-// signout modal
 $(function(){
-  $("body").on("click", ".js-modal-open", function(event){
+  // signout modal
+  $("body").on("click", ".signout-modal-open", function(event){
     event.preventDefault();
-    $(".modal").addClass("is-open");
+    $(".signout-modal").addClass("is-open");
   });
-  $("body").on("click", ".js-modal-close", function(event){
+  $("body").on("click", ".signout-modal-close", function(event){
     event.preventDefault();
-    $(".modal").removeClass("is-open");
+    $(".signout-modal").removeClass("is-open");
+  });
+
+  // user profile modal
+  $("body").on("click", ".profile-modal-open", function(event){
+    event.preventDefault();
+    $(".profile-modal").addClass("is-open");
+  });
+  $("body").on("click", ".profile-modal-close", function(event){
+    event.preventDefault();
+    $(".profile-modal").removeClass("is-open");
   });
 });
 

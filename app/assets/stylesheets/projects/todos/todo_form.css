@@ -80,17 +80,17 @@
   box-shadow: none;
 }
 
-.todo-button-alternative {
+.submit-button-alternative {
   padding: 0 0 0 5px;
 }
 
-.todo-button-alternative a {
+.submit-button-alternative a {
   padding: 0 0 0 5px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.todo-button-alternative a:hover {
+.submit-button-alternative a:hover {
   color: #f00;
 }
 

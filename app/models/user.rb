@@ -24,6 +24,9 @@ class User < ActiveRecord::Base
     presence: true
   )
 
+  has_attached_file :avatar, default_url: "no_avatar.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
   validate :valid_password_given, if: -> { password }
 
   has_many :memberships, foreign_key: :membership_id, class_name: "TeamMembership"

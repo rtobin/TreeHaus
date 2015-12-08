@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
     if @user.save
       # redirect them to the new user's show page
       log_in!(@user)
-      render "api/users/show"
+      render "api/users/show_meta"
     else
       # input didn't pass validation;
       # prints password requirements
@@ -16,13 +16,31 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      @user.records.create(
+        name: "profile updated",
+        user_id: @user.id
+      )
+      render "api/users/show_meta"
+    else
+      render json: @user.errors.full_messages, status: 422
+    end
+  end
+
   def show
     @user = User.find(params[:id])
-    render "api/users/show"
+    render "api/users/show_meta"
   end
 
   protected
   def user_params
-    self.params.require(:user).permit(:email, :password)
+    self.params.require(:user).permit(
+      :name,
+      :title,
+      :email,
+      :password,
+      :avatar)
   end
 end

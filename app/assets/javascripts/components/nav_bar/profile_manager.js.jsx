@@ -1,8 +1,21 @@
 var ProfileManager = React.createClass({
   mixins: [ClickExpandable],
 
+  componentDidMount: function () {
+    UserStore.addChangeListener(this._updateUserState);
+  },
+
+  componentWillUnMount: function () {
+    UserStore.removeChangeListener(this._updateUserState);
+  },
+
+  _updateUserState: function () {
+    this.setState({user: UserStore.currentUser()});
+  },
+
   getInitialState: function () {
     return {
+      user: UserStore.currentUser(),
       dropdownSelectorId: randString(16),
       dropdownExpanded: false
     };
@@ -32,8 +45,11 @@ var ProfileManager = React.createClass({
           <li>Stuff I've assigned</li>
           <li>Saved drafts</li>
           <li>What have I been up to?</li>
-          <li>Personal Info (avatar, title, devices, etc)</li>
-          <li><a className="js-modal-open" onClick={this._goToModal} >
+          <li><a className="profile-modal-open" onClick={this._goToModal} >
+              Personal Info (avatar, title, devices, etc)
+            </a>
+          </li>
+          <li><a className="signout-modal-open" onClick={this._goToModal} >
             Sign out</a>
 
           </li>
@@ -48,11 +64,12 @@ var ProfileManager = React.createClass({
   },
 
   render: function () {
-    var name = UserStore.currentUser().name || UserStore.currentUser().email;
+    var name = this.state.user.name || this.state.user.email;
     return (
       <div className="navbar-action nav-profile" id={this.state.dropdownSelectorId}
         onClick={this.toggleExpand}>
-        <span>▼</span><h3>{name[0].toUpperCase()}</h3>
+        <span>▼</span>
+        <CurrentUserAvatar />
         {this.expandableItem()}
       </div>
     );
