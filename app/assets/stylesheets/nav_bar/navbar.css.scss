@@ -72,7 +72,7 @@
   border-radius:50%;
   color: black;
   font-size:20px;
-  font-weight: bold;
+  // font-weight: bold;
   line-height:20px;
   text-align:center;
   // background:#0F7E8B;
@@ -97,7 +97,7 @@
 .collapsible-content-active {
   max-height: calc(100vh - 80px);
   /* left: 0px; */
-  background-color: #856ec6;
+  background-color: #23406B;;
   border: 0;
   color: #fff;
   white-space: normal;
@@ -123,6 +123,7 @@
   padding: 2rem 3rem;
   overflow-x: hidden;
   width: 30rem;
+  line-height: 1.5;
 
 }
 
@@ -183,7 +184,11 @@
 }
 
 .profile-stuff .arrow {
-  left: 540px;
+  right: 25px;
+}
+
+.activity-stuff .arrow {
+  right: 55%;
 }
 
 .nav-profile > .nav-menu-scroll {
@@ -269,7 +274,7 @@
 
 .nav-menu-heading > span {
   z-index: 1;
-  background-color: #856ec6;
+  background-color: #23406B;;
   padding: 0 0.5em;
 }
 
@@ -284,13 +289,13 @@
 }
 
 .arrow {
-  position: absolute;
-  background-color: #856ec6;
+  position: fixed;
+  background-color: #23406B;
   width: 10px;
   height: 10px;
   transform: translateY(-5px) rotate(45deg);
   z-index: 5;
-  left: 50%;
+  right: 50%;
 }
 
 /*.chats > .arrow {

@@ -2,7 +2,7 @@ var NewProjectForm = React.createClass ({
   mixins: [ReactRouter.History],
 
   getInitialState: function () {
-    
+
     return {
       title: "",
       description: "",
@@ -30,7 +30,7 @@ var NewProjectForm = React.createClass ({
       this.props.params.userID + "/projects"
     ];
     return (
-      <div className="panel">
+      <div className="panel new-project-panel">
         <article className="recordable">
           <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
           <header>
@@ -38,7 +38,7 @@ var NewProjectForm = React.createClass ({
               Make A New Project!
             </h1>
           </header>
-          <section className="project-content">
+          <section className="new-project">
             <form className="project-form" onSubmit={this._handleSubmit}>
               <Errors />
               <fieldset className="project-form-fieldset">

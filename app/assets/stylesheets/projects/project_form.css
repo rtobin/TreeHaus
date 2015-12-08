@@ -51,6 +51,10 @@
 
 }
 
+.new-project-panel {
+  top: 100px;
+}
+
 /*.recordable  > header > h1 {
   display: inline-block;
   font-size: 30px;
