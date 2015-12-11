@@ -4,6 +4,7 @@ json.author do
   author = comment.author
   json.name author.name || author.email
   json.title author.title
+  json.avatar_url asset_path(author.avatar.url)
 end
 
 time_now = Time.now

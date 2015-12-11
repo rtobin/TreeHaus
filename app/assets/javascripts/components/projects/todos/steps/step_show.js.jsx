@@ -64,7 +64,6 @@ var StepShow = React.createClass({
     var userID = this.props.params.userID;
     var projectID = this.props.params.projectID;
     var step = this.state.step;
-    debugger
     var commentableParams = {
       commentable_type: "Step",
       commentable_id: this.props.params.stepID

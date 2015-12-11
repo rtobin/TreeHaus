@@ -71,7 +71,7 @@ var ProjectsDirectory = React.createClass({
   expandedContent: function () {
     var Link = ReactRouter.Link;
     var userID = this.props.params.userID;
-    var name = this.props.currentUser.name;
+    var name = UserStore.currentUserName() ;
     return (
       <div className="nav-menu nav-menu-scroll">
         <h3 className="nav-menu-heading">

@@ -52,14 +52,15 @@ ProfileUpdateModal = React.createClass({
     var email = this.state.email;
     var name = this.state.name;
     var file = this.state.avatarImageFile;
-
     var formData = new FormData();
     formData.append("user[email]", email);
     formData.append("user[name]", name);
     formData.append("user[title]", title);
-    formData.append("user[avatar]", file);
+    if (file !== null) {
+      formData.append("user[avatar]", file);
+    }
 
-    SessionUtil.updateUser(this.state.userID, formData, this._resetForm);
+    UserUtil.updateUser(this.state.userID, formData, this._resetForm);
   },
 
   _onFormChange: function(e) {
@@ -67,6 +68,14 @@ ProfileUpdateModal = React.createClass({
     var attr = target.dataset.attr;
     this.state[attr] = target.value;
     this.forceUpdate();
+  },
+
+  componentDidMount: function () {
+    UserStore.addUpdateUserListener(this._handleCancel);
+  },
+
+  componentWillUnMount: function () {
+    UserStore.removeUpdateUserListener(this._handleCancel);
   },
 
   render: function(){
@@ -79,7 +88,7 @@ ProfileUpdateModal = React.createClass({
             <header>
               <h1>
                 <CurrentUserAvatar />
-                {name + "'s "} Profile
+                <span>{name + "'s "} Profile</span>
               </h1>
             </header>
             <section className="centered profile-content">

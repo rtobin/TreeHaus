@@ -1,0 +1,3 @@
+UserConstants = {
+  RECEIVED_USER_DATA: "RECEIVED_USER_DATA"
+};

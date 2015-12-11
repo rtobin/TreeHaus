@@ -32,6 +32,7 @@ var CommentForm = React.createClass({
     return (
       <section className="centered new-comment">
         <Errors />
+        <CurrentUserAvatar />
         <form className="comment-form" onSubmit={this._handleSubmit}>
           <fieldset className="comment-form-fieldset">
             <div className="comment-input">

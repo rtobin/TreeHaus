@@ -1,10 +1,24 @@
 var ProjectsHome = React.createClass({
+
+  componentDidMount: function () {
+    UserStore.addUpdateUserListener(this._updateUser);
+  },
+
+  componentWillUnMount: function () {
+    UserStore.removeUpdateUserListener(this._updateUser);
+  },
+
   getInitialState: function () {
     return {
       currentUser: this.props.currentUser,
       projects: this.props.projects
       // notifications
     };
+  },
+
+  _updateUser: function () {
+    debugger
+    this.setState({currentUser: UserStore.currentUser()})
   },
 
   _placeModals: function () {

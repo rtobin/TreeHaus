@@ -36,3 +36,20 @@
 .form-textarea {
   padding: 10px;
 }
+
+.new-comment > .currentuser-avatar {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  left: -57px;
+}
+
+.comment-list-item > .user-avatar {
+  height: 40px;
+  width: 40px;
+  /* display: inline-block; */
+  position: relative;
+  left: -18px;
+  top: 1px;
+  float: left;
+}

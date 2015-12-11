@@ -45,20 +45,5 @@ SessionUtil = {
         UIActions.errorReport(JSON.parse(args[0].responseText));
       }
     );
-  },
-
-  updateUser: function(userID, formData, callback) {
-    $.ajax({
-      url: '/api/users/' + userID,
-      type: 'PATCH',
-      processData: false,
-      contentType: false,
-      dataType: 'json',
-      data: formData,
-      success: function(post) {
-        SessionActions.receivePost(post);
-        callback && callback();
-      }
-    })
   }
 };

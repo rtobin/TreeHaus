@@ -13,5 +13,6 @@ SessionActions = {
     AppDispatcher.dispatch({
       actionType: SessionConstants.SIGNOUT_USER
     });
-  }
+  },
+
 };

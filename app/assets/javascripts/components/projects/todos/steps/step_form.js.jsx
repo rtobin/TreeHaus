@@ -115,14 +115,14 @@ var StepForm = React.createClass({
                   type="radio" name="dates"
                   value="none"
                   checked={!(this.state.startAt || this.state.dueAt)}
-                  onClick={this._noDates} />
+                  onChange={this._noDates} />
                   No due date
               </label>
               <label>
                 <input className="step-radio"
                   type="radio" name="dates" value="due"
                   checked={!this.state.startAt && !!this.state.dueAt}
-                  onClick={this._onlyDueDate}/>
+                  onChange={this._onlyDueDate}/>
                   Due on
                 <input className="step-datetime" type="datetime-local" name="due-datetime"
                   data-attr="dueAt"
@@ -135,7 +135,7 @@ var StepForm = React.createClass({
                 <input className="step-radio"
                   type="radio" name="dates" value="both"
                   checked={(!!this.state.startAt && !!this.state.dueAt)}
-                  onClick={this._bothDates}/>
+                  onChange={this._bothDates}/>
                 <span>Runs from</span>
                 <input className="step-datetime both-dates" type="datetime-local" name="start-datetime"
                   data-attr="startAt"

@@ -1,6 +1,6 @@
 
 
-.currentuser-avatar {
+.currentuser-avatar, .user-avatar {
   position: absolute;
   top: 0px;
   width: 100%; /* for IE 6 */
@@ -10,10 +10,10 @@
   border: 1px solid grey;
 }
 
-.currentuser-avatar > h2 {
+.currentuser-avatar, .user-avatar > h2 {
   position: absolute;
   width: 100%;
   color: darkblue;
-  top: 25%;
+  /*top: 25%;*/
   font-weight: 500;
 }

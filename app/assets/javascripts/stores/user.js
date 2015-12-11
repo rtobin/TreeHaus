@@ -2,6 +2,7 @@
   var _user = {};
   _user.email = "not signed in";
   var CHANGE_EVENT = "change";
+  var UPDATE_USER_EVENT = "update_user_event";
 
   var signOutUser = function () {
     _user = {};
@@ -25,6 +26,18 @@
       return (typeof _user.id !== "undefined");
     },
 
+    updateUserData: function (userData) {
+      $.extend(_user, userData);
+    },
+
+    addUpdateUserListener: function (callback) {
+      this.on(UPDATE_USER_EVENT, callback);
+    },
+
+    removeUpdateUserListener: function (callback) {
+      this.removeListener(UPDATE_USER_EVENT, callback);
+    },
+
     dispatcherID: AppDispatcher.register( function (payload){
       switch(payload.actionType){
         case SessionConstants.SIGNIN_USER:
@@ -37,6 +50,10 @@
         case SessionConstants.SIGNOUT_USER:
           signOutUser();
           UserStore.emitChange();
+          break;
+        case UserConstants.RECEIVED_USER_DATA:
+          UserStore.updateUserData(payload.userData);
+          UserStore.emit(UPDATE_USER_EVENT)
           break;
         default:
           break;
