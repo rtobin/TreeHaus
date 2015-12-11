@@ -14,7 +14,7 @@ class Api::ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.members << @current_user
+    @project.team.members << @current_user
 
     if @project.save
       @project.records.create(
