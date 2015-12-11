@@ -8,6 +8,15 @@ var StepShow = React.createClass({
     };
   },
 
+  componentWillReceiveProps: function (newProps) {
+    var stepID = newProps.params.stepID || newProps.location.pathname.split("/")[5];
+    var step = ProjectStore.findStep(stepID) || {} ;
+    this.setState({
+      stepID: stepID,
+      step: step
+    })
+  },
+
   componentDidMount: function () {
     ProjectStore.addProjectChangeListener(this._getStep);
     ProjectStore.addStepsChangeListener(this._getStepAndFetchProject);
@@ -19,16 +28,20 @@ var StepShow = React.createClass({
   },
 
   _getStep: function () {
-    this.setState({
-      step: ProjectStore.findStep(this.state.stepID)
-    });
+    if (this.isMounted()) {
+      this.setState({
+        step: ProjectStore.findStep(this.state.stepID)
+      });
+    }
   },
 
   _getStepAndFetchProject: function () {
-    this.setState({
-      step: ProjectStore.findStep(this.state.stepID)
-    });
-    ProjectUtil.fetchProject(this.props.params.projectID);
+    if (this.isMounted()) {
+      this.setState({
+        step: ProjectStore.findStep(this.state.stepID)
+      });
+      ProjectUtil.fetchProject(this.props.params.projectID);
+    }
   },
 
   _dueTimes: function (step) {

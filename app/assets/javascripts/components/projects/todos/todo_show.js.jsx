@@ -19,12 +19,14 @@ var TodoShow = React.createClass({
   },
 
   _getTodo: function () {
-    var todos = ProjectStore.currentProject().todos || {};
-    var todo = todos[this.props.params.todoID] || {};
-    this.setState({
-      todo: todo,
-      steps: todo.steps || {}
-    });
+    if (this.isMounted()) {
+      var todos = ProjectStore.currentProject().todos || {};
+      var todo = todos[this.props.params.todoID] || {};
+      this.setState({
+        todo: todo,
+        steps: todo.steps || {}
+      });  
+    }
   },
 
   render: function () {

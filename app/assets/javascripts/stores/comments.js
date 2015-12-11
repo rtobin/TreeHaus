@@ -41,6 +41,10 @@
       return $.extend({}, _comments);
     },
 
+    clearComments: function () {
+      _comments = {};
+    },
+
     numComments: function () {
       return Object.keys(_comments).length;
     },

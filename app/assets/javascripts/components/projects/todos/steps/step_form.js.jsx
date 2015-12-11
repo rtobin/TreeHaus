@@ -24,7 +24,9 @@ var StepForm = React.createClass({
   },
 
   _closeExpand: function () {
-    this.setState({expanded: false})
+    if (this.isMounted()) {
+      this.setState({expanded: false});
+    }
   },
 
   _onFormChange: function (e) {

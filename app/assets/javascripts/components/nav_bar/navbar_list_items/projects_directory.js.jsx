@@ -57,17 +57,6 @@ var ProjectsDirectory = React.createClass({
     );
   },
 
-  // handleProjectLinkClick: function (e) {
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  //   this.setState({expanded: false});
-  //   var projectID = e.currentTarget.href.split("/")[3];
-  //   var project = this.state.projects[projectID];
-  //   var url = this.state.currentUser.id + "/projects/" + projectID;
-  //   ProjectActions.singleProjectReceived(project);
-  //   this.history.pushState(null, "/" + url);
-  // },
-
   expandedContent: function () {
     var Link = ReactRouter.Link;
     var userID = this.props.params.userID;

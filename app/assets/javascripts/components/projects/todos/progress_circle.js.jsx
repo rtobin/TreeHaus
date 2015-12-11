@@ -98,7 +98,9 @@ var ProgressCircle = React.createClass({
   },
 
   componentDidMount: function () {
-    if (this.state.progressStr !== "undefined/undefined") {
+    if (this.state.progressStr !== "undefined/undefined" &&
+        this.isMounted()
+        ) {
       var circle = this.makeProgressCircle();
       this.animateProgressCircle(circle);
     }
