@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :todos, only: [:show, :create, :update, :destroy]
     resources :steps, only: [:show, :create, :update, :destroy]
     resources :comments, only: [:index, :show, :create, :update, :destroy]
+    resources :memberships, only: [:index, :create, :destroy]
   end
 
 

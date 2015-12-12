@@ -1,1 +1,1 @@
-json.extract! project, :id, :title, :author_id
+json.(project, :id, :title, :description, :author_id, :archived)

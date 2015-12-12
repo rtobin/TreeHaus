@@ -29,8 +29,10 @@ class User < ActiveRecord::Base
 
   validate :valid_password_given, if: -> { password }
 
-  has_many :memberships, foreign_key: :membership_id, class_name: "TeamMembership"
-  has_many :projects, foreign_key: :author_id
+  has_many :memberships, foreign_key: :member_id, class_name: "Membership"
+  has_many :projects, through: :memberships, source: :project
+  has_many :authored_projects, foreign_key: :author_id
+
 
   has_many :assigned_steps, foreign_key: :assignee_id, class_name: "StepAssignment"
 

@@ -20,7 +20,7 @@ var ProjectsIndex = React.createClass({
     })
   },
 
-  projectLinksList: function (project) {
+  projectLinksList: function () {
     var Link = ReactRouter.Link;
     var projects = this.state.projects;
     var userID = this.props.params.userID;

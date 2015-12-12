@@ -14,9 +14,9 @@ class Api::ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.team.members << @current_user
 
     if @project.save
+      @project.members << current_user
       @project.records.create(
         name: "project created: #{@project.title}",
         user_id: @project.author_id

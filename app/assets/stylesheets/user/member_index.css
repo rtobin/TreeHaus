@@ -1,0 +1,14 @@
+.members-index {
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.member-links-list {
+  display: inline-block;
+  margin: auto;
+}
+
+.member-list-item {
+  width: 50px;
+  float: right;
+}

@@ -1,6 +1,8 @@
 class Todo < ActiveRecord::Base
-  validates :title, :author_id, presence: true
+  validates :title, :project_id, :author_id, presence: true
   validates :done, inclusion: [true, false], default: false
+  validates_uniqueness_of :title, scope: :project_id
+
   after_initialize { self.done = false if self.done.nil? }
 
   has_many :steps

@@ -21,6 +21,7 @@ $(function () {
               <Route path=":todoID" component={TodoShow} />
             </Route>
             <Route path="steps/:stepID" component={StepShow} />
+            <Route path="members/:memberID" component={MemberPage} />
           </Route>
         </Route>
       </Route>

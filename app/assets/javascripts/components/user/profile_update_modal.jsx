@@ -112,7 +112,7 @@ ProfileUpdateModal = React.createClass({
                       placeholder="joe@example.com" />
                   </label>
                   <label>
-                    <span>Company title</span>
+                    <span>Job title</span>
                     <input className="profile-form-input"
                       data-attr="title"
                       value={this.state.title}

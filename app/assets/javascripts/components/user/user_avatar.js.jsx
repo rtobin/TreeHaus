@@ -21,7 +21,7 @@ var CurrentUserAvatar = React.createClass({
 
   render: function () {
     var displayInitial;
-    var name = this.state.user.name || this.state.user.email;
+    var name = this.state.user.name || this.state.user.email.split("@")[0];
     var avatar_url = this.state.user.avatar_url || "";
     var imgStyle = {};
     var divStyle = {};
@@ -31,7 +31,9 @@ var CurrentUserAvatar = React.createClass({
       divStyle.border = 0;
     }
     return (
-      <div className="currentuser-avatar" style={divStyle}>
+      <div className="currentuser-avatar"
+        style={divStyle}
+        title={name}>
         <h2>{displayInitial}</h2>
         <img className="currentuser-avatar-img"
           src={this.state.user.avatar_url}
@@ -55,7 +57,9 @@ var UserAvatar = React.createClass({
       divStyle.border = 0;
     }
     return (
-      <div className="user-avatar" style={divStyle}>
+      <div className="user-avatar"
+        style={divStyle}
+        title={name}>
         <h2>{displayInitial}</h2>
         <img className="user-avatar-img"
           src={this.props.user.avatar_url}

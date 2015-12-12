@@ -1,7 +1,7 @@
 (function (root) {
-  var members = {};
+  var _members = {};
 
-  var setMemberss = function (members) {
+  var setMembers = function (members) {
     _members = $.extend({}, members);
   };
 

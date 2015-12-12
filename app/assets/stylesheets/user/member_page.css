@@ -1,0 +1,22 @@
+.member-page {
+  width: 600px;
+  margin: auto;
+}
+
+.member-page .recordable {
+  padding-top: 0px;
+}
+
+.member-page header {
+  padding-top: 20px;
+}
+
+.member-page h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.member-page .user-avatar {
+  width: 90px;
+  margin: auto;
+}

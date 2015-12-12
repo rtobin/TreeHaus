@@ -1,6 +1,7 @@
 class Step < ActiveRecord::Base
   validates :title, :todo_id, :author_id, presence: true
   validates :done, inclusion: [true, false], default: false
+  validates_uniqueness_of :title, scope: :todo_id
   after_initialize { self.done = false if self.done.nil? }
 
   belongs_to :todo, dependent: :destroy

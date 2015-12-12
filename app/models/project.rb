@@ -6,11 +6,11 @@ class Project < ActiveRecord::Base
     :author_id,
     presence: true
   )
-
+  validates_uniqueness_of :title, scope: :author_id
   validates :archived, inclusion: [true, false], default: false
 
-  has_one :team
-  has_many :members, through: :team, source: :members
+  has_many :memberships
+  has_many :members, through: :memberships
   belongs_to :author, foreign_key: :author_id, class_name: "User"
   has_many :todos
 

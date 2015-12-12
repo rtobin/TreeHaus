@@ -9,13 +9,14 @@ var ProjectPage = React.createClass({
       projectID: projectID,
       project: project || {},
       currentUser: this.props.currentUser,
-      params: this.props.params
+      // params: this.props.params
     };
   },
 
   componentDidMount: function () {
     ProjectStore.addProjectChangeListener(this._updateProject);
     ProjectUtil.fetchProject(this.state.projectID);
+    MemberUtil.fetchMembers(this.state.projectID);
   },
 
   componentWillUnMount: function () {
@@ -52,7 +53,10 @@ var ProjectPage = React.createClass({
             <div className={"settings-link" + makeSidebar}></div>
           </Link>
         </h2>
-          <p>{makeSidebar === "-sidebar" ? "" : this.state.project.description}</p>
+        <p>{makeSidebar === "-sidebar" ? "" : this.state.project.description}</p>
+        <div className={"members" + makeSidebar}>
+          <MembersIndex params={this.props.params} />
+        </div>
         <ProjectDock
           user={this.state.user}
           project={this.state.project}

@@ -23,41 +23,54 @@ jim.password = "Password0"
 jim.save
 
 
-ryan = User.new(
-  email: "ryan@treehaus.com"
+guest = User.new(
+  email: "guest@treehaus.com"
 )
-ryan.password = "Password1"
-ryan.save!
+guest.password = "Password1"
+guest.save!
 
 
-Project.create!(
+project1 = Project.create!(
   title: "Project 1",
   description: "Let's do this!",
   archived: true,
-  author_id: ryan.id
+  author_id: guest.id
 )
 
 Project.create!(
   title: "Project 2",
   description: "Let's do this again!",
   archived: true,
-  author_id: ryan.id
+  author_id: guest.id
 )
+
+project1.members << guest
+project1.members << jane
+project1.members << jim
 
 # Ryan todos
 (1...5).each do |i|
-  Todo.create!(
+  todo = Todo.create!(
     title: "Todo #{i}",
     body: "Let's do this #{i} times!",
-    author_id: ryan.id,
-    project_id: ryan.projects.first.id
+    author_id: guest.id,
+    project_id: guest.projects.first.id
+  )
+
+  todo.comments.create!(
+    content: "First comment on this goal!!!",
+    author_id: guest.id
   )
   (1...5).each do |j|
-    Step.create!(
+    step = Step.create!(
       title: "Step #{j}",
       body: "Step through this #{i} times!",
-      author_id: ryan.id,
+      author_id: guest.id,
       todo_id: i
+    )
+    step.comments.create!(
+      content: "First comment on this task!!!",
+      author_id: guest.id
     )
   end
 end
