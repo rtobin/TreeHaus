@@ -46,7 +46,7 @@ var ProjectsDirectory = React.createClass({
         var url = userID + "/projects/" + projectID;
         return (
           <li key={projectID}>
-            <Link to={url} key={projectID} className="project-button"
+            <Link to={url} key={projectID}
               onClick={that._getProject}
               data-projectid={projectID}>
               {project.title}
@@ -66,12 +66,15 @@ var ProjectsDirectory = React.createClass({
         <h3 className="nav-menu-heading">
           <span className="top">{name}</span>
         </h3>
-        <Link to={userID + "/projects/new"}
-          className="project-button new-project">
-          +
-        </Link>
+        <ul className="nav-menu-links">
+          <li>
+            <Link to={userID + "/projects/new"}>
+              +
+            </Link>
+          </li>
+        </ul>
 
-        <ul className="project-links-list">
+        <ul className="nav-menu-links">
           {this.projectLinksList()}
         </ul>
       </div>
