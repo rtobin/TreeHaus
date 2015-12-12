@@ -1,6 +1,9 @@
 var CommentList = React.createClass({
   getInitialState: function(){
-    return {comments: CommentStore.all()};
+    return {
+      comments: CommentStore.all(),
+      numMembers: MemberStore.count()
+    };
   },
 
   componentWillMount: function () {
@@ -15,8 +18,14 @@ var CommentList = React.createClass({
     ProjectUtil.fetchProject(ProjectStore.currentProjectID());
   },
 
+  _membersChanged: function () {
+    debugger
+    this.setState({ numMembers: MemberStore.count() });
+  },
+
   componentDidMount: function() {
     CommentStore.addChangeListener(this._commentsChanged);
+    MemberStore.addChangeListener(this._membersChanged);
     if (this.isMounted()) {
       CommentUtil.fetchComments(this.props.commentableParams);
     }
@@ -24,9 +33,11 @@ var CommentList = React.createClass({
 
   componentWillUnMount: function() {
     CommentStore.removeChangeListener(this._commentsChanged);
+    MemberStore.addChangeListener(this._membersChanged);
   },
 
   render: function() {
+    debugger
     var comments = this.state.comments;
     var commentsKeys = [];
     Object.keys(comments).forEach(function (key) {
@@ -45,9 +56,12 @@ var CommentList = React.createClass({
         <div className="comment-list">
           {
             commentsKeysSorted.map(function(comment) {
-              return(
-                <CommentListItem key={comment.id} comment={comment} />
-              );
+              var author = MemberStore.find(comment.author_id) || {};
+              if (typeof author.name !== "undefined") {
+                return(
+                  <CommentListItem key={comment.id} comment={comment} author={author} />
+                );
+              }
             })
           }
         </div>

@@ -16,7 +16,7 @@
   var MemberStore = root.MemberStore = $.extend({}, BaseStore, {
     // member store is for carrying members associated with a single project
 
-    all: function(){
+    all: function () {
       return $.extend({}, _members);
     },
 
@@ -24,7 +24,7 @@
       _members = {};
     },
 
-    numMembers: function () {
+    count: function () {
       return Object.keys(_members).length;
     },
 

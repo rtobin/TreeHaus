@@ -1,7 +1,8 @@
 var CommentListItem = React.createClass({
+
   render: function () {
+    var author = this.props.author;
     var comment = this.props.comment;
-    var author = MemberStore.find(comment.author_id) || {};
     return (
       <article className="comment-list-item">
         <UserAvatar user={author}/>
