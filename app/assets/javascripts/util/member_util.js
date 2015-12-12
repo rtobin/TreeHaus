@@ -4,7 +4,6 @@ MemberUtil = {
       url: 'api/memberships',
       data: {membership: { project_id: projectID }},
       success: function(members) {
-        debugger
         MemberActions.membersReceived(members);
       }
     });

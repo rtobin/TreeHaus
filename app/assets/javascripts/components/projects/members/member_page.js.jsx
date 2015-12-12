@@ -24,10 +24,12 @@ MemberPage = React.createClass({
   },
 
   _updateMember: function () {
-    var memberID = this.props.params.memberID;
-    this.setState({
-      member: MemberStore.find(memberID) || {}
-    });
+    if (this.isMounted()) {
+      var memberID = this.props.params.memberID;
+      this.setState({
+        member: MemberStore.find(memberID) || {}
+      });
+    }
   },
 
   render: function () {
