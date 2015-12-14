@@ -3,7 +3,7 @@ var MembersIndex = React.createClass({
 
   getInitialState: function () {
     return {
-      members: MemberStore.all()
+      members: this.props.members || MemberStore.all() 
     };
   },
 

@@ -77,6 +77,10 @@ img {
   height: auto;
 }
 
+.home {
+  background: #D9ECF2;
+}
+
 a {
   text-decoration: none;
   color: inherit;

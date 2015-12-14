@@ -18,6 +18,33 @@
   border-radius: 5px;
 }
 
+.project-links-list .project-dir {
+  font-size: 25px;
+}
+
+.project-links-list .project-dir:hover {
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.projects-index-table {
+  background: snow;
+  border-top: 1px solid grey;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0,0,0,0.3), 0 0 4px 1px rgba(0,0,0,0.2);
+  width: 500px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.project-links-list th {
+  text-decoration: underline;
+}
+
+.project-links-list td {
+  padding: 10px;
+}
+
 .projects-index-heading {
   font-size: 35px;
   font-weight: 700;
@@ -25,6 +52,12 @@
 
   /*background-color: #856ec6;*/
 }
+
+.projects-table-members  .member-list-item {
+  width: 50px;
+}
+
+
 
 .project-button {
   /*display: inline-block;*/

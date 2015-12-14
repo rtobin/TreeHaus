@@ -88,6 +88,33 @@ input.session-field {
   font-size: 16px;
 }
 
+.guest-signedin-btn {
+  // background-color: blue;
+  // border-color: blue;
+}
+
+.guest-signedin-btn {
+  position: relative;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: lightblue;
+  border-color: lightblue;
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 0 #7EADBC;
+}
+
+.guest-signedin-btn:hover {
+  background: #7EADBC;
+  cursor: pointer;
+}
+
+.guest-signedin-btn:active {
+  top: 3px;
+  background: #7EADBC;
+  box-shadow: none;
+}
+
 .session-switch {
   color: blue;
 }

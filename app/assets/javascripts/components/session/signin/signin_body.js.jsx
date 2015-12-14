@@ -5,6 +5,16 @@ SigninBody = React.createClass({
     this.history.pushState(null, this.props.currentUser.id + "/projects");
   },
 
+  _siginGuest: function () {
+    var guest = {
+      email: "guest@treehaus.com",
+      password: "Password1"
+    };
+    this.setState(guest);
+    var that = this;
+    SessionUtil.signin(guest);
+  },
+
   _staySignedIn: function () {
     if (UserStore.isSignedIn()) {
       var username = this.props.currentUser.name || this.props.currentUser.email;
@@ -49,6 +59,17 @@ SigninBody = React.createClass({
         <SigninForm pathname={this.props.pathname}/>
         {this._staySignedIn()}
         <footer className="centered">
+          <div className="guest-signedin centered">
+            <h4 className="break">
+              <span>or</span>
+            </h4>
+            <button
+              className="session-btn btn-default guest-signedin-btn"
+              onClick={this._siginGuest}>
+              Guest
+            </button>
+          </div>
+
           <h4 className="break">
             <span>or</span>
           </h4>

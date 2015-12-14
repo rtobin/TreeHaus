@@ -6,14 +6,14 @@ json.(project, :id, :title, :description, :author_id, :archived)
 #   json.total_step_count progress[:total_step_count]
 # end
 
-# json.members do
-#   project.members.each do |member|
-#     # for some reason this isn't setting id correctly ...
-#     json.set! member.id do
-#       json.partial! 'api/users/user', user: member
-#     end
-#   end
-# end
+json.members do
+  project.members.each do |member|
+    # for some reason this isn't setting id correctly ...
+    json.set! member.id do
+      json.partial! 'api/users/user', user: member
+    end
+  end
+end
 
 
 json.todos do
