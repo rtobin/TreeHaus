@@ -38,7 +38,7 @@ var TodosIndex = React.createClass({
           <TodosIndexHeader todos={todos} />
           <TodoForm params={this.props.params}/>
           <section className="todo-list panel-content">
-            <ul id={"todoindex-list"}>
+            <ul id="todoindex-list" className="todoindex-list">
               {
                 Object.keys(todos).map(function(todoID) {
                   var todo = todos[todoID];

@@ -200,7 +200,7 @@ var StepForm = React.createClass({
 
   render: function () {
     return (
-      <div>
+      <div className="add-new-step">
         <button className="action-button add-task-btn"
           onClick={this._toggleExpand}>Add task</button>
         {this._expandedContent()}

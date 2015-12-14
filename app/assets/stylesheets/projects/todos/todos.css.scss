@@ -1,3 +1,7 @@
+.todoindex-list {
+  overflow: auto;
+}
+
 .todo-index-item {
   margin-top: 15px;
   text-align: left;
@@ -10,7 +14,7 @@
   /* padding-right: 15px; */
   /* padding-bottom: 15px; */
   padding: 15px;
-  padding-right: 35px;
+  padding-right: 25px;
   margin-top: 15px;
 }
 
@@ -49,7 +53,7 @@
 }
 
 #todo-drag-handle {
-  top: 18px;
+  top: 8px;
 }
 
 .step-drag-handle{
@@ -72,19 +76,22 @@
 
 .step-list {
   margin-top: 15px;
+  overflow: auto;
 }
 
 .step-list-item {
   background: lightblue;
-  border: 1px solid #2993B6;
+  // border: 1px solid #2993B6;
+  box-shadow: 2px 2px 4px #2993B6;
   border-radius: 10px;
   padding-top: 5px;
   padding-left: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
+  margin-right: 5px;
 }
 
 .ui-sortable-helper {
-  transform: translateY(50px);
+  // transform: translateY(50px);
 }
 
 .step-checkbox-content .inert-checkbox{
@@ -112,4 +119,10 @@
 
 #todo-header > h1:hover {
   text-decoration: underline;
+}
+
+.add-new-step {
+  position: absolute;
+  top: 5px;
+  right: 50px;
 }
