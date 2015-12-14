@@ -8,7 +8,12 @@ var TodosIndex = React.createClass({
   componentDidMount: function () {
     ProjectStore.addTodosChangeListener(this._updateTodos);
     ProjectStore.addProjectChangeListener(this._updateTodos);
-
+    $( "#todoindex-list" ).sortable({
+      revert: true,
+      handle: ".todo-drag-handle",
+      axis: "y"
+    });
+    $( "ul, li" ).disableSelection();
   },
 
   componentWillUnMount: function () {
@@ -29,21 +34,23 @@ var TodosIndex = React.createClass({
     var todos = ProjectStore.currentProject().todos || {};
     return (
       <div className="panel">
-        <article className="todoindex recordable">
+        <article className="todoindex recordable" >
           <TodosIndexHeader todos={todos} />
           <TodoForm params={this.props.params}/>
           <section className="todo-list panel-content">
-            {
-              Object.keys(todos).map(function(todoID) {
-                var todo = todos[todoID];
-                if (parseInt(todoID) >= 0) {
-                  return(
-                    <TodoIndexItem key={todoID} todo={todo}
-                      params={that.props.params}/>
-                  );
-                }
-              })
-            }
+            <ul id={"todoindex-list"}>
+              {
+                Object.keys(todos).map(function(todoID) {
+                  var todo = todos[todoID];
+                  if (parseInt(todoID) >= 0) {
+                    return(
+                      <TodoIndexItem key={todoID} todo={todo}
+                        params={that.props.params}/>
+                    );
+                  }
+                })
+              }
+            </ul>
           </section>
         </article>
     </div>

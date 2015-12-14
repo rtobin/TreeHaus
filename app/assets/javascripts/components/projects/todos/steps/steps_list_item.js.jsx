@@ -7,8 +7,8 @@ var StepsListItem = React.createClass({
     var checkboxState = step.done ? "-checked" : "-unchecked";
     var commentableParams = {type: "Step", id: step.id};
     return (
-      <div className="step-list-item indent">
-        <div className="todo-drag-handle"></div>
+      <li className="step-list-item indent">
+        <div className="step-drag-handle"></div>
         <div className="step-checkbox">
           <span className="step-checkbox-content">
             <Link to={stepURL} >
@@ -21,7 +21,7 @@ var StepsListItem = React.createClass({
 
           </span>
         </div>
-      </div>
+      </li>
     );
   }
 });
