@@ -7,7 +7,13 @@
   var STEPS_CHANGE_EVENT = "stepsChange";
 
   var addProjects = function (projects) {
-    $.extend(_projects, projects);
+    Object.keys(projects).forEach( function (projectID) {
+      if (typeof _projects[projectID] === "undefined") {
+        _projects[projectID] = projects[projectID];
+      } else {
+        _projects[projectID] = $.extend(_projects[projectID], projects[projectID]);
+      }
+    });
   };
 
   // var addTodos = function(projectID, todos) {
@@ -115,9 +121,9 @@
       this.removeListener(STEPS_CHANGE_EVENT, callback);
     },
 
-    // projects received when user is fetched
     dispatcherID: AppDispatcher.register(function(payload){
       switch(payload.actionType){
+        // projects received when user is fetched
         // PROJECTS CRUD
         case ProjectConstants.PROJECTS_RECEIVED:
           addProjects(payload.projects);

@@ -11,7 +11,9 @@ MemberUtil = {
 
   createMember: function (memberParams) {
     $.post('api/memberships',
-      {member: memberParams.member},
+      {
+        membership: memberParams
+      },
       function(member) {
         MemberActions.memberCreated(member);
       }

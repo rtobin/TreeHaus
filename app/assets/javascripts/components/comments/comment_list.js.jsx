@@ -19,7 +19,6 @@ var CommentList = React.createClass({
   },
 
   _membersChanged: function () {
-    debugger
     this.setState({ numMembers: MemberStore.count() });
   },
 
@@ -37,7 +36,6 @@ var CommentList = React.createClass({
   },
 
   render: function() {
-    debugger
     var comments = this.state.comments;
     var commentsKeys = [];
     Object.keys(comments).forEach(function (key) {

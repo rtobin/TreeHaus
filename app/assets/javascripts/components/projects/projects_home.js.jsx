@@ -17,7 +17,6 @@ var ProjectsHome = React.createClass({
   },
 
   _updateUser: function () {
-    debugger
     this.setState({currentUser: UserStore.currentUser()})
   },
 

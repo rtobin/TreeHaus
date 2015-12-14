@@ -42,7 +42,7 @@ SigninBody = React.createClass({
             !
           </h3>
           <p>
-            Just enter your email address and password
+            Just enter your email address and password and
             we’ll get you right into Treehaus.
           </p>
         </header>

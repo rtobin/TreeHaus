@@ -9,6 +9,7 @@ var UpdateProjectForm = React.createClass ({
       title: project.title,
       description: project.description,
       author_id: parseInt(this.props.params.userID),
+      newMemberEmail: "",
       archived: false
     };
   },
@@ -56,8 +57,15 @@ var UpdateProjectForm = React.createClass ({
                   <span>Description</span>
                   <textarea className="project-form-textarea"
                     value={this.state.description}
-                     onChange={this._onDescriptionChange}
-                     placeholder="Write a description of the project..." />
+                    onChange={this._onDescriptionChange}
+                    placeholder="Write a description of the project..." />
+                </label>
+                <label>
+                  <span>Add Members</span>
+                  <input className="project-form-input"
+                    value={this.state.newMemberEmail}
+                    onChange={this._onNewMemberEmailChange}
+                    placeholder="Enter an email..." />
                 </label>
               </fieldset>
 
@@ -70,6 +78,10 @@ var UpdateProjectForm = React.createClass ({
     );
   },
 
+  _onNewMemberEmailChange: function (e) {
+    this.setState({newMemberEmail: e.target.value});
+  },
+
   _onDescriptionChange: function (e) {
     this.setState({description: e.target.value});
   },
@@ -80,6 +92,13 @@ var UpdateProjectForm = React.createClass ({
 
   _handleSubmit: function (e) {
     e.preventDefault();
+    if (this.state.newMemberEmail !== "") {
+      var memberParams = {
+        project_id: this.props.params.projectID,
+        email: this.state.newMemberEmail
+      };
+      MemberUtil.createMember()
+    }
     ProjectUtil.updateProject(this.state);
   }
 });

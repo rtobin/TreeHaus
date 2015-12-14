@@ -9,18 +9,30 @@ var ProjectPage = React.createClass({
       projectID: projectID,
       project: project || {},
       currentUser: this.props.currentUser,
+      memberEmails: MemberStore.emails()
       // params: this.props.params
     };
   },
 
   componentDidMount: function () {
+    ProjectStore.addChangeListener(this._getProject);
     ProjectStore.addProjectChangeListener(this._updateProject);
-    ProjectUtil.fetchProject(this.state.projectID);
+    MemberStore.addChangeListener(this._updateMembers);
     MemberUtil.fetchMembers(this.state.projectID);
   },
 
   componentWillUnMount: function () {
+    ProjectStore.removeChangeListener(this._getProject);
     ProjectStore.removeProjectChangeListener(this._updateProject);
+    MemberStore.removeChangeListener(this._updateMembers);
+  },
+
+  _updateMembers: function () {
+    this.setState({ memberEmails: MemberStore.emails() })
+  },
+
+  _getProject: function () {
+    ProjectUtil.fetchProject(this.state.projectID);
   },
 
   _updateProject: function () {
@@ -30,7 +42,6 @@ var ProjectPage = React.createClass({
       user: UserStore.currentUser()
     });
   },
-
 
   render: function () {
     var Link = ReactRouter.Link;
@@ -54,6 +65,13 @@ var ProjectPage = React.createClass({
           </Link>
         </h2>
         <p>{makeSidebar === "-sidebar" ? "" : this.state.project.description}</p>
+          <datalist id="assignees-emails-list">
+            {
+              this.state.memberEmails.map(function (email) {
+                return <option key={email} value={email} />
+              })
+            }
+          </datalist>
         <div className={"members" + makeSidebar}>
           <MembersIndex params={this.props.params} />
         </div>

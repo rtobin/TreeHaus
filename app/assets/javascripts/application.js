@@ -19,6 +19,9 @@
 //= require progressbar.min.js
 //= require flux
 //= require jquery.avgrund.min.js
+//= require jquery.autocomplete.js
+//= require jquery-ui.min.js
+//= require autocomplete.js
 //= require eventemitter
 //= require components
 //= require_tree .

@@ -14,13 +14,29 @@ var StepForm = React.createClass({
       title: "",
       body: "",
       startAt: null,
-      dueAt: null
+      dueAt: null,
+      assignees: null,
+      numMembers: MemberStore.count
     };
   },
 
   _toggleExpand: function (e) {
     e.preventDefault();
     this.setState({expanded: !this.state.expanded});
+    debugger
+    $('#assign-members')
+      .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        source: MemberStore.emails(),
+        autoFocus: true,
+        token: ',',
+        minLength: 0
+      });
   },
 
   _closeExpand: function () {
@@ -50,7 +66,8 @@ var StepForm = React.createClass({
       },
 
       todoID: this.props.todo.id,
-      projectID: this.props.params.projectID
+      projectID: this.props.params.projectID,
+      memberEmails: this.state.assignees
 
     };
     TodoUtil.createStep(stepParams);
@@ -93,24 +110,35 @@ var StepForm = React.createClass({
           <fieldset className="step-form-fieldset">
             <div className="step-input">
               <label>
+                Title
                 <input className="form-input"
                   data-attr="title"
                   placeholder="Name this task."
                   value={this.state.title}
+                  autofocus="true"
                   onChange={this._onFormChange} />
               </label>
             </div>
 
             <div className="step-input">
               <label>
+                Notes
                 <textarea className="step-form-textarea"
                   data-attr="body"
-                  placeholder="Add some notes for this task."
+                  placeholder="Add some notes..."
                   value={this.state.body}
                   onChange={this._onFormChange}/>
               </label>
             </div>
-
+            <div className="step-input">
+              <label>
+                Assign
+                <input id="assign-members"
+                  type="text"
+                  className="form-control"
+                  placeholder="add emails..." />
+              </label>
+            </div>
             <div className="step-input form-radio-list">
               <label>
                 <input className="step-radio"

@@ -32,6 +32,12 @@
       return _members[memberID];
     },
 
+    emails: function () {
+      return Object.keys(_members).map(function (memberID) {
+        return _members[memberID].email;
+      })
+    },
+
     dispatcherID: AppDispatcher.register(function(payload){
       switch(payload.actionType){
         case MemberConstants.MEMBERS_RECEIVED:

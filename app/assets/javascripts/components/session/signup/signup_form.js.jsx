@@ -60,7 +60,8 @@ var SignupForm = React.createClass ({
               className="session-field"
               placeholder="Email address"
               title="email"
-              onChange={this._onFormChange}/>
+              onChange={this._onFormChange}
+              autofocus/>
           </div>
           <div className="form-group">
             <input

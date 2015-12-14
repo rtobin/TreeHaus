@@ -6,13 +6,21 @@ class Api::MembershipsController < ApplicationController
   end
 
   def create
-    membership = Membership.new(member_params)
+    member = User.find_by_email(member_params.email)
+    unless member
+      render json: { message: 'invalid email', status: 422 }
+    end
+
+    membership = Membership.new(
+      project_id: member_params.project_id,
+      member_id: member.id
+    )
 
     if membership.save
       @user = membership.member
       membership.records.create(
         name: "#{@user.email} became member of #{membership.project.title}",
-        user_id: @user.id
+        user_id: current_user.id
       )
       membership.records.create(
         name: "#{current_user.email} added #{@user.email} to #{membership.project.title}",
