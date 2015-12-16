@@ -23,7 +23,6 @@ var StepForm = React.createClass({
   _toggleExpand: function (e) {
     e.preventDefault();
     this.setState({expanded: !this.state.expanded});
-    debugger
     $('#assign-members')
       .bind( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&
@@ -108,6 +107,7 @@ var StepForm = React.createClass({
         <form className="step-form" onSubmit={this._handleSubmit}>
           <Errors />
           <fieldset className="step-form-fieldset">
+            <h3>New Task</h3>
             <div className="step-input">
               <label>
                 Title

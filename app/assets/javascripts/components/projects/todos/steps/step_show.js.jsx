@@ -35,6 +35,15 @@ var StepShow = React.createClass({
     }
   },
 
+  _deleteStep: function () {
+    var stepParams = {
+      id: this.props.params.stepID,
+      todoID: this.state.step.todoID,
+      projectID: this.props.params.projectID
+    };
+    TodoUtil.destroyStep(stepParams);
+  },
+
   _getStepAndFetchProject: function () {
     if (this.isMounted()) {
       this.setState({
@@ -95,6 +104,10 @@ var StepShow = React.createClass({
           <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
           <StepHeader params={this.props.params} step={step} stepID={this.state.stepID}/>
           <p>{step.body}</p>
+          <div className="delete-step-button"
+            onClick={this._deleteStep}
+            title="delete task">
+          </div>
           <section className="step-details" >
             {this._dueTimes(step)}
             <label>

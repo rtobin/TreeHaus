@@ -2,12 +2,23 @@
   margin: 0 0 20px 0;
 }
 
+.step-form > .error-list {
+  z-index: 20;
+  /* top: -35px; */
+  position: absolute;
+}
+
 .new-step {
   display: none;
 }
 
 .new-step-expanded {
+  z-index: 5;
   display: block;
+/*position: absolute;*/
+/* text-align: center; */
+right: -42px;
+top: 93px;
 }
 
 .step-form-fieldset {
@@ -19,6 +30,13 @@
   background: #eee;
   border: 1px solid #ccc;
   border-radius: 5px;
+  right: 190px;
+  position: relative;
+  top: -58px;
+}
+
+.step-form-fieldset > h3 {
+  text-align: center;
 }
 
 .step-input {

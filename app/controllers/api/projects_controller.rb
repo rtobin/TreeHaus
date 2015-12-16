@@ -1,6 +1,6 @@
 class Api::ProjectsController < ApplicationController
-  # before_action :logged_in?, only: [:create, :show]
-  # before_action :require_logged_in_as_project_author!, only: [:edit, :update, :destroy]
+  before_action :logged_in?
+  before_action :require_logged_in_as_project_member!, only: [:show, :edit, :update, :destroy]
 
   def show
     @project = Project.find(params[:id])
@@ -128,5 +128,9 @@ class Api::ProjectsController < ApplicationController
       :author_id,
       :archived
     )
+  end
+
+  def require_logged_in_as_project_member!
+    Project.find(params[:id]).members.map { |member| member.id }.include?(current_user.id)
   end
 end

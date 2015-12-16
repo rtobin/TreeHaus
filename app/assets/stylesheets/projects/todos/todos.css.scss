@@ -2,6 +2,14 @@
   overflow: auto;
 }
 
+.todoindex-list .add-task-btn {
+  left: 64px;
+}
+
+.todoindex-list .step-form-fieldset {
+  right: 199px;
+}
+
 .todo-index-item {
   margin-top: 15px;
   text-align: left;
@@ -74,6 +82,10 @@
   top: 18px;
 }
 
+.todo-drag-handle:hover, .step-drag-handle:hover {
+  cursor: pointer;
+}
+
 .step-list {
   margin-top: 15px;
   overflow: auto;
@@ -122,7 +134,37 @@
 }
 
 .add-new-step {
+  position: relative;
+  top: -70px;
+  left: 150px;
+}
+
+.delete-todo-button {
+  background-image: url(image-path("delete1.ico"));
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 20px;
+  width: 20px;
   position: absolute;
-  top: 5px;
-  right: 50px;
+  top: -50px;
+  right: -20px;
+}
+
+.delete-todo-button:hover {
+  cursor: pointer;
+}
+
+.delete-step-button {
+  background-image: url(image-path("delete1.ico"));
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 8px;
+  right: 6px;
+}
+
+.delete-step-button:hover {
+  cursor: pointer;
 }

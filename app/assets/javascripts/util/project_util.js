@@ -46,13 +46,13 @@ ProjectUtil = {
     );
   },
 
-  destroyProject: function (projectParams) {
+  destroyProject: function (projectID) {
     $.ajax ({
       type: 'DELETE',
-      url: 'api/projects/' + projectParams.id,
-      data: projectParams,
+      url: 'api/projects/' + projectID,
+      data: {id: projectID},
       success: function () {
-        ProjectActions.projectDestroyed(projectParams.id);
+        ProjectActions.projectDestroyed(projectID);
       }
     });
   }

@@ -31,7 +31,8 @@ var CommentsCountBubble = React.createClass({
 
   render: function () {
     return (
-      <div className="comments-count-bubble">
+      <div className="comments-count-bubble"
+            title="Comment count">
         <small>{this.state.numComments}</small>
       </div>
     );

@@ -109,7 +109,9 @@ var ProgressCircle = React.createClass({
 
   render: function () {
     return (
-      <div className="progress-circle" id={this.props.progressID}>
+      <div className="progress-circle"
+        id={this.props.progressID}
+        title="Task completion ratio">
       </div>
     )
   }

@@ -25,8 +25,13 @@ var TodoShow = React.createClass({
       this.setState({
         todo: todo,
         steps: todo.steps || {}
-      });  
+      });
     }
+  },
+
+  _deleteTodo: function () {
+    var todoParams = {id: this.props.params.todoID, projectID: this.props.params.projectID};
+    TodoUtil.destroyTodo(todoParams);
   },
 
   render: function () {
@@ -50,6 +55,11 @@ var TodoShow = React.createClass({
           <section className="todo-list panel-content">
             <TodoHeader todo={todo} />
             <p>{todo.body}</p>
+            
+            <div className="delete-todo-button"
+              onClick={this._deleteTodo}
+              title="delete goal">
+            </div>
             <StepForm params={this.props.params} todo={todo}/>
             <div className="step-list">
               {
