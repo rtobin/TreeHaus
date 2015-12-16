@@ -27,8 +27,9 @@ ProjectUtil = {
   },
 
   updateProject: function (projectParams) {
+    debugger
     $.ajax ({
-      type: 'PUT',
+      type: 'PATCH',
       url: 'api/projects/' + projectParams.id,
       data: {
         project: projectParams,

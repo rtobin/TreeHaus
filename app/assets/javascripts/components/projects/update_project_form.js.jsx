@@ -8,7 +8,7 @@ var UpdateProjectForm = React.createClass ({
       id: projectID,
       title: project.title,
       description: project.description,
-      author_id: parseInt(this.props.params.userID),
+      userID: parseInt(this.props.params.userID),
       memberEmails: "",
       archived: false
     };
@@ -24,7 +24,7 @@ var UpdateProjectForm = React.createClass ({
 
   _redirectToNewProjectPage: function () {
     var projectID = ProjectStore.currentProject().id;
-    this.history.pushState(null, this.state.authorID + "/projects/" + projectID);
+    this.history.pushState(null, this.state.userID + "/projects/" + projectID);
   },
 
   render: function () {

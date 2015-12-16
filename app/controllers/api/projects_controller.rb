@@ -16,8 +16,8 @@ class Api::ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.valid?
-      @project.members << current_user
       emails = params[:emails].split(/\s*[ ,]\s*/)
+      byebug
       flagged_email = nil
       i = 0
       while i < emails.count
@@ -32,6 +32,8 @@ class Api::ProjectsController < ApplicationController
       if flagged_email
         render json: ["\"#{flagged_email}\" is not associated with any Treehaus account"], status: 422
       else
+        @project.save!
+        @project.members << current_user
         emails.each do |email|
           member = User.find_by_email(email)
           @project.members << member
@@ -50,7 +52,6 @@ class Api::ProjectsController < ApplicationController
           name: "project created: #{@project.title}",
           user_id: @project.author_id
         )
-        @project.save
         render "api/projects/show"
       end
     else
@@ -96,8 +97,9 @@ class Api::ProjectsController < ApplicationController
           user_id: @project.author_id
         )
         # redirect them to the new user's show page
-        render "api/projects/show"
       end
+
+      render "api/projects/show"
 
     else
       # input didn't pass validation;
