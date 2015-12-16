@@ -10,8 +10,12 @@ ProjectUtil = {
 
   // projectParams example: {}
   createProject: function (projectParams) {
+    debugger
     $.post('api/projects',
-      {project: projectParams},
+      {
+        project: projectParams,
+        emails: projectParams.memberEmails
+      },
       function(project) {
         ProjectActions.projectCreated(project);
       }
@@ -28,7 +32,8 @@ ProjectUtil = {
       url: 'api/projects/' + projectParams.id,
       data: {
         project: projectParams,
-        id: projectParams.id
+        id: projectParams.id,
+        emails: projectParams.memberEmails
       },
       success: function (project) {
         ProjectActions.projectUpdated(project);

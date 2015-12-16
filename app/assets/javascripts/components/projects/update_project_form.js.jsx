@@ -3,13 +3,13 @@ var UpdateProjectForm = React.createClass ({
 
   getInitialState: function () {
     var projectID = this.props.params.projectID;
-    var project = ProjectStore.all(projectID);
+    var project = ProjectStore.all()[projectID] || {};
     return {
       id: projectID,
       title: project.title,
       description: project.description,
       author_id: parseInt(this.props.params.userID),
-      newMemberEmail: "",
+      memberEmails: "",
       archived: false
     };
   },
@@ -63,9 +63,9 @@ var UpdateProjectForm = React.createClass ({
                 <label>
                   <span>Add Members</span>
                   <input className="project-form-input"
-                    value={this.state.newMemberEmail}
-                    onChange={this._onNewMemberEmailChange}
-                    placeholder="Enter an email..." />
+                    value={this.state.memberEmails}
+                    onChange={this._onMembersEmailChange}
+                    placeholder="Enter emails..." />
                 </label>
               </fieldset>
 
@@ -78,8 +78,8 @@ var UpdateProjectForm = React.createClass ({
     );
   },
 
-  _onNewMemberEmailChange: function (e) {
-    this.setState({newMemberEmail: e.target.value});
+  _onMemberEmailsChange: function (e) {
+    this.setState({smmberEmails: e.target.value});
   },
 
   _onDescriptionChange: function (e) {
@@ -92,13 +92,6 @@ var UpdateProjectForm = React.createClass ({
 
   _handleSubmit: function (e) {
     e.preventDefault();
-    if (this.state.newMemberEmail !== "") {
-      var memberParams = {
-        project_id: this.props.params.projectID,
-        email: this.state.newMemberEmail
-      };
-      MemberUtil.createMember()
-    }
     ProjectUtil.updateProject(this.state);
   }
 });

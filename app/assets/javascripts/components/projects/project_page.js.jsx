@@ -15,9 +15,13 @@ var ProjectPage = React.createClass({
   },
 
   componentDidMount: function () {
+    if (this.state.projectID === "undefined") {
+      this.history.pushState(null, this.props.params.userID + "/projects");
+    }
     ProjectStore.addChangeListener(this._getProject);
     ProjectStore.addProjectChangeListener(this._updateProject);
     MemberStore.addChangeListener(this._updateMembers);
+    ProjectUtil.fetchProject(this.state.projectID);
     MemberUtil.fetchMembers(this.state.projectID);
   },
 

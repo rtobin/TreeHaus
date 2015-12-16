@@ -45,7 +45,7 @@ var TodoIndexItem = React.createClass({
             <p className="indent">{this.state.todo.body}</p>
           </Link>
           <StepForm params={this.props.params} todo={this.state.todo}/>
-          <ul className="step-list" id={"step-list" + this.state.todo.id}>
+          <ul className="step-list group" id={"step-list" + this.state.todo.id}>
             {
               Object.keys(this.state.steps).map(function(stepID) {
                 var step = that.state.steps[stepID];

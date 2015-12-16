@@ -64,18 +64,13 @@ var ProjectsDirectory = React.createClass({
     return (
       <div className="nav-menu nav-menu-scroll">
         <h3 className="nav-menu-heading">
-          <span className="top">{name}</span>
+          <span className="top">Directory</span>
         </h3>
-        <ul className="nav-menu-links">
-          <li>
-            <Link to={userID + "/projects/new"}>
-              +
-            </Link>
-          </li>
-        </ul>
 
         <ul className="nav-menu-links">
+          <li><Link to={userID + "/projects/new"}>New Project</Link></li>
           {this.projectLinksList()}
+          <li><Link to={userID + "/projects"}>Index Page</Link></li>
         </ul>
       </div>
     );

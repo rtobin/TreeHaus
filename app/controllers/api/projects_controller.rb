@@ -15,13 +15,44 @@ class Api::ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
-    if @project.save
+    if @project.valid?
       @project.members << current_user
-      @project.records.create(
-        name: "project created: #{@project.title}",
-        user_id: @project.author_id
-      )
-      render "api/projects/show"
+      emails = params[:emails].split(/\s*[ ,]\s*/)
+      flagged_email = nil
+      i = 0
+      while i < emails.count
+        email = emails[i]
+        member = User.find_by_email(email)
+        if member.nil?
+          flagged_email = email
+          break
+        end
+        i += 1
+      end
+      if flagged_email
+        render json: ["\"#{flagged_email}\" is not associated with any Treehaus account"], status: 422
+      else
+        emails.each do |email|
+          member = User.find_by_email(email)
+          @project.members << member
+          membership = @project.memberships.last
+          membership.records.create(
+            name: "#{member.email} became member of #{membership.project.title}",
+            user_id: current_user.id
+          )
+          membership.records.create(
+            name: "#{current_user.email} added #{member.email} to #{membership.project.title}",
+            user_id: current_user.id
+          )
+        end
+
+        @project.records.create(
+          name: "project created: #{@project.title}",
+          user_id: @project.author_id
+        )
+        @project.save
+        render "api/projects/show"
+      end
     else
       # input didn't pass validation;
       # re-render project form.
@@ -31,13 +62,43 @@ class Api::ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    if @project.update(project_params)
-      @project.records.create(
-        name: "project updated: #{@project.title}",
-        user_id: @project.author_id
-      )
-      # redirect them to the new user's show page
-      render "api/projects/show"
+
+    emails = params[:emails].split(/\s*[ ,]\s*/)
+    flagged_email = nil
+    i = 0
+    while i < emails.count
+      email = emails[i]
+      member = User.find_by_email(email)
+      if member.nil?
+        flagged_email = email
+        break
+      end
+      i += 1
+    end
+    if flagged_email
+      render json: ["\"#{flagged_email}\" is not associated with any Treehaus account"], status: 422
+      return nil
+    elsif @project.update(project_params)
+      emails.each do |email|
+        member = User.find_by_email(email)
+        @project.members << member
+        membership = @project.memberships.last
+        membership.records.create(
+          name: "#{member.email} became member of #{membership.project.title}",
+          user_id: current_user.id
+        )
+        membership.records.create(
+          name: "#{current_user.email} added #{member.email} to #{membership.project.title}",
+          user_id: current_user.id
+        )
+        @project.records.create(
+          name: "project updated: #{@project.title}",
+          user_id: @project.author_id
+        )
+        # redirect them to the new user's show page
+        render "api/projects/show"
+      end
+
     else
       # input didn't pass validation;
       # re-render project form.

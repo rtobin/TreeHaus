@@ -7,6 +7,7 @@ var NewProjectForm = React.createClass ({
       title: "",
       description: "",
       author_id: parseInt(this.props.params.userID),
+      memberEmails: "",
       archived: false
     };
   },
@@ -56,6 +57,13 @@ var NewProjectForm = React.createClass ({
                      onChange={this._onDescriptionChange}
                      placeholder="Write a description of the project..." />
                 </label>
+                <label>
+                  <span>Add Members</span>
+                  <input className="project-form-input"
+                    value={this.state.memberEmails}
+                    onChange={this._onMemberEmailsChange}
+                    placeholder="Enter email(s)..." />
+                </label>
               </fieldset>
 
               <button type="submit" className="action-button"
@@ -67,6 +75,9 @@ var NewProjectForm = React.createClass ({
     );
   },
 
+  _onMemberEmailsChange: function (e) {
+    this.setState({memberEmails: e.target.value});
+  },
 
   _onDescriptionChange: function (e) {
     this.setState({description: e.target.value});

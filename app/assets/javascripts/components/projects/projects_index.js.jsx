@@ -20,6 +20,11 @@ var ProjectsIndex = React.createClass({
     })
   },
 
+  _deleteProject: function() {
+    
+    ProjectUtil.destroyProject({id: this.props.projectID})
+  },
+
   projectLinksList: function () {
     var Link = ReactRouter.Link;
     var projects = this.state.projects;
@@ -44,11 +49,18 @@ var ProjectsIndex = React.createClass({
             <td className="projects-table-members"><MembersIndex
               params={projectParams}
               members={project.members}/></td>
+
           </tr>
         );
       })
     );
   },
+
+  // <td>
+  //   <div className="delete-project-button"
+  //     onclick={that._deleteProject}>
+  //   </div>
+  // </td>
 
   render: function () {
     var Link = ReactRouter.Link;

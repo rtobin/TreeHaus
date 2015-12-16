@@ -88,3 +88,15 @@
 .projects-index .new-project {
   margin: 15px;
 }
+
+.delete-project-button {
+  background-image: url(image-path("delete1.ico"));
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 30px;
+  width: 30px;
+}
+
+.delete-project-button:hover {
+  cursor: pointer;
+}

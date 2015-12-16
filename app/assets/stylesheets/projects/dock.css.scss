@@ -81,9 +81,9 @@
 .dock-cards-sidebar .dock-card {
   display: inline-block;
   width: 100px;
-  height: 40px;
-  margin: 2px 3px;
-  padding: 2px 5px;
+  height: 61px;
+  margin: 6px 18px;
+  padding: 0px 5px;
   vertical-align: top;
   overflow: hidden;
   position: relative;
@@ -92,16 +92,17 @@
   border-radius: 0.6rem;
   background-color: white;
   z-index: 1;
-  transition: width .25s,
-              height .25s,
-              background-color .25s,
-              transform .25s;
+  transition: width .25s, height .25s, background-color .25s, transform .25s;
 }
 
 .dock-cards-sidebar .dock-card:hover {
   background-color: lightskyblue;
   width: 180px;
   height: 115px;
+}
+
+.dock-cards-sidebar header {
+  top: 0;
 }
 
 .dock-card .card-header {
@@ -134,7 +135,9 @@
 
 .sidebar-lock-checkbox {
   position: absolute;
-
+      /* float: right; */
+      right: 0;
+      padding-right: 8px;
 }
 
 /*input[type="checkbox"] {

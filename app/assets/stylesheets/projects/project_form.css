@@ -28,6 +28,10 @@
 }*/
 
 .project-form-input, .project-form-textarea {
+  font-weight: 500;
+}
+
+.project-form-input, .project-form-textarea {
   display: block;
   /*background: #fff;*/
   border-bottom: 1px solid #ccc;
@@ -54,6 +58,8 @@
 .new-project-panel {
   top: 100px;
 }
+
+
 
 /*.recordable  > header > h1 {
   display: inline-block;
