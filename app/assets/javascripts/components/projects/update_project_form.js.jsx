@@ -64,7 +64,7 @@ var UpdateProjectForm = React.createClass ({
                   <span>Add Members</span>
                   <input className="project-form-input"
                     value={this.state.memberEmails}
-                    onChange={this._onMembersEmailChange}
+                    onChange={this._onMembersEmailsChange}
                     placeholder="Enter emails..." />
                 </label>
               </fieldset>
@@ -78,8 +78,8 @@ var UpdateProjectForm = React.createClass ({
     );
   },
 
-  _onMemberEmailsChange: function (e) {
-    this.setState({smmberEmails: e.target.value});
+  _onMembersEmailsChange: function (e) {
+    this.setState({memberEmails: e.target.value});
   },
 
   _onDescriptionChange: function (e) {

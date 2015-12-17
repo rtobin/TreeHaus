@@ -17,7 +17,7 @@ class Api::ProjectsController < ApplicationController
 
     if @project.valid?
       emails = params[:emails].split(/\s*[ ,]\s*/)
-      byebug
+      
       flagged_email = nil
       i = 0
       while i < emails.count

@@ -9,10 +9,10 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :title, scope: :author_id
   validates :archived, inclusion: [true, false], default: false
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :members, through: :memberships
   belongs_to :author, foreign_key: :author_id, class_name: "User"
-  has_many :todos
+  has_many :todos, dependent: :destroy
 
   has_many :records, as: :recordable
 

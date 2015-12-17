@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
   has_many :authored_projects, foreign_key: :author_id
 
 
-  has_many :assigned_steps, foreign_key: :assignee_id, class_name: "StepAssignment"
-
+  has_many :step_assignments, foreign_key: :assignee_id, class_name: "StepAssignment"
+  has_many :assigned_steps, through: :step_assignments, source: :step
   has_many :authored_todos, foreign_key: :author_id, class_name: "Todo"
   has_many :authored_steps, foreign_key: :author_id, class_name: "Step"
 
@@ -89,6 +89,10 @@ class User < ActiveRecord::Base
     unless password =~ /\A(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}\z/
       errors[:password] << INVALID_PASSWORD
     end
+  end
+
+  def incomplete_assignments
+    self.assigned_steps.where(done: false)
   end
 
   def to_builder

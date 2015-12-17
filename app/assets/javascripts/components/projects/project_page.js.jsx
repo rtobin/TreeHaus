@@ -40,6 +40,7 @@ var ProjectPage = React.createClass({
   },
 
   _updateProject: function () {
+    MemberUtil.fetchMembers(this.state.projectID);
     var project = ProjectStore.currentProject();
     this.setState({
       project: project,

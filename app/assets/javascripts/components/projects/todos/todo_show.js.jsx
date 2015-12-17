@@ -2,6 +2,12 @@ var TodoShow = React.createClass({
   componentDidMount: function () {
     ProjectStore.addStepsChangeListener(this._getTodo);
     ProjectStore.addProjectChangeListener(this._getTodo);
+    $( "#todo-show-step-list" + this.props.params.todoID ).sortable({
+      revert: true,
+      handle: ".step-drag-handle",
+      axis: "y"
+    });
+    $( "ul, li" ).disableSelection();
   },
 
   componentWillUnMount: function () {
@@ -53,15 +59,16 @@ var TodoShow = React.createClass({
         <article className="todo-show recordable">
           <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
           <section className="todo-list panel-content">
-            <TodoHeader todo={todo} />
+            <TodoHeader todo={todo} progress={todo.progress}/>
             <p>{todo.body}</p>
-            
+
             <div className="delete-todo-button"
               onClick={this._deleteTodo}
               title="delete goal">
             </div>
             <StepForm params={this.props.params} todo={todo}/>
-            <div className="step-list">
+            <ul className="step-list group"
+              id={"todo-show-step-list" + this.props.params.todoID}>
               {
                 Object.keys(steps).map(function(stepID) {
                   var step = steps[stepID];
@@ -72,7 +79,7 @@ var TodoShow = React.createClass({
                   );
                 })
               }
-            </div>
+            </ul>
           </section>
         </article>
         <CommentList commentableParams={commentableParams} projectID={this.props.params.projectID}/>

@@ -4,8 +4,8 @@ class StepAssignment < ActiveRecord::Base
   belongs_to :assignee, class_name: "User"
   belongs_to :assigner, class_name: "User"
 
-  belongs_to :step, dependent: :destroy
+  belongs_to :step
 
   has_many :records, as: :recordable
-  
+
 end

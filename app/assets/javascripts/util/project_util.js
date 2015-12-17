@@ -10,7 +10,6 @@ ProjectUtil = {
 
   // projectParams example: {}
   createProject: function (projectParams) {
-    debugger
     $.post('api/projects',
       {
         project: projectParams,

@@ -5,11 +5,11 @@ class Todo < ActiveRecord::Base
 
   after_initialize { self.done = false if self.done.nil? }
 
-  has_many :steps
+  has_many :steps, dependent: :destroy
   has_many :step_assignments, through: :steps, source: :step_assignments
   # has_many :assignees
   belongs_to :author, foreign_key: :author_id, class_name: "User"
-  belongs_to :project, dependent: :destroy
+  belongs_to :project
 
   has_many :records, as: :recordable
   has_many :comments, as: :commentable

@@ -17,8 +17,8 @@
   display: block;
 /*position: absolute;*/
 /* text-align: center; */
-right: -42px;
-top: 93px;
+/*right: -42px;
+top: 93px;*/
 }
 
 .step-form-fieldset {
@@ -30,9 +30,9 @@ top: 93px;
   background: #eee;
   border: 1px solid #ccc;
   border-radius: 5px;
-  right: 190px;
+  /*right: 190px;*/
   position: relative;
-  top: -58px;
+  /*top: -58px;*/
 }
 
 .step-form-fieldset > h3 {
@@ -137,7 +137,7 @@ top: 93px;
 }
 
 .add-task-btn {
-  left: 45px;
+  /*left: 45px;*/
   font-size: 12px;
 }
 
