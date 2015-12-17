@@ -83,7 +83,7 @@ class Api::StepsController < ApplicationController
     if flagged_email
       render json: ["\"#{flagged_email}\" is not associated with any Treehaus account"], status: 422
       return nil
-    elsif @step.update(project_params)
+    elsif @step.update(step_params)
       emails.each do |email|
         member = User.find_by_email(email)
         @step.assignees << member

@@ -32,6 +32,45 @@ MemberPage = React.createClass({
     }
   },
 
+  _assignmentRows: function () {
+    var Link = ReactRouter.Link;
+    var member = this.state.member;
+    var assignments = member.assignments;
+    var stepURL = this.props.params.userID + "/projects/";
+    stepURL += this.props.params.projectID + "/steps/";
+    var todoURL = this.props.params.userID + "/projects/";
+    todoURL += this.props.params.projectID + "/todos/";
+    var todos = ProjectStore.currentProject().todos;
+    if (typeof assignments === "undefined") {
+      return (
+        <div className="assignments-item-row">
+          <div className="assignments-left">
+            <span>n/a</span>
+          </div>
+          <div className="assignments-right">
+            <span> </span>
+          </div>
+        </div>
+      );
+    } else {
+      return Object.keys(assignments).map(function (stepID) {
+        var step = assignments[stepID];
+        debugger
+        return (
+          <div className="assignments-item-row">
+            <div className="ass-table-item assignments-left">
+              <span><Link to={stepURL + stepID} >{step.title}</Link></span>
+            </div>
+            <div className="ass-table-item assignments-right">
+              <span><Link to={todoURL + step.todo_id}>{todos[step.todo_id].title}</Link></span>
+            </div>
+          </div>
+        );
+
+      });
+    }
+  },
+
   render: function () {
     var email = this.state.member.email || "";
     var name = this.state.member.name || email.split("/")[0];
@@ -61,7 +100,20 @@ MemberPage = React.createClass({
                 placeholder="n/a" />
             </label>
             <label>
-              <strong>*** Current Assignments ***</strong>
+              <span>Current Assignments in Project</span>
+              <div className="assignments-index-table">
+                <div className="assignments-header">
+                  <div className="ass-table-item assignments-left">
+                    <span>Title</span>
+                  </div>
+                  <div className="ass-table-item assignments-right">
+                    <span>Goal</span>
+                  </div>
+                </div>
+                {
+                  this._assignmentRows()
+                }
+              </div>
             </label>
           </fieldset>
         </article>

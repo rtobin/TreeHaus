@@ -7,7 +7,9 @@ json.assignments do
   unless assignments.empty?
     assignments.each do |step|
       # {stepID1: "title1", ...}
-      json.extract! step, :id, :title
+      json.set! step.id do
+        json.extract! step, :title, :todo_id
+      end
     end
   end
 end

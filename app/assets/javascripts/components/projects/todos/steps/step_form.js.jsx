@@ -69,6 +69,7 @@ var StepForm = React.createClass({
       assignees: this.state.assignees
 
     };
+    debugger
     TodoUtil.createStep(stepParams);
   },
 
