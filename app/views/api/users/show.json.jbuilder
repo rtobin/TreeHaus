@@ -1,4 +1,4 @@
-json.partial! 'api/users/user', user: @user
+json.partial! 'api/users/user', user: @user, project_id: nil
 
 json.projects do
   unless @user.projects.nil?

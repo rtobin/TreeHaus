@@ -8,7 +8,7 @@ class Step < ActiveRecord::Base
   belongs_to :author, class_name: "User"
   has_many :step_assignments, dependent: :destroy
   has_many :assignees, through: :step_assignments, source: :assignee
-  has_one :assigner, through: :step_assignments, source: :assigner
+  # has_one :assigner, through: :step_assignments, source: :assigner
 
   has_many :records, as: :recordable
   has_many :comments, as: :commentable

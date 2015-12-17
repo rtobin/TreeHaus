@@ -91,8 +91,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def incomplete_assignments
-    self.assigned_steps.where(done: false)
+  def incomplete_assignments(project_id)
+    if project_id
+      self.assigned_steps.joins(:todo).where(["steps.done = ? and todos.project_id = ?", false, project_id])
+    else
+      self.assigned_steps.where(["steps.done = ?", false])
+    end
   end
 
   def to_builder

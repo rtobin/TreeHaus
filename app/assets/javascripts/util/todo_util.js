@@ -43,7 +43,10 @@ TodoUtil = {
 
   createStep: function (stepParams) {
     $.post('api/steps',
-      {step: stepParams.step},
+      {
+        step: stepParams.step,
+        assignees: stepParams.assignees
+      },
       function(step) {
         TodoActions.stepCreated(
           stepParams.projectID,

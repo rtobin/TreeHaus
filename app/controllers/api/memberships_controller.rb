@@ -1,6 +1,7 @@
 class Api::MembershipsController < ApplicationController
   def index
-    project = Project.find(member_params[:project_id])
+    @project_id = member_params[:project_id]
+    project = Project.find(@project_id)
     @users = project.members
     render "api/users/index"
   end
@@ -26,6 +27,7 @@ class Api::MembershipsController < ApplicationController
         name: "#{current_user.email} added #{@user.email} to #{membership.project.title}",
         user_id: current_user.id
       )
+      @project_id = member_params.project_id
       render "api/users/show_meta"
     else
       render json: membership.errors.full_messages, status: 422

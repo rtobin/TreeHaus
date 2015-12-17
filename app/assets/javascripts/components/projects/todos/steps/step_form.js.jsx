@@ -66,7 +66,7 @@ var StepForm = React.createClass({
 
       todoID: this.props.todo.id,
       projectID: this.props.params.projectID,
-      memberEmails: this.state.assignees
+      assignees: this.state.assignees
 
     };
     TodoUtil.createStep(stepParams);
@@ -135,8 +135,10 @@ var StepForm = React.createClass({
                 Assign
                 <input id="assign-members"
                   type="text"
+                  data-attr="assignees"
                   className="form-control"
-                  placeholder="add emails..." />
+                  placeholder="add emails..."
+                  onChange={this._onFormChange}/>
               </label>
             </div>
             <div className="step-input form-radio-list">

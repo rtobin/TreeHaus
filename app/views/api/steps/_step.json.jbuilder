@@ -64,7 +64,7 @@ json.assignees do
   unless assignees.empty?
     step.assignees.each do |assignee|
       json.set! assignee.id do
-        json.partial! 'api/users/user', assignee: assignee
+        json.partial! 'api/users/user', user: assignee
       end
     end
   end

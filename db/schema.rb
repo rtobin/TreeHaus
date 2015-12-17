@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211193632) do
+ActiveRecord::Schema.define(version: 20151217042722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,11 +80,9 @@ ActiveRecord::Schema.define(version: 20151211193632) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "assignee_id", null: false
-    t.integer  "assigner_id", null: false
   end
 
   add_index "step_assignments", ["assignee_id"], name: "index_step_assignments_on_assignee_id", using: :btree
-  add_index "step_assignments", ["assigner_id"], name: "index_step_assignments_on_assigner_id", using: :btree
   add_index "step_assignments", ["step_id"], name: "index_step_assignments_on_step_id", using: :btree
 
   create_table "steps", force: :cascade do |t|

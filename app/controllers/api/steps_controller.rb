@@ -3,13 +3,45 @@ class Api::StepsController < ApplicationController
   def create
     @step = Step.new(step_params)
 
-    if @step.save
-      @step.records.create(
-        name: "step created: #{@step.title}",
-        user_id: @step.author_id
-      )
-      render "api/steps/show"
+    if @step.valid?
+      emails = params[:assignees].split(/\s*[ ,]\s*/)
+
+      flagged_email = nil
+      i = 0
+      while i < emails.count
+        email = emails[i]
+        member = User.find_by_email(email)
+        if member.nil?
+          flagged_email = email
+          break
+        end
+        i += 1
+      end
+      if flagged_email
+        render json: ["\"#{flagged_email}\" is not associated with any Treehaus account"], status: 422
+      else
+        @step.save!
+        # @step.assignees << current_user
+        emails.each do |email|
+          member = User.find_by_email(email)
+          @step.assignees << member
+          step_assignment = @step.step_assignments.last
+          step_assignment.records.create(
+            name: "assigned #{member.name || member.email} to #{step_assignment.step.title}",
+            user_id: current_user.id
+          )
+
+        end
+
+        @step.records.create(
+          name: "step created: #{@step.title}",
+          user_id: @step.author_id
+        )
+        render "api/steps/show"
+      end
     else
+      # input didn't pass validation;
+      # re-render step form.
       render json: @step.errors.full_messages, status: 422
     end
   end
@@ -34,16 +66,49 @@ class Api::StepsController < ApplicationController
 
   def update
     @step = Step.find(params[:id])
-    if !@step
-      render json: { message: 'not found', status: 404 }
-    elsif @step.update(step_params)
-      @step.records.create(
-        name: "step updated: #{@step.title}",
-        user_id: @step.author_id
-      )
+
+    assignees = params[:assignees] || ""
+    emails = assignees.split(/\s*[ ,]\s*/)
+    flagged_email = nil
+    i = 0
+    while i < emails.count
+      email = emails[i]
+      member = User.find_by_email(email)
+      if member.nil?
+        flagged_email = email
+        break
+      end
+      i += 1
+    end
+    if flagged_email
+      render json: ["\"#{flagged_email}\" is not associated with any Treehaus account"], status: 422
+      return nil
+    elsif @step.update(project_params)
+      emails.each do |email|
+        member = User.find_by_email(email)
+        @step.assignees << member
+        step_assignment = @step.step_assignments.last
+        step_assignment.records.create(
+          name: "#{member.email} became member of #{step_assignment.step.title}",
+          user_id: current_user.id
+        )
+        step_assignment.records.create(
+          name: "#{current_user.email} added #{member.email} to #{step_assignment.step.title}",
+          user_id: current_user.id
+        )
+        @step.records.create(
+          name: "step updated: #{@step.title}",
+          user_id: @step.author_id
+        )
+        # redirect them to the new user's show page
+      end
+
       render "api/steps/show"
+
     else
-      render json: @step.errors.full_messages
+      # input didn't pass validation;
+      # re-render step form.
+      render json: @step.errors.full_messages, status: 422
     end
   end
 

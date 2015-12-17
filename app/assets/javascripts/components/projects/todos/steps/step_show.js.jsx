@@ -98,6 +98,11 @@ var StepShow = React.createClass({
       userID + "/projects/" + projectID + "/todos",
       userID + "/projects/" + projectID + "/todos/" + step.todo_id
     ];
+    var assignees = step.assignees || {};
+    var emails = Object.keys(assignees).map(function (userID) {
+      var user = assignees[userID];
+      return user.name || user.email;
+    })
     return (
       <div className="panel">
         <article className="recordable">
@@ -112,7 +117,7 @@ var StepShow = React.createClass({
             {this._dueTimes(step)}
             <label>
               <strong>Assigned to:</strong>
-              <span className="step-detail">{step.assignees }</span>
+              <span className="step-detail">{emails }</span>
             </label>
             <label>
               <strong>Notes:</strong>

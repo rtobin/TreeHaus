@@ -1,6 +1,5 @@
 var TodoHeader = React.createClass({
   componentWillReceiveProps: function (newProps) {
-    debugger
     this.setState(this._getProgress(newProps.progress || {}));
   },
 

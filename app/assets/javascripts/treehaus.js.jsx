@@ -13,6 +13,7 @@ $(function () {
           path=":userID/projects"
           component={ProjectsHome}>
           <IndexRoute component={ProjectsIndex}/>
+          <Route component={AssignmentsIndex} />
           <Route path="new" component={NewProjectForm}/>
           <Route path=":projectID" component={ProjectPage}>
             <Route path="settings" component={UpdateProjectForm}/>
