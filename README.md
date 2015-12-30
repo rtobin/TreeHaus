@@ -1,8 +1,8 @@
 # Treehaus
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+[http://treehaus.space][link] **NB:** This should be a link to your production site
 
-[heroku]: http://www.treehaus.space
+[link]: http://www.treehaus.space
 
 Treehaus is a web application inspired by Basecamp built using Ruby on Rails (server-side)
 and React.js (client-side). Treehaus allows users to:
