@@ -15,6 +15,32 @@ SigninBody = React.createClass({
     SessionUtil.signin(guest);
   },
 
+  // _handleGoogleSignin: function (){
+  //   auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(this._signInCallback);
+  // },
+
+  // _signInCallback: function (authResult) {
+  //   if (authResult['code']) {
+  //
+  //     // Hide the sign-in button now that the user is authorized, for example:
+  //     // $('#signinButton').attr('style', 'display: none');
+  //
+  //     // Send the code to the server
+  //     $.ajax({
+  //       type: 'POST',
+  //       url: 'http://example.com/storeauthcode',
+  //       contentType: 'application/octet-stream; charset=utf-8',
+  //       success: function(result) {
+  //         // Handle or verify the server response.
+  //       },
+  //       processData: false,
+  //       data: authResult['code']
+  //     });
+  //   } else {
+  //     // There was an error.
+  //   }
+  // }
+
   _staySignedIn: function () {
     if (UserStore.isSignedIn()) {
       var username = this.props.currentUser.name || this.props.currentUser.email;
@@ -73,7 +99,9 @@ SigninBody = React.createClass({
           <h4 className="break">
             <span>or</span>
           </h4>
-          <div>Google signup</div>
+          <a id="google-signin-button" href="/users/auth/google_oauth2">
+            Sign in with Google
+          </a>
         </footer>
       </article>
     );

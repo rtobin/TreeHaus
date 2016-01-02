@@ -21,22 +21,24 @@ class Api::StepsController < ApplicationController
         render json: ["\"#{flagged_email}\" is not associated with any Treehaus account"], status: 422
       else
         @step.save!
+        project = @step.todo.project
+        name = current_user.name || current_user.email
         # @step.assignees << current_user
+        todo_name = Todo.find(@step.todo_id).title
+        project.records.create(
+          name: "#{name} created a task called #{@step.title} under the goal #{todo_name}",
+          user_id: current_user.id
+        )
         emails.each do |email|
           member = User.find_by_email(email)
           @step.assignees << member
           step_assignment = @step.step_assignments.last
-          step_assignment.records.create(
-            name: "assigned #{member.name || member.email} to #{step_assignment.step.title}",
+
+          project.records.create(
+            name: "#{name} assigned #{member.name || member.email} to the task: #{@step.title}",
             user_id: current_user.id
           )
-
         end
-
-        @step.records.create(
-          name: "step created: #{@step.title}",
-          user_id: @step.author_id
-        )
         render "api/steps/show"
       end
     else
@@ -54,9 +56,12 @@ class Api::StepsController < ApplicationController
   def destroy
     @step = Step.find(params[:id])
     if @step.try(:destroy!)
-      @step.records.create(
-        name: "step destroyed: #{@step.title}",
-        user_id: @step.author_id
+      project = @step.todo.project
+      name = current_user.name || current_user.email
+      todo_name = Todo.find(@step.todo_id).title
+      project.records.create(
+        name: "#{name} deleted task called #{@step.title} under the goal #{todo_name}",
+        user_id: current_user.id
       )
       render json: { message: 'destroyed' }
     else
@@ -66,7 +71,6 @@ class Api::StepsController < ApplicationController
 
   def update
     @step = Step.find(params[:id])
-
     assignees = params[:assignees] || ""
     emails = assignees.split(/\s*[ ,]\s*/)
     flagged_email = nil
@@ -84,21 +88,21 @@ class Api::StepsController < ApplicationController
       render json: ["\"#{flagged_email}\" is not associated with any Treehaus account"], status: 422
       return nil
     elsif @step.update(step_params)
+      project = @step.todo.project
+      name = current_user.name || current_user.email
+      todo_name = Todo.find(@step.todo_id).title
+      project.records.create(
+        name: "#{name} updated the task called #{@step.title} under the goal #{todo_name}",
+        user_id: current_user.id
+      )
       emails.each do |email|
         member = User.find_by_email(email)
         @step.assignees << member
         step_assignment = @step.step_assignments.last
-        step_assignment.records.create(
-          name: "#{member.email} became member of #{step_assignment.step.title}",
+
+        project.records.create(
+          name: "#{name} assigned #{member.name || member.email} to the task: #{@step.title}",
           user_id: current_user.id
-        )
-        step_assignment.records.create(
-          name: "#{current_user.email} added #{member.email} to #{step_assignment.step.title}",
-          user_id: current_user.id
-        )
-        @step.records.create(
-          name: "step updated: #{@step.title}",
-          user_id: @step.author_id
         )
         # redirect them to the new user's show page
       end

@@ -34,45 +34,55 @@ var UpdateProjectForm = React.createClass ({
       this.props.params.userID + "/projects/" + this.props.params.projectID
     ];
     return (
-      <div className="panel">
+      <div className="panel new-project-panel">
         <article className="recordable">
           <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
-          <header>
-            <h1>
-              Update Project
-            </h1>
-          </header>
-          <section className="update-project">
-            <form className="project-form" onSubmit={this._handleSubmit}>
-              <Errors />
-              <fieldset className="project-form-fieldset">
-                <label>
-                  <span>Title</span>
-                  <input className="project-form-input"
-                    value={this.state.title}
-                    onChange={this._onTitleChange}
-                    placeholder="Name this project..." />
-                </label>
-                <label>
-                  <span>Description</span>
-                  <textarea className="project-form-textarea"
-                    value={this.state.description}
-                    onChange={this._onDescriptionChange}
-                    placeholder="Write a description of the project..." />
-                </label>
-                <label>
-                  <span>Add Members</span>
-                  <input className="project-form-input"
-                    value={this.state.memberEmails}
-                    onChange={this._onMembersEmailsChange}
-                    placeholder="Enter emails..." />
-                </label>
-              </fieldset>
+          <br/>
+            <form className="form-horizontal" onSubmit={this._handleSubmit}>
+            <fieldset>
+            <legend>Change Project Details</legend>
+            <Errors />
+              <div className="form-group">
+                <label className="col-md-4 control-label" htmlFor="textinput1">Project Title</label>
+                <div className="col-md-4">
+                <input id="textinput1" name="textinput1" type="text"
+                  placeholder=""
+                  className="form-control input-md"
+                  required="" value={this.state.title}
+                  onChange={this._onTitleChange} />
+                </div>
+              </div>
 
-              <button type="submit" className="action-button"
-                id="project-form-submit">Update Project</button>
+              <div className="form-group">
+                <label className="col-md-4 control-label" htmlFor="textinput2">Members</label>
+                <div className="col-md-4">
+                  <input id="textinput2" name="textinput2" type="text"
+                    placeholder=""
+                    className="form-control input-md"
+                    value={this.state.memberEmails}
+                    onChange={this._onMemberEmailsChange} />
+                  <p className="help-block">separate emails by commas...</p>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="col-md-4 control-label" htmlFor="textarea">Project Description</label>
+                <div className="col-md-4">
+                  <textarea className="form-control" id="textarea" name="textarea"
+                    value={this.state.description}
+                    onChange={this._onDescriptionChange}></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <div className="form-group">
+              <label className="col-md-4 control-label" htmlFor="singlebutton"></label>
+              <div className="col-md-4">
+                <button id="singlebutton" name="singlebutton" className="btn btn-success">Update Project</button>
+              </div>
+            </div>
             </form>
-          </section>
+
         </article>
       </div>
     );

@@ -1,10 +1,11 @@
-.panel {
+.show-panel {
   margin-bottom: 0;
   position: relative;
   padding: 20px;
   margin: 0 auto 10rem;
   max-width: 650px;
   min-height: 200px;
+  background: inherit;
 
 }
 
@@ -13,10 +14,25 @@
   margin-bottom: 4rem;
   word-wrap: break-word;
   position: relative;
+  /*position: absolute;*/
+  display: -webkit-inline-box;
+  margin-top: 100px;
+  display: inline-block;
+  /*top: 100px;*/
   background: #fff;
   box-shadow: 0 5px 9px 2px #bfbfbf;
   border-radius: 0.6rem;
   text-align: left;
+  width: 600px;
+}
+
+.help-block {
+  font-size: 10px;
+}
+
+#textinput1, #textinput2 {
+  border-bottom: 1px solid lightgrey;
+  border-radius: 0;
 }
 
 .action-button {

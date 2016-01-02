@@ -3,12 +3,23 @@
 <head>
   <title>Treehaus</title>
   <link rel="icon" type="image/png" href="/images/logo.png" sizes="32x32" />
+  <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer />
+  <script>
+    function start() {
+      gapi.load('auth2', function() {
+        auth2 = gapi.auth2.init({
+          client_id: '925493969037-klra8bmbgf6tfa6kc15a15862g1mdkek.apps.googleusercontent.com',
+          // Scopes to request in addition to 'profile' and 'email'
+          //scope: 'additional_scope'
+        });
+      });
+    }
+  </script>
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
   <%= yield %>
 
 </body>

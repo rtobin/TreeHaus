@@ -65,6 +65,17 @@ $(function(){
     event.preventDefault();
     $(".profile-modal").removeClass("is-open");
   });
+
+  // amiguous modal
+  $("body").on("click", ".ambiguous-modal-open", function(event){
+    event.preventDefault();
+    $(".ambiguous-modal").addClass("is-open");
+  });
+  $("body").on("click", ".ambiguous-modal-close", function(event){
+    event.preventDefault();
+    $(".ambiguous-modal").removeClass("is-open");
+    ModalActions.deactivateModal();
+  });
 });
 
 function h(e) {

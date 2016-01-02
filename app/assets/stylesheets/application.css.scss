@@ -12,10 +12,17 @@
  *
  *= require jquery-ui.min.css
  *= require avgrund.css
+ *= require bootstrap.min.css
+ *= require bootstrap-datetimepicker.min.css
  *= require_tree .
  *= require_self
  */
 
+ @font-face {
+   font-family: 'Glyphicons Halflings';
+   src: url(asset_path('glyphicons-halflings-regular.eot'));
+   src: url(asset_path('glyphicons-halflings-regular.eot?#iefix')) format('embedded-opentype'), url(asset_path('glyphicons-halflings-regular.woff')) format('woff'), url(asset_path('glyphicons-halflings-regular.ttf')) format('truetype'), url(asset_path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular')) format('svg');
+ }
  html, body, header, nav, h1, a, ul, li, strong, main, button, i, section, img, div, h2, p, form, fieldset, label, input, textarea, span, article, footer, time, small {
      margin: 0;
      padding: 0;
@@ -29,6 +36,7 @@
      box-sizing: inherit;
      background: transparent;
  }
+
 
 body {
  box-sizing: content-box;
@@ -78,7 +86,7 @@ img {
 }
 
 .home {
-  background: #D9ECF2;
+  // background: #D9ECF2;
 }
 
 a {
@@ -138,5 +146,9 @@ section {
 }
 
 .home, .app {
-  height: 100%;
+  /*height: 100%;*/
+}
+
+.project-index-heading {
+  color: black;
 }

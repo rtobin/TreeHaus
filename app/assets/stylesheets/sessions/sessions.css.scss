@@ -148,58 +148,6 @@ input.session-field {
   display: block;
 }
 
-.modal-screen {
-  position: fixed;
-  background: rgba(0, 0, 0, 0.7);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-}
-
-.modal-panel {
-  position: fixed;
-  top: 100px;
-  left: 50%;
-  margin-left: -220px;
-  width: 360px;
-  padding: 20px;
-  background: #fff;
-  z-index: 101;
-  border-radius: 5px;
-  border: 1px solid #000;
-  color: black;
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 36px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.modal-close:hover {
-  // color: #f00;
-}
-
-.modal-panel > h1 {
-  font-size: 36px;
-  line-height: 1;
-  font-weight: 300;
-}
-
-.modal-panel > p {
-  margin: 0 0 20px 0;
-}
-
-.submit {
-  margin: 20px 0 0 0;
-  padding: 0 0 3px 0;
-  text-align: center;
-}
 
 .session-form > button {
   position: relative;

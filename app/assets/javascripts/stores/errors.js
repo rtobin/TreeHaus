@@ -1,28 +1,28 @@
-var _errors = [];
+var _errors = {};
 var CHANGE_EVENT = "change";
 
-var addErrors = function (errors) {
+var addErrors = function (errors, errorid) {
   // errors.forEach(function(err){
   //   if (_errors.indexOf(err) === -1) {
   //     _errors.push(err);
   //   }
   // })
-  _errors = errors;
+  _errors[errorid] = errors;
 };
 
 var ErrorsStore = window.ErrorsStore = $.extend({}, BaseStore, {
-  fetchErrors: function () {
-    return _errors;
+  fetchErrors: function (errorid) {
+    return _errors[errorid];
   },
 
-  eraseErrors: function () {
-    _errors = [];
+  eraseErrors: function (errorid) {
+    delete _errors[errorid];
   },
 
   dispatcherID: AppDispatcher.register( function (payload){
     switch(payload.actionType){
       case UIConstants.RECEIVED_ERROR:
-        addErrors(payload.errors);
+        addErrors(payload.errors, payload.errorid + "-expanded");
         ErrorsStore.emit(CHANGE_EVENT);
         break;
       default:

@@ -164,3 +164,37 @@ top: 93px;*/
 #runs-to-span {
   margin-left: 95px;
 }
+
+#pickdate-due-on {
+  /*width: 400px;*/
+  margin-left: 50px;
+  float: right;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#pickdates-start-at {
+  float: right;
+  position: relative;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 50px;
+
+}
+
+#pickdates-due-at {
+  float: right;
+  position: relative;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 50px;
+  
+}
+
+.form-radio-list > label {
+  padding-bottom: 20px;
+}
+
+.form-radio-list > label > h4 {
+  display: inline-block;
+}

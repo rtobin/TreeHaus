@@ -9,10 +9,12 @@ class Api::CommentsController < ApplicationController
     comment_hash = commentable_stuff
 
     if @comment.save
-      @comment.records.create(
-        name: "#{comment_hash[:who]} commented on a #{comment_hash[:on_what]}",
-        user_id: @comment.author_id
-      )
+      project = Project.find(params[:project_id])
+
+      # project.records.create(
+      #   name: "#{comment_hash[:who]} commented on a #{comment_hash[:on_what]}",
+      #   user_id: @comment.author_id
+      # )
       render 'api/comments/show'
     else
       render json: @comment.errors.full_messages, status: 422

@@ -19,7 +19,7 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     user_params[:avatar] = @user.avatar if user_params[:avatar] == "null"
-    
+
     if @user.update(user_params)
       @user.records.create(
         name: "profile updated",

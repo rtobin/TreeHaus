@@ -57,6 +57,8 @@
 
 .new-project-panel {
   top: 100px;
+  height: 100vh;
+  text-align: center;
 }
 
 

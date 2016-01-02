@@ -5,7 +5,14 @@ and one numeric digit.
 PSSWRD
 
 class User < ActiveRecord::Base
-  attr_reader :password
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
+  devise :omniauthable, :omniauth_providers => [:google_oauth2]
+  # attr_accessor :email, :name, :password, :password_confirmation, :remember_me
+  attr_accessor :password
+  has_many :authorizations, :dependent => :destroy
+
   after_initialize :ensure_session_token
 
   validates(
@@ -35,8 +42,8 @@ class User < ActiveRecord::Base
 
 
   has_many :step_assignments, foreign_key: :assignee_id, class_name: "StepAssignment"
-  has_many :assigned_steps, through: :step_assignments, source: :step
   has_many :authored_todos, foreign_key: :author_id, class_name: "Todo"
+  has_many :assigned_steps, through: :step_assignments, source: :step
   has_many :authored_steps, foreign_key: :author_id, class_name: "Step"
 
   has_many :teams, through: :memberships, source: :team

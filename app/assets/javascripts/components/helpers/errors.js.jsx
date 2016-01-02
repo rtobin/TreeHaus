@@ -1,21 +1,30 @@
 var Errors = window.Errors = React.createClass ({
   getInitialState: function () {
+    var errors = ErrorsStore.fetchErrors(this.props.errorid);
     return {
-      errors: ErrorsStore.fetchErrors() || []
+      errors: errors || []
     };
   },
 
+  componentWillReceiveProps: function (newProps) {
+    ErrorsStore.eraseErrors(this.props.errorid);
+    this.setState({
+      errors: ErrorsStore.fetchErrors(newProps.errorid) || []
+    });
+  },
+
   updateErrors: function () {
-    var errors = ErrorsStore.fetchErrors();
+    var errors = ErrorsStore.fetchErrors(this.props.errorid) || [];
     this.setState({errors: errors});
   },
 
   componentDidMount: function () {
     ErrorsStore.addChangeListener(this.updateErrors);
+    ErrorsStore.eraseErrors(this.props.errorid);
   },
 
   componentWillUnmount: function () {
-    ErrorsStore.eraseErrors();
+    ErrorsStore.eraseErrors(this.props.errorid);
     ErrorsStore.removeChangeListener(this.updateErrors);
   },
 

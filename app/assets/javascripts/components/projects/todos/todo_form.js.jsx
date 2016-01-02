@@ -22,7 +22,15 @@ var TodoForm = React.createClass({
   },
 
   _closeExpand: function () {
-    this.setState({expanded: false})
+    this._resetState();
+  },
+
+  _resetState: function () {
+    this.setState({
+      expanded: false,
+      title: "",
+      body: ""
+    });
   },
 
   _onFormChange: function (e) {
@@ -52,8 +60,9 @@ var TodoForm = React.createClass({
     return (
       <section className={"centered new-todo" + expanded}>
         <form className="todo-form" onSubmit={this._handleSubmit}>
-          <Errors />
           <fieldset className="todo-form-fieldset">
+            <h3>New Goal</h3>
+            <Errors key="todo-errors" errorid={"new-todo" + expanded}/>
             <div className="todo-input">
               <label>
                 <input className="form-input"

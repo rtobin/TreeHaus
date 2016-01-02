@@ -1,6 +1,7 @@
 var TodoShow = React.createClass({
   componentDidMount: function () {
     ProjectStore.addStepsChangeListener(this._getTodo);
+    ProjectStore.addTodosChangeListener(this._getTodo);
     ProjectStore.addProjectChangeListener(this._getTodo);
     $( "#todo-show-step-list" + this.props.params.todoID ).sortable({
       revert: true,
@@ -12,6 +13,7 @@ var TodoShow = React.createClass({
 
   componentWillUnMount: function () {
     ProjectStore.removeStepsChangeListener(this._getTodo);
+    ProjectStore.removeTodosChangeListener(this._getTodo);
     ProjectStore.removeProjectChangeListener(this._getTodo);
   },
 
@@ -25,6 +27,7 @@ var TodoShow = React.createClass({
   },
 
   _getTodo: function () {
+
     if (this.isMounted()) {
       var todos = ProjectStore.currentProject().todos || {};
       var todo = todos[this.props.params.todoID] || {};
@@ -35,9 +38,25 @@ var TodoShow = React.createClass({
     }
   },
 
-  _deleteTodo: function () {
-    var todoParams = {id: this.props.params.todoID, projectID: this.props.params.projectID};
-    TodoUtil.destroyTodo(todoParams);
+  _activateDeleteModal: function (e) {
+    e.preventDefault();
+    var todoParams = {
+      id: this.props.params.todoID,
+      project_id: this.props.params.projectID
+    };
+    var userID = this.props.params.userID;
+    var projectID = this.props.params.projectID;
+    var question = "are you sure you want to delete the goal: ";
+    question += this.state.todo.title + "?";
+    var redirectURL = userID + "/projects/" + projectID + "/todos/";
+
+    ModalActions.activateModal(
+      question,
+      function () {
+        TodoUtil.destroyTodo(todoParams)
+      },
+      redirectURL
+    );
   },
 
   render: function () {
@@ -54,8 +73,9 @@ var TodoShow = React.createClass({
       this.props.params.userID + "/projects/" + this.props.params.projectID + "/todos"
     ];
 
+
     return (
-      <div className="panel">
+      <div className="show-panel">
         <article className="todo-show recordable">
           <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
           <section className="todo-list panel-content">
@@ -63,7 +83,7 @@ var TodoShow = React.createClass({
             <p>{todo.body}</p>
 
             <div className="delete-todo-button"
-              onClick={this._deleteTodo}
+              onClick={this._activateDeleteModal}
               title="delete goal">
             </div>
             <StepForm params={this.props.params} todo={todo}/>

@@ -34,18 +34,19 @@ var TodoIndexItem = React.createClass({
   render: function () {
     var that = this;
     var Link = ReactRouter.Link;
+    var todo = this.state.todo;
     var todoURL = this.props.params.userID + "/projects/";
-    todoURL += this.props.params.projectID + "/todos/" + this.state.todo.id;
+    todoURL += this.props.params.projectID + "/todos/" + todo.id;
     return (
       <li className="todo-index-item">
         <section>
           <Link to={todoURL}>
             <div className="todo-drag-handle" id="todo-drag-handle"></div>
-            <TodoHeader todo={this.state.todo} />
-            <p className="indent">{this.state.todo.body}</p>
+            <TodoHeader todo={todo} progress={todo.progress}/>
+            <p className="indent">{todo.body}</p>
           </Link>
-          <StepForm params={this.props.params} todo={this.state.todo}/>
-          <ul className="step-list group" id={"step-list" + this.state.todo.id}>
+          <StepForm params={this.props.params} todo={todo}/>
+          <ul className="step-list group" id={"step-list" + todo.id}>
             {
               Object.keys(this.state.steps).map(function(stepID) {
                 var step = that.state.steps[stepID];

@@ -55,7 +55,7 @@ MemberPage = React.createClass({
     } else {
       return Object.keys(assignments).map(function (stepID) {
         var step = assignments[stepID];
-        debugger
+        
         return (
           <div className="assignments-item-row">
             <div className="ass-table-item assignments-left">

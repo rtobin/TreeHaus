@@ -21,7 +21,7 @@ var ProjectsIndex = React.createClass({
   },
 
   _deleteProject: function() {
-    
+
     ProjectUtil.destroyProject({id: this.props.projectID})
   },
 
@@ -39,18 +39,19 @@ var ProjectsIndex = React.createClass({
           userID: userID
         }
         return (
-          <tr key={projectID} >
-            <td >
+          <div className="project-index-row" key={projectID} >
+            <h3 className="projects-table-title">
               <Link to={url}
                 className="project-dir">
                 {project.title}
               </Link>
-            </td>
-            <td className="projects-table-members"><MembersIndex
-              params={projectParams}
-              members={project.members}/></td>
-
-          </tr>
+            </h3>
+            <h3 className="projects-table-members">
+              <MembersIndex
+                params={projectParams}
+                members={project.members}/>
+            </h3>
+          </div>
         );
       })
     );
@@ -70,10 +71,12 @@ var ProjectsIndex = React.createClass({
           <span className="top">Projects</span>
         </h3>
         <div className="projects-index-table">
-          <table className="project-links-list group">
-            <tr><th>Title</th><th>Members</th></tr>
+          <div className="project-links-list group">
+            <div className="project-index-row">
+              <strong>Title</strong><strong>Members</strong>
+            </div>
             {this.projectLinksList()}
-          </table>
+          </div>
         </div>
         <Link to={this.props.params.userID + "/projects/new"}
           className="action-button new-project">

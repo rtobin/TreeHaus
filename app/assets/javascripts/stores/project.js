@@ -30,7 +30,12 @@
     _projects[project.id] = project;
   };
 
+  var updateProject = function (project) {
+    _projects[project.id] = $.extend(_projects[project.id], project)
+  };
+
   var addTodo = function (projectID, todo) {
+    
     if (typeof _projects[projectID].todos === "undefined") {
       _projects[projectID].todos = {};
     }
@@ -49,6 +54,7 @@
   };
 
   var deleteTodo = function (projectID, todoID) {
+
     delete _projects[projectID].todos[todoID];
   };
 
@@ -136,7 +142,7 @@
           ProjectStore.emitChange();
           break;
         case ProjectConstants.PROJECT_UPDATED:
-          addProject(payload.project);
+          updateProject(payload.project);
           ProjectStore.emitChange();
           ProjectStore.emit(PROJECT_CHANGE_EVENT);
           break;

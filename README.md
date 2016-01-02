@@ -1,6 +1,10 @@
 # Treehaus
 
+<<<<<<< HEAD
+[http://treehaus.space][link]
+=======
 [http://treehaus.space][link] 
+>>>>>>> e5ced859b72d942d708c3c976fffc0d2b70f49b4
 
 [link]: http://www.treehaus.space
 
@@ -17,5 +21,9 @@ and React.js (client-side). Treehaus allows users to:
 - Create, read, edit, and delete Comments on many commentable items
 - Applaud comments.
 - Create, read, edit, and delete ToDos and Steps to accomplish ToDos and assign members
+<<<<<<< HEAD
+- Track records of project
+=======
 - Track records of project 
 
+>>>>>>> e5ced859b72d942d708c3c976fffc0d2b70f49b4

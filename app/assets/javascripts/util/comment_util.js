@@ -14,7 +14,10 @@ CommentUtil = {
 
   createComment: function (commentParams) {
     $.post('api/comments',
-      {comment: commentParams.comment},
+      {
+        comment: commentParams.comment,
+        project_id: commentParams.projectID
+      },
       function(comment) {
         CommentActions.commentCreated(comment);
       }

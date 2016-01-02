@@ -33,7 +33,7 @@ var TodosIndex = React.createClass({
     var Link = ReactRouter.Link;
     var todos = ProjectStore.currentProject().todos || {};
     return (
-      <div className="panel">
+      <div className="show-panel">
         <article className="todoindex recordable" >
           <TodosIndexHeader todos={todos} />
           <TodoForm params={this.props.params}/>

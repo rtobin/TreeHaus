@@ -1,4 +1,13 @@
 TodoUtil = {
+  fetchTodo: function (todoID) {
+    $.get(
+      'api/todos/' + todoID,
+      function (todo) {
+        TodoActions.todoUpdated(todo.project_id, todo);
+      }
+    );
+  },
+
   createTodo: function (todoParams) {
     $.post('api/todos',
       {todo: todoParams},
@@ -7,7 +16,8 @@ TodoUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "new-todo";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   },
@@ -25,7 +35,8 @@ TodoUtil = {
       }
     }).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "update-todo";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   },
@@ -55,7 +66,8 @@ TodoUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "new-step";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   },
@@ -76,7 +88,8 @@ TodoUtil = {
       }
     }).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "update-step";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   },

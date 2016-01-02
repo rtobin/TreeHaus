@@ -2,6 +2,18 @@ var StepForm = React.createClass({
 
   componentDidMount: function () {
     ProjectStore.addStepsChangeListener(this._closeExpand);
+    $('#datetimepicker5').datetimepicker();
+    $('#datetimepicker6').datetimepicker();
+    $('#datetimepicker7').datetimepicker({
+        useCurrent: false //Important! See issue #1075
+    });
+    $("#datetimepicker6").on("dp.change", function (e) {
+        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+    $("#datetimepicker7").on("dp.change", function (e) {
+        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    });
+
   },
 
   componentWillUnMount: function () {
@@ -38,10 +50,21 @@ var StepForm = React.createClass({
       });
   },
 
+
   _closeExpand: function () {
-    if (this.isMounted()) {
-      this.setState({expanded: false});
-    }
+    this._resetState();
+  },
+
+  _resetState: function () {
+    this.setState({
+      expanded: false,
+      title: "",
+      body: "",
+      startAt: null,
+      dueAt: null,
+      assignees: null,
+      numMembers: MemberStore.count
+    });
   },
 
   _onFormChange: function (e) {
@@ -69,8 +92,9 @@ var StepForm = React.createClass({
       assignees: this.state.assignees
 
     };
-    debugger
+
     TodoUtil.createStep(stepParams);
+    TodoUtil.fetchTodo(this.props.todo.id);
   },
 
   _noDates: function () {
@@ -106,9 +130,9 @@ var StepForm = React.createClass({
     return (
       <section className={"centered new-step" + expanded}>
         <form className="step-form" onSubmit={this._handleSubmit}>
-          <Errors />
           <fieldset className="step-form-fieldset">
             <h3>New Task</h3>
+            <Errors key="step-errors" errorid={"new-step" + expanded}/>
             <div className="step-input">
               <label>
                 Title
@@ -137,7 +161,6 @@ var StepForm = React.createClass({
                 <input id="assign-members"
                   type="text"
                   data-attr="assignees"
-                  className="form-control"
                   placeholder="add emails..."
                   onChange={this._onFormChange}/>
               </label>
@@ -149,40 +172,73 @@ var StepForm = React.createClass({
                   value="none"
                   checked={!(this.state.startAt || this.state.dueAt)}
                   onChange={this._noDates} />
-                  No due date
+                <h4>No due date</h4>
               </label>
               <label>
                 <input className="step-radio"
                   type="radio" name="dates" value="due"
                   checked={!this.state.startAt && !!this.state.dueAt}
                   onChange={this._onlyDueDate}/>
-                  Due on
-                <input className="step-datetime" type="datetime-local" name="due-datetime"
-                  data-attr="dueAt"
-                  onChange={this._onFormChange}
-                  value={this.state.dueAt}
-                  placeholder="Add a due date…"
-                  min={timeNow}/>
+                <h4>Due on</h4>
+                <div id="pickdate-due-on">
+                <div className='col-sm-6'>
+                  <div className="form-group">
+                    <div className='input-group date' id='datetimepicker5'>
+                      <input type='text' className="form-control"
+                        data-attr="dueAt"
+                        onChange={this._onFormChange}
+                        value={this.state.startAt ? null : this.state.dueAt}
+                        placeholder="Add a due date…"
+                        min={timeNow}/>
+                      <span className="input-group-addon">
+                        <span className="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                </div>
               </label>
               <label>
                 <input className="step-radio"
                   type="radio" name="dates" value="both"
                   checked={(!!this.state.startAt && !!this.state.dueAt)}
                   onChange={this._bothDates}/>
-                <span>Runs from</span>
-                <input className="step-datetime both-dates" type="datetime-local" name="start-datetime"
-                  data-attr="startAt"
-                  onChange={this._onFormChange}
-                  value={this.state.startAt}
-                  placeholder="Add a start date…"
-                  min={timeNow}/>
-                <span id="runs-to-span">to</span>
-                <input className="step-datetime both-dates" type="datetime-local" name="due-datetime"
-                  data-attr="dueAt"
-                  onChange={this._onFormChange}
-                  value={this.state.startAt ? this.state.dueAt : null}
-                  placeholder="Add a due date…"
-                  min={this.state.startAt}/>
+                <h4>Runs from</h4>
+
+                <div id="pickdates-start-at">
+                  <div className='col-md-5'>
+                    <div className="form-group">
+                      <div className='input-group date' id='datetimepicker6'>
+                        <input type='text' className="form-control"
+                          data-attr="startAt"
+                          onChange={this._onFormChange}
+                          value={this.state.startAt}
+                          placeholder="Add a start date…"
+                          min={timeNow}/>
+                        <span className="input-group-addon">
+                          <span className="glyphicon glyphicon-calendar"></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="pickdates-due-at">
+                  <div className='col-md-5'>
+                    <div className="form-group">
+                      <div className='input-group date' id='datetimepicker7'>
+                        <input type='text' className="form-control"
+                          data-attr="dueAt"
+                          onChange={this._onFormChange}
+                          value={this.state.startAt ? this.state.dueAt : null}
+                          placeholder="Add a due date…"
+                          min={this.state.startAt}/>
+                        <span className="input-group-addon">
+                          <span className="glyphicon glyphicon-calendar"></span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </label>
             </div>
             <div className="step-submit">

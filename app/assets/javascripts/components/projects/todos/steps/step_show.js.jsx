@@ -35,14 +35,29 @@ var StepShow = React.createClass({
     }
   },
 
-  _deleteStep: function () {
+  _activateDeleteModal: function (e) {
+    e.preventDefault();
     var stepParams = {
       id: this.props.params.stepID,
       todoID: this.state.step.todoID,
       projectID: this.props.params.projectID
     };
-    TodoUtil.destroyStep(stepParams);
+    var userID = this.props.params.userID;
+    var projectID = this.props.params.projectID;
+    var todoID = this.state.step.todo_ID;
+    var question = "are you sure you want to delete the task: ";
+    question += this.state.step.title + "?";
+    var redirectURL = userID + "/projects/" + projectID + "/todos/" + todoID;
+
+    ModalActions.activateModal(
+      question,
+      function () {
+        TodoUtil.destroyStep(stepParams);
+      },
+      redirectURL
+    );
   },
+
 
   _getStepAndFetchProject: function () {
     if (this.isMounted()) {
@@ -53,29 +68,48 @@ var StepShow = React.createClass({
     }
   },
 
+  _getFancyDatetime: function (date) {
+    var newDate;
+    if (date && date !== "") {
+      newDate = moment(date).format('MMMM Do YYYY, h:mm:ss a');
+      newDate += "  (" + moment(date).fromNow() + ")";
+    }
+    return newDate;
+  },
+
   _dueTimes: function (step) {
     var step = this.state.step;
-    var due_at = step.due_at || "no due time";
-    var start_at = step.start_at;
+    var due_at = this._getFancyDatetime(step.due_at) || "no due time";
+    var start_at = this._getFancyDatetime(step.start_at);
     if (start_at) {
       return (
-        <label>
-          <strong>Starts at:</strong>
-          <div className="step-detail">
-            <span>{start_at}</span>
-          </div>
-          <strong>Due by:</strong>
-          <div className="step-detail">
-            <span>{due_at}</span>
-          </div>
-        </label>
+        <div>
+          <label>
+            <strong>Starts at:</strong>
+            <div className="step-detail">
+              <span>
+                {start_at}
+              </span>
+            </div>
+          </label>
+          <label>
+            <strong>Due by:</strong>
+            <div className="step-detail">
+              <span>
+                {due_at}
+              </span>
+            </div>
+          </label>
+        </div>
       )
     } else {
       return (
         <label>
           <strong>Due by:</strong>
           <div className="step-detail">
-            <span>{due_at}</span>
+            <span>
+              {due_at}
+            </span>
           </div>
         </label>
       )
@@ -104,13 +138,12 @@ var StepShow = React.createClass({
       return user.name || user.email;
     })
     return (
-      <div className="panel">
+      <div className="show-panel">
         <article className="recordable">
           <HeaderNavLinks linkPaths={navlinkPaths} linkTitles={navlinkTitles}/>
           <StepHeader params={this.props.params} step={step} stepID={this.state.stepID}/>
-          <p>{step.body}</p>
           <div className="delete-step-button"
-            onClick={this._deleteStep}
+            onClick={this._activateDeleteModal}
             title="delete task">
           </div>
           <section className="step-details" >

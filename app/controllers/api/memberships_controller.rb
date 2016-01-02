@@ -19,11 +19,12 @@ class Api::MembershipsController < ApplicationController
 
     if membership.save
       @user = membership.member
-      membership.records.create(
-        name: "#{@user.email} became member of #{membership.project.title}",
-        user_id: current_user.id
-      )
-      membership.records.create(
+      project = Project.find(member_params.project_id)
+      # project.records.create(
+      #   name: "#{@user.email} became member of #{membership.project.title}",
+      #   user_id: current_user.id
+      # )
+      project.records.create(
         name: "#{current_user.email} added #{@user.email} to #{membership.project.title}",
         user_id: current_user.id
       )
@@ -42,7 +43,7 @@ class Api::MembershipsController < ApplicationController
     if membership.try(:destroy!)
       member = membership.member
       project = membership.project
-      membership.records.create(
+      project.records.create(
         name: "#{member.email} membership revoked for #{project.title}",
         user_id: current_user.id
       )

@@ -68,9 +68,9 @@ var ProjectsDirectory = React.createClass({
         </h3>
 
         <ul className="nav-menu-links">
-          <li><Link to={userID + "/projects/new"}>New Project</Link></li>
-          {this.projectLinksList()}
           <li><Link to={userID + "/projects"}>Index Page</Link></li>
+          {this.projectLinksList()}
+          <li><Link to={userID + "/projects/new"}>New Project</Link></li>
         </ul>
       </div>
     );

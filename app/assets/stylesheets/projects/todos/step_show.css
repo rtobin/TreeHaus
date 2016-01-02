@@ -9,19 +9,19 @@
   margin-left: 5px;
 }
 
-.step-details > label {
+.step-details label {
   display: block;
   border-top: 1px solid lightgray;
 }
 
-.step-details > label > strong {
+.step-details label > strong {
   display: inline-block;
   width: 140px;
   text-align: right;
   font-weight: 900;
 }
 
-.step-details > label > .step-detail {
+.step-details label > .step-detail {
   display: inline-block;
   /* float: left; */
   margin-left: 40px;

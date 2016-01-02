@@ -17,7 +17,7 @@ class Api::ProjectsController < ApplicationController
 
     if @project.valid?
       emails = params[:emails].split(/\s*[ ,]\s*/)
-      
+
       flagged_email = nil
       i = 0
       while i < emails.count
@@ -38,11 +38,11 @@ class Api::ProjectsController < ApplicationController
           member = User.find_by_email(email)
           @project.members << member
           membership = @project.memberships.last
-          membership.records.create(
-            name: "#{member.email} became member of #{membership.project.title}",
-            user_id: current_user.id
-          )
-          membership.records.create(
+          # membership.records.create(
+          #   name: "#{member.email} became member of #{membership.project.title}",
+          #   user_id: current_user.id
+          # )
+          @project.records.create(
             name: "#{current_user.email} added #{member.email} to #{membership.project.title}",
             user_id: current_user.id
           )
@@ -84,11 +84,11 @@ class Api::ProjectsController < ApplicationController
         member = User.find_by_email(email)
         @project.members << member
         membership = @project.memberships.last
-        membership.records.create(
-          name: "#{member.email} became member of #{membership.project.title}",
-          user_id: current_user.id
-        )
-        membership.records.create(
+        # membership.records.create(
+        #   name: "#{member.email} became member of #{membership.project.title}",
+        #   user_id: current_user.id
+        # )
+        @project.records.create(
           name: "#{current_user.email} added #{member.email} to #{membership.project.title}",
           user_id: current_user.id
         )

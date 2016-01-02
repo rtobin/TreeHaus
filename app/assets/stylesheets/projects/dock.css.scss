@@ -55,7 +55,7 @@
   transition: transform 1s;
   display: block;
   position: fixed;
-  top: 59px;
+  top: 64px;
   height: 100%;
   text-align: left;
 }
@@ -140,6 +140,9 @@
       padding-right: 8px;
 }
 
+.sidebar-lock-checkbox span {
+  padding-right: 10px;
+}
 /*input[type="checkbox"] {
     display:none;
 }

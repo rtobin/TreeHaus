@@ -13,3 +13,7 @@
   width: 50px;
   float: right;
 }
+
+.members-sidebar {
+  display: none;
+}

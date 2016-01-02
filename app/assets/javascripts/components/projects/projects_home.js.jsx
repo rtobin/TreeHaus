@@ -26,6 +26,7 @@ var ProjectsHome = React.createClass({
         <div className="profile-modals">
           <SignoutModal />
           <ProfileUpdateModal params={this.props.params}/>
+          <Modal />
         </div>
       );
     }

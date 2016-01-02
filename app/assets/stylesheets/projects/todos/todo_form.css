@@ -40,6 +40,7 @@
   padding: 10px;
   width: calc(100% - 22px);
   border-radius: 2px;
+  font-weight: 500;
 }
 
 .todo-input input:focus,

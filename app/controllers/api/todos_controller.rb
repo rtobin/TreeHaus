@@ -1,6 +1,4 @@
 class Api::TodosController < ApplicationController
-
-
   def show
     @todo = Todo.find(params[:id])
     render "api/todos/show"
@@ -10,9 +8,11 @@ class Api::TodosController < ApplicationController
   def create
     @todo =Todo.new(todo_params)
     if @todo.save
-      @todo.records.create(
-        name: "todo created: #{@todo.title}",
-        user_id: @todo.author_id
+      project = @todo.project
+      name = current_user.name || current_user.email
+      project.records.create(
+        name: "#{name} created a goal called #{@todo.title}",
+        user_id: current_user.id
       )
       render "api/todos/show"
     else
@@ -23,7 +23,8 @@ class Api::TodosController < ApplicationController
   def destroy
     todo = Todo.find(params[:id])
     if todo.try(:destroy!)
-      todo.records.create(
+      project = todo.project
+      project.records.create(
         name: "todo destroyed: #{todo.title}",
         user_id: todo.author_id
       )
@@ -38,8 +39,10 @@ class Api::TodosController < ApplicationController
     if !@todo
       render json: { message: 'not found', status: 404 }
     elsif @todo.update(todo_params)
-      @todo.records.create(
-        name: "todo updated: #{@todo.title}",
+      project = @todo.project
+      name = current_user.name || current_user.email
+      project.records.create(
+        name: "#{name} updated a goal called #{@todo.title}",
         user_id: @todo.author_id
       )
       render "api/todos/show"

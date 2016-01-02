@@ -1,4 +1,9 @@
 var ClickExpandable = {
+  getInitialState: function () {
+    return {
+      expanded: false
+    }
+  },
 
   makeExpandedFalse: function () {
     if (this.state.expanded){

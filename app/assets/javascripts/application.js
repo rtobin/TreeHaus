@@ -21,6 +21,9 @@
 //= require jquery.avgrund.min.js
 //= require jquery.autocomplete.js
 //= require jquery-ui.min.js
+//= require moment.min.js
+//= require bootstrap.min.js
+//= require bootstrap-datetimepicker.min.js
 //= require autocomplete.js
 //= require eventemitter
 //= require components

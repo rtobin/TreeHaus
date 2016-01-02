@@ -1,8 +1,9 @@
 UIActions = {
-  errorReport: function (errors) {
+  errorReport: function (errors, errorid) {
     AppDispatcher.dispatch({
       actionType: UIConstants.RECEIVED_ERROR,
-      errors: errors
+      errors: errors,
+      errorid: errorid
     });
   }
 };

@@ -14,7 +14,12 @@ gem "paperclip", "~> 4.3"
 gem 'bcrypt', '~> 3.1.7'
 gem 'react-rails', '~> 1.3.0'
 gem 'flux-rails-assets'
+gem 'aws-sdk'
 gem 'figaro'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'uuidtools'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
