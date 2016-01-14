@@ -46,9 +46,15 @@ var TodoShow = React.createClass({
     };
     var userID = this.props.params.userID;
     var projectID = this.props.params.projectID;
+<<<<<<< HEAD
+    var question = 'are you sure you want to delete the goal: \"';
+    question += this.state.todo.title + '\"?';
+    var redirectURL = userID + '/projects/' + projectID + '/todos/';
+=======
     var question = "are you sure you want to delete the goal: ";
     question += this.state.todo.title + "?";
     var redirectURL = userID + "/projects/" + projectID + "/todos/";
+>>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
 
     ModalActions.activateModal(
       question,

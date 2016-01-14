@@ -9,3 +9,7 @@
 .navbar-list {
   float: left;
 }
+
+.project-records-list, .user-records-list {
+  list-style: square;
+}

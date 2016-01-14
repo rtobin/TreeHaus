@@ -11,7 +11,11 @@ class Api::TodosController < ApplicationController
       project = @todo.project
       name = current_user.name || current_user.email
       project.records.create(
+<<<<<<< HEAD
+        name: "#{name} created a goal called \"#{@todo.title}\"",
+=======
         name: "#{name} created a goal called #{@todo.title}",
+>>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
         user_id: current_user.id
       )
       render "api/todos/show"
@@ -42,7 +46,11 @@ class Api::TodosController < ApplicationController
       project = @todo.project
       name = current_user.name || current_user.email
       project.records.create(
+<<<<<<< HEAD
+        name: "#{name} updated a goal called \"#{@todo.title}\"",
+=======
         name: "#{name} updated a goal called #{@todo.title}",
+>>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
         user_id: @todo.author_id
       )
       render "api/todos/show"

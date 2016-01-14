@@ -14,8 +14,9 @@ var CommentForm = React.createClass({
 
   _handleSubmit: function (e) {
     e.preventDefault();
+    
     var commentParams = {
-      projectID: this.props.projectID,
+      projectID: ProjectStore.currentProject().id,
       comment: {
         content: this.state.content,
         author_id: UserStore.currentUser().id,
@@ -31,7 +32,7 @@ var CommentForm = React.createClass({
   render: function () {
     return (
       <section className="centered new-comment">
-        <Errors />
+        <Errors errorid="new-comment-expanded"/>
         <CurrentUserAvatar />
         <form className="comment-form" onSubmit={this._handleSubmit}>
           <fieldset className="comment-form-fieldset">

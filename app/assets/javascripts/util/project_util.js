@@ -20,7 +20,8 @@ ProjectUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "new-project";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   },
@@ -39,7 +40,8 @@ ProjectUtil = {
       }
     }).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "update-project";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   },

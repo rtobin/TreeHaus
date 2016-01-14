@@ -50,7 +50,7 @@ var SignupForm = React.createClass ({
     var Link = ReactRouter.Link;
     return (
       <section className="session signup centered">
-        <Errors />
+        <Errors errorid="signup-expanded"/>
         <form className="session-form" onSubmit={this._signup}>
           <div className="form-group">
             <input

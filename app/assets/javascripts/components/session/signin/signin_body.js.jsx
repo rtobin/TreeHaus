@@ -5,12 +5,12 @@ SigninBody = React.createClass({
     this.history.pushState(null, this.props.currentUser.id + "/projects");
   },
 
-  _siginGuest: function () {
+  _signinGuest: function () {
     var guest = {
-      email: "guest@treehaus.com",
+      email: "guest@treehaus.space",
       password: "Password1"
     };
-    this.setState(guest);
+    // this.setState(guest);
     var that = this;
     SessionUtil.signin(guest);
   },
@@ -91,7 +91,7 @@ SigninBody = React.createClass({
             </h4>
             <button
               className="session-btn btn-default guest-signedin-btn"
-              onClick={this._siginGuest}>
+              onClick={this._signinGuest}>
               Guest
             </button>
           </div>

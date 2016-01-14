@@ -13,7 +13,13 @@ CommentUtil = {
   },
 
   createComment: function (commentParams) {
+<<<<<<< HEAD
+    
+
+    $.post("api/comments",
+=======
     $.post('api/comments',
+>>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
       {
         comment: commentParams.comment,
         project_id: commentParams.projectID
@@ -23,7 +29,8 @@ CommentUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "new-comment";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   },
@@ -41,7 +48,8 @@ CommentUtil = {
       }
     }).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "update-comment";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   },

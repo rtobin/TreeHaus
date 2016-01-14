@@ -24,7 +24,12 @@
 //= require moment.min.js
 //= require bootstrap.min.js
 //= require bootstrap-datetimepicker.min.js
+<<<<<<< HEAD
+//= require select2.min.js
+// = //require autocomplete.js
+=======
 //= require autocomplete.js
+>>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
 //= require eventemitter
 //= require components
 //= require_tree .

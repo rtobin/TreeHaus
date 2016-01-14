@@ -54,7 +54,7 @@ var StepHeader = React.createClass ({
         <CommentsCountBubble
           commentableParams={commentableParams}
           numComments={step.num_comments} />
-        <h4>{action} on {date} by {author}.</h4>
+        <h4>{action} {date} by {author}.</h4>
         <div className="step-checkbox">
           <input type="checkbox" id="step-done"
             value="step-done"

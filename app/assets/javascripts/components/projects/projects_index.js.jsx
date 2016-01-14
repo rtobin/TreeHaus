@@ -37,7 +37,7 @@ var ProjectsIndex = React.createClass({
         var projectParams = {
           projectID: projectID,
           userID: userID
-        }
+        };
         return (
           <div className="project-index-row" key={projectID} >
             <h3 className="projects-table-title">

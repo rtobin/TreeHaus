@@ -27,7 +27,7 @@ class Api::CommentsController < ApplicationController
 
     if comment.try(:destroy!)
       comment.records.create(
-        name: "#{comment_hash[:who]} deleted a comment on a #{comment_hash[:on_what]}",
+        name: "#{comment_hash[:who]} deleted a comment on a \"#{comment_hash[:on_what]}\"",
         user_id: comment.author_id
       )
       render json: { message: 'destroyed' }
@@ -44,7 +44,7 @@ class Api::CommentsController < ApplicationController
       render json: { message: 'not found', status: 404 }
     elsif @comment.update(comment_params)
       @comment.records.create(
-        name: "#{comment_hash[:who]} changed a commented on a #{comment_hash[:on_what]}",
+        name: "#{comment_hash[:who]} changed a commented on a \"#{comment_hash[:on_what]}\"",
         user_id: @comment.author_id
       )
       render 'api/comments/show'

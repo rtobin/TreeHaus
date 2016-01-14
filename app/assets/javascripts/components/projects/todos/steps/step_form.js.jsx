@@ -35,19 +35,26 @@ var StepForm = React.createClass({
   _toggleExpand: function (e) {
     e.preventDefault();
     this.setState({expanded: !this.state.expanded});
-    $('#assign-members')
-      .bind( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).autocomplete( "instance" ).menu.active ) {
-          event.preventDefault();
-        }
-      })
-      .autocomplete({
-        source: MemberStore.emails(),
-        autoFocus: true,
-        token: ',',
-        minLength: 0
-      });
+    // $('#assign-members')
+    //   .bind( "keydown", function( event ) {
+    //     if ( event.keyCode === $.ui.keyCode.TAB &&
+    //         $( this ).autocomplete( "instance" ).menu.active ) {
+    //       event.preventDefault();
+    //     }
+    //   })
+    //   .autocomplete({
+    //     source: MemberStore.emails(),
+    //     autoFocus: true,
+    //     token: ',',
+    //     minLength: 0
+    //   });
+
+    $("#assign-members").select2( {
+      data: MemberStore.emails(),
+      placeholder: "add emails...",
+      // theme: "classic",
+      tokenSeparators: [',', ' ']
+    } );
   },
 
 
@@ -72,6 +79,7 @@ var StepForm = React.createClass({
     var attr = target.dataset.attr;
     this.state[attr] = target.value;
     this.forceUpdate();
+
   },
 
   _handleSubmit: function (e) {
@@ -89,7 +97,11 @@ var StepForm = React.createClass({
 
       todoID: this.props.todo.id,
       projectID: this.props.params.projectID,
-      assignees: this.state.assignees
+      assignees: $(".select2-selection__rendered li")
+                    .map( function(el) {
+                      return $(this).text().slice(1)
+                    })
+                  .slice(0, -1).toArray().join(", ")
 
     };
 
@@ -156,13 +168,20 @@ var StepForm = React.createClass({
               </label>
             </div>
             <div className="step-input">
-              <label>
-                Assign
-                <input id="assign-members"
-                  type="text"
+              <label id="assign-members-label">
+                Assign to...
+                <select
+                  id="assign-members"
                   data-attr="assignees"
+<<<<<<< HEAD
+                  multiple="multiple"
+                  style={{'width': '500px', 'margin': "10px"}}
+                  onChange={this._onFormChange}>
+                </select>
+=======
                   placeholder="add emails..."
                   onChange={this._onFormChange}/>
+>>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
               </label>
             </div>
             <div className="step-input form-radio-list">

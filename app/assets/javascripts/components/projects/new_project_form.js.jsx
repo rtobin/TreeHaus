@@ -38,7 +38,11 @@ var NewProjectForm = React.createClass ({
             <form className="form-horizontal" onSubmit={this._handleSubmit}>
             <fieldset>
             <legend>Make A New Project!</legend>
+<<<<<<< HEAD
+            <Errors errorid="new-project-expanded" />
+=======
             <Errors />
+>>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
               <div className="form-group">
                 <label className="col-md-4 control-label" htmlFor="textinput1">Project Title</label>
                 <div className="col-md-4">

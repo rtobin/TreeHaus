@@ -45,9 +45,15 @@ var StepShow = React.createClass({
     var userID = this.props.params.userID;
     var projectID = this.props.params.projectID;
     var todoID = this.state.step.todo_ID;
+<<<<<<< HEAD
+    var question = 'are you sure you want to delete the task: "';
+    question += this.state.step.title + '"?';
+    var redirectURL = userID + '/projects/' + projectID + '/todos/' + todoID;
+=======
     var question = "are you sure you want to delete the task: ";
     question += this.state.step.title + "?";
     var redirectURL = userID + "/projects/" + projectID + "/todos/" + todoID;
+>>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
 
     ModalActions.activateModal(
       question,
@@ -133,10 +139,17 @@ var StepShow = React.createClass({
       userID + "/projects/" + projectID + "/todos/" + step.todo_id
     ];
     var assignees = step.assignees || {};
-    var emails = Object.keys(assignees).map(function (userID) {
-      var user = assignees[userID];
-      return user.name || user.email;
-    })
+
+
+    // var emails = Object.keys(assignees).map(function (userID) {
+    //   var user = assignees[userID];
+    //   return user.name || user.email;
+    // })
+
+    var projectParams = {
+      projectID: projectID,
+      userID: userID
+    };
     return (
       <div className="show-panel">
         <article className="recordable">
@@ -150,7 +163,9 @@ var StepShow = React.createClass({
             {this._dueTimes(step)}
             <label>
               <strong>Assigned to:</strong>
-              <span className="step-detail">{emails }</span>
+                <MembersIndex
+                  params={projectParams}
+                  members={assignees}/>
             </label>
             <label>
               <strong>Notes:</strong>

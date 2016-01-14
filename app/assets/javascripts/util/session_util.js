@@ -17,7 +17,8 @@ SessionUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "signin";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   },
@@ -42,7 +43,8 @@ SessionUtil = {
       }
     ).fail(function () {
         var args = [].slice.call(arguments);
-        UIActions.errorReport(JSON.parse(args[0].responseText));
+        var errorid = "signup";
+        UIActions.errorReport(JSON.parse(args[0].responseText), errorid);
       }
     );
   }

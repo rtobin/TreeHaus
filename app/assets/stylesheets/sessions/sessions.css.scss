@@ -57,6 +57,7 @@ input.session-field {
   box-shadow: 2px 2px 0px #efefef;
   margin-bottom: 12px;
   width: 80%;
+  text-align: left;
 }
 
 .session-body {
@@ -165,11 +166,11 @@ input.session-field {
   cursor: pointer;
 }
 
-.session-form > button:active {
-  top: 3px;
-  background: #070;
-  box-shadow: none;
-}
+// .session-form > button:active {
+//   top: 3px;
+//   background: #070;
+//   box-shadow: none;
+// }
 
 .button-alternative {
   padding: 0 0 0 5px;
