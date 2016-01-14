@@ -61,7 +61,6 @@ class Api::StepsController < ApplicationController
       todo_name = Todo.find(@step.todo_id).title
       project.records.create(
         name: "#{name} deleted task called \"#{@step.title}\" under the goal \"#{todo_name}\"",
-        name: "#{name} deleted task called #{@step.title} under the goal #{todo_name}",
         user_id: current_user.id
       )
       render json: { message: 'destroyed' }
@@ -94,7 +93,6 @@ class Api::StepsController < ApplicationController
       todo_name = Todo.find(@step.todo_id).title
       project.records.create(
         name: "#{name} updated the task called \"#{@step.title}\" under the goal \"#{todo_name}\"",
-        name: "#{name} updated the task called #{@step.title} under the goal #{todo_name}",
         user_id: current_user.id
       )
       emails.each do |email|
@@ -104,7 +102,6 @@ class Api::StepsController < ApplicationController
 
         project.records.create(
           name: "#{name} assigned #{member.name || member.email} to the task: \"#{@step.title}\"",
-          name: "#{name} assigned #{member.name || member.email} to the task: #{@step.title}",
           user_id: current_user.id
         )
         # redirect them to the new user's show page

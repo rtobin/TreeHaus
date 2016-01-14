@@ -19,7 +19,7 @@
 //= require progressbar.min.js
 //= require flux
 //= require jquery.avgrund.min.js
-//= require jquery.autocomplete.js
+//= //require jquery.autocomplete.js
 //= require jquery-ui.min.js
 //= require moment.min.js
 //= require bootstrap.min.js
