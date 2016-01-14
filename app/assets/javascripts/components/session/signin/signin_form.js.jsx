@@ -35,11 +35,7 @@ var SigninForm = React.createClass ({
 
   _guestSignin: function (e) {
     var guest = {
-<<<<<<< HEAD
       email: "guest@treehaus.space",
-=======
-      email: "ryan@treehaus.space",
->>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
       password: "Password1"
     };
     this.setState(guest);

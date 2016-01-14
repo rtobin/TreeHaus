@@ -173,15 +173,10 @@ var StepForm = React.createClass({
                 <select
                   id="assign-members"
                   data-attr="assignees"
-<<<<<<< HEAD
                   multiple="multiple"
                   style={{'width': '500px', 'margin': "10px"}}
                   onChange={this._onFormChange}>
                 </select>
-=======
-                  placeholder="add emails..."
-                  onChange={this._onFormChange}/>
->>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
               </label>
             </div>
             <div className="step-input form-radio-list">

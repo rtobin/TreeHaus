@@ -43,11 +43,7 @@ class Api::ProjectsController < ApplicationController
           #   user_id: current_user.id
           # )
           @project.records.create(
-<<<<<<< HEAD
             name: "#{current_user.email} added #{member.email} to \"#{membership.project.title}\"",
-=======
-            name: "#{current_user.email} added #{member.email} to #{membership.project.title}",
->>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
             user_id: current_user.id
           )
         end
@@ -93,11 +89,7 @@ class Api::ProjectsController < ApplicationController
         #   user_id: current_user.id
         # )
         @project.records.create(
-<<<<<<< HEAD
           name: "#{current_user.email} added #{member.email} to \"#{membership.project.title}\"",
-=======
-          name: "#{current_user.email} added #{member.email} to #{membership.project.title}",
->>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
           user_id: current_user.id
         )
         @project.records.create(

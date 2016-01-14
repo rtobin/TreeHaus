@@ -13,13 +13,7 @@ CommentUtil = {
   },
 
   createComment: function (commentParams) {
-<<<<<<< HEAD
-    
-
     $.post("api/comments",
-=======
-    $.post('api/comments',
->>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
       {
         comment: commentParams.comment,
         project_id: commentParams.projectID

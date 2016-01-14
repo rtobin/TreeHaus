@@ -18,4 +18,3 @@ and React.js (client-side). Treehaus allows users to:
 - Applaud comments.
 - Create, read, edit, and delete ToDos and Steps to accomplish ToDos and assign members
 - Track records of project
-- Track records of project

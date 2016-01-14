@@ -25,11 +25,7 @@ class Api::MembershipsController < ApplicationController
       #   user_id: current_user.id
       # )
       project.records.create(
-<<<<<<< HEAD
         name: "#{current_user.email} added #{@user.email} to \"#{membership.project.title}\"",
-=======
-        name: "#{current_user.email} added #{@user.email} to #{membership.project.title}",
->>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
         user_id: current_user.id
       )
       @project_id = member_params.project_id
@@ -48,11 +44,7 @@ class Api::MembershipsController < ApplicationController
       member = membership.member
       project = membership.project
       project.records.create(
-<<<<<<< HEAD
         name: "#{member.email} membership revoked for \"#{project.title}\"",
-=======
-        name: "#{member.email} membership revoked for #{project.title}",
->>>>>>> 806aa69f204cd7e096175e7addf1645ae5925d56
         user_id: current_user.id
       )
       render json: { message: 'destroyed' }
